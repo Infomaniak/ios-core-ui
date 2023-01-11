@@ -16,16 +16,15 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UIKit
+import XCTest
+@testable import InfomaniakCoreUI
 
-public extension UIApplication {
-    var mainSceneKeyWindow: UIWindow? {
-        // We want to have at least one foreground scene but we prefer active scenes rather than inactive ones
-        let foregroundScenes = Array(connectedScenes).filter { $0.activationState == .foregroundActive }
-            + Array(connectedScenes).filter { $0.activationState == .foregroundInactive }
-        return foregroundScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap(\.windows)
-            .first(where: \.isKeyWindow)
+final class InfomaniakCoreUITests: XCTestCase {
+    func testExample() throws {
+        // GIVEN
+        let label = IKLabel()
+        
+        // THEN
+        XCTAssertNotNil(label)
     }
 }

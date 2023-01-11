@@ -15,6 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/immortal79/LocalizeKit", .upToNextMajor(from: "1.0.1")),
+        .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.0.0")),
         .package(url: "https://github.com/PhilippeWeidmann/SnackBar.swift", .upToNextMajor(from: "0.1.2"))
     ],
     targets: [
@@ -22,10 +23,8 @@ let package = Package(
             name: "InfomaniakCoreUI",
             dependencies: [
                 "LocalizeKit",
+                "Kingfisher",
                 .product(name: "SnackBar", package: "SnackBar.swift")
-            ],
-            resources: [
-                .copy("Resources")
             ]),
         .testTarget(
             name: "InfomaniakCoreUITests",

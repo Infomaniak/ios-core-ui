@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "90135885ef506506620c4911cefb55a95ca2a9a2",
+        "version" : "7.5.0"
+      }
+    },
+    {
       "identity" : "localizekit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/immortal79/LocalizeKit",
