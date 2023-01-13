@@ -14,9 +14,10 @@ let package = Package(
             targets: ["InfomaniakCoreUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/immortal79/LocalizeKit", .upToNextMajor(from: "1.0.1")),
+        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.0.0")),
-        .package(url: "https://github.com/PhilippeWeidmann/SnackBar.swift", .upToNextMajor(from: "0.1.2"))
+        .package(url: "https://github.com/PhilippeWeidmann/LocalizeKit", .upToNextMajor(from: "1.0.1")),
+        .package(url: "https://github.com/PhilippeWeidmann/SnackBar.swift", .upToNextMajor(from: "0.1.2")),
     ],
     targets: [
         .target(
@@ -24,6 +25,7 @@ let package = Package(
             dependencies: [
                 "LocalizeKit",
                 "Kingfisher",
+                .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SnackBar", package: "SnackBar.swift")
             ]),
         .testTarget(
