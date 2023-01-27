@@ -14,8 +14,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core.git",
       "state" : {
-        "revision" : "9c390225426e8e75c8b6637f2d30560694315e7d",
-        "version" : "2.0.1"
+        "revision" : "904e0656671cb1b51a45a9f28be857ed4b37daac",
+        "version" : "3.0.0"
+      }
+    },
+    {
+      "identity" : "ios-dependency-injection",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Infomaniak/ios-dependency-injection",
+      "state" : {
+        "revision" : "4322cb2c1b18e13b7cb8ddfc56f9565a7d20f684",
+        "version" : "1.1.1"
       }
     },
     {
