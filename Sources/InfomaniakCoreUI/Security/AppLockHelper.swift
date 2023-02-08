@@ -18,7 +18,7 @@
 
 import LocalAuthentication
 
-public struct AppLockHelper {
+public class AppLockHelper {
     
     private var lastAppLock: Double = 0
     private let appUnlockTime: Double = 60 // 1 minute
@@ -29,7 +29,7 @@ public struct AppLockHelper {
         return lastAppLock + appUnlockTime < Date().timeIntervalSince1970
     }
 
-    public mutating func setTime() {
+    public func setTime() {
         lastAppLock = Date().timeIntervalSince1970
     }
 
