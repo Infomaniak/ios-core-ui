@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PhilippeWeidmann/SnackBar.swift",
       "state" : {
-        "revision" : "9e2f25bad90a7fb4f5764814c47a8448ba5df58d",
-        "version" : "0.1.5"
+        "revision" : "d5e207f20f784e7b3ce500d27be8b3b0c9494929",
+        "version" : "1.0.0"
       }
     },
     {
