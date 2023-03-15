@@ -21,10 +21,10 @@
     {
       "identity" : "ios-core",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Infomaniak/ios-core",
+      "location" : "https://github.com/Infomaniak/ios-core.git",
       "state" : {
-        "revision" : "bf5fee633f88f61a9072e4bb4718891347be78b3",
-        "version" : "3.5.0"
+        "revision" : "265c052eb2ed31a689a0fac4283c5040eff666ed",
+        "version" : "3.6.0"
       }
     },
     {
@@ -52,6 +52,15 @@
       "state" : {
         "revision" : "1abb86ce614ae8d925bf82123c7360ab95827975",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "matomo-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/matomo-org/matomo-sdk-ios.git",
+      "state" : {
+        "revision" : "15a645e11eaa8053f93749d73ced03da1e56fd01",
+        "version" : "7.5.2"
       }
     },
     {
