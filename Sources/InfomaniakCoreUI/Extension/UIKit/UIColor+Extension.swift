@@ -38,8 +38,8 @@ public extension UIColor {
                   alpha: 1)
     }
 
-    class func backgroundColor(from userId: Int) -> UIColor {
-        let colorIndex = userId % 9
-        return UIColor(named: "organisationColor\(colorIndex)", in: Bundle.module, compatibleWith: nil) ?? .darkGray
+    class func backgroundColor(from userId: Int, with colors: [UIColor] = Constants.organisationColors) -> UIColor {
+        let colorIndex = abs(userId % colors.count)
+        return colors[colorIndex]
     }
 }
