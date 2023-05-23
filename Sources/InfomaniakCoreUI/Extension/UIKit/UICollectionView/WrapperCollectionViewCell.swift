@@ -18,21 +18,89 @@
 
 import UIKit
 
-open class WrapperCollectionViewCell: UICollectionViewCell {
-    open func initWith<CellClass: UITableViewCell>(cell: CellClass.Type) -> CellClass {
-        let cellView = Bundle.main.loadNibNamed(String(describing: cell), owner: nil, options: nil)![0] as! CellClass
-        let cellContentView = cellView.contentView
+/// Wrapping a UITableViewCell in a UICollectionViewCell
+public final class WrapperCollectionViewCell: UICollectionViewCell {
+    /// The wrapped instance of the cell
+    public var wrappedCell: UITableViewCell?
+
+    // MARK: Reuse
+
+    /// Wrap a new cell into this existing one
+    /// - Parameter cellType: The type used to refresh the cell. It must be created in a XIB
+    public func reuse<CellClass: UITableViewCell>(withCellType cellType: CellClass.Type) -> CellClass {
+        prepareForReuse()
+
+        let wrappedCell = Bundle.main.loadNibNamed(String(describing: cellType),
+                                                   owner: nil,
+                                                   options: nil)![0] as! CellClass
+        self.wrappedCell = wrappedCell
+        setupAutolayout()
+
+        return wrappedCell
+    }
+
+    override public func prepareForReuse() {
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+    }
+
+    // MARK: Layout
+
+    private func setupAutolayout() {
+        guard let wrappedCell = wrappedCell else {
+            return
+        }
+
+        let cellContentView = wrappedCell.contentView
         contentView.addSubview(cellContentView)
 
         cellContentView.translatesAutoresizingMaskIntoConstraints = false
-        let top = NSLayoutConstraint(item: cellContentView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: cellContentView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
-        let left = NSLayoutConstraint(item: cellContentView, attribute: .left, relatedBy: .equal, toItem: contentView, attribute: .left, multiplier: 1, constant: 0)
-        let right = NSLayoutConstraint(item: cellContentView, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(
+            item: cellContentView,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 0
+        )
+        let bottom = NSLayoutConstraint(
+            item: cellContentView,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: 0
+        )
+        let left = NSLayoutConstraint(
+            item: cellContentView,
+            attribute: .left,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .left,
+            multiplier: 1,
+            constant: 0
+        )
+        let right = NSLayoutConstraint(
+            item: cellContentView,
+            attribute: .right,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .right,
+            multiplier: 1,
+            constant: 0
+        )
 
-        let height = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: cellContentView.frame.height)
+        let height = NSLayoutConstraint(
+            item: contentView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: cellContentView.frame.height
+        )
 
         NSLayoutConstraint.activate([top, bottom, left, right, height])
-        return cellView
     }
 }
