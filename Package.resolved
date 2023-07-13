@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
-        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
-        "version" : "5.6.4"
+        "revision" : "bc268c28fb170f494de9e9927c371b8342979ece",
+        "version" : "5.7.1"
       }
     },
     {
@@ -21,10 +21,10 @@
     {
       "identity" : "ios-core",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Infomaniak/ios-core.git",
+      "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "9279e631ae8f7a6d960c5089ff021fe1a5e1e884",
-        "version" : "4.0.0"
+        "revision" : "3e858f4f769b9fae54581e690d5cae92bd52d2c1",
+        "version" : "4.1.4"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "af4be924ad984cf4d16f4ae4df424e79a443d435",
-        "version" : "7.6.2"
+        "revision" : "c1f60c63f356d364f4284ba82961acbe7de79bcc",
+        "version" : "7.8.1"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "e56380f05793998dfea0d87a34b68fdba475961c",
-        "version" : "13.9.0"
+        "revision" : "f1434caadda443b4ed2261b91ea4f43ab1ee2aa5",
+        "version" : "13.15.1"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "71bddc82c4fe3dd6488739ff8b7e99f69183a614",
-        "version" : "10.38.0"
+        "revision" : "b287dc102036ff425bd8a88483f0a5596871f05e",
+        "version" : "10.41.0"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "2479b6f7ff69b66bcdea82184d097667e63828ed",
-        "version" : "8.5.0"
+        "revision" : "d277532e1c8af813981ba01f591b15bbdd735615",
+        "version" : "8.8.0"
       }
     },
     {
