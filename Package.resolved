@@ -12,7 +12,7 @@
     {
       "identity" : "cocoalumberjack",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/CocoaLumberjack/CocoaLumberjack.git",
+      "location" : "https://github.com/CocoaLumberjack/CocoaLumberjack",
       "state" : {
         "revision" : "0188d31089b5881a269e01777be74c7316924346",
         "version" : "3.8.0"
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "3e858f4f769b9fae54581e690d5cae92bd52d2c1",
-        "version" : "4.1.4"
+        "revision" : "dfad9c3cde4f2d91971bfabbaf432d438d2bacf4",
+        "version" : "4.1.6"
       }
     },
     {
@@ -57,7 +57,7 @@
     {
       "identity" : "matomo-sdk-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/matomo-org/matomo-sdk-ios.git",
+      "location" : "https://github.com/matomo-org/matomo-sdk-ios",
       "state" : {
         "revision" : "15a645e11eaa8053f93749d73ced03da1e56fd01",
         "version" : "7.5.2"
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "f1434caadda443b4ed2261b91ea4f43ab1ee2aa5",
-        "version" : "13.15.1"
+        "revision" : "f1e962cd447f8b69f8f7cf46a188b1c6246923c5",
+        "version" : "13.17.0"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "b287dc102036ff425bd8a88483f0a5596871f05e",
-        "version" : "10.41.0"
+        "revision" : "0155caac1a0830a9fbaaffe5866b909fad3a6fc4",
+        "version" : "10.41.1"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "d277532e1c8af813981ba01f591b15bbdd735615",
-        "version" : "8.8.0"
+        "revision" : "e46936ed191c0112cd3276e1c10c0bb7f865268e",
+        "version" : "8.9.1"
       }
     },
     {

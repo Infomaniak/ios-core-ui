@@ -27,10 +27,14 @@ import UIKit
 /// an UIImage
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultable {
+    
+    /// Something to transform events into a nice `async Result`
+    private let flowToAsync = FlowToAsyncResult<Success>()
+    
     /// Domain specific errors
     public enum ErrorDomain: Error {
-        case UTINotFound
         case UTINotSupported
+        case unableToGetPNGData
         case unknown
     }
 
@@ -39,18 +43,10 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
 
     private static let progressStep: Int64 = 1
 
-    /// Track task progress with internal Combine pipe
-    private let resultProcessed = PassthroughSubject<Success, Failure>()
-
-    /// Internal observation of the Combine progress Pipe
-    private var resultProcessedObserver: AnyCancellable?
-
-    /// Internal Task that wraps the combine result observation
-    private var computeResultTask: Task<Success, Failure>?
-
     public init(from itemProvider: NSItemProvider) throws {
-        guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first else {
-            throw ErrorDomain.UTINotFound
+        // It must be a directory for the OS to zip it for us, a file returns a file
+        guard itemProvider.underlyingType == .isUIImage else {
+            throw ErrorDomain.UTINotSupported
         }
 
         progress = Progress(totalUnitCount: 1)
@@ -60,56 +56,34 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
         let childProgress = Progress()
         progress.addChild(childProgress, withPendingUnitCount: Self.progressStep)
 
-        itemProvider.loadItem(forTypeIdentifier: UTI.image.identifier) { coding, error in
+        itemProvider.loadItem(forTypeIdentifier: UTI.image.identifier) { [self] coding, error in
             defer {
                 childProgress.completedUnitCount += Self.progressStep
             }
 
             guard error == nil, coding != nil else {
-                self.resultProcessed.send(completion: .failure(error ?? ErrorDomain.unknown))
+                flowToAsync.sendFailure(error ?? ErrorDomain.unknown)
                 return
             }
 
             @InjectService var pathProvider: AppGroupPathProvidable
             let tmpDirectoryURL = pathProvider.tmpDirectoryURL
 
-            // Is UIImage
-            if let image = coding as? UIImage,
-               let pngData = image.pngData() {
-                let targetURL = tmpDirectoryURL.appendingPathComponent("\(UUID().uuidString).png")
-
-                do {
-                    try pngData.write(to: targetURL, options: .atomic)
-                    self.resultProcessed.send(targetURL)
-                    self.resultProcessed.send(completion: .finished)
-                } catch {
-                    self.resultProcessed.send(completion: .failure(error))
-                }
+            // Try to get png from UIImage
+            guard let image = coding as? UIImage,
+               let pngData = image.pngData() else {
+                flowToAsync.sendFailure(ErrorDomain.unableToGetPNGData)
+                return
             }
+            
+            let targetURL = tmpDirectoryURL.appendingPathComponent("\(UUID().uuidString).png")
 
-            // Not supported
-            else {
-                self.resultProcessed.send(completion: .failure(ErrorDomain.UTINotSupported))
+            do {
+                try pngData.write(to: targetURL, options: .atomic)
+                flowToAsync.sendSuccess(targetURL)
+            } catch {
+                flowToAsync.sendFailure(error)
             }
-        }
-
-        /// Wrap the Combine pipe to a native Swift Async Task for convenience
-        computeResultTask = Task {
-            let resultURL: URL = try await withCheckedThrowingContinuation { continuation in
-                self.resultProcessedObserver = resultProcessed.sink { result in
-                    switch result {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        continuation.resume(throwing: error)
-                    }
-                    self.resultProcessedObserver?.cancel()
-                } receiveValue: { value in
-                    continuation.resume(with: .success(value))
-                }
-            }
-
-            return resultURL
         }
     }
 
@@ -119,11 +93,7 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
 
     public var result: Result<URL, Error> {
         get async {
-            guard let computeResultTask else {
-                fatalError("This never should be nil")
-            }
-
-            return await computeResultTask.result
+            return await flowToAsync.result
         }
     }
 }
