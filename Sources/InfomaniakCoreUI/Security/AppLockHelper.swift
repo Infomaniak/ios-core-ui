@@ -18,15 +18,22 @@
 
 import LocalAuthentication
 
-public class AppLockHelper {
-    
-    private var lastAppLock: Double = 0
-    private let appUnlockTime: Double = 60 // 1 minute
+public final class AppLockHelper {
+    private let context: LAContext
 
-    public init() {}
+    private var lastAppLock: TimeInterval = 0
+    private let appUnlockTime: TimeInterval = 60 // 1 minute
 
     public var isAppLocked: Bool {
         return lastAppLock + appUnlockTime < Date().timeIntervalSince1970
+    }
+
+    public var isAvailable: Bool {
+        return context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+    }
+
+    public init() {
+        context = LAContext()
     }
 
     public func setTime() {
@@ -34,8 +41,7 @@ public class AppLockHelper {
     }
 
     public func evaluatePolicy(reason: String) async throws -> Bool {
-        let context = LAContext()
-        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil) else { return false }
+        guard isAvailable else { return false }
         return try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
     }
 }
