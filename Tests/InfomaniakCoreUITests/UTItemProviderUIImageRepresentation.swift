@@ -52,15 +52,21 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         let image = UIImage(systemName: "multiply.circle.fill")
         let item = NSItemProvider(item: image, typeIdentifier: UTI.image.rawValue as String)
 
-        // WHEN
         do {
             let provider = try ItemProviderUIImageRepresentation(from: item)
+            let progress = provider.progress
+            XCTAssertFalse(progress.isFinished, "Expecting the progress to reflect that the task has not started yet")
+            
+            // WHEN
+            let success = try await provider.result.get()
 
             // THEN
-            let success = try await provider.result.get()
+            XCTAssertTrue(progress.isFinished, "Expecting the progress to reflect that the task is finished")
             let filename = success.lastPathComponent
             XCTAssertFalse(filename.isEmpty, "we expect a file name")
             XCTAssertTrue(filename.hasSuffix(".png"), "we expect a PNG file extension")
+            XCTAssertGreaterThanOrEqual(filename.count, 17 + ".png".count, "non empty title")
+            XCTAssertLessThanOrEqual(filename.count, 30 + ".png".count, "smaller than UUID")
 
         } catch {
             XCTFail("Unexpected \(error)")
@@ -72,9 +78,11 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         let image = UIImage()
         let item = NSItemProvider(item: image, typeIdentifier: UTI.image.rawValue as String)
 
-        // WHEN
         do {
+            // WHEN
             let _ = try ItemProviderUIImageRepresentation(from: item)
+
+            // THEN
             // expected to throw unableToGetPNGData
         } catch {
             guard let error = error as? ItemProviderUIImageRepresentation.ErrorDomain else {
@@ -90,15 +98,17 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
             // All good
         }
     }
-    
+
     func testGetPNGWrongInputType() async {
         // GIVEN
         let notAnImage = UIColor.red // Something that conforms to NSCoding
         let item = NSItemProvider(item: notAnImage, typeIdentifier: UTI.image.rawValue as String)
 
-        // WHEN
         do {
+            // WHEN
             let _ = try ItemProviderUIImageRepresentation(from: item)
+
+            // THEN
             // expected to throw unableToGetPNGData
         } catch {
             guard let error = error as? ItemProviderUIImageRepresentation.ErrorDomain else {
@@ -120,12 +130,13 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         let image = UIImage(systemName: "multiply.circle.fill")
         let item = NSItemProvider(item: image, typeIdentifier: UTI.audio.rawValue as String)
 
-        // WHEN
         do {
             let provider = try ItemProviderUIImageRepresentation(from: item)
 
-            // THEN
+            // WHEN
             let _ = try await provider.result.get()
+
+            // THEN
             // expected to throw UTINotSupported
         } catch {
             guard let error = error as? ItemProviderUIImageRepresentation.ErrorDomain else {
