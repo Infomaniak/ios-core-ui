@@ -20,17 +20,15 @@
 
 import Combine
 import InfomaniakCore
-import InfomaniakDI
 import UIKit
 
 /// Something that can provide a `Progress` and an async `Result` in order to make an image file from a `NSItemProvider` wrapping
 /// an UIImage
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultable {
-    
     /// Something to transform events into a nice `async Result`
     private let flowToAsync = FlowToAsyncResult<Success>()
-    
+
     /// Domain specific errors
     public enum ErrorDomain: Error {
         case UTINotSupported
@@ -66,19 +64,19 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
                 return
             }
 
-            @InjectService var pathProvider: AppGroupPathProvidable
-            let tmpDirectoryURL = pathProvider.tmpDirectoryURL
-
             // Try to get png from UIImage
             guard let image = coding as? UIImage,
-               let pngData = image.pngData() else {
+                  let pngData = image.pngData() else {
                 flowToAsync.sendFailure(ErrorDomain.unableToGetPNGData)
                 return
             }
-            
-            let targetURL = tmpDirectoryURL.appendingPathComponent("\(UUID().uuidString).png")
 
             do {
+                // Use a unique folder to prevent collisions
+                let tmpDirectoryURL = try URL.temporaryUniqueFolderURL()
+
+                let targetURL = tmpDirectoryURL.appendingPathComponent("\(URL.defaultFileName()).png")
+
                 try pngData.write(to: targetURL, options: .atomic)
                 flowToAsync.sendSuccess(targetURL)
             } catch {
