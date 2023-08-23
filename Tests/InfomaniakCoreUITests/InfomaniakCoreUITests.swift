@@ -16,15 +16,25 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import InfomaniakCoreUI
 import XCTest
-@testable import InfomaniakCoreUI
 
 final class InfomaniakCoreUITests: XCTestCase {
-    func testExample() throws {
+    func testCanInit_IKLabel() throws {
         // GIVEN
         let label = IKLabel()
-        
+
         // THEN
         XCTAssertNotNil(label)
     }
+
+    #if canImport(UIKit)
+    func testCanInit_ApplicationBackgroundTaskTrackable() async {
+        // GIVEN
+        let bgTracker = await ApplicationBackgroundTaskTracker(identifier: #function)
+
+        // THEN
+        await bgTracker.end()
+    }
+    #endif
 }
