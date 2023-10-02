@@ -77,6 +77,8 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     @State var selection: PresentationDetent = .height(0)
     private let topPadding: CGFloat = 24
 
+    public init() {}
+
     public func body(content: Content) -> some View {
         ScrollView {
             content
