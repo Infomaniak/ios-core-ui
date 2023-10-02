@@ -11,8 +11,8 @@ import SwiftUIBackports
 import SwiftUIIntrospect
 
 @available(iOS 15, *)
-extension View {
-    public func floatingPanel<Content: View>(isPresented: Binding<Bool>,
+public extension View {
+    func floatingPanel<Content: View>(isPresented: Binding<Bool>,
                                       @ViewBuilder content: @escaping () -> Content) -> some View {
         sheet(isPresented: isPresented) {
             if #available(iOS 16.0, *) {
@@ -23,7 +23,7 @@ extension View {
         }
     }
 
-    public func floatingPanel<Item: Identifiable, Content: View>(item: Binding<Item?>,
+    func floatingPanel<Item: Identifiable, Content: View>(item: Binding<Item?>,
                                                           @ViewBuilder content: @escaping (Item) -> Content) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
@@ -34,7 +34,7 @@ extension View {
         }
     }
 
-    public func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
+    func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
         if #available(iOS 16.4, *) {
             return presentationCornerRadius(cornerRadius)
         } else {
@@ -46,11 +46,11 @@ extension View {
 }
 
 @available(iOS, introduced: 15, deprecated: 16, message: "Use native way")
-struct SelfSizingPanelBackportViewModifier: ViewModifier {
+public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     @State var currentDetents: Set<Backport.PresentationDetent> = [.medium]
     private let topPadding: CGFloat = 24
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ScrollView {
             content
                 .padding(.bottom, 16)
@@ -72,12 +72,12 @@ struct SelfSizingPanelBackportViewModifier: ViewModifier {
 }
 
 @available(iOS 16.0, *)
-struct SelfSizingPanelViewModifier: ViewModifier {
+public struct SelfSizingPanelViewModifier: ViewModifier {
     @State var currentDetents: Set<PresentationDetent> = [.height(0)]
     @State var selection: PresentationDetent = .height(0)
     private let topPadding: CGFloat = 24
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ScrollView {
             content
                 .padding(.bottom, 16)
