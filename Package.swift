@@ -11,13 +11,16 @@ let package = Package(
     products: [
         .library(
             name: "InfomaniakCoreUI",
-            targets: ["InfomaniakCoreUI"]),
+            targets: ["InfomaniakCoreUI"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "4.1.11")),
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.0.0")),
         .package(url: "https://github.com/PhilippeWeidmann/LocalizeKit", .upToNextMajor(from: "1.0.1")),
         .package(url: "https://github.com/PhilippeWeidmann/SnackBar.swift", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
+        .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
         .target(
@@ -26,10 +29,14 @@ let package = Package(
                 "LocalizeKit",
                 "Kingfisher",
                 .product(name: "InfomaniakCore", package: "ios-core"),
-                .product(name: "SnackBar", package: "SnackBar.swift")
-            ]),
+                .product(name: "SnackBar", package: "SnackBar.swift"),
+                .product(name: "SwiftUIBackports", package: "SwiftUIBackports"),
+                .product(name: "SwiftUIIntrospect", package: "swiftui-introspect")
+            ]
+        ),
         .testTarget(
             name: "InfomaniakCoreUITests",
-            dependencies: ["InfomaniakCoreUI"])
+            dependencies: ["InfomaniakCoreUI"]
+        )
     ]
 )
