@@ -12,7 +12,7 @@ import SwiftUIIntrospect
 
 @available(iOS 15, *)
 extension View {
-    func floatingPanel<Content: View>(isPresented: Binding<Bool>,
+    public func floatingPanel<Content: View>(isPresented: Binding<Bool>,
                                       @ViewBuilder content: @escaping () -> Content) -> some View {
         sheet(isPresented: isPresented) {
             if #available(iOS 16.0, *) {
@@ -23,7 +23,7 @@ extension View {
         }
     }
 
-    func floatingPanel<Item: Identifiable, Content: View>(item: Binding<Item?>,
+    public func floatingPanel<Item: Identifiable, Content: View>(item: Binding<Item?>,
                                                           @ViewBuilder content: @escaping (Item) -> Content) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
@@ -34,7 +34,7 @@ extension View {
         }
     }
 
-    func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
+    public func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
         if #available(iOS 16.4, *) {
             return presentationCornerRadius(cornerRadius)
         } else {
