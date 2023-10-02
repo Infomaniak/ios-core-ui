@@ -50,6 +50,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     @State var currentDetents: Set<Backport.PresentationDetent> = [.medium]
     private let topPadding: CGFloat = 24
 
+    public init() {}
+
     public func body(content: Content) -> some View {
         ScrollView {
             content
