@@ -48,9 +48,9 @@
     {
       "identity" : "localizekit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PhilippeWeidmann/LocalizeKit",
+      "location" : "https://github.com/Infomaniak/LocalizeKit",
       "state" : {
-        "revision" : "1abb86ce614ae8d925bf82123c7360ab95827975",
+        "revision" : "a8f5b63a242a7cb5d8939db011fc9ee871a2a300",
         "version" : "1.0.1"
       }
     },
@@ -93,7 +93,7 @@
     {
       "identity" : "snackbar.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PhilippeWeidmann/SnackBar.swift",
+      "location" : "https://github.com/Infomaniak/SnackBar.swift",
       "state" : {
         "revision" : "9a3c0c71796625ec3804df993483aa80266fa1ff",
         "version" : "1.1.0"
