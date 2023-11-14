@@ -55,11 +55,8 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
         progress.addChild(childProgress, withPendingUnitCount: Self.progressStep)
 
         itemProvider.loadItem(forTypeIdentifier: UTI.image.identifier) { [self] coding, error in
-            defer {
-                childProgress.completedUnitCount += Self.progressStep
-            }
-
             guard error == nil, coding != nil else {
+                childProgress.completedUnitCount += Self.progressStep
                 flowToAsync.sendFailure(error ?? ErrorDomain.unknown)
                 return
             }
@@ -67,6 +64,7 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
             // Try to get png from UIImage
             guard let image = coding as? UIImage,
                   let pngData = image.pngData() else {
+                childProgress.completedUnitCount += Self.progressStep
                 flowToAsync.sendFailure(ErrorDomain.unableToGetPNGData)
                 return
             }
@@ -78,8 +76,11 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
                 let targetURL = tmpDirectoryURL.appendingPathComponent("\(URL.defaultFileName()).png")
 
                 try pngData.write(to: targetURL, options: .atomic)
+
+                childProgress.completedUnitCount += Self.progressStep
                 flowToAsync.sendSuccess(targetURL)
             } catch {
+                childProgress.completedUnitCount += Self.progressStep
                 flowToAsync.sendFailure(error)
             }
         }
