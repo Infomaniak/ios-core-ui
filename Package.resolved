@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "504932a51c978b6aa0bbc086054875a36241674e",
-        "version" : "5.0.1"
+        "revision" : "a1341fb7d6d5bc48576cc8400682476c441f2d23",
+        "version" : "6.0.0"
       }
     },
     {
@@ -34,6 +34,15 @@
       "state" : {
         "revision" : "8dc9e67e6d3d9f4f5bd02d693a7ce1f93b125bcd",
         "version" : "2.0.1"
+      }
+    },
+    {
+      "identity" : "ios-login",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Infomaniak/ios-login",
+      "state" : {
+        "revision" : "904c1ac39b4db56212302b464a0b2e023d9b5791",
+        "version" : "6.0.0"
       }
     },
     {
