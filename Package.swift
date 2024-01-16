@@ -14,7 +14,7 @@ let package = Package(
             targets: ["InfomaniakCoreUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "5.0.1")),
+        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/Infomaniak/LocalizeKit", .upToNextMajor(from: "1.0.1")),
         .package(url: "https://github.com/Infomaniak/SnackBar.swift", .upToNextMajor(from: "1.1.0")),
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.10.0")),
