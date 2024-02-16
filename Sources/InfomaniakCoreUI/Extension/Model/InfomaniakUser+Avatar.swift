@@ -23,7 +23,7 @@ import UIKit
 public extension InfomaniakUser {
     /// Can fetch an avatar from any abstract `InfomaniakUser`
     func getAvatar(size: CGSize = CGSize(width: 40, height: 40), completion: @escaping (UIImage) -> Void) {
-        if let url = URL(string: avatar) {
+        if let avatar, let url = URL(string: avatar) {
             KingfisherManager.shared.retrieveImage(with: url) { result in
                 if let avatarImage = try? result.get().image {
                     completion(avatarImage)
