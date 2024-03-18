@@ -17,6 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: xcodebuild -scheme InfomaniakCoreUI build -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
+        run: xcodebuild -scheme InfomaniakCoreUI build -sdk iphonesimulator -destination "platform=iOS,name=iPhone 15 Pro,OS=latest"
       - name: Test
-        run: xcodebuild -scheme InfomaniakCoreUI test -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
+        run: xcodebuild -scheme InfomaniakCoreUI test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=latest"
