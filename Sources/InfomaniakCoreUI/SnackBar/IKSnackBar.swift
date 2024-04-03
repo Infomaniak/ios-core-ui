@@ -39,6 +39,8 @@ extension UIViewController {
 }
 
 public final class IKSnackBar: SnackBar {
+    public static let dismissSnackbarNotificationName = Notification.Name(rawValue: "dismissSnackbar")
+    
     public struct Action {
         let title: String
         let action: () -> Void
@@ -52,10 +54,12 @@ public final class IKSnackBar: SnackBar {
     required init(contextView: UIView, message: String, duration: Duration, style: SnackBarStyle, elevation: Double) {
         super.init(contextView: contextView, message: message, duration: duration, style: style)
         addShadow(elevation: elevation)
+        self.commonInit()
     }
 
     required init(contextView: UIView, message: String, duration: SnackBar.Duration, style: SnackBarStyle = SnackBarStyle()) {
         super.init(contextView: contextView, message: message, duration: duration, style: style)
+        self.commonInit()
     }
 
     @available(*, unavailable)
@@ -76,9 +80,23 @@ public final class IKSnackBar: SnackBar {
     public func setAction(_ action: Action) -> SnackBarPresentable {
         return setAction(with: action.title, action: action.action)
     }
+    
+    func commonInit() {
+        NotificationCenter.default.addObserver(
+                            self,
+                            selector: #selector(shouldDismiss),
+                            name: Self.dismissSnackbarNotificationName,
+                            object: nil
+                        )
+    }
 
     deinit {
         IKWindowProvider.shared.displayRollbackWindowIfNeeded()
+        NotificationCenter.default.removeObserver(self, name: Self.dismissSnackbarNotificationName, object: nil)
+    }
+    
+    @objc func shouldDismiss(_ notification: Notification) {
+        dismiss()
     }
 }
 
