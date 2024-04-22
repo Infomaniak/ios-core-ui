@@ -51,7 +51,7 @@ public final class MatomoUtils {
 
     public func optOut(_ optOut: Bool) {
         tracker.isOptedOut = optOut
-        #if DEBUG
+        #if DEBUG && !TEST
             tracker.isOptedOut = true
         #endif
     }
