@@ -24,9 +24,6 @@ public final class MatomoUtils {
 
     public init(siteId: String, baseURL: URL) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
-        #if DEBUG
-            tracker.isOptedOut = true
-        #endif
     }
 
     public func connectUser(userId: String) {
@@ -35,9 +32,6 @@ public final class MatomoUtils {
 
     public func optOut(_ optOut: Bool) {
         tracker.isOptedOut = optOut
-        #if DEBUG && !TEST
-            tracker.isOptedOut = true
-        #endif
     }
 
     public func track(view: [String]) {
