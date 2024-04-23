@@ -24,13 +24,14 @@ public final class MatomoUtils {
 
     public init(siteId: String, baseURL: URL) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
-        #if DEBUG
-            tracker.isOptedOut = true
-        #endif
     }
 
     public func connectUser(userId: String) {
         tracker.userId = userId
+    }
+
+    public func optOut(_ optOut: Bool) {
+        tracker.isOptedOut = optOut
     }
 
     public func track(view: [String]) {
