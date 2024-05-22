@@ -25,11 +25,12 @@ public final class AppLockHelper {
     private var timeSinceAppEnteredBackground = TimeInterval.zero
 
     public var isAppLocked: Bool {
-        return timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
+        let shouldBeLocked = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
+        return isAvailable() && shouldBeLocked
     }
 
-    public init(unlockTime: TimeInterval = AppLockHelper.lockAfterOneMinute) {
-        self.intervalToLockApp = unlockTime
+    public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
+        self.intervalToLockApp = intervalToLockApp
     }
 
     public func isAvailable(_ context: LAContext? = nil) -> Bool {
