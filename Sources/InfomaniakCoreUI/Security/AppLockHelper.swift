@@ -19,29 +19,34 @@
 import LocalAuthentication
 
 public final class AppLockHelper {
-    private let context: LAContext
+    public static let lockAfterOneMinute: TimeInterval = 60
 
-    private var lastAppLock: TimeInterval = 0
-    private let appUnlockTime: TimeInterval = 60 // 1 minute
+    private let intervalToLockApp: TimeInterval
+    private var timeSinceAppEnteredBackground = TimeInterval.zero
 
     public var isAppLocked: Bool {
-        return lastAppLock + appUnlockTime < Date().timeIntervalSince1970
+        return timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
     }
 
-    public var isAvailable: Bool {
-        return context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+    public init(unlockTime: TimeInterval = AppLockHelper.lockAfterOneMinute) {
+        self.intervalToLockApp = unlockTime
     }
 
-    public init() {
-        context = LAContext()
+    public func isAvailable(_ context: LAContext? = nil) -> Bool {
+        let currentContext = context ?? LAContext()
+        return currentContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
     }
 
     public func setTime() {
-        lastAppLock = Date().timeIntervalSince1970
+        timeSinceAppEnteredBackground = Date().timeIntervalSince1970
     }
 
     public func evaluatePolicy(reason: String) async throws -> Bool {
-        guard isAvailable else { return false }
+        let context = LAContext()
+        guard isAvailable(context) else {
+            return false
+        }
+
         return try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
     }
 }
