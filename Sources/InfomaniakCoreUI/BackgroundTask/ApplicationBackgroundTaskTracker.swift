@@ -31,6 +31,7 @@ public protocol ApplicationBackgroundTaskTrackable: AnyObject {
 }
 
 @available(iOSApplicationExtension, unavailable)
+@available(*, deprecated, message: "Use BackgroundExecutor from the ios-core package instead")
 public final class ApplicationBackgroundTaskTracker: ApplicationBackgroundTaskTrackable {
     /// A background task identifier
     private let identifier: String
