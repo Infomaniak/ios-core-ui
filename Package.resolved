@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "6ec34998530da3e5ebf92c1a1b0209cd65cff3b6",
-        "version" : "10.0.0"
+        "revision" : "6c175294c2ff03c43eb7c9bd32ebd3a8c6448b0d",
+        "version" : "11.0.0"
       }
     },
     {
@@ -52,15 +52,6 @@
       "state" : {
         "revision" : "3ec0ab0bca4feb56e8b33e289c9496e89059dd08",
         "version" : "7.10.2"
-      }
-    },
-    {
-      "identity" : "localizekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Infomaniak/LocalizeKit",
-      "state" : {
-        "revision" : "a8f5b63a242a7cb5d8939db011fc9ee871a2a300",
-        "version" : "1.0.1"
       }
     },
     {
