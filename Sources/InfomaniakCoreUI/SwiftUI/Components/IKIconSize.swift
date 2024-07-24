@@ -31,8 +31,7 @@ import SwiftUI
 public extension Image {
     /// Resizes and scales the image to the specified ``IKIconSize`` size.
     /// - Parameter size: The specified size.
-    /// - Returns: A square view containing the image scaled to fit in
-    ///         a frame of the specified size.
+    /// - Returns: A square view containing the image scaled to fit in a frame of the specified size.
     func iconSize(_ size: IKIconSize) -> some View {
         self
             .resizable()
