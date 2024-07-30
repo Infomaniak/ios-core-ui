@@ -25,10 +25,9 @@ enum IKButtonHeight {
     static let medium: CGFloat = 40
 
     static func convert(controlSize: ControlSize) -> CGFloat {
-        switch controlSize {
-        case .large:
+        if controlSize == .large {
             return IKButtonHeight.large
-        default:
+        } else {
             return IKButtonHeight.medium
         }
     }

@@ -17,21 +17,88 @@
  */
 
 import SwiftUI
-import SwiftUIMacros
+
+// MARK: - EnvironmentValues
 
 @available(iOS 15.0, *)
-@EnvironmentValues public extension EnvironmentValues {
-    var ikButtonPrimaryStyle: any ShapeStyle = TintShapeStyle.tint
-    var ikButtonSecondaryStyle: any ShapeStyle = Color.primary
+public extension EnvironmentValues {
+    // MARK: IKButtonPrimaryStyleKey
 
-    var ikButtonTheme = IKButtonTheme.defaultTheme
+    var ikButtonPrimaryStyle: any ShapeStyle {
+        get {
+            self[IKButtonPrimaryStyleKey.self]
+        }
+        set {
+            self[IKButtonPrimaryStyleKey.self] = newValue
+        }
+    }
 
-    var ikButtonFullWidth = false
+    private struct IKButtonPrimaryStyleKey: EnvironmentKey {
+        static let defaultValue: any ShapeStyle = TintShapeStyle.tint
+    }
 
-    var ikButtonLoading = false
+    // MARK: IKButtonSecondaryStyleKey
+
+    var ikButtonSecondaryStyle: any ShapeStyle {
+        get {
+            self[IKButtonSecondaryStyleKey.self]
+        }
+        set {
+            self[IKButtonSecondaryStyleKey.self] = newValue
+        }
+    }
+
+    private struct IKButtonSecondaryStyleKey: EnvironmentKey {
+        static let defaultValue: any ShapeStyle = Color.primary
+    }
+
+    // MARK: IKButtonThemeKey
+
+    var ikButtonTheme: IKButtonTheme {
+        get {
+            self[IKButtonThemeKey.self]
+        }
+        set {
+            self[IKButtonThemeKey.self] = newValue
+        }
+    }
+
+    private struct IKButtonThemeKey: EnvironmentKey {
+        static let defaultValue = IKButtonTheme.defaultTheme
+    }
+
+    // MARK: IKButtonFullWidthKey
+
+    var ikButtonFullWidth: Bool {
+        get {
+            self[IKButtonFullWidthKey.self]
+        }
+        set {
+            self[IKButtonFullWidthKey.self] = newValue
+        }
+    }
+
+    private struct IKButtonFullWidthKey: EnvironmentKey {
+        static let defaultValue = false
+    }
+
+    // MARK: IKButtonLoadingKey
+
+    var ikButtonLoading: Bool {
+        get {
+            self[IKButtonLoadingKey.self]
+        }
+        set {
+            self[IKButtonLoadingKey.self] = newValue
+        }
+    }
+
+    private struct IKButtonLoadingKey: EnvironmentKey {
+        static let defaultValue = false
+    }
 }
 
-// MARK: - View functions
+// MARK: - View extension
 
 @available(iOS 15.0, *)
 public extension View {
