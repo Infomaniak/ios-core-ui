@@ -24,10 +24,13 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
 
-    let isExtended: Bool
+    var isExtended = false
+    var customSize: CGFloat?
 
     private var size: CGFloat {
-        if controlSize == .large {
+        if let customSize {
+            return customSize
+        } else if controlSize == .large {
             return IKButtonHeight.extraLarge
         } else {
             return IKButtonHeight.large
@@ -49,8 +52,12 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
 
 @available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
-    static func ikFloatingActionButton(isExtended: Bool) -> IKFloatingActionButtonStyle {
-        return IKFloatingActionButtonStyle(isExtended: isExtended)
+    static func ikFloatingActionButton(isExtended: Bool = false, customSize: CGFloat? = nil) -> IKFloatingActionButtonStyle {
+        return IKFloatingActionButtonStyle(isExtended: isExtended, customSize: customSize)
+    }
+
+    static var ikFloatingActionButton: IKFloatingActionButtonStyle {
+        return IKFloatingActionButtonStyle()
     }
 }
 
@@ -65,7 +72,6 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
                     Image(systemName: "visionpro")
                         .iconSize(.medium)
                 }
-                .buttonStyle(.ikFloatingActionButton(isExtended: false))
             }
 
             Section("Extended Button") {
@@ -74,17 +80,27 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
                 } label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
+                .buttonStyle(.ikFloatingActionButton(isExtended: true))
             }
 
-            Section("Large FAB") {
+            Section("Large Button") {
                 Button {
                     /* Preview */
                 } label: {
                     Image(systemName: "visionpro")
                         .iconSize(.large)
                 }
-                .buttonStyle(.ikFloatingActionButton(isExtended: false))
                 .controlSize(.large)
+            }
+
+            Section("Custom Size Button") {
+                Button {
+                    /* Preview */
+                } label: {
+                    Image(systemName: "visionpro")
+                        .iconSize(.large)
+                }
+                .buttonStyle(.ikFloatingActionButton(customSize: 80))
             }
 
             Section("Loading Button") {
@@ -94,7 +110,6 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
                     Image(systemName: "visionpro")
                         .iconSize(.medium)
                 }
-                .buttonStyle(.ikFloatingActionButton(isExtended: false))
                 .ikButtonLoading(true)
             }
 
@@ -104,6 +119,7 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
                 } label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
+                .buttonStyle(.ikFloatingActionButton(isExtended: true))
                 .ikButtonLoading(true)
             }
 
@@ -113,11 +129,12 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
                 } label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
+                .buttonStyle(.ikFloatingActionButton(isExtended: true))
                 .disabled(true)
             }
         }
         .navigationTitle("IKFloatingActionButtonStyle")
-        .buttonStyle(.ikFloatingActionButton(isExtended: true))
+        .buttonStyle(.ikFloatingActionButton)
     }
 }
 
