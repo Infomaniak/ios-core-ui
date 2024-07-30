@@ -47,20 +47,20 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
     NavigationView {
         List {
             Section("Standard Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
             }
 
             Section("Large Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .controlSize(.large)
             }
 
             Section("Full Width Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .controlSize(.large)
@@ -68,7 +68,7 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
             }
 
             Section("Button With Different Colors") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .ikButtonTheme(
@@ -85,14 +85,14 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
             }
 
             Section("Loading Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .ikButtonLoading(true)
             }
 
             Section("Disabled Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .disabled(true)
@@ -102,4 +102,3 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
         .navigationTitle("IKBorderedProminentButtonStyle")
     }
 }
-

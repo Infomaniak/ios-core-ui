@@ -30,6 +30,24 @@ import SwiftUI
 
     public let smallFont: Font
     public let mediumFont: Font
+
+    public init(
+        primary: any ShapeStyle,
+        secondary: any ShapeStyle,
+        disabledPrimary: any ShapeStyle,
+        disabledSecondary: any ShapeStyle,
+        error: any ShapeStyle,
+        smallFont: Font,
+        mediumFont: Font
+    ) {
+        self.primary = primary
+        self.secondary = secondary
+        self.disabledPrimary = disabledPrimary
+        self.disabledSecondary = disabledSecondary
+        self.error = error
+        self.smallFont = smallFont
+        self.mediumFont = mediumFont
+    }
 }
 
 // MARK: - Helpers

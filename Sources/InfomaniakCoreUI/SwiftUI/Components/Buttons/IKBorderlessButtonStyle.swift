@@ -67,26 +67,26 @@ public extension ButtonStyle where Self == IKBorderlessButtonStyle {
     NavigationView {
         List {
             Section("Standard Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
             }
 
             Section("Destructive Button") {
-                Button(role: .destructive) { } label: {
+                Button(role: .destructive) {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
             }
 
             Section("Small Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .controlSize(.small)
             }
 
             Section("Full Width Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .controlSize(.large)
@@ -94,28 +94,38 @@ public extension ButtonStyle where Self == IKBorderlessButtonStyle {
             }
 
             Section("Button With Different Color") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
-                //.ikButtonPrimaryStyle(MailResourcesAsset.aiColor.swiftUIColor)
+                .ikButtonTheme(
+                    IKButtonTheme(
+                        primary: Color.purple,
+                        secondary: Color.white,
+                        disabledPrimary: Color.gray,
+                        disabledSecondary: Color.white,
+                        error: Color.red,
+                        smallFont: .body,
+                        mediumFont: .headline
+                    )
+                )
             }
 
             Section("Inlined Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .buttonStyle(.ikBorderless(isInlined: true))
             }
 
             Section("Loading Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .ikButtonLoading(true)
             }
 
             Section("Disabled Button") {
-                Button { } label: {
+                Button {} label: {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .disabled(true)
@@ -125,4 +135,3 @@ public extension ButtonStyle where Self == IKBorderlessButtonStyle {
         .navigationTitle("IKPlainButtonStyle")
     }
 }
-

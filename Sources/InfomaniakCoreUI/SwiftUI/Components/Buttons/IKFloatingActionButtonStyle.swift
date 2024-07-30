@@ -137,4 +137,3 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
         .buttonStyle(.ikFloatingActionButton)
     }
 }
-
