@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "6c175294c2ff03c43eb7c9bd32ebd3a8c6448b0d",
-        "version" : "11.0.0"
+        "revision" : "0bfba5628ea517d0a21f5e8d30bb9fff0ce21718",
+        "version" : "12.0.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-login",
       "state" : {
-        "revision" : "7214a97f73b9b19858d3b3139a2fe47be86e142e",
-        "version" : "6.0.2"
+        "revision" : "b12bf4fbbfe0edf10d2516503e97a9f212d1cd5b",
+        "version" : "7.0.1"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "60867846a0aca0c7da5e482282b293236f730216",
-        "version" : "14.11.0"
+        "revision" : "c2552e1d36867cb42b28130e894a81fc17081062",
+        "version" : "14.12.0"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "13b12f8665f0c8173693a4d3f6e6d32b5a24d9a9",
-        "version" : "10.52.2"
+        "revision" : "5221a83dc720823e3017493394d00d49ccf13446",
+        "version" : "10.52.3"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "5421f94cc859eb65f5ae3866165a053aa634431e",
-        "version" : "8.32.0"
+        "revision" : "d2ced2d961b34573ebd2ea0567a2f1408e90f0ae",
+        "version" : "8.34.0"
       }
     },
     {
