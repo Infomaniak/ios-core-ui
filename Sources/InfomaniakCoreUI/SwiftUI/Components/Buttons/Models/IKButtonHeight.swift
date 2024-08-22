@@ -19,10 +19,10 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-enum IKButtonHeight {
-    static let extraLarge: CGFloat = 64
-    static let large: CGFloat = 56
-    static let medium: CGFloat = 40
+public enum IKButtonHeight {
+    public static let extraLarge: CGFloat = 64
+    public static let large: CGFloat = 56
+    public static let medium: CGFloat = 40
 
     static func convert(controlSize: ControlSize) -> CGFloat {
         if controlSize == .large {
