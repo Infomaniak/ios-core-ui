@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Build
-        run: xcodebuild -scheme InfomaniakCoreUI build -sdk iphonesimulator -destination "platform=iOS,name=iPhone 15 Pro,OS=latest"
+        run: xcodebuild -scheme InfomaniakCoreUI-Package build -sdk iphonesimulator -destination "generic/platform=iOS"
       - name: Test
-        run: xcodebuild -scheme InfomaniakCoreUI test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=latest"
+        run: xcodebuild -scheme InfomaniakCoreUI-Package test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=latest"
