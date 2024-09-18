@@ -37,9 +37,4 @@ public extension UIColor {
                   blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
                   alpha: 1)
     }
-
-    class func backgroundColor(from userId: Int, with colors: [UIColor] = Constants.organisationColors) -> UIColor {
-        let colorIndex = abs(userId % colors.count)
-        return colors[colorIndex]
-    }
 }

@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import InfomaniakCoreCommonUI
 
 open class InsetTableViewCell: UITableViewCell {
     @IBOutlet open weak var titleLabel: UILabel!
