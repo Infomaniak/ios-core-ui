@@ -33,8 +33,7 @@ public extension Image {
     /// - Parameter size: The specified size.
     /// - Returns: A square view containing the image scaled to fit in a frame of the specified size.
     func iconSize(_ size: IKIconSize) -> some View {
-        self
-            .resizable()
+        resizable()
             .scaledToFit()
             .frame(width: size.rawValue, height: size.rawValue)
     }

@@ -29,9 +29,9 @@ public extension UIViewController {
         view.endEditing(true)
     }
 
-    func okAlert(title: String, message: String?, completion: (() -> ())? = nil) {
+    func okAlert(title: String, message: String?, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in completion?() }))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
 }

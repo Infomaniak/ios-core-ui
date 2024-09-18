@@ -46,7 +46,7 @@ public final class WrapperCollectionViewCell: UICollectionViewCell {
     // MARK: Layout
 
     private func setupAutolayout() {
-        guard let wrappedCell = wrappedCell else {
+        guard let wrappedCell else {
             return
         }
 

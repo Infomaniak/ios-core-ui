@@ -20,11 +20,11 @@ import UIKit
 
 public extension UIView {
     func addShadow(elevation: Double = 1) {
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.23118 * elevation - 0.03933)
-        self.layer.shadowOpacity = 0.17
-        self.layer.shadowRadius = CGFloat(0.666920 * elevation - 0.001648)
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 1.23118 * elevation - 0.03933)
+        layer.shadowOpacity = 0.17
+        layer.shadowRadius = CGFloat(0.666920 * elevation - 0.001648)
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
 }
