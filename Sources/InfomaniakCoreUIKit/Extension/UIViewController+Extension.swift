@@ -16,26 +16,22 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftUI
+import UIKit
 
-/// An enumeration to list the size of icons used for Infomaniak apps.
-@frozen public enum IKIconSize: CGFloat {
-    /// 12pt icon
-    case small = 12
-    /// 16pt icon
-    case medium = 16
-    /// 24pt icon
-    case large = 24
-}
+public extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
 
-public extension Image {
-    /// Resizes and scales the image to the specified ``IKIconSize`` size.
-    /// - Parameter size: The specified size.
-    /// - Returns: A square view containing the image scaled to fit in a frame of the specified size.
-    func iconSize(_ size: IKIconSize) -> some View {
-        self
-            .resizable()
-            .scaledToFit()
-            .frame(width: size.rawValue, height: size.rawValue)
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    func okAlert(title: String, message: String?, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in completion?() }))
+        present(alert, animated: true)
     }
 }

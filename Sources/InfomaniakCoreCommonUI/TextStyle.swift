@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2024 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -23,8 +23,6 @@
 #elseif os(tvOS) || os(watchOS)
     import UIKit
 #endif
-
-import SwiftUI
 
 public struct TextStyle: RawRepresentable {
     public var font: UIFont
@@ -121,42 +119,5 @@ public struct TextStyle: RawRepresentable {
         } else {
             return nil
         }
-    }
-}
-
-@IBDesignable public class IKLabel: UILabel {
-    /// Set label style.
-    @IBInspectable public var styleName: String = TextStyle.body1.rawValue {
-        didSet { setUpLabel() }
-    }
-
-    /// Set label style.
-    public var style: TextStyle {
-        get {
-            return TextStyle(rawValue: styleName) ?? .body1
-        }
-        set {
-            styleName = newValue.rawValue
-        }
-    }
-
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        setUpLabel()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpLabel()
-    }
-
-    override public func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setUpLabel()
-    }
-
-    func setUpLabel() {
-        font = style.font
-        textColor = style.color
     }
 }

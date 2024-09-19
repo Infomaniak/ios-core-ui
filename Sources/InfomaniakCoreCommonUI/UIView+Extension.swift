@@ -16,12 +16,15 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftUI
+import UIKit
 
-public enum Constants {
-    public static let organisationColors: [UIColor] = {
-        return Array(0...9)
-            .map { UIColor(named: "organisationColor\($0)", in: Bundle.module, compatibleWith: nil) }
-            .compactMap { $0 }
-    }()
+public extension UIView {
+    func addShadow(elevation: Double = 1) {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 1.23118 * elevation - 0.03933)
+        layer.shadowOpacity = 0.17
+        layer.shadowRadius = CGFloat(0.666920 * elevation - 0.001648)
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
 }

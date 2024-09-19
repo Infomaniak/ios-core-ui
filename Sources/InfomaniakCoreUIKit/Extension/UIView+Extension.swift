@@ -47,19 +47,10 @@ public extension UIView {
     }
 
     func roundCorners(corners: CACornerMask, radius: CGFloat) {
-        self.clipsToBounds = false
-        self.layer.cornerRadius = radius
+        clipsToBounds = false
+        layer.cornerRadius = radius
         #if !os(tvOS)
-            self.layer.maskedCorners = corners
+        layer.maskedCorners = corners
         #endif
-    }
-
-    func addShadow(elevation: Double = 1) {
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.23118 * elevation - 0.03933)
-        self.layer.shadowOpacity = 0.17
-        self.layer.shadowRadius = CGFloat(0.666920 * elevation - 0.001648)
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
     }
 }

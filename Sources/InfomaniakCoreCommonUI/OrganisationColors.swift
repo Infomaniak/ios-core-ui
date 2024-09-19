@@ -16,27 +16,15 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import InfomaniakCoreCommonUI
-import InfomaniakCoreUIKit
+import UIKit
 
-import XCTest
+public extension UIColor {
+    static let organisationColors: [UIColor] = Array(0 ... 9)
+        .map { UIColor(named: "organisationColor\($0)", in: Bundle.module, compatibleWith: nil) }
+        .compactMap { $0 }
 
-final class InfomaniakCoreUITests: XCTestCase {
-    func testCanInit_IKLabel() throws {
-        // GIVEN
-        let label = IKLabel()
-
-        // THEN
-        XCTAssertNotNil(label)
+    class func backgroundColor(from userId: Int, with colors: [UIColor] = UIColor.organisationColors) -> UIColor {
+        let colorIndex = abs(userId % colors.count)
+        return colors[colorIndex]
     }
-
-    #if canImport(UIKit)
-    func testCanInit_ApplicationBackgroundTaskTrackable() async {
-        // GIVEN
-        let bgTracker = await ApplicationBackgroundTaskTracker(identifier: #function)
-
-        // THEN
-        await bgTracker.end()
-    }
-    #endif
 }

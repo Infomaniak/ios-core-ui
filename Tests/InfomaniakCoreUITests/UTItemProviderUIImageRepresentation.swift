@@ -19,7 +19,7 @@
 #if canImport(MobileCoreServices)
 
 import InfomaniakCore
-import InfomaniakCoreUI
+import InfomaniakCoreCommonUI
 @testable import InfomaniakDI
 import UIKit
 import XCTest

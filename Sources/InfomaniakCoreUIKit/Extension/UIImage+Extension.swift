@@ -19,7 +19,7 @@
 import UIKit
 
 public enum ImageUtil {
-    internal typealias ImageOrientation = UIImage.Orientation
+    typealias ImageOrientation = UIImage.Orientation
 
     public static func cgImageWithCorrectOrientation(_ image: UIImage) -> CGImage {
         if image.imageOrientation == ImageOrientation.up {
@@ -80,7 +80,7 @@ public enum ImageUtil {
     }
 
     public static func drawImage(_ image: UIImage, in bounds: CGRect) -> UIImage? {
-        return self.drawImage(size: bounds.size, scale: UIScreen.main.scale) { (_: CGSize, _: CGContext) -> UIImage? in
+        return drawImage(size: bounds.size, scale: UIScreen.main.scale) { (_: CGSize, _: CGContext) -> UIImage? in
             image.draw(in: bounds)
 
             let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -91,7 +91,7 @@ public enum ImageUtil {
     }
 
     public static func croppedImage(_ image: UIImage, with rect: CGRect) -> UIImage? {
-        return self.drawImage(size: rect.size, scale: image.scale) { (_: CGSize, context: CGContext) -> UIImage? in
+        return drawImage(size: rect.size, scale: image.scale) { (_: CGSize, context: CGContext) -> UIImage? in
             let drawRect = CGRect(x: -rect.origin.x, y: -rect.origin.y, width: image.size.width, height: image.size.height)
             context.clip(to: CGRect(x: 0, y: 0, width: rect.size.width, height: rect.size.height))
             image.draw(in: drawRect)
@@ -103,7 +103,11 @@ public enum ImageUtil {
         }
     }
 
-    public static func drawImage(size: CGSize!, scale: CGFloat, closure: @escaping (_ size: CGSize, _ context: CGContext) -> UIImage?) -> UIImage? {
+    public static func drawImage(
+        size: CGSize!,
+        scale: CGFloat,
+        closure: @escaping (_ size: CGSize, _ context: CGContext) -> UIImage?
+    ) -> UIImage? {
         guard size.width > 0.0 && size.height > 0.0 else {
             print("WARNING: Invalid size requested: \(size.width) x \(size.height) - must not be 0.0 in any dimension")
             return nil
@@ -129,7 +133,12 @@ public extension UIImage {
 
         let scaleRatio = max(heightRatio, widthRatio)
 
-        let resizedImageBounds = CGRect(x: 0, y: 0, width: round(originalWidth * scaleRatio), height: round(originalHeight * scaleRatio))
+        let resizedImageBounds = CGRect(
+            x: 0,
+            y: 0,
+            width: round(originalWidth * scaleRatio),
+            height: round(originalHeight * scaleRatio)
+        )
         let resizedImage = ImageUtil.drawImage(self, in: resizedImageBounds)
         guard resizedImage != nil else {
             return UIImage()
@@ -185,17 +194,29 @@ public extension UIImage {
         return image!
     }
 
-    class func getInitialsPlaceholder(with name: String, size: CGSize = CGSize(width: 40, height: 40), foregroundColor: UIColor = .white, backgroundColor: UIColor) -> UIImage {
+    class func getInitialsPlaceholder(
+        with name: String,
+        size: CGSize = CGSize(width: 40, height: 40),
+        foregroundColor: UIColor = .white,
+        backgroundColor: UIColor
+    ) -> UIImage {
         let initials = name.initials
         let defaultFontRatio: CGFloat = 14.0 / 40.0
         let frame = CGRect(origin: .zero, size: size)
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: frame.size.width * defaultFontRatio), .foregroundColor: foregroundColor]
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: frame.size.width * defaultFontRatio),
+            .foregroundColor: foregroundColor
+        ]
         let initialsSize = initials.size(withAttributes: attributes)
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: frame.size.width, height: frame.size.height))
         return renderer.image { context in
             backgroundColor.setFill()
             context.fill(renderer.format.bounds)
-            (initials as NSString).draw(in: CGRect(x: frame.midX - initialsSize.width / 2, y: frame.midY - initialsSize.height / 2, width: initialsSize.width, height: initialsSize.height), withAttributes: attributes)
+            (initials as NSString).draw(
+                in: CGRect(x: frame.midX - initialsSize.width / 2, y: frame.midY - initialsSize.height / 2,
+                           width: initialsSize.width, height: initialsSize.height),
+                withAttributes: attributes
+            )
         }
     }
 }
