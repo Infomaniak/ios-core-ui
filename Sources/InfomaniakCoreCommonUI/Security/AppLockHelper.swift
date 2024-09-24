@@ -21,15 +21,14 @@ import UIKit
 
 public final class AppLockHelper {
     public static let lockAfterOneMinute: TimeInterval = 60
-    private var deviceHasBeenLocked = false
 
+    private var deviceHasBeenLocked = false
     private let intervalToLockApp: TimeInterval
     private var timeSinceAppEnteredBackground = TimeInterval.zero
 
     public var isAppLocked: Bool {
-        let expiredTime = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
-        let shouldBeLocked = expiredTime || deviceHasBeenLocked
-        return isAvailable() && shouldBeLocked
+        let timeHasExpired = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
+        return isAvailable() && (expiredTime || deviceHasBeenLocked)
     }
 
     public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
@@ -61,14 +60,12 @@ public final class AppLockHelper {
 
         return try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
     }
-    
-    @objc private func deviceDidLock(){
+
+    @objc private func deviceDidLock() {
         deviceHasBeenLocked = true
     }
-    
-    @objc private func deviceDidUnlock(){
+
+    @objc private func deviceDidUnlock() {
         deviceHasBeenLocked = false
     }
-    
-   
 }
