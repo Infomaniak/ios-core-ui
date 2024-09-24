@@ -20,17 +20,22 @@ import LocalAuthentication
 
 public final class AppLockHelper {
     public static let lockAfterOneMinute: TimeInterval = 60
+    public var deviceHasBeenLocked: Bool = false
 
     private let intervalToLockApp: TimeInterval
     private var timeSinceAppEnteredBackground = TimeInterval.zero
 
     public var isAppLocked: Bool {
         let shouldBeLocked = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
-        return isAvailable() && shouldBeLocked
+        return isAvailable() && (shouldBeLocked || deviceHasBeenLocked)
     }
 
     public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
         self.intervalToLockApp = intervalToLockApp
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateDeviceStatus()),
+                                               name: NSNotification.Name.uiApplication.NSApplicationProtectedDataWillBecomeUnavailable,
+                                               object: nil)
     }
 
     public func isAvailable(_ context: LAContext? = nil) -> Bool {
@@ -50,4 +55,10 @@ public final class AppLockHelper {
 
         return try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
     }
+    
+    @objc func updateDeviceStatus(){
+        deviceHasBeenLocked = true
+    }
+    
+   
 }
