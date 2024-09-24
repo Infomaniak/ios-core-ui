@@ -17,6 +17,7 @@
  */
 
 import LocalAuthentication
+import UIKit
 
 public final class AppLockHelper {
     public static let lockAfterOneMinute: TimeInterval = 60
@@ -33,8 +34,8 @@ public final class AppLockHelper {
     public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
         self.intervalToLockApp = intervalToLockApp
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateDeviceStatus()),
-                                               name: NSNotification.Name.uiApplication.NSApplicationProtectedDataWillBecomeUnavailable,
+                                               selector: #selector(updateDeviceStatus),
+                                               name: UIApplication.protectedDataWillBecomeUnavailableNotification,
                                                object: nil)
     }
 
