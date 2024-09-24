@@ -28,7 +28,7 @@ public final class AppLockHelper {
 
     public var isAppLocked: Bool {
         let timeHasExpired = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
-        return isAvailable() && (expiredTime || deviceHasBeenLocked)
+        return isAvailable() && (timeHasExpired || deviceHasBeenLocked)
     }
 
     public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
