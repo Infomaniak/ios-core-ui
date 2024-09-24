@@ -21,21 +21,26 @@ import UIKit
 
 public final class AppLockHelper {
     public static let lockAfterOneMinute: TimeInterval = 60
-    public var deviceHasBeenLocked: Bool = false
+    private var deviceHasBeenLocked = false
 
     private let intervalToLockApp: TimeInterval
     private var timeSinceAppEnteredBackground = TimeInterval.zero
 
     public var isAppLocked: Bool {
-        let shouldBeLocked = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
-        return isAvailable() && (shouldBeLocked || deviceHasBeenLocked)
+        let expiredTime = timeSinceAppEnteredBackground + intervalToLockApp < Date().timeIntervalSince1970
+        let shouldBeLocked = expiredTime || deviceHasBeenLocked
+        return isAvailable() && shouldBeLocked
     }
 
     public init(intervalToLockApp: TimeInterval = AppLockHelper.lockAfterOneMinute) {
         self.intervalToLockApp = intervalToLockApp
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateDeviceStatus),
+                                               selector: #selector(deviceDidLock),
                                                name: UIApplication.protectedDataWillBecomeUnavailableNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(deviceDidUnlock),
+                                               name: UIApplication.protectedDataDidBecomeAvailableNotification,
                                                object: nil)
     }
 
@@ -57,8 +62,12 @@ public final class AppLockHelper {
         return try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
     }
     
-    @objc func updateDeviceStatus(){
+    @objc private func deviceDidLock(){
         deviceHasBeenLocked = true
+    }
+    
+    @objc private func deviceDidUnlock(){
+        deviceHasBeenLocked = false
     }
     
    
