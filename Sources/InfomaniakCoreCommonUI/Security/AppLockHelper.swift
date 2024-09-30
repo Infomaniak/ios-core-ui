@@ -37,10 +37,6 @@ public final class AppLockHelper {
                                                selector: #selector(deviceDidLock),
                                                name: UIApplication.protectedDataWillBecomeUnavailableNotification,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(deviceDidUnlock),
-                                               name: UIApplication.protectedDataDidBecomeAvailableNotification,
-                                               object: nil)
     }
 
     public func isAvailable(_ context: LAContext? = nil) -> Bool {
@@ -63,9 +59,5 @@ public final class AppLockHelper {
 
     @objc private func deviceDidLock() {
         deviceHasBeenLocked = true
-    }
-
-    @objc private func deviceDidUnlock() {
-        deviceHasBeenLocked = false
     }
 }
