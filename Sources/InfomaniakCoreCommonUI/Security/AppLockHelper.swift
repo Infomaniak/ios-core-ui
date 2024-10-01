@@ -46,6 +46,7 @@ public final class AppLockHelper {
 
     public func setTime() {
         timeSinceAppEnteredBackground = Date().timeIntervalSince1970
+        deviceHasBeenLocked = false
     }
 
     public func evaluatePolicy(reason: String) async throws -> Bool {
