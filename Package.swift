@@ -26,7 +26,9 @@ let package = Package(
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "12.0.0")),
         .package(url: "https://github.com/Infomaniak/SnackBar.swift", .upToNextMajor(from: "1.2.0")),
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.10.0")),
-        .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2"))
+        .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
+        .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
+        .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         .target(
@@ -44,7 +46,11 @@ let package = Package(
         ),
         .target(
             name: "InfomaniakCoreSwiftUI",
-            dependencies: []
+            dependencies: [
+                "SwiftUIBackports",
+                .product(name: "InfomaniakCore", package: "ios-core"),
+                .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
+            ]
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",
