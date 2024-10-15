@@ -47,7 +47,12 @@ public final class MatomoUtils {
     }
 
     public func trackBulkEvent(eventWithCategory category: EventCategory, name: String, numberOfItems number: Int) {
-        track(eventWithCategory: category, action: .click, name: "bulk\(number <= 1 ? "Single" : "")\(name)", value: Float(number))
+        track(
+            eventWithCategory: category,
+            action: .click,
+            name: "bulk\(number <= 1 ? "Single" : "")\(name)",
+            value: Float(number)
+        )
     }
 }
 

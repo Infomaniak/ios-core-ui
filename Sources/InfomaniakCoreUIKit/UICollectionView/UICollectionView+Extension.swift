@@ -58,14 +58,34 @@ public extension UICollectionView {
 
     func register(supplementaryView: AnyClass, forSupplementaryViewOfKind: UICollectionViewSupplementaryViewKind) {
         let name = String(describing: supplementaryView.self)
-        register(UINib(nibName: name, bundle: nil), forSupplementaryViewOfKind: forSupplementaryViewOfKind.rawValue, withReuseIdentifier: name)
+        register(
+            UINib(nibName: name, bundle: nil),
+            forSupplementaryViewOfKind: forSupplementaryViewOfKind.rawValue,
+            withReuseIdentifier: name
+        )
     }
 
-    func dequeueReusableSupplementaryView<ViewClass: UICollectionReusableView>(ofKind: UICollectionViewSupplementaryViewKind, view: ViewClass.Type, for indexPath: IndexPath) -> ViewClass {
-        return dequeueReusableSupplementaryView(ofKind: ofKind.rawValue, withReuseIdentifier: String(describing: view.self), for: indexPath) as! ViewClass
+    func dequeueReusableSupplementaryView<ViewClass: UICollectionReusableView>(
+        ofKind: UICollectionViewSupplementaryViewKind,
+        view: ViewClass.Type,
+        for indexPath: IndexPath
+    ) -> ViewClass {
+        return dequeueReusableSupplementaryView(
+            ofKind: ofKind.rawValue,
+            withReuseIdentifier: String(describing: view.self),
+            for: indexPath
+        ) as! ViewClass
     }
 
-    func dequeueReusableSupplementaryView<ViewClass: UICollectionReusableView>(ofKind: String, view: ViewClass.Type, for indexPath: IndexPath) -> ViewClass {
-        return dequeueReusableSupplementaryView(ofKind: ofKind, withReuseIdentifier: String(describing: view.self), for: indexPath) as! ViewClass
+    func dequeueReusableSupplementaryView<ViewClass: UICollectionReusableView>(
+        ofKind: String,
+        view: ViewClass.Type,
+        for indexPath: IndexPath
+    ) -> ViewClass {
+        return dequeueReusableSupplementaryView(
+            ofKind: ofKind,
+            withReuseIdentifier: String(describing: view.self),
+            for: indexPath
+        ) as! ViewClass
     }
 }

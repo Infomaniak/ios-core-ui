@@ -18,11 +18,11 @@
 
 // swiftlint:disable all
 #if os(macOS)
-    import AppKit
+import AppKit
 #elseif os(iOS)
-    import UIKit
+import UIKit
 #elseif os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 #endif
 // swiftlint:disable superfluous_disable_command file_length implicit_return
 
@@ -36,14 +36,15 @@ public enum InfomaniakCoreAsset {
     public static let primaryTextColor = InfomaniakCoreColor(name: "primaryTextColor")
     public static let infomaniakColor = InfomaniakCoreColor(name: "infomaniakColor")
 }
+
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
+
 public struct InfomaniakCoreColor {
     public fileprivate(set) var name: String
 
     public var color: UIColor {
         return UIColor(named: name, in: Bundle.module, compatibleWith: nil)!
     }
-
 }

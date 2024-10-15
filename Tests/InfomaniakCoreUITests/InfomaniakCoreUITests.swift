@@ -18,7 +18,6 @@
 
 import InfomaniakCoreCommonUI
 import InfomaniakCoreUIKit
-
 import XCTest
 
 final class InfomaniakCoreUITests: XCTestCase {

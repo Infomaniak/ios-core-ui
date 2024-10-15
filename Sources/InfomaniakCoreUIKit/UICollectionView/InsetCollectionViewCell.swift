@@ -34,7 +34,10 @@ open class InsetCollectionViewCell: UICollectionViewCell {
             separator?.isHidden = true
             topConstraint?.constant = 8
             bottomConstraint?.constant = 8
-            contentInsetView.roundCorners(corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner], radius: radius)
+            contentInsetView.roundCorners(
+                corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner],
+                radius: radius
+            )
         } else if isFirst {
             separator?.isHidden = false
             topConstraint?.constant = 8
@@ -49,7 +52,10 @@ open class InsetCollectionViewCell: UICollectionViewCell {
             separator?.isHidden = false
             topConstraint?.constant = 0
             bottomConstraint?.constant = 0
-            contentInsetView.roundCorners(corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 0)
+            contentInsetView.roundCorners(
+                corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner],
+                radius: 0
+            )
         }
         contentInsetView.addShadow(elevation: elevation)
     }

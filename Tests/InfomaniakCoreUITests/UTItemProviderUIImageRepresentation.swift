@@ -56,7 +56,7 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
             let provider = try ItemProviderUIImageRepresentation(from: item)
             let progress = provider.progress
             XCTAssertFalse(progress.isFinished, "Expecting the progress to reflect that the task has not started yet")
-            
+
             // WHEN
             let success = try await provider.result.get()
 

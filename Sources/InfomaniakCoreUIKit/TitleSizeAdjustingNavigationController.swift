@@ -17,11 +17,11 @@
  */
 
 #if os(macOS)
-    import AppKit
+import AppKit
 #elseif os(iOS)
-    import UIKit
+import UIKit
 #elseif os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 #endif
 
 /// A `UINavigationController` that adjusts the font size of its large title labels to fit its content
@@ -29,17 +29,17 @@ open class TitleSizeAdjustingNavigationController: UINavigationController {
     var minimumScaleFactor: CGFloat = 0.5
 
     #if !os(tvOS)
-        override public func viewDidLayoutSubviews() {
-            guard navigationBar.prefersLargeTitles else { return }
+    override public func viewDidLayoutSubviews() {
+        guard navigationBar.prefersLargeTitles else { return }
 
-            updateLargeTitleLabels()
-        }
+        updateLargeTitleLabels()
+    }
     #endif
 
     private func updateLargeTitleLabels() {
-        largeTitleLabels().forEach {
-            $0.adjustsFontSizeToFitWidth = true
-            $0.minimumScaleFactor = minimumScaleFactor
+        for largeTitleLabel in largeTitleLabels() {
+            largeTitleLabel.adjustsFontSizeToFitWidth = true
+            largeTitleLabel.minimumScaleFactor = minimumScaleFactor
         }
     }
 
