@@ -17,6 +17,9 @@
  */
 
 // swiftlint:disable all
+// swift-format-ignore-file
+// swiftformat:disable all
+
 #if os(macOS)
 import AppKit
 #elseif os(iOS)
@@ -38,6 +41,8 @@ public enum InfomaniakCoreAsset {
 }
 
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
+// swiftlint:enable all
+// swiftformat:enable all
 
 // MARK: - Implementation Details
 

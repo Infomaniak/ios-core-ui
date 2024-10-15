@@ -20,7 +20,7 @@ let package = Package(
         .library(
             name: "InfomaniakCoreSwiftUI",
             targets: ["InfomaniakCoreSwiftUI"]
-        ),
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "12.0.0")),
@@ -40,9 +40,7 @@ let package = Package(
         ),
         .target(
             name: "InfomaniakCoreUIKit",
-            dependencies: [
-                "InfomaniakCoreCommonUI",
-            ]
+            dependencies: ["InfomaniakCoreCommonUI"]
         ),
         .target(
             name: "InfomaniakCoreSwiftUI",
