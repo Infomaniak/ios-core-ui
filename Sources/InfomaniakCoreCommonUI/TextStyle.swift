@@ -17,11 +17,11 @@
  */
 
 #if os(macOS)
-    import AppKit
+import AppKit
 #elseif os(iOS)
-    import UIKit
+import UIKit
 #elseif os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 #endif
 
 public struct TextStyle: RawRepresentable {
@@ -107,7 +107,7 @@ public struct TextStyle: RawRepresentable {
     public typealias RawValue = String
     public var rawValue: String
 
-    internal init(font: UIFont, color: UIColor, rawValue: RawValue) {
+    init(font: UIFont, color: UIColor, rawValue: RawValue) {
         self.font = font
         self.color = color
         self.rawValue = rawValue

@@ -26,7 +26,7 @@ public extension OrganisationAccount {
                                                            options: [.regularExpression])
             .compactMap { $0.asciiValue }
             .compactMap { Int32($0) }
-        
+
         let hashCode: Int32 = nameAscii.reduce(0) { a, b in
             ((a &<< Int32(5)) &- a) &+ Int32(b)
         }

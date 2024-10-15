@@ -40,6 +40,7 @@ public final class WrapperCollectionViewCell: UICollectionViewCell {
     }
 
     override public func prepareForReuse() {
+        super.prepareForReuse()
         contentView.subviews.forEach { $0.removeFromSuperview() }
     }
 

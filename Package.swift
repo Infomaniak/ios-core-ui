@@ -11,13 +11,16 @@ let package = Package(
     products: [
         .library(
             name: "InfomaniakCoreCommonUI",
-            targets: ["InfomaniakCoreCommonUI"]),
+            targets: ["InfomaniakCoreCommonUI"]
+        ),
         .library(
             name: "InfomaniakCoreUIKit",
-            targets: ["InfomaniakCoreUIKit"]),
+            targets: ["InfomaniakCoreUIKit"]
+        ),
         .library(
             name: "InfomaniakCoreSwiftUI",
-            targets: ["InfomaniakCoreSwiftUI"]),
+            targets: ["InfomaniakCoreSwiftUI"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "12.0.0")),
@@ -33,17 +36,19 @@ let package = Package(
                 .product(name: "MatomoTracker", package: "matomo-sdk-ios"),
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SnackBar", package: "SnackBar.swift")
-            ]),
+            ]
+        ),
         .target(
             name: "InfomaniakCoreUIKit",
-            dependencies: [
-                "InfomaniakCoreCommonUI",
-            ]),
+            dependencies: ["InfomaniakCoreCommonUI"]
+        ),
         .target(
             name: "InfomaniakCoreSwiftUI",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "InfomaniakCoreUITests",
-            dependencies: ["InfomaniakCoreCommonUI", "InfomaniakCoreUIKit", "InfomaniakCoreSwiftUI"])
+            dependencies: ["InfomaniakCoreCommonUI", "InfomaniakCoreUIKit", "InfomaniakCoreSwiftUI"]
+        )
     ]
 )

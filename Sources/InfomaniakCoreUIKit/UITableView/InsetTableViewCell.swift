@@ -16,8 +16,8 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UIKit
 import InfomaniakCoreCommonUI
+import UIKit
 
 open class InsetTableViewCell: UITableViewCell {
     @IBOutlet open weak var titleLabel: UILabel!
@@ -37,10 +37,12 @@ open class InsetTableViewCell: UITableViewCell {
         if selectionStyle != .none {
             if animated {
                 UIView.animate(withDuration: 0.1) {
-                    self.contentInsetView.backgroundColor = selected ? InfomaniakCoreAsset.backgroundCardViewSelected.color : InfomaniakCoreAsset.backgroundCardView.color
+                    self.contentInsetView.backgroundColor = selected ? InfomaniakCoreAsset.backgroundCardViewSelected
+                        .color : InfomaniakCoreAsset.backgroundCardView.color
                 }
             } else {
-                contentInsetView.backgroundColor = selected ? InfomaniakCoreAsset.backgroundCardViewSelected.color : InfomaniakCoreAsset.backgroundCardView.color
+                contentInsetView.backgroundColor = selected ? InfomaniakCoreAsset.backgroundCardViewSelected
+                    .color : InfomaniakCoreAsset.backgroundCardView.color
             }
         } else {
             contentInsetView.backgroundColor = InfomaniakCoreAsset.backgroundCardView.color
@@ -52,10 +54,12 @@ open class InsetTableViewCell: UITableViewCell {
         if selectionStyle != .none {
             if animated {
                 UIView.animate(withDuration: 0.1) {
-                    self.contentInsetView.backgroundColor = highlighted ? InfomaniakCoreAsset.backgroundCardViewSelected.color : InfomaniakCoreAsset.backgroundCardView.color
+                    self.contentInsetView.backgroundColor = highlighted ? InfomaniakCoreAsset.backgroundCardViewSelected
+                        .color : InfomaniakCoreAsset.backgroundCardView.color
                 }
             } else {
-                contentInsetView.backgroundColor = highlighted ? InfomaniakCoreAsset.backgroundCardViewSelected.color : InfomaniakCoreAsset.backgroundCardView.color
+                contentInsetView.backgroundColor = highlighted ? InfomaniakCoreAsset.backgroundCardViewSelected
+                    .color : InfomaniakCoreAsset.backgroundCardView.color
             }
         } else {
             contentInsetView.backgroundColor = InfomaniakCoreAsset.backgroundCardView.color
@@ -67,7 +71,10 @@ open class InsetTableViewCell: UITableViewCell {
             separator?.isHidden = true
             topConstraint?.constant = 8
             bottomConstraint?.constant = 8
-            contentInsetView.roundCorners(corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner], radius: radius)
+            contentInsetView.roundCorners(
+                corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner],
+                radius: radius
+            )
         } else if isFirst {
             separator?.isHidden = false
             topConstraint?.constant = 8
@@ -82,7 +89,10 @@ open class InsetTableViewCell: UITableViewCell {
             separator?.isHidden = false
             topConstraint?.constant = 0
             bottomConstraint?.constant = 0
-            contentInsetView.roundCorners(corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 0)
+            contentInsetView.roundCorners(
+                corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner],
+                radius: 0
+            )
         }
         contentInsetView.addShadow(elevation: elevation)
     }
