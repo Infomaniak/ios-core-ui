@@ -25,8 +25,7 @@ public struct FloatingPanelCloseButton: View {
     public var body: some View {
         Button(action: dismissHandler) {
             Label {
-                // TODO: - TRANSLATE THIS
-                Text("Close" /* MailResourcesStrings.Localizable.buttonClose */ )
+                Text("Close", bundle: .module)
             } icon: {
                 Image(systemName: "xmark")
                     .resizable()

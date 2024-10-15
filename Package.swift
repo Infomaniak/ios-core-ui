@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "InfomaniakCoreUI",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v13)
     ],
