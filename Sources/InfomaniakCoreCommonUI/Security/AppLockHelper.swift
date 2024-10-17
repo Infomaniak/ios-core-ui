@@ -35,7 +35,7 @@ public final class AppLockHelper {
         self.intervalToLockApp = intervalToLockApp
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(deviceDidLock),
-                                               name: UIApplication.protectedDataWillBecomeUnavailableNotification,
+                                               name: UIApplication.willResignActiveNotification,
                                                object: nil)
     }
 
