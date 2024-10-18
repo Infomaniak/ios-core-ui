@@ -254,7 +254,7 @@ public struct SelfSizingPaneliPadViewModifier: ViewModifier {
         return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 
-    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
+    public init(dragIndicator: Visibility = Visibility.hidden, title: String? = nil) {
         self.dragIndicator = dragIndicator
         self.title = title
     }
