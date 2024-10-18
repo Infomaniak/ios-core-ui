@@ -30,7 +30,11 @@ public extension View {
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         sheet(isPresented: isPresented) {
-            if #available(iOS 16.0, *) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if #available(iOS 16.0, *) {
+                    content().modifier(SelfSizingPaneliPadViewModifier(title: title))
+                }
+            } else if #available(iOS 16.0, *) {
                 content().modifier(SelfSizingPanelViewModifier(title: title))
             } else {
                 content().modifier(SelfSizingPanelBackportViewModifier(title: title))
@@ -44,7 +48,11 @@ public extension View {
         @ViewBuilder content: @escaping (Item) -> Content
     ) -> some View {
         sheet(item: item) { item in
-            if #available(iOS 16.0, *) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if #available(iOS 16.0, *) {
+                    content(item).modifier(SelfSizingPaneliPadViewModifier(title: title))
+                }
+            } else if #available(iOS 16.0, *) {
                 content(item).modifier(SelfSizingPanelViewModifier(title: title))
             } else {
                 content(item).modifier(SelfSizingPanelBackportViewModifier(title: title))
@@ -222,6 +230,53 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
         }
         .padding(.top, topPadding)
         .presentationDetents(currentDetents, selection: $selection)
+        .presentationDragIndicator(dragIndicator)
+        .ikPresentationCornerRadius(20)
+    }
+}
+
+@available(iOS 16.0, *)
+public struct SelfSizingPaneliPadViewModifier: ViewModifier {
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var selection: PresentationDetent = .fraction(0.5)
+
+    let dragIndicator: Visibility
+    let title: String?
+
+    private let topPadding = IKPadding.large
+    private let titleSpacing = IKPadding.small
+
+    private var headerSize: CGFloat {
+        guard title != nil else {
+            return topPadding
+        }
+        return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
+    }
+
+    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
+        self.dragIndicator = dragIndicator
+        self.title = title
+    }
+
+    public func body(content: Content) -> some View {
+        VStack(spacing: titleSpacing) {
+            ZStack {
+                if let title {
+                    Text(title)
+                        .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
+                }
+                FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.trailing, value: .medium)
+            }
+
+            ScrollView {
+                content
+                    .padding(.bottom, value: .medium)
+            }
+        }
+        .padding(.top, topPadding)
         .presentationDragIndicator(dragIndicator)
         .ikPresentationCornerRadius(20)
     }
