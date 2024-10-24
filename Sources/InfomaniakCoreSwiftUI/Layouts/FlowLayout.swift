@@ -92,8 +92,11 @@ public struct FlowLayout: Layout {
     }
 
     private func computeAlignmentOffsets(containerWidth: CGFloat, offsets: [[CGRect]]) -> [CGFloat] {
-        var alignmentOffsets = [CGFloat]()
+        guard alignment != .leading else {
+            return Array(repeating: 0, count: offsets.count)
+        }
 
+        var alignmentOffsets = [CGFloat]()
         for line in offsets {
             guard let lineWidth = line.last?.maxX else {
                 alignmentOffsets.append(0)
