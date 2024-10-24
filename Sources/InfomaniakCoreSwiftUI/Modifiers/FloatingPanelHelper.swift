@@ -69,6 +69,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     @LazyInjectService private var platformDetector: PlatformDetectable
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<Backport.PresentationDetent> = [.medium]
 
@@ -97,7 +98,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     }
 
     private var shouldShowCloseButton: Bool {
-        return platformDetector.isMac || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
+        return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
@@ -141,8 +142,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
             }
         }
         .padding(.top, topPadding)
-        .backport.presentationDragIndicator(backportDragIndicator)
-        .backport.presentationDetents(currentDetents)
+        .backport.presentationDragIndicator(isCompactWindow ? backportDragIndicator : .hidden)
+        .backport.presentationDetents(isCompactWindow ? currentDetents : [.large])
         .ikPresentationCornerRadius(20)
     }
 }
@@ -152,6 +153,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     @LazyInjectService private var platformDetector: PlatformDetectable
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<PresentationDetent> = [.height(0)]
     @State private var selection: PresentationDetent = .height(0)
@@ -170,7 +172,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     }
 
     private var shouldShowCloseButton: Bool {
-        return platformDetector.isMac || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
+        return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
@@ -221,8 +223,8 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
             }
         }
         .padding(.top, topPadding)
-        .presentationDetents(currentDetents, selection: $selection)
-        .presentationDragIndicator(dragIndicator)
+        .presentationDetents(isCompactWindow ? currentDetents : [.large], selection: $selection)
+        .presentationDragIndicator(isCompactWindow ? dragIndicator : .hidden)
         .ikPresentationCornerRadius(20)
     }
 }
