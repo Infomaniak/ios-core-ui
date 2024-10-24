@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2024 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,9 +20,15 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 public struct FlowLayout: Layout {
-    public var alignment: HorizontalAlignment = .center
-    public var verticalSpacing: CGFloat = .zero
-    public var horizontalSpacing: CGFloat = .zero
+    private let alignment: HorizontalAlignment
+    private let verticalSpacing: CGFloat
+    private let horizontalSpacing: CGFloat
+
+    public init(alignment: HorizontalAlignment = .center, verticalSpacing: CGFloat = .zero, horizontalSpacing: CGFloat = .zero) {
+        self.alignment = alignment
+        self.verticalSpacing = verticalSpacing
+        self.horizontalSpacing = horizontalSpacing
+    }
 
     public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let (size, _) = computeLayout(proposal: proposal, subviews: subviews)
@@ -128,6 +134,7 @@ public struct FlowLayout: Layout {
                     .background(Color.blue, in: .capsule)
             }
         }
+        .border(.black)
 
         FlowLayout(alignment: .center, verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
@@ -137,6 +144,7 @@ public struct FlowLayout: Layout {
                     .background(Color.green, in: .capsule)
             }
         }
+        .border(.black)
 
         FlowLayout(alignment: .trailing, verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
@@ -146,7 +154,7 @@ public struct FlowLayout: Layout {
                     .background(Color.red, in: .capsule)
             }
         }
+        .border(.black)
     }
-    .border(.black)
 }
 
