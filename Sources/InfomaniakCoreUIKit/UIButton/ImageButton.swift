@@ -26,8 +26,9 @@ import UIKit
 
 @IBDesignable
 open class ImageButton: UIButton {
-    @IBInspectable var imageWidth: CGFloat = 0
-    @IBInspectable var imageHeight: CGFloat = 0
+    @IBInspectable public var imageWidth: CGFloat = 0
+    @IBInspectable public var imageHeight: CGFloat = 0
+    @IBInspectable public var imageSpacing: CGFloat = 0
 
     override open var isHighlighted: Bool {
         didSet {
@@ -78,14 +79,14 @@ open class ImageButton: UIButton {
         imageFrame.origin
             .x = (contentSize.width - imageSize.width - titleSize.width - contentEdgeInsets.left - contentEdgeInsets
                 .right - imageEdgeInsets.left - imageEdgeInsets.right - titleEdgeInsets.left - titleEdgeInsets.right) / 2.0 +
-            contentEdgeInsets.left + titleEdgeInsets.left
+            contentEdgeInsets.left + titleEdgeInsets.left - imageSpacing
 
         var titleFrame = CGRect(origin: CGPoint(), size: titleSize)
 
         titleFrame.origin
             .y = (contentSize.height - titleSize.height - contentEdgeInsets.top - contentEdgeInsets.bottom - titleEdgeInsets
                 .top - titleEdgeInsets.bottom) / 2.0 + contentEdgeInsets.top + titleEdgeInsets.top
-        titleFrame.origin.x = imageFrame.origin.x + imageSize.width + imageEdgeInsets.right + titleEdgeInsets.left
+        titleFrame.origin.x = imageFrame.origin.x + imageSize.width + imageEdgeInsets.right + titleEdgeInsets.left + imageSpacing
 
         imageView?.frame = imageFrame
         titleLabel?.frame = titleFrame
