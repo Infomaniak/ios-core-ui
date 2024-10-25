@@ -61,7 +61,7 @@ struct IKButtonExpandableModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: isFullWidth ? 500 : nil)
+            .frame(maxWidth: isFullWidth ? IKButtonConstants.maxWidth : nil)
     }
 }
 
