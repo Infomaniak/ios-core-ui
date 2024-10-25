@@ -101,6 +101,7 @@ public extension ButtonStyle where Self == IKBorderlessButtonStyle {
                     IKButtonTheme(
                         primary: Color.purple,
                         secondary: Color.white,
+                        tertiary: Color.gray,
                         disabledPrimary: Color.gray,
                         disabledSecondary: Color.white,
                         error: Color.red,

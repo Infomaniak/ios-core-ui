@@ -22,6 +22,7 @@ import SwiftUI
 @frozen public struct IKButtonTheme {
     public let primary: any ShapeStyle
     public let secondary: any ShapeStyle
+    public let tertiary: any ShapeStyle
 
     public let disabledPrimary: any ShapeStyle
     public let disabledSecondary: any ShapeStyle
@@ -34,6 +35,7 @@ import SwiftUI
     public init(
         primary: any ShapeStyle,
         secondary: any ShapeStyle,
+        tertiary: any ShapeStyle,
         disabledPrimary: any ShapeStyle,
         disabledSecondary: any ShapeStyle,
         error: any ShapeStyle,
@@ -42,6 +44,7 @@ import SwiftUI
     ) {
         self.primary = primary
         self.secondary = secondary
+        self.tertiary = tertiary
         self.disabledPrimary = disabledPrimary
         self.disabledSecondary = disabledSecondary
         self.error = error
@@ -54,14 +57,6 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 extension IKButtonTheme {
-    func primary(disabled: Bool) -> any ShapeStyle {
-        return disabled ? disabledPrimary : primary
-    }
-
-    func secondary(disabled: Bool) -> any ShapeStyle {
-        return disabled ? disabledSecondary : secondary
-    }
-
     func scaledFont(_ controlSize: ControlSize) -> Font {
         if controlSize == .small {
             return smallFont
@@ -78,6 +73,7 @@ extension IKButtonTheme {
     static let defaultTheme = IKButtonTheme(
         primary: TintShapeStyle.tint,
         secondary: Color.white,
+        tertiary: Color.gray.opacity(0.4),
         disabledPrimary: Color.gray,
         disabledSecondary: Color.white,
         error: Color.red,
