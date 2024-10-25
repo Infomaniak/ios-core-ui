@@ -78,9 +78,15 @@ struct IKButtonLayout: ViewModifier {
         return IKButtonHeight.convert(controlSize: controlSize)
     }
 
+    private var verticalPadding: CGFloat {
+        guard !isInlined else { return 0 }
+        return controlSize == .large ? IKPadding.medium : IKPadding.small
+    }
+
     func body(content: Content) -> some View {
         content
             .padding(.horizontal, isInlined ? 0 : IKPadding.large)
+            .padding(.vertical, verticalPadding)
             .frame(minHeight: minHeight)
     }
 }
