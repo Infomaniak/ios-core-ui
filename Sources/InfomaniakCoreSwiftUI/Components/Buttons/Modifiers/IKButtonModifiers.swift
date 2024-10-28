@@ -61,7 +61,7 @@ struct IKButtonExpandableModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: isFullWidth ? 500 : nil)
+            .frame(maxWidth: isFullWidth ? IKButtonConstants.maxWidth : nil)
     }
 }
 
@@ -78,9 +78,15 @@ struct IKButtonLayout: ViewModifier {
         return IKButtonHeight.convert(controlSize: controlSize)
     }
 
+    private var verticalPadding: CGFloat {
+        guard !isInlined else { return 0 }
+        return controlSize == .large ? IKPadding.medium : IKPadding.small
+    }
+
     func body(content: Content) -> some View {
         content
             .padding(.horizontal, isInlined ? 0 : IKPadding.large)
+            .padding(.vertical, verticalPadding)
             .frame(minHeight: minHeight)
     }
 }
@@ -119,13 +125,29 @@ struct IKButtonFilledModifier: ViewModifier {
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
 
+    let isProminent: Bool
+
     private var isDisabled: Bool {
         return !isEnabled || isLoading
     }
 
+    private var foregroundStyle: any ShapeStyle {
+        guard !isDisabled else {
+            return theme.disabledSecondary
+        }
+        return isProminent ? theme.secondary : theme.primary
+    }
+
+    private var backgroundStyle: any ShapeStyle {
+        guard !isDisabled else {
+            return theme.disabledPrimary
+        }
+        return isProminent ? theme.primary : theme.tertiary
+    }
+
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(AnyShapeStyle(theme.secondary(disabled: isDisabled)))
-            .background(AnyShapeStyle(theme.primary(disabled: isDisabled)), in: RoundedRectangle(cornerRadius: 16))
+            .foregroundStyle(AnyShapeStyle(foregroundStyle))
+            .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: IKRadius.large))
     }
 }

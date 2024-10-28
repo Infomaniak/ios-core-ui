@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2024 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-public struct IKBorderedProminentButtonStyle: ButtonStyle {
+public struct IKBorderedButtonStyle: ButtonStyle {
     @Environment(\.ikButtonLoading) private var isLoading
 
     public func makeBody(configuration: Configuration) -> some View {
@@ -30,15 +30,15 @@ public struct IKBorderedProminentButtonStyle: ButtonStyle {
             .modifier(IKButtonExpandableModifier())
             .modifier(IKButtonControlSizeModifier())
             .modifier(IKButtonLayout(isInlined: false))
-            .modifier(IKButtonFilledModifier(isProminent: true))
+            .modifier(IKButtonFilledModifier(isProminent: false))
             .allowsHitTesting(!isLoading)
     }
 }
 
 @available(iOS 15.0, *)
-public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
-    static var ikBorderedProminent: IKBorderedProminentButtonStyle {
-        return IKBorderedProminentButtonStyle()
+public extension ButtonStyle where Self == IKBorderedButtonStyle {
+    static var ikBordered: IKBorderedButtonStyle {
+        return IKBorderedButtonStyle()
     }
 }
 
@@ -99,7 +99,7 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
                 .disabled(true)
             }
         }
-        .buttonStyle(.ikBorderedProminent)
+        .buttonStyle(.ikBordered)
         .navigationTitle("IKBorderedProminentButtonStyle")
     }
 }

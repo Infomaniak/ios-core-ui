@@ -44,7 +44,7 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
             .font(theme.mediumFont)
             .padding(.horizontal, IKPadding.medium)
             .frame(minWidth: isExtended ? nil : size, minHeight: size)
-            .modifier(IKButtonFilledModifier())
+            .modifier(IKButtonFilledModifier(isProminent: true))
             .modifier(IKButtonScaleAnimationModifier(isPressed: configuration.isPressed))
             .allowsHitTesting(!isLoading)
     }
