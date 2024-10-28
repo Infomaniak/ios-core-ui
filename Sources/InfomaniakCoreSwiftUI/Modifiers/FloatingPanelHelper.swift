@@ -97,12 +97,12 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
         return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 
-    private var shouldShowCloseButton: Bool {
+    private var isCompactMode: Bool {
         return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
-        return title != nil || shouldShowCloseButton
+        return title != nil || isCompactMode
     }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
@@ -119,7 +119,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if shouldShowCloseButton {
+                    if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .padding(.trailing, value: .medium)
@@ -171,12 +171,12 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
         return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 
-    private var shouldShowCloseButton: Bool {
+    private var isCompactMode: Bool {
         return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
-        return title != nil || shouldShowCloseButton
+        return title != nil || isCompactMode
     }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
@@ -193,7 +193,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if shouldShowCloseButton {
+                    if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .padding(.trailing, value: .medium)
@@ -206,7 +206,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18)) { scrollView in
-                guard selection != .height(headerSize) else { return }
+                guard isCompactMode else { return }
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
                 guard selection != .height(totalPanelContentHeight) else { return }
 
