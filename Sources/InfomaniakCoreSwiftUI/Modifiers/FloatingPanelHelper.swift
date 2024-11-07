@@ -122,7 +122,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                     if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.trailing, value: .medium)
+                            .padding(.leading, value: .medium)
                     }
                 }
             }
@@ -197,7 +197,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                     if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.trailing, value: .medium)
+                            .padding(.leading, value: .medium)
                     }
                 }
             }
