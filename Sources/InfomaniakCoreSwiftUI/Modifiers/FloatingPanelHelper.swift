@@ -121,7 +121,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
 
                     if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.trailing, value: .medium)
                     }
                 }
@@ -132,7 +132,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v15)) { scrollView in
-                guard !currentDetents.contains(.large) else { return }
+                guard isCompactMode, !currentDetents.contains(.large) else { return }
+
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
 
                 scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
@@ -195,7 +196,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
 
                     if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.trailing, value: .medium)
                     }
                 }
