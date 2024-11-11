@@ -132,7 +132,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v15)) { scrollView in
-                guard !currentDetents.contains(.large) else { return }
+                guard isCompactWindow, !currentDetents.contains(.large) else { return }
 
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
 
@@ -207,6 +207,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18)) { scrollView in
+                guard isCompactWindow else { return }
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
                 guard selection != .height(totalPanelContentHeight) else { return }
 
