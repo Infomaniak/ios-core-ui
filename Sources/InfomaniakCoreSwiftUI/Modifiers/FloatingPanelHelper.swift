@@ -69,6 +69,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     @LazyInjectService private var platformDetector: PlatformDetectable
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<Backport.PresentationDetent> = [.medium]
 
@@ -96,12 +97,12 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
         return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 
-    private var shouldShowCloseButton: Bool {
-        return platformDetector.isMac || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
+    private var isCompactMode: Bool {
+        return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
-        return title != nil || shouldShowCloseButton
+        return title != nil || isCompactMode
     }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
@@ -118,10 +119,10 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if shouldShowCloseButton {
+                    if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.trailing, value: .medium)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, value: .medium)
                     }
                 }
             }
@@ -131,7 +132,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v15)) { scrollView in
-                guard !currentDetents.contains(.large) else { return }
+                guard isCompactWindow, !currentDetents.contains(.large) else { return }
+
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
 
                 scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
@@ -141,8 +143,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
             }
         }
         .padding(.top, topPadding)
-        .backport.presentationDragIndicator(backportDragIndicator)
-        .backport.presentationDetents(currentDetents)
+        .backport.presentationDragIndicator(isCompactWindow ? backportDragIndicator : .hidden)
+        .backport.presentationDetents(isCompactWindow ? currentDetents : [.large])
         .ikPresentationCornerRadius(20)
     }
 }
@@ -152,6 +154,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     @LazyInjectService private var platformDetector: PlatformDetectable
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<PresentationDetent> = [.height(0)]
     @State private var selection: PresentationDetent = .height(0)
@@ -169,12 +172,12 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
         return topPadding + titleSpacing + UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 
-    private var shouldShowCloseButton: Bool {
-        return platformDetector.isMac || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
+    private var isCompactMode: Bool {
+        return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
     }
 
     private var shouldShowHeader: Bool {
-        return title != nil || shouldShowCloseButton
+        return title != nil || isCompactMode
     }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
@@ -191,10 +194,10 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if shouldShowCloseButton {
+                    if isCompactMode {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.trailing, value: .medium)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, value: .medium)
                     }
                 }
             }
@@ -204,6 +207,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                     .padding(.bottom, value: .medium)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18)) { scrollView in
+                guard isCompactWindow else { return }
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
                 guard selection != .height(totalPanelContentHeight) else { return }
 
@@ -221,8 +225,8 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
             }
         }
         .padding(.top, topPadding)
-        .presentationDetents(currentDetents, selection: $selection)
-        .presentationDragIndicator(dragIndicator)
+        .presentationDetents(isCompactWindow ? currentDetents : [.large], selection: $selection)
+        .presentationDragIndicator(isCompactWindow ? dragIndicator : .hidden)
         .ikPresentationCornerRadius(20)
     }
 }
