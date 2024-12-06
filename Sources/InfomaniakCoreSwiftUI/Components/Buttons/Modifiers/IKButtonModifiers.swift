@@ -125,6 +125,7 @@ struct IKButtonFilledModifier: ViewModifier {
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
 
+    let buttonRole: ButtonRole?
     let isProminent: Bool
 
     private var isDisabled: Bool {

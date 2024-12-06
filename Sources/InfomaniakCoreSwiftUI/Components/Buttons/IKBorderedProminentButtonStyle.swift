@@ -30,7 +30,7 @@ public struct IKBorderedProminentButtonStyle: ButtonStyle {
             .modifier(IKButtonExpandableModifier())
             .modifier(IKButtonControlSizeModifier())
             .modifier(IKButtonLayout(isInlined: false))
-            .modifier(IKButtonFilledModifier(isProminent: true))
+            .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true))
             .allowsHitTesting(!isLoading)
     }
 }
