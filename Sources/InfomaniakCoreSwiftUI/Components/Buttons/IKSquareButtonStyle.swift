@@ -28,7 +28,7 @@ public struct IKSquareButtonStyle: ButtonStyle {
             .modifier(IKButtonOpacityAnimationModifier(isPressed: configuration.isPressed))
             .modifier(IKButtonLoadingModifier(isFilled: true))
             .frame(width: IKButtonHeight.extraLarge, height: IKButtonHeight.extraLarge)
-            .modifier(IKButtonFilledModifier(isProminent: true))
+            .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true))
             .allowsHitTesting(!isLoading)
     }
 }

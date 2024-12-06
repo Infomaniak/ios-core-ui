@@ -125,6 +125,7 @@ struct IKButtonFilledModifier: ViewModifier {
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
 
+    let buttonRole: ButtonRole?
     let isProminent: Bool
 
     private var isDisabled: Bool {
@@ -139,10 +140,13 @@ struct IKButtonFilledModifier: ViewModifier {
     }
 
     private var backgroundStyle: any ShapeStyle {
-        guard !isDisabled else {
+        if isDisabled {
             return theme.disabledPrimary
+        } else if buttonRole == .destructive {
+            return theme.error
+        } else {
+            return isProminent ? theme.primary : theme.tertiary
         }
-        return isProminent ? theme.primary : theme.tertiary
     }
 
     func body(content: Content) -> some View {

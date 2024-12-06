@@ -30,7 +30,7 @@ public struct IKBorderedProminentButtonStyle: ButtonStyle {
             .modifier(IKButtonExpandableModifier())
             .modifier(IKButtonControlSizeModifier())
             .modifier(IKButtonLayout(isInlined: false))
-            .modifier(IKButtonFilledModifier(isProminent: true))
+            .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true))
             .allowsHitTesting(!isLoading)
     }
 }
@@ -97,6 +97,12 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
                     Label("Lorem Ipsum", systemImage: "visionpro")
                 }
                 .disabled(true)
+            }
+
+            Section("Destructive Button") {
+                Button(role: .destructive) {} label: {
+                    Label("Lorem Ipsum", systemImage: "visionpro")
+                }
             }
         }
         .buttonStyle(.ikBorderedProminent)
