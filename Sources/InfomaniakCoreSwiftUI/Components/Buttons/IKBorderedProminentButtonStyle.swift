@@ -98,6 +98,12 @@ public extension ButtonStyle where Self == IKBorderedProminentButtonStyle {
                 }
                 .disabled(true)
             }
+
+            Section("Destructive Button") {
+                Button(role: .destructive) {} label: {
+                    Label("Lorem Ipsum", systemImage: "visionpro")
+                }
+            }
         }
         .buttonStyle(.ikBorderedProminent)
         .navigationTitle("IKBorderedProminentButtonStyle")
