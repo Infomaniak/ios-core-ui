@@ -140,10 +140,13 @@ struct IKButtonFilledModifier: ViewModifier {
     }
 
     private var backgroundStyle: any ShapeStyle {
-        guard !isDisabled else {
+        if isDisabled {
             return theme.disabledPrimary
+        } else if buttonRole == .destructive {
+            return theme.error
+        } else {
+            return isProminent ? theme.primary : theme.tertiary
         }
-        return isProminent ? theme.primary : theme.tertiary
     }
 
     func body(content: Content) -> some View {
