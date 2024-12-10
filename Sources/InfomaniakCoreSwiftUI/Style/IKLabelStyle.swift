@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2024 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct IKButtonLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: IKPadding.small) {
+public struct IKLabelStyle: LabelStyle {
+    var spacing = IKPadding.small
+
+    public func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: spacing) {
             configuration.icon
             configuration.title
         }
@@ -29,8 +31,12 @@ struct IKButtonLabelStyle: LabelStyle {
 }
 
 @available(iOS 15.0, *)
-extension LabelStyle where Self == IKButtonLabelStyle {
-    static var ikButtonLabel: IKButtonLabelStyle {
-        IKButtonLabelStyle()
+public extension LabelStyle where Self == IKLabelStyle {
+    static var ikLabel: IKLabelStyle {
+        return IKLabelStyle()
+    }
+
+    static func ikLabel(_ spacing: CGFloat) -> IKLabelStyle {
+        return IKLabelStyle(spacing: spacing)
     }
 }

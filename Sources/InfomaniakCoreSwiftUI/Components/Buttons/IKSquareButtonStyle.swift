@@ -24,7 +24,7 @@ public struct IKSquareButtonStyle: ButtonStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .labelStyle(.ikButtonLabel)
+            .labelStyle(.ikLabel)
             .modifier(IKButtonOpacityAnimationModifier(isPressed: configuration.isPressed))
             .modifier(IKButtonLoadingModifier(isFilled: true))
             .frame(width: IKButtonHeight.extraLarge, height: IKButtonHeight.extraLarge)
