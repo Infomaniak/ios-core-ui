@@ -39,7 +39,7 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .labelStyle(.ikButtonLabel)
+            .labelStyle(.ikLabel)
             .modifier(IKButtonLoadingModifier(isFilled: true))
             .font(theme.mediumFont)
             .padding(.horizontal, IKPadding.medium)

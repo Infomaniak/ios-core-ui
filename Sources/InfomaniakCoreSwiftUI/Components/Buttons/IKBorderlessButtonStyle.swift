@@ -29,7 +29,7 @@ public struct IKBorderlessButtonStyle: ButtonStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .labelStyle(.ikButtonLabel)
+            .labelStyle(.ikLabel)
             .foregroundStyle(AnyShapeStyle(foreground(role: configuration.role)))
             .modifier(IKButtonLoadingModifier(isFilled: false))
             .modifier(IKButtonControlSizeModifier())

@@ -24,7 +24,7 @@ public struct IKBorderedProminentButtonStyle: ButtonStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .labelStyle(.ikButtonLabel)
+            .labelStyle(.ikLabel)
             .modifier(IKButtonOpacityAnimationModifier(isPressed: configuration.isPressed))
             .modifier(IKButtonLoadingModifier(isFilled: true))
             .modifier(IKButtonExpandableModifier())
