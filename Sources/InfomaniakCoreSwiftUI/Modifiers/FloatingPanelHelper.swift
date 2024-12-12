@@ -163,7 +163,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     let title: String?
 
     private let topPadding = IKPadding.large
-    private let titleSpacing = IKPadding.small
+    private let titleSpacing = IKPadding.medium
 
     private var headerSize: CGFloat {
         guard title != nil else {
