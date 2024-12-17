@@ -21,7 +21,7 @@ import SwiftUI
 
 @MainActor
 public final class ReachabilityObserver: ObservableObject {
-    @Published public var networkStatus = ReachabilityListener.NetworkStatus.undefined
+    @Published public var networkStatus = ReachabilityListener.instance.currentStatus
 
     public init() {
         ReachabilityListener.instance.observeNetworkChange(self) { [weak self] status in
