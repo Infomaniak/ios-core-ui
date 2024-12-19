@@ -36,8 +36,12 @@ public struct FileTypeProvider: Sendable {
         fileType.color
     }
 
-    public init(type: String) {
-        self.init(uti: UTType(type))
+    public init(identifier: String) {
+        self.init(uti: UTType(identifier))
+    }
+
+    public init(mimeType: String) {
+        self.init(uti: UTType(mimeType: mimeType))
     }
 
     public init(uti: UTType?) {
