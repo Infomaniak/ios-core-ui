@@ -69,6 +69,8 @@ public struct FileType: Sendable {
     }
 
     public func conform(to type: UTType) -> Bool {
-        return types.contains(type)
+        return types.contains { conformingType in
+            type.conforms(to: conformingType)
+        }
     }
 }
