@@ -16,6 +16,9 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import SwiftUI
+import UniformTypeIdentifiers
+
 @available(iOS 14.0, *)
 public extension UTType {
     static let pages = UTType("com.apple.iwork.pages.sffpages")!
@@ -40,7 +43,7 @@ public extension FileType {
     static let font = FileType(image: .fileFont, color: .fileFont, types: [.font])
     static let grid = FileType(image: .fileGrid, color: .fileGrid, types: [.spreadsheet])
     static let ics = FileType(image: .fileIcs, color: .fileIcs, types: [.calendarEvent, .ics])
-    static let image = FileType( image: .fileImg, color: .fileImg, types: [.image])
+    static let image = FileType(image: .fileImg, color: .fileImg, types: [.image])
     static let pdf = FileType(image: .filePdf, color: .filePdf, types: [.pdf])
     static let point = FileType(image: .filePoint, color: .filePoint, types: [.presentation])
     static let video = FileType(image: .fileVideo, color: .fileVideo, types: [.video])

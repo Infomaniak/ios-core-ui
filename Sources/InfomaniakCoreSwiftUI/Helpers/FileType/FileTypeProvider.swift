@@ -42,7 +42,7 @@ public struct FileTypeProvider: Sendable {
 
     public init(uti: UTType?) {
         self.uti = uti
-        self.fileType = FileTypeProvider.guessFileType(from: uti)
+        fileType = FileTypeProvider.guessFileType(from: uti)
     }
 
     private static func guessFileType(from type: UTType?) -> FileType {
