@@ -46,9 +46,10 @@ public extension FileType {
     static let image = FileType(image: .fileImg, color: .fileImg, types: [.image])
     static let pdf = FileType(image: .filePdf, color: .filePdf, types: [.pdf])
     static let point = FileType(image: .filePoint, color: .filePoint, types: [.presentation])
+    static let vCard = FileType(image: .fileVcard, color: .fileVcard, types: [.vCard])
     static let video = FileType(image: .fileVideo, color: .fileVideo, types: [.video])
 
-    static let unknown = FileType(image: .fileVcard, color: .fileVcard, types: [.vCard])
+    static let unknown = FileType(image: .fileUnknown, color: .fileUnknown, types: [])
 }
 
 @available(iOS 14.0, *)
