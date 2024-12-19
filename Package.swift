@@ -51,7 +51,8 @@ let package = Package(
                 "SwiftUIBackports",
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
-            ]
+            ],
+            swiftSettings: [.define("ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS")]
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",
