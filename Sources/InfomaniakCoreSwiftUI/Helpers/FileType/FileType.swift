@@ -57,10 +57,14 @@ public struct FileType: Sendable {
     public let color: Color
     public let types: [UTType]
 
-    private init(image: ImageResource, color: ColorResource, types: [UTType]) {
-        self.image = Image(image)
-        self.color = Color(color)
+    public init(image: Image, color: Color, types: [UTType]) {
+        self.image = image
+        self.color = color
         self.types = types
+    }
+
+    private init(image: ImageResource, color: ColorResource, types: [UTType]) {
+        self.init(image: Image(image), color: Color(color), types: types)
     }
 
     public func conform(to type: UTType) -> Bool {
