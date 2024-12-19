@@ -49,7 +49,7 @@ public struct FileTypeProvider: Sendable {
         guard let type else { return .unknown }
 
         for fileType in checkableFileTypes {
-            if fileType.conform(to: type) {
+            if fileType.conforms(to: type) {
                 return fileType
             }
         }

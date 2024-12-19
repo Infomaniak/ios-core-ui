@@ -68,7 +68,7 @@ public struct FileType: Sendable {
         self.init(image: Image(image), color: Color(color), types: types)
     }
 
-    public func conform(to type: UTType) -> Bool {
+    public func conforms(to type: UTType) -> Bool {
         return types.contains { conformingType in
             type.conforms(to: conformingType)
         }
