@@ -27,9 +27,9 @@ public struct IKBorderedProminentButtonStyle: ButtonStyle {
             .labelStyle(.ikLabel)
             .modifier(IKButtonOpacityAnimationModifier(isPressed: configuration.isPressed))
             .modifier(IKButtonLoadingModifier(isFilled: true))
-            .modifier(IKButtonExpandableModifier())
             .modifier(IKButtonControlSizeModifier())
             .modifier(IKButtonLayout(isInlined: false))
+            .modifier(IKButtonExpandableModifier())
             .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true))
             .allowsHitTesting(!isLoading)
     }
