@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
-        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
-        "version" : "5.9.1"
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "0bfba5628ea517d0a21f5e8d30bb9fff0ce21718",
-        "version" : "12.0.0"
+        "revision" : "eaf53f35780befa26d2ac30c8262d7529352bfb9",
+        "version" : "13.0.0"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/matomo-org/matomo-sdk-ios",
       "state" : {
-        "revision" : "a8800d8725fb84bad6b7dea555075f961952bc0a",
-        "version" : "7.6.0"
+        "revision" : "82a1f3b18215381e2133d98b7cc09b5a855ff99d",
+        "version" : "7.7.0"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "c2552e1d36867cb42b28130e894a81fc17081062",
-        "version" : "14.12.0"
+        "revision" : "85eeca41654cc9070ad81a21a4b1d153ad467c33",
+        "version" : "14.13.1"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "9815e6c29d43cb5314add5dff8705c5476ab556c",
-        "version" : "10.53.0"
+        "revision" : "a3abcdf95a3176f5ad990239920aad4ef86e00de",
+        "version" : "10.54.2"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "e2ac1723a4a9632e291c171b6e25a0c403b0fecb",
-        "version" : "8.35.0"
+        "revision" : "c1404acfa3a71e42aa789c6d5564da59d4377569",
+        "version" : "8.42.1"
       }
     },
     {
@@ -122,8 +122,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
+        "revision" : "96a2f8a0fa41e9e09af4585e2724c4e825410b91",
+        "version" : "1.6.2"
       }
     },
     {
