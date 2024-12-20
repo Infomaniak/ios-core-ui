@@ -27,13 +27,14 @@ public extension View {
     func floatingPanel<Content: View>(
         isPresented: Binding<Bool>,
         title: String? = nil,
+        bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         sheet(isPresented: isPresented) {
             if #available(iOS 16.0, *) {
-                content().modifier(SelfSizingPanelViewModifier(title: title))
+                content().modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
             } else {
-                content().modifier(SelfSizingPanelBackportViewModifier(title: title))
+                content().modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
             }
         }
     }
@@ -41,13 +42,14 @@ public extension View {
     func floatingPanel<Item: Identifiable, Content: View>(
         item: Binding<Item?>,
         title: String? = nil,
+        bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping (Item) -> Content
     ) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
-                content(item).modifier(SelfSizingPanelViewModifier(title: title))
+                content(item).modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
             } else {
-                content(item).modifier(SelfSizingPanelBackportViewModifier(title: title))
+                content(item).modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
             }
         }
     }
@@ -75,6 +77,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
 
     let dragIndicator: Visibility
     let title: String?
+    let bottomPadding: CGFloat
 
     private let topPadding = IKPadding.large
     private let titleSpacing = IKPadding.small
@@ -105,9 +108,10 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
         return title != nil || isCompactMode
     }
 
-    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
+    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.bottomPadding = bottomPadding
     }
 
     public func body(content: Content) -> some View {
@@ -129,7 +133,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
 
             ScrollView {
                 content
-                    .padding(.bottom, value: .medium)
+                    .padding(.bottom, bottomPadding)
             }
             .introspect(.scrollView, on: .iOS(.v15)) { scrollView in
                 guard isCompactWindow, !currentDetents.contains(.large) else { return }
@@ -161,6 +165,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
 
     let dragIndicator: Visibility
     let title: String?
+    let bottomPadding: CGFloat
 
     private let topPadding = IKPadding.large
     private let titleSpacing = IKPadding.small
@@ -180,9 +185,10 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
         return title != nil || isCompactMode
     }
 
-    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil) {
+    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.bottomPadding = bottomPadding
     }
 
     public func body(content: Content) -> some View {
@@ -204,7 +210,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
 
             ScrollView {
                 content
-                    .padding(.bottom, value: .medium)
+                    .padding(.bottom, bottomPadding)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18)) { scrollView in
                 guard isCompactWindow else { return }
