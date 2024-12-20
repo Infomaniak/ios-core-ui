@@ -32,24 +32,20 @@ public extension UTType {
 
 @available(iOS 14.0, *)
 public extension FileType {
-    static let archive = FileType(image: .fileArchive, color: .fileArchive, types: [.archive])
-    static let audio = FileType(image: .fileAudio, color: .fileAudio, types: [.audio])
-    static let code = FileType(image: .fileCode, color: .fileCode, types: [.sourceCode, .html, .json, .xml])
-    static let doc = FileType(
-        image: .fileDoc,
-        color: .fileDoc,
-        types: [.text, .pages, .onlyOffice, .wordDoc, .wordDocm, .wordDocx]
-    )
-    static let font = FileType(image: .fileFont, color: .fileFont, types: [.font])
-    static let grid = FileType(image: .fileGrid, color: .fileGrid, types: [.spreadsheet])
-    static let ics = FileType(image: .fileIcs, color: .fileIcs, types: [.calendarEvent, .ics])
-    static let image = FileType(image: .fileImg, color: .fileImg, types: [.image])
-    static let pdf = FileType(image: .filePdf, color: .filePdf, types: [.pdf])
-    static let point = FileType(image: .filePoint, color: .filePoint, types: [.presentation])
-    static let vCard = FileType(image: .fileVcard, color: .fileVcard, types: [.vCard])
-    static let video = FileType(image: .fileVideo, color: .fileVideo, types: [.video, .movie])
+    static let archive = FileType(asset: "file-archive", types: [.archive])
+    static let audio = FileType(asset: "file-audio", types: [.audio])
+    static let code = FileType(asset: "file-code", types: [.sourceCode, .html, .json, .xml])
+    static let doc = FileType(asset: "file-doc", types: [.text, .pages, .onlyOffice, .wordDoc, .wordDocm, .wordDocx])
+    static let font = FileType(asset: "file-font", types: [.font])
+    static let grid = FileType(asset: "file-grid", types: [.spreadsheet])
+    static let ics = FileType(asset: "file-ics", types: [.calendarEvent, .ics])
+    static let image = FileType(asset: "file-img", types: [.image])
+    static let pdf = FileType(asset: "file-pdf", types: [.pdf])
+    static let point = FileType(asset: "file-point", types: [.presentation])
+    static let vCard = FileType(asset: "file-vcard", types: [.vCard])
+    static let video = FileType(asset: "file-video", types: [.video, .movie])
 
-    static let unknown = FileType(image: .fileUnknown, color: .fileUnknown, types: [])
+    static let unknown = FileType(asset: "file-unknown", types: [])
 }
 
 @available(iOS 14.0, *)
@@ -64,8 +60,8 @@ public struct FileType: Sendable {
         self.types = types
     }
 
-    private init(image: ImageResource, color: ColorResource, types: [UTType]) {
-        self.init(image: Image(image), color: Color(color), types: types)
+    private init(asset: String, types: [UTType]) {
+        self.init(image: Image(asset, bundle: .module), color: Color("\(asset)-color", bundle: .module), types: types)
     }
 
     public func conforms(to type: UTType) -> Bool {
