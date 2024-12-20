@@ -47,7 +47,7 @@ public extension FileType {
     static let pdf = FileType(image: .filePdf, color: .filePdf, types: [.pdf])
     static let point = FileType(image: .filePoint, color: .filePoint, types: [.presentation])
     static let vCard = FileType(image: .fileVcard, color: .fileVcard, types: [.vCard])
-    static let video = FileType(image: .fileVideo, color: .fileVideo, types: [.video])
+    static let video = FileType(image: .fileVideo, color: .fileVideo, types: [.video, .movie])
 
     static let unknown = FileType(image: .fileUnknown, color: .fileUnknown, types: [])
 }
