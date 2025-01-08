@@ -18,8 +18,10 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct FlowLine: Sendable {
     let offsets: [CGRect]
+    let sizes: [CGSize]
     let lineHeight: CGFloat
 }
 
@@ -45,15 +47,17 @@ public struct FlowLayout: Layout {
         let alignmentOffsets = computeHorizontalAlignmentOffsets(containerWidth: size.width, lines: flowLines)
 
         var subviewIndex = 0
-        for line in flowLines.indices {
-            for offset in flowLines[line].offsets {
+        for lineNumber in flowLines.indices {
+            let flowLine = flowLines[lineNumber]
+            for indexInLine in flowLine.offsets.indices {
                 let subview = subviews[subviewIndex]
-                let size = subview.sizeThatFits(.unspecified)
+                let offset = flowLine.offsets[indexInLine]
+                let size = flowLine.sizes[indexInLine]
 
                 subview.place(
                     at: CGPoint(
-                        x: bounds.minX + offset.minX + alignmentOffsets[line],
-                        y: bounds.minY + offset.minY + computeVerticalAlignmentOffset(for: size, in: flowLines[line])
+                        x: bounds.minX + offset.minX + alignmentOffsets[lineNumber],
+                        y: bounds.minY + offset.minY + computeVerticalAlignmentOffset(for: size, in: flowLine)
                     ),
                     proposal: ProposedViewSize(size)
                 )
@@ -68,7 +72,9 @@ public struct FlowLayout: Layout {
 
         var flowLines = [FlowLine]()
 
+        var proposedViewSizes = [CGSize]()
         var offsets = [CGRect]()
+
         var currentPosition = CGPoint.zero
         var maximumLineWidth = CGFloat.zero
         var currentLineHeight = CGFloat.zero
@@ -76,17 +82,19 @@ public struct FlowLayout: Layout {
         for subview in subviews {
             var (idealSize, fittingSize) = computeSubviewSizes(in: availableSize, for: subview, at: currentPosition)
             if idealSize.width > fittingSize.width || currentPosition.x + fittingSize.width > availableSize.width {
-                flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
+                flowLines.append(FlowLine(offsets: offsets, sizes: proposedViewSizes, lineHeight: currentLineHeight))
 
                 currentPosition.x = 0
                 currentPosition.y += currentLineHeight + verticalSpacing
 
+                proposedViewSizes = []
                 offsets = []
                 currentLineHeight = 0
 
                 (_, fittingSize) = computeSubviewSizes(in: availableSize, for: subview, at: currentPosition)
             }
 
+            proposedViewSizes.append(fittingSize)
             offsets.append(CGRect(origin: currentPosition, size: fittingSize))
 
             currentPosition.x += fittingSize.width
@@ -94,7 +102,7 @@ public struct FlowLayout: Layout {
             currentLineHeight = max(currentLineHeight, fittingSize.height)
             currentPosition.x += horizontalSpacing
         }
-        flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
+        flowLines.append(FlowLine(offsets: offsets, sizes: proposedViewSizes, lineHeight: currentLineHeight))
 
         return (CGSize(width: maximumLineWidth, height: currentPosition.y + currentLineHeight), flowLines)
     }
