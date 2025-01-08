@@ -20,11 +20,11 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 public struct FlowLayout: Layout {
-    private let alignment: HorizontalAlignment
+    private let alignment: Alignment
     private let verticalSpacing: CGFloat
     private let horizontalSpacing: CGFloat
 
-    public init(alignment: HorizontalAlignment = .center, verticalSpacing: CGFloat = .zero, horizontalSpacing: CGFloat = .zero) {
+    public init(alignment: Alignment = .center, verticalSpacing: CGFloat = .zero, horizontalSpacing: CGFloat = .zero) {
         self.alignment = alignment
         self.verticalSpacing = verticalSpacing
         self.horizontalSpacing = horizontalSpacing
@@ -92,7 +92,7 @@ public struct FlowLayout: Layout {
     }
 
     private func computeAlignmentOffsets(containerWidth: CGFloat, offsets: [[CGRect]]) -> [CGFloat] {
-        guard alignment != .leading else {
+        guard alignment.horizontal != .leading else {
             return Array(repeating: 0, count: offsets.count)
         }
 
@@ -103,7 +103,7 @@ public struct FlowLayout: Layout {
                 continue
             }
 
-            switch alignment {
+            switch alignment.horizontal {
             case .center:
                 let offsetToCenter = (containerWidth - lineWidth) / 2
                 alignmentOffsets.append(offsetToCenter)
