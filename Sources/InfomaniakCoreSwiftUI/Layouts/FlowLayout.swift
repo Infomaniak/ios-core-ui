@@ -48,12 +48,14 @@ public struct FlowLayout: Layout {
         for line in flowLines.indices {
             for offset in flowLines[line].offsets {
                 let subview = subviews[subviewIndex]
+                let size = subview.sizeThatFits(.unspecified)
+
                 subview.place(
                     at: CGPoint(
                         x: bounds.minX + offset.minX + alignmentOffsets[line],
-                        y: bounds.minY + offset.minY
+                        y: bounds.minY + offset.minY + computeVerticalAlignmentOffset(for: size, in: flowLines[line])
                     ),
-                    proposal: ProposedViewSize(subview.sizeThatFits(.unspecified))
+                    proposal: ProposedViewSize(size)
                 )
 
                 subviewIndex += 1
@@ -122,14 +124,12 @@ public struct FlowLayout: Layout {
         return alignmentOffsets
     }
 
-    private func computeVerticalAlignmentOffset(of rect: CGRect, in line: FlowLine) -> CGFloat {
+    private func computeVerticalAlignmentOffset(for size: CGSize, in line: FlowLine) -> CGFloat {
         switch alignment.vertical {
-        case .top:
-            return 0
         case .center:
-            return 0
+            return (line.lineHeight - size.height) / 2
         case .bottom:
-            return 0
+            return line.lineHeight - size.height
         default:
             return 0
         }
