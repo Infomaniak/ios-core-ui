@@ -128,8 +128,8 @@ public struct FlowLayout: Layout {
         Array(repeating: "abc-def-ghi", count: count)
     ).shuffled()
 
-    VStack(spacing: 48) {
-        FlowLayout(alignment: .leading, verticalSpacing: 8, horizontalSpacing: 8) {
+    VStack(spacing: 32) {
+        FlowLayout(alignment: Alignment(horizontal: .leading, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
                     .padding(IKPadding.extraSmall)
@@ -139,9 +139,10 @@ public struct FlowLayout: Layout {
         }
         .border(.black)
 
-        FlowLayout(alignment: .center, verticalSpacing: 8, horizontalSpacing: 8) {
+        FlowLayout(alignment: Alignment(horizontal: .center, vertical: .top), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
@@ -149,7 +150,29 @@ public struct FlowLayout: Layout {
         }
         .border(.black)
 
-        FlowLayout(alignment: .trailing, verticalSpacing: 8, horizontalSpacing: 8) {
+        FlowLayout(alignment: Alignment(horizontal: .center, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
+            ForEach(items, id: \.self) { item in
+                Text(item)
+                    .font([Font.headline, Font.body, Font.caption2].randomElement()!)
+                    .padding(IKPadding.extraSmall)
+                    .foregroundStyle(.white)
+                    .background(Color.green, in: .capsule)
+            }
+        }
+        .border(.black)
+
+        FlowLayout(alignment: Alignment(horizontal: .center, vertical: .bottom), verticalSpacing: 8, horizontalSpacing: 8) {
+            ForEach(items, id: \.self) { item in
+                Text(item)
+                    .font([Font.headline, Font.body, Font.caption2].randomElement()!)
+                    .padding(IKPadding.extraSmall)
+                    .foregroundStyle(.white)
+                    .background(Color.green, in: .capsule)
+            }
+        }
+        .border(.black)
+
+        FlowLayout(alignment: Alignment(horizontal: .trailing, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
                     .padding(IKPadding.extraSmall)
