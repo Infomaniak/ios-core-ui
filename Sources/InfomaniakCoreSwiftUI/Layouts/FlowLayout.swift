@@ -64,7 +64,7 @@ public struct FlowLayout: Layout {
     }
 
     private func computeLayout(proposal: ProposedViewSize, subviews: Subviews) -> (CGSize, [FlowLine]) {
-        let availableWidth = proposal.width ?? .infinity
+        let availableSize = CGSize(width: proposal.width ?? .infinity, height: proposal.height ?? .infinity)
 
         var flowLines = [FlowLine]()
 
@@ -74,8 +74,8 @@ public struct FlowLayout: Layout {
         var currentLineHeight = CGFloat.zero
 
         for subview in subviews {
-            let size = subview.sizeThatFits(.unspecified)
-            if currentPosition.x + size.width > availableWidth {
+            var (idealSize, fittingSize) = computeSubviewSizes(in: availableSize, for: subview, at: currentPosition)
+            if idealSize.width > fittingSize.width || currentPosition.x + fittingSize.width > availableSize.width {
                 flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
 
                 currentPosition.x = 0
@@ -83,18 +83,28 @@ public struct FlowLayout: Layout {
 
                 offsets = []
                 currentLineHeight = 0
+
+                (_, fittingSize) = computeSubviewSizes(in: availableSize, for: subview, at: currentPosition)
             }
 
-            offsets.append(CGRect(origin: currentPosition, size: size))
+            offsets.append(CGRect(origin: currentPosition, size: fittingSize))
 
-            currentPosition.x += size.width
+            currentPosition.x += fittingSize.width
             maximumLineWidth = max(maximumLineWidth, currentPosition.x)
-            currentLineHeight = max(currentLineHeight, size.height)
+            currentLineHeight = max(currentLineHeight, fittingSize.height)
             currentPosition.x += horizontalSpacing
         }
         flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
 
         return (CGSize(width: maximumLineWidth, height: currentPosition.y + currentLineHeight), flowLines)
+    }
+
+    private func computeSubviewSizes(in size: CGSize, for view: LayoutSubview, at currentPosition: CGPoint) -> (CGSize, CGSize) {
+        let remainingSize = CGSize(width: size.width - currentPosition.x, height: size.height - currentPosition.y)
+
+        let idealSize = view.sizeThatFits(.unspecified)
+        let fittingSize = view.sizeThatFits(ProposedViewSize(remainingSize))
+        return (idealSize, fittingSize)
     }
 
     private func computeHorizontalAlignmentOffsets(containerWidth: CGFloat, lines: [FlowLine]) -> [CGFloat] {
@@ -141,17 +151,19 @@ public struct FlowLayout: Layout {
     let count = 4
     let items = (
         Array(repeating: "abc", count: count) +
-        Array(repeating: "abc-def", count: count) +
-        Array(repeating: "abc-def-ghi", count: count)
+            Array(repeating: "abc-def", count: count) +
+            Array(repeating: "abc-def-ghi", count: count)
     ).shuffled()
 
     VStack(spacing: 32) {
         FlowLayout(alignment: Alignment(horizontal: .leading, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .lineLimit(1)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.blue, in: .capsule)
+                    .fixedSize()
             }
         }
         .border(.black)
@@ -159,10 +171,12 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .top), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
+                    .fixedSize()
             }
         }
         .border(.black)
@@ -170,10 +184,12 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
+                    .fixedSize()
             }
         }
         .border(.black)
@@ -181,10 +197,12 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .bottom), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
+                    .fixedSize()
             }
         }
         .border(.black)
@@ -192,12 +210,13 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .trailing, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
+                    .lineLimit(1)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.red, in: .capsule)
+                    .fixedSize()
             }
         }
         .border(.black)
     }
 }
-
