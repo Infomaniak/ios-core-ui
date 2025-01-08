@@ -18,6 +18,11 @@
 
 import SwiftUI
 
+struct FlowLine: Sendable {
+    let offsets: [CGRect]
+    let lineHeight: CGFloat
+}
+
 @available(iOS 16.0, *)
 public struct FlowLayout: Layout {
     private let alignment: Alignment
@@ -36,12 +41,12 @@ public struct FlowLayout: Layout {
     }
 
     public func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let (size, offsetsPerLine) = computeLayout(proposal: proposal, subviews: subviews)
-        let alignmentOffsets = computeAlignmentOffsets(containerWidth: size.width, offsets: offsetsPerLine)
+        let (size, flowLines) = computeLayout(proposal: proposal, subviews: subviews)
+        let alignmentOffsets = computeHorizontalAlignmentOffsets(containerWidth: size.width, lines: flowLines)
 
         var subviewIndex = 0
-        for line in offsetsPerLine.indices {
-            for offset in offsetsPerLine[line] {
+        for line in flowLines.indices {
+            for offset in flowLines[line].offsets {
                 let subview = subviews[subviewIndex]
                 subview.place(
                     at: CGPoint(
@@ -56,49 +61,48 @@ public struct FlowLayout: Layout {
         }
     }
 
-    private func computeLayout(proposal: ProposedViewSize, subviews: Subviews) -> (CGSize, [[CGRect]]) {
+    private func computeLayout(proposal: ProposedViewSize, subviews: Subviews) -> (CGSize, [FlowLine]) {
         let availableWidth = proposal.width ?? .infinity
 
-        var offsets: [[CGRect]] = [[]]
+        var flowLines = [FlowLine]()
 
+        var offsets = [CGRect]()
         var currentPosition = CGPoint.zero
-        var currentLine = 0
         var maximumLineWidth = CGFloat.zero
         var currentLineHeight = CGFloat.zero
 
-        for index in subviews.indices {
-            let subview = subviews[index]
-
+        for subview in subviews {
             let size = subview.sizeThatFits(.unspecified)
-
             if currentPosition.x + size.width > availableWidth {
+                flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
+
                 currentPosition.x = 0
                 currentPosition.y += currentLineHeight + verticalSpacing
-                currentLineHeight = 0
 
-                offsets.append([])
-                currentLine += 1
+                offsets = []
+                currentLineHeight = 0
             }
 
-            offsets[currentLine].append(CGRect(origin: currentPosition, size: size))
+            offsets.append(CGRect(origin: currentPosition, size: size))
 
             currentPosition.x += size.width
             maximumLineWidth = max(maximumLineWidth, currentPosition.x)
             currentLineHeight = max(currentLineHeight, size.height)
             currentPosition.x += horizontalSpacing
         }
+        flowLines.append(FlowLine(offsets: offsets, lineHeight: currentLineHeight))
 
-        return (CGSize(width: maximumLineWidth, height: currentPosition.y + currentLineHeight), offsets)
+        return (CGSize(width: maximumLineWidth, height: currentPosition.y + currentLineHeight), flowLines)
     }
 
-    private func computeAlignmentOffsets(containerWidth: CGFloat, offsets: [[CGRect]]) -> [CGFloat] {
+    private func computeHorizontalAlignmentOffsets(containerWidth: CGFloat, lines: [FlowLine]) -> [CGFloat] {
         guard alignment.horizontal != .leading else {
-            return Array(repeating: 0, count: offsets.count)
+            return Array(repeating: 0, count: lines.count)
         }
 
         var alignmentOffsets = [CGFloat]()
-        for line in offsets {
-            guard let lineWidth = line.last?.maxX else {
+        for line in lines {
+            guard let lineWidth = line.offsets.last?.maxX else {
                 alignmentOffsets.append(0)
                 continue
             }
@@ -116,6 +120,19 @@ public struct FlowLayout: Layout {
         }
 
         return alignmentOffsets
+    }
+
+    private func computeVerticalAlignmentOffset(of rect: CGRect, in line: FlowLine) -> CGFloat {
+        switch alignment.vertical {
+        case .top:
+            return 0
+        case .center:
+            return 0
+        case .bottom:
+            return 0
+        default:
+            return 0
+        }
     }
 }
 
