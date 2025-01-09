@@ -18,11 +18,20 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct FlowLine: Sendable {
     let offsets: [CGRect]
     let sizes: [CGSize]
-    let lineHeight: CGFloat
+    let height: CGFloat
+
+    let count: Int
+
+    init(offsets: [CGRect], sizes: [CGSize], lineHeight: CGFloat) {
+        self.offsets = offsets
+        self.sizes = sizes
+        self.height = lineHeight
+
+        count = max(offsets.count, sizes.count)
+    }
 }
 
 @available(iOS 16.0, *)
@@ -49,17 +58,18 @@ public struct FlowLayout: Layout {
         var subviewIndex = 0
         for lineNumber in flowLines.indices {
             let flowLine = flowLines[lineNumber]
-            for indexInLine in flowLine.offsets.indices {
+            for indexInLine in 0..<flowLine.count {
                 let subview = subviews[subviewIndex]
+
                 let offset = flowLine.offsets[indexInLine]
-                let size = flowLine.sizes[indexInLine]
+                let viewSize = flowLine.sizes[indexInLine]
 
                 subview.place(
                     at: CGPoint(
                         x: bounds.minX + offset.minX + alignmentOffsets[lineNumber],
-                        y: bounds.minY + offset.minY + computeVerticalAlignmentOffset(for: size, in: flowLine)
+                        y: bounds.minY + offset.minY + computeVerticalAlignmentOffset(for: viewSize, in: flowLine)
                     ),
-                    proposal: ProposedViewSize(size)
+                    proposal: ProposedViewSize(viewSize)
                 )
 
                 subviewIndex += 1
@@ -145,9 +155,9 @@ public struct FlowLayout: Layout {
     private func computeVerticalAlignmentOffset(for size: CGSize, in line: FlowLine) -> CGFloat {
         switch alignment.vertical {
         case .center:
-            return (line.lineHeight - size.height) / 2
+            return (line.height - size.height) / 2
         case .bottom:
-            return line.lineHeight - size.height
+            return line.height - size.height
         default:
             return 0
         }
@@ -159,19 +169,17 @@ public struct FlowLayout: Layout {
     let count = 4
     let items = (
         Array(repeating: "abc", count: count) +
-            Array(repeating: "abc-def", count: count) +
-            Array(repeating: "abc-def-ghi", count: count)
+        Array(repeating: "abc-def", count: count) +
+        Array(repeating: "abc-def-ghi", count: count)
     ).shuffled()
 
     VStack(spacing: 32) {
         FlowLayout(alignment: Alignment(horizontal: .leading, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.blue, in: .capsule)
-                    .fixedSize()
             }
         }
         .border(.black)
@@ -179,12 +187,10 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .top), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
-                    .fixedSize()
             }
         }
         .border(.black)
@@ -192,12 +198,10 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
-                    .fixedSize()
             }
         }
         .border(.black)
@@ -205,12 +209,10 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .center, vertical: .bottom), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
-                    .fixedSize()
             }
         }
         .border(.black)
@@ -218,11 +220,9 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .trailing, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
                     .padding(IKPadding.extraSmall)
                     .foregroundStyle(.white)
                     .background(Color.red, in: .capsule)
-                    .fixedSize()
             }
         }
         .border(.black)
