@@ -91,7 +91,11 @@ public struct FlowLayout: Layout {
 
         for subview in subviews {
             var (idealSize, fittingSize) = computeSubviewSizes(in: availableSize, for: subview, at: currentPosition)
-            if idealSize.width > fittingSize.width || currentPosition.x + fittingSize.width > availableSize.width {
+
+            let isFirstChipOfLine = currentPosition.x == 0
+            let isIdealSizeLargerThanFitting = idealSize.width > fittingSize.width
+            let isAvailableSpaceTooSmall = currentPosition.x + fittingSize.width > availableSize.width
+            if !isFirstChipOfLine && (isIdealSizeLargerThanFitting || isAvailableSpaceTooSmall) {
                 flowLines.append(FlowLine(offsets: offsets, sizes: proposedViewSizes, lineHeight: currentLineHeight))
 
                 currentPosition.x = 0
