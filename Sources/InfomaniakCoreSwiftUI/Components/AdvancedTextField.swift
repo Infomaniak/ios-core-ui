@@ -47,8 +47,10 @@ public struct AdvancedTextField: UIViewRepresentable {
     }
 
     public func updateUIView(_ textField: UIRecipientsTextField, context: Context) {
-        guard textField.text != text else { return }
-        textField.text = text
+        if textField.text != text {
+            textField.text = text
+        }
+        textField.placeholder = placeholder
     }
 
     public func makeCoordinator() -> Coordinator {
