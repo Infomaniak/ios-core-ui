@@ -41,6 +41,8 @@ public struct AdvancedTextField: UIViewRepresentable {
         let textField = UIRecipientsTextField(placeholder: placeholder, onBackspace: onBackspace)
         textField.delegate = context.coordinator
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textDidChanged(_:)), for: .editingChanged)
+        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        textField.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return textField
     }
 
