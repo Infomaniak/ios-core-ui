@@ -21,6 +21,10 @@ let package = Package(
         .library(
             name: "InfomaniakCoreSwiftUI",
             targets: ["InfomaniakCoreSwiftUI"]
+        ),
+        .library(
+            name: "MykSuite",
+            targets: ["MykSuite"]
         )
     ],
     dependencies: [
@@ -52,6 +56,10 @@ let package = Package(
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
             ]
+        ),
+        .target(
+            name: "MykSuite",
+            dependencies: ["InfomaniakCoreSwiftUI"]
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",
