@@ -27,6 +27,10 @@ let package = Package(
             targets: ["InfomaniakPrivacyManagement"]
         ),
         .library(
+            name: "MykSuite",
+            targets: ["MykSuite"]
+		),
+		.library(
             name: "InfomaniakCoreUIResources",
             targets: ["InfomaniakCoreUIResources"]
         ),
@@ -74,6 +78,10 @@ let package = Package(
             ]
         ),
         .target(
+            name: "MykSuite",
+            dependencies: ["InfomaniakCoreSwiftUI"]
+        ),
+		.target(
             name: "InfomaniakCoreUIResources"
         ),
         .target(
