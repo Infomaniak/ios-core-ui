@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 15, *)
-struct MyModifier: ViewModifier {
+struct MykSuitePanelModifier: ViewModifier {
     @Binding var isPresented: Bool
     let configuration: [MykSuiteLabel]
 
@@ -23,7 +23,7 @@ struct MyModifier: ViewModifier {
 @available(iOS 15, *)
 extension View {
     func mykSuitePanel(isPresented: Binding<Bool>, configuration: [MykSuiteLabel]) -> some View {
-        modifier(MyModifier(isPresented: isPresented, configuration: configuration))
+        modifier(MykSuitePanelModifier(isPresented: isPresented, configuration: configuration))
     }
 }
 
