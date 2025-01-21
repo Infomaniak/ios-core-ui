@@ -19,32 +19,60 @@
 import InfomaniakCoreSwiftUI
 import SwiftUI
 
+@available(iOS 15.0, *)
 struct MyKsuiteView: View {
-    let isDrive = true
+    let type: MykSuiteType
 
     var body: some View {
-        Text("close", bundle: .module)
-        Text("title", bundle: .module)
-        Text("description", bundle: .module)
+        VStack(spacing: 32) {
+            Image("gradient", bundle: .module)
+                .frame(maxWidth: .infinity)
+                .overlay {
+                    Image("logo", bundle: .module)
+                }
 
-        if isDrive {
-            Text("kdriveLabel1", bundle: .module)
-            Text("kdriveLabel2", bundle: .module)
-            Text("label3", bundle: .module)
-        } else {
-            Text("kmailLabel1", bundle: .module)
-            Text("kmailLabel2", bundle: .module)
-            Text("label3", bundle: .module)
+            VStack(spacing: IKPadding.medium) {
+                Text("title", bundle: .module)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(Color("orca", bundle: .module))
+
+                Text("description", bundle: .module)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+
+            VStack(alignment: .leading, spacing: IKPadding.medium) {
+                ForEach(type.labels, id: \.id) { label in
+                    Label {
+                        Text(label.localizable, bundle: .module)
+                    } icon: {
+                        Image(label.icon, bundle: .module)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Text("details", bundle: .module)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button {} label: {
+                Text("close", bundle: .module)
+            }
+            .ikButtonFullWidth(true)
+            .controlSize(.large)
+            .buttonStyle(.ikBorderedProminent)
         }
-
-        Text("details", bundle: .module)
-
-        Button {} label: {
-            Text("close", bundle: .module)
-        }
+        .padding(value: .large)
+        .font(.system(size: 16, weight: .regular))
+        .foregroundStyle(Color("elephant", bundle: .module))
     }
 }
 
-#Preview {
-    MyKsuiteView()
+@available(iOS 15.0, *)
+#Preview("kDrive") {
+    MyKsuiteView(type: .kdrive)
+}
+
+@available(iOS 15.0, *)
+#Preview("Mail") {
+    MyKsuiteView(type: .mail)
 }
