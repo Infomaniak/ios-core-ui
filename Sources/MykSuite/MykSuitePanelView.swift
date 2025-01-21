@@ -21,7 +21,7 @@ struct MykSuitePanelModifier: ViewModifier {
 }
 
 @available(iOS 15, *)
-extension View {
+public extension View {
     func mykSuitePanel(isPresented: Binding<Bool>, configuration: [MykSuiteLabel]) -> some View {
         modifier(MykSuitePanelModifier(isPresented: isPresented, configuration: configuration))
     }
