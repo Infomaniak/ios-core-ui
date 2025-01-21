@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MykSuiteLabel: Identifiable {
-    let id = UUID()
+public struct MykSuiteLabel: Identifiable {
+    public let id = UUID()
     let icon: Image
     let text: String
 }

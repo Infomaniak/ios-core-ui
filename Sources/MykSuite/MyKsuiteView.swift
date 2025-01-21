@@ -20,12 +20,12 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct MyKsuiteView: View {
+public struct MyKsuiteView: View {
     @Environment(\.dismiss) private var dismiss
 
     let configuration: [MykSuiteLabel]
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 32) {
             Image("gradient", bundle: .module)
                 .resizable()
