@@ -26,3 +26,9 @@ extension View {
         modifier(MyModifier(isPresented: isPresented, configuration: configuration))
     }
 }
+
+@available(iOS 15, *)
+#Preview {
+    Text("OUI")
+        .mykSuitePanel(isPresented: .constant(true), configuration: [])
+}
