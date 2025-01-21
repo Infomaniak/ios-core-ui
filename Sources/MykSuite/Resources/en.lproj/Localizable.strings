@@ -7,28 +7,28 @@
 */
 
 /* Title */
-"title" = "!Donner plus d'espace à vos idées";
+"title" = "Give your ideas more space";
 
 /* Description */
-"description" = "!Plus d'espace, de possibilités et de flexibilité pour faire ce que vous aimez";
+"description" = "More space, more possibilities and more flexibility to do what you love.";
 
 /* kDrive first label */
-"kdriveLabel1" = "!1 To pour vos photos, documents et fichiers";
+"kdriveLabel1" = "1 TB for your photos, documents and files";
 
 /* kDrive second label */
-"kdriveLabel2" = "!Edition PDF";
+"kdriveLabel2" = "PDF edition";
 
 /* kMail first label */
-"kmailLabel1" = "!Stockage et envois d'e-mails illimités";
+"kmailLabel1" = "Unlimited e-mail storage and sending";
 
 /* kMail second label */
-"kmailLabel2" = "!Redirections, personnalisation de vos rappels...";
+"kmailLabel2" = "Redirections, customised reminders...";
 
 /* Third label */
-"label3" = "!Et bien plus encore !";
+"label3" = "And even more!";
 
 /* Details */
-"details" = "!Pour bénéficier de my kSuite+, modifiez votre offre depuis votre interface web.";
+"details" = "To benefit from my kSuite+, modify your offer from your web interface.";
 
 /* Close button */
-"close" = "!Fermer";
+"close" = "Close";
