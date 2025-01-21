@@ -28,46 +28,49 @@ struct MyKsuiteView: View {
     var body: some View {
         VStack(spacing: 32) {
             Image("gradient", bundle: .module)
+                .resizable()
                 .frame(maxWidth: .infinity)
+                .frame(height: 90)
                 .overlay {
                     Image("logo", bundle: .module)
                 }
+            VStack(spacing: 32) {
+                VStack(spacing: IKPadding.medium) {
+                    Text("title", bundle: .module)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(Color("orca", bundle: .module))
 
-            VStack(spacing: IKPadding.medium) {
-                Text("title", bundle: .module)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(Color("orca", bundle: .module))
+                    Text("description", bundle: .module)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
 
-                Text("description", bundle: .module)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-
-            VStack(alignment: .leading, spacing: IKPadding.medium) {
-                ForEach(configuration) { label in
-                    Label {
-                        Text(label.text)
-                    } icon: {
-                        label.icon
+                VStack(alignment: .leading, spacing: IKPadding.medium) {
+                    ForEach(configuration) { label in
+                        Label {
+                            Text(label.text)
+                        } icon: {
+                            label.icon
+                        }
                     }
                 }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            Text("details", bundle: .module)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            Button {
-                dismiss()
-            } label: {
-                Text("close", bundle: .module)
+                Text("details", bundle: .module)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                Button {
+                    dismiss()
+                } label: {
+                    Text("close", bundle: .module)
+                }
+                .ikButtonFullWidth(true)
+                .controlSize(.large)
+                .buttonStyle(.ikBorderedProminent)
             }
-            .ikButtonFullWidth(true)
-            .controlSize(.large)
-            .buttonStyle(.ikBorderedProminent)
+            .padding(.horizontal, value: .large)
+            .font(.system(size: 16, weight: .regular))
+            .foregroundStyle(Color("elephant", bundle: .module))
         }
-        .padding(value: .large)
-        .font(.system(size: 16, weight: .regular))
-        .foregroundStyle(Color("elephant", bundle: .module))
     }
 }
 
