@@ -21,6 +21,8 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct MyKsuiteView: View {
+    @Environment(\.dismiss) private var dismiss
+
     let type: MykSuiteType
 
     var body: some View {
@@ -54,7 +56,9 @@ struct MyKsuiteView: View {
             Text("details", bundle: .module)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            Button {} label: {
+            Button {
+                dismiss()
+            } label: {
                 Text("close", bundle: .module)
             }
             .ikButtonFullWidth(true)
