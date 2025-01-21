@@ -12,21 +12,6 @@
 /* Description */
 "description" = "Más espacio, más posibilidades y más flexibilidad para hacer lo que te gusta.";
 
-/* kDrive first label */
-"kdriveLabel1" = "1 TB para tus fotos, documentos y archivos";
-
-/* kDrive second label */
-"kdriveLabel2" = "Edición en PDF";
-
-/* kMail first label */
-"kmailLabel1" = "Almacenamiento y envío ilimitados de correo electrónico";
-
-/* kMail second label */
-"kmailLabel2" = "Redirecciones, recordatorios personalizados...";
-
-/* Third label */
-"label3" = "Y aún más.";
-
 /* Details */
 "details" = "Para beneficiarse de mi kSuite+, modifique su oferta desde su interfaz web.";
 

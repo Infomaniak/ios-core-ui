@@ -10,19 +10,19 @@ import SwiftUI
 @available(iOS 15, *)
 struct MyModifier: ViewModifier {
     @Binding var isPresented: Bool
-    let type: MykSuiteType
+    let configuration: [MykSuiteLabel]
 
     func body(content: Content) -> some View {
         content
             .floatingPanel(isPresented: $isPresented) {
-                MyKsuiteView(type: type)
+                MyKsuiteView(configuration: configuration)
             }
     }
 }
 
 @available(iOS 15, *)
 extension View {
-    func mykSuitePanel(isPresented: Binding<Bool>, type: MykSuiteType) -> some View {
-        modifier(MyModifier(isPresented: isPresented, type: type))
+    func mykSuitePanel(isPresented: Binding<Bool>, configuration: [MykSuiteLabel]) -> some View {
+        modifier(MyModifier(isPresented: isPresented, configuration: configuration))
     }
 }

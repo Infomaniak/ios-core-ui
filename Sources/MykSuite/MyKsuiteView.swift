@@ -23,7 +23,7 @@ import SwiftUI
 struct MyKsuiteView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let type: MykSuiteType
+    let configuration: [MykSuiteLabel]
 
     var body: some View {
         VStack(spacing: 32) {
@@ -43,11 +43,11 @@ struct MyKsuiteView: View {
             }
 
             VStack(alignment: .leading, spacing: IKPadding.medium) {
-                ForEach(type.labels, id: \.id) { label in
+                ForEach(configuration) { label in
                     Label {
-                        Text(label.localizable, bundle: .module)
+                        Text(label.text)
                     } icon: {
-                        Image(label.icon, bundle: .module)
+                        label.icon
                     }
                 }
             }
@@ -73,10 +73,10 @@ struct MyKsuiteView: View {
 
 @available(iOS 15.0, *)
 #Preview("kDrive") {
-    MyKsuiteView(type: .kdrive)
+    MyKsuiteView(configuration: [])
 }
 
 @available(iOS 15.0, *)
 #Preview("Mail") {
-    MyKsuiteView(type: .mail)
+    MyKsuiteView(configuration: [])
 }
