@@ -23,8 +23,8 @@ let package = Package(
             targets: ["InfomaniakCoreSwiftUI"]
         ),
         .library(
-            name: "MykSuite",
-            targets: ["MykSuite"]
+            name: "MyKSuite",
+            targets: ["MyKSuite"]
         )
     ],
     dependencies: [
@@ -58,7 +58,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "MykSuite",
+            name: "MyKSuite",
             dependencies: ["InfomaniakCoreSwiftUI"]
         ),
         .testTarget(

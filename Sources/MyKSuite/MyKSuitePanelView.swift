@@ -18,8 +18,28 @@
 
 import SwiftUI
 
-public struct MykSuiteLabel: Identifiable {
-    public let id = UUID()
-    let icon: Image
-    let text: String
+@available(iOS 15, *)
+struct MyKSuitePanelModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    let configuration: [MyKSuiteLabel]
+
+    func body(content: Content) -> some View {
+        content
+            .floatingPanel(isPresented: $isPresented) {
+                MyKSuiteView(configuration: configuration)
+            }
+    }
+}
+
+@available(iOS 15, *)
+public extension View {
+    func myKSuitePanel(isPresented: Binding<Bool>, configuration: [MyKSuiteLabel]) -> some View {
+        modifier(MyKSuitePanelModifier(isPresented: isPresented, configuration: configuration))
+    }
+}
+
+@available(iOS 15, *)
+#Preview {
+    Text("OUI")
+        .myKSuitePanel(isPresented: .constant(true), configuration: [])
 }
