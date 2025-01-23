@@ -34,14 +34,15 @@ public struct MyKSuiteView: View {
                 .overlay {
                     Image("logo", bundle: .module)
                 }
-            VStack(spacing: 32) {
-                VStack(spacing: IKPadding.medium) {
+
+            VStack(alignment: .leading, spacing: 32) {
+                VStack(alignment: .leading, spacing: IKPadding.medium) {
                     Text("title", bundle: .module)
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(Color("orca", bundle: .module))
+                        .frame(maxWidth: .infinity, alignment: .center)
 
                     Text("description", bundle: .module)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
@@ -53,10 +54,8 @@ public struct MyKSuiteView: View {
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
 
                 Text("details", bundle: .module)
-                    .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
                     dismiss()
