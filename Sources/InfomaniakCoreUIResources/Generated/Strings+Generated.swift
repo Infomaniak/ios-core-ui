@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum CoreUILocalizable {
+  /// loco:675fea0d40923b5c440f0f52
+  public static let anErrorHasOccurred = CoreUILocalizable.tr("Localizable", "anErrorHasOccurred", fallback: "An error has occurred")
   /// loco:6729ea9f4cb9f889f604d934
   public static let buttonCancel = CoreUILocalizable.tr("Localizable", "buttonCancel", fallback: "Cancel")
   /// loco:675059634bdf0aedde06df72

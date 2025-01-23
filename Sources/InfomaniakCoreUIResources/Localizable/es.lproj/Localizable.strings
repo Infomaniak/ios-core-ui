@@ -4,8 +4,11 @@
  * Locale: es, Spanish
  * Tagged: ios
  * Exported by: Valentin Perignon
- * Exported at: Wed, 22 Jan 2025 15:56:11 +0100
+ * Exported at: Thu, 23 Jan 2025 16:56:44 +0100
  */
+
+/* loco:675fea0d40923b5c440f0f52 */
+"anErrorHasOccurred" = "Se ha producido un error";
 
 /* loco:6729ea9f4cb9f889f604d934 */
 "buttonCancel" = "Cancelar";
