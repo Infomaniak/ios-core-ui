@@ -20,10 +20,10 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
-public struct MyKsuiteView: View {
+public struct MyKSuiteView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let configuration: [MykSuiteLabel]
+    let configuration: [MyKSuiteLabel]
 
     public var body: some View {
         VStack(spacing: 32) {
@@ -76,10 +76,10 @@ public struct MyKsuiteView: View {
 
 @available(iOS 15.0, *)
 #Preview("kDrive") {
-    MyKsuiteView(configuration: [])
+    MyKSuiteView(configuration: [])
 }
 
 @available(iOS 15.0, *)
 #Preview("Mail") {
-    MyKsuiteView(configuration: [])
+    MyKSuiteView(configuration: [])
 }
