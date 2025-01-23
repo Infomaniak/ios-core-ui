@@ -78,7 +78,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "MykSuite",
+            name: "MyKSuite",
             dependencies: ["InfomaniakCoreSwiftUI"]
         ),
 		.target(
