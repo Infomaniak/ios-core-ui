@@ -1,19 +1,20 @@
-/* 
-  Localizable.strings
-  InfomaniakCoreUI
+/*
+ * Loco ios export: Xcode Strings (legacy)
+ * Project: CoreUI
+ * Locale: es, Spanish
+ * Tagged: ios, !common
+ * Exported by: Ambroise Decouttere
+ * Exported at: Fri, 24 Jan 2025 15:14:18 +0100
+ */
 
-  Created by Ambroise Decouttere on 15/10/2024.
-  
-*/
+/* loco:679237f6daa3807fa008b175 */
+"buttonClose" = "Cerrar";
 
-/* Title */
-"title" = "Dé más espacio a sus ideas";
+/* loco:679237aa626480c0ac0e9462 */
+"myKSuiteUpgradeDescription" = "Más espacio, más posibilidades y más flexibilidad para hacer lo que te gusta.";
 
-/* Description */
-"description" = "Más espacio, más posibilidades y más flexibilidad para hacer lo que te gusta.";
+/* loco:679237c7ece9f81d070d4662 */
+"myKSuiteUpgradeDetails" = "Para beneficiarse de mi kSuite+, modifique su oferta desde su interfaz web.";
 
-/* Details */
-"details" = "Para beneficiarse de mi kSuite+, modifique su oferta desde su interfaz web.";
-
-/* Close button */
-"close" = "Cerrar";
+/* loco:67923789817186d0f903c802 */
+"myKSuiteUpgradeTitle" = "Dé más espacio a sus ideas";
