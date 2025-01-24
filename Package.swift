@@ -23,8 +23,8 @@ let package = Package(
             targets: ["InfomaniakCoreSwiftUI"]
         ),
         .library(
-            name: "MykSuite",
-            targets: ["MykSuite"]
+            name: "MyKSuite",
+            targets: ["MyKSuite"]
 		),
 		.library(
             name: "InfomaniakCoreUIResources",
