@@ -1,0 +1,26 @@
+/*
+ * Loco ios export: Xcode Strings (legacy)
+ * Project: CoreUI
+ * Locale: fr, French
+ * Tagged: ios
+ * Exported by: Valentin Perignon
+ * Exported at: Thu, 23 Jan 2025 16:56:44 +0100
+ */
+
+/* loco:675fea0d40923b5c440f0f52 */
+"anErrorHasOccurred" = "Une erreur est survenue";
+
+/* loco:6729ea9f4cb9f889f604d934 */
+"buttonCancel" = "Annuler";
+
+/* loco:675059634bdf0aedde06df72 */
+"buttonNext" = "Suivant";
+
+/* loco:6729ead76f93fd246802f932 */
+"buttonRetry" = "Réessayer";
+
+/* loco:676538295907d1ab51014ae2 */
+"errorDownload" = "Erreur lors du téléchargement";
+
+/* loco:67653882015fa8304b01cbb9 */
+"errorDownloadInsufficientSpace" = "Téléchargement impossible : Espace insuffisant";
