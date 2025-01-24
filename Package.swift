@@ -25,6 +25,10 @@ let package = Package(
         .library(
             name: "MyKSuite",
             targets: ["MyKSuite"]
+		),
+		.library(
+            name: "InfomaniakCoreUIResources",
+            targets: ["InfomaniakCoreUIResources"]
         )
     ],
     dependencies: [
@@ -60,6 +64,9 @@ let package = Package(
         .target(
             name: "MyKSuite",
             dependencies: ["InfomaniakCoreSwiftUI"]
+        ),
+		.target(
+            name: "InfomaniakCoreUIResources"
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",

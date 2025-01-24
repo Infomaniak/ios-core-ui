@@ -19,7 +19,10 @@
 import SwiftUI
 
 public struct MyKSuiteLabel: Identifiable {
-    public let id = UUID()
+    public var id: String {
+        text
+    }
+
     let icon: Image
     let text: String
 }
