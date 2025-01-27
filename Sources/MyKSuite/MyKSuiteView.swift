@@ -29,11 +29,7 @@ public struct MyKSuiteView: View {
         VStack(spacing: 32) {
             Image("gradient", bundle: .module)
                 .resizable()
-                .frame(maxWidth: .infinity)
-                .frame(height: 90)
-                .overlay {
-                    Image("logo", bundle: .module)
-                }
+                .scaledToFit()
 
             VStack(alignment: .leading, spacing: 32) {
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
