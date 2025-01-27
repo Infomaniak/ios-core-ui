@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct SubscriptionDetailsView: View {
+struct SubscriptionFreeDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             Label {
@@ -46,5 +46,5 @@ struct SubscriptionDetailsView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    SubscriptionDetailsView()
+    SubscriptionFreeDetailsView()
 }

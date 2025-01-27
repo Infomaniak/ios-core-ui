@@ -33,7 +33,8 @@ struct SubscriptionCardView: View {
 
             Divider()
 
-            SubscriptionDetailsView()
+            SubscriptionFreeDetailsView()
+            SubscriptionPlusDetailsView()
         }
         .padding(value: .medium)
         .background(.white)
