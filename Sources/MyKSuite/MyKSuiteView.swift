@@ -49,6 +49,12 @@ public struct MyKSuiteView: View {
                             label.icon
                         }
                     }
+
+                    Label {
+                        Text("myKSuiteUpgradeLabel", bundle: .module)
+                    } icon: {
+                        Image("gift", bundle: .module)
+                    }
                 }
 
                 Text("myKSuiteUpgradeDetails", bundle: .module)
