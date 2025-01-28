@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2024 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,25 +19,18 @@
 import InfomaniakCoreCommonUI
 import SwiftUI
 
-@available(iOS 15.0, *)
-public struct IKLabelStyle: LabelStyle {
-    var spacing = IKPadding.small
-
-    public func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: spacing) {
-            configuration.icon
-            configuration.title
-        }
-    }
-}
-
-@available(iOS 15.0, *)
-public extension LabelStyle where Self == IKLabelStyle {
-    static var ikLabel: IKLabelStyle {
-        return IKLabelStyle()
-    }
-
-    static func ikLabel(_ spacing: CGFloat) -> IKLabelStyle {
-        return IKLabelStyle(spacing: spacing)
+public extension View {
+    /// Adds the padding amount specified by ``IKPadding`` to specific edges
+    /// of this view.
+    ///
+    /// - Parameters:
+    ///  - edges: The set of edges to pad for this view. The default
+    ///      is `Edge.Set = .all`.
+    ///  - value: The amount of padding described by the ``IKPadding``
+    ///      struct.
+    ///
+    /// - Returns: A view that's padded by the specified amount on the specified edges.
+    @inlinable func padding(_ edges: Edge.Set = .all, value: IKPadding.Option) -> some View {
+        padding(edges, value.rawValue)
     }
 }

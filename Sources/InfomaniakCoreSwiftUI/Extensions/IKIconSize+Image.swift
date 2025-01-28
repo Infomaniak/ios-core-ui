@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,17 +16,8 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import InfomaniakCoreCommonUI
 import SwiftUI
-
-/// An enumeration to list the size of icons used for Infomaniak apps.
-@frozen public enum IKIconSize: CGFloat {
-    /// 12pt icon
-    case small = 12
-    /// 16pt icon
-    case medium = 16
-    /// 24pt icon
-    case large = 24
-}
 
 public extension Image {
     /// Resizes and scales the image to the specified ``IKIconSize`` size.

@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2024 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,28 +16,14 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import InfomaniakCoreCommonUI
-import SwiftUI
+import Foundation
 
-@available(iOS 15.0, *)
-public struct IKLabelStyle: LabelStyle {
-    var spacing = IKPadding.small
-
-    public func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: spacing) {
-            configuration.icon
-            configuration.title
-        }
-    }
-}
-
-@available(iOS 15.0, *)
-public extension LabelStyle where Self == IKLabelStyle {
-    static var ikLabel: IKLabelStyle {
-        return IKLabelStyle()
-    }
-
-    static func ikLabel(_ spacing: CGFloat) -> IKLabelStyle {
-        return IKLabelStyle(spacing: spacing)
-    }
+/// An enumeration to list the size of icons used for Infomaniak apps.
+@frozen public enum IKIconSize: CGFloat {
+    /// 12pt icon
+    case small = 12
+    /// 16pt icon
+    case medium = 16
+    /// 24pt icon
+    case large = 24
 }
