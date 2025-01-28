@@ -12,7 +12,7 @@ struct SubscriptionFreeDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             Label {
-                Text("!Une adresse mail gratuite à vie")
+                Text("myKSuiteDashboardFreeMailLabel", bundle: .module)
             } icon: {
                 Image(systemName: "envelope")
                     .foregroundStyle(Color("elephant", bundle: .module))
@@ -20,19 +20,19 @@ struct SubscriptionFreeDetailsView: View {
 
             DisclosureGroup {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("!Stockage pour Mail et kDrive")
+                    Text("myKSuiteDashboardFunctionalityMailAndDrive", bundle: .module)
                     HStack {
-                        Text("!Envoi journaliers limités")
+                        Text("myKSuiteDashboardFunctionalityLimit", bundle: .module)
                         Text("!500")
                     }
-                    Text("!Personnalisation des horaires indisponibles pour les rappels et renvois programmés")
+                    Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
                 }
                 .padding(.top, 18)
                 .foregroundStyle(Color("elephant", bundle: .module))
                 .font(.system(size: 14))
             } label: {
                 Label {
-                    Text("!Fonctionnalités limitées")
+                    Text("myKSuiteDashboardLimitedFunctionalityLabel", bundle: .module)
                 } icon: {
                     Image(systemName: "lock")
                         .foregroundStyle(Color("elephant", bundle: .module))

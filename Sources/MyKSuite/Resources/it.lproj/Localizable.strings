@@ -4,17 +4,50 @@
  * Locale: it, Italian
  * Tagged: ios, !common
  * Exported by: Ambroise Decouttere
- * Exported at: Fri, 24 Jan 2025 15:14:18 +0100
+ * Exported at: Tue, 28 Jan 2025 08:28:00 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Chiudere";
+
+/* loco:679876cf3e99103cb30382f2 */
+"myKSuiteDashboardFreeMailLabel" = "Un indirizzo e-mail gratuito a vita";
+
+/* loco:67987d5be4acb82fc404d842 */
+"myKSuiteDashboardFunctionalityCustomReminders" = "Personalizzare gli orari di indisponibilità per i promemoria e gli invii programmati";
+
+/* loco:67987b1aeb6331b99c0e21a2 */
+"myKSuiteDashboardFunctionalityLimit" = "Spedizioni giornaliere limitate";
+
+/* loco:679879a94707871eef016f62 */
+"myKSuiteDashboardFunctionalityMailAndDrive" = "Archiviazione per posta e kDrive";
+
+/* loco:6798773f8b7f37b34c037b62 */
+"myKSuiteDashboardLimitedFunctionalityLabel" = "Funzionalità limitata";
+
+/* loco:67987dbd8cfda44abb022a82 */
+"myKSuiteDashboardPaymentMethod" = "Metodo di pagamento";
+
+/* loco:67988071a77178d0df04c2a2 */
+"myKSuiteDashboardSubscriptionButton" = "Gestire l’abbonamento";
+
+/* loco:67988027c473dfc0db0a3472 */
+"myKSuiteDashboardSubscriptionLabel" = "Per annullare o modificare la frequenza dell’abbonamento, accedere alle impostazioni dell’Apple Store.";
+
+/* loco:67987d9bec08565146015402 */
+"myKSuiteDashboardTrialPeriod" = "Periodo di prova";
+
+/* loco:679886c5531841f73a055a22 */
+"myKSuiteDashboardUntil" = "Fino a %@";
 
 /* loco:679237aa626480c0ac0e9462 */
 "myKSuiteUpgradeDescription" = "Più spazio, più possibilità e più flessibilità per fare ciò che amate.";
 
 /* loco:679237c7ece9f81d070d4662 */
 "myKSuiteUpgradeDetails" = "Per beneficiare della mia kSuite+, modificate la vostra offerta dalla vostra interfaccia web.";
+
+/* loco:6797782f5ab272f013013552 */
+"myKSuiteUpgradeLabel" = "E anche di più!";
 
 /* loco:67923789817186d0f903c802 */
 "myKSuiteUpgradeTitle" = "Date più spazio alle vostre idee";

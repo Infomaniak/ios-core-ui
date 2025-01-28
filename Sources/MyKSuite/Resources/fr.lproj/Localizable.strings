@@ -4,17 +4,50 @@
  * Locale: fr, French
  * Tagged: ios, !common
  * Exported by: Ambroise Decouttere
- * Exported at: Fri, 24 Jan 2025 15:14:18 +0100
+ * Exported at: Tue, 28 Jan 2025 08:28:00 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Fermer";
+
+/* loco:679876cf3e99103cb30382f2 */
+"myKSuiteDashboardFreeMailLabel" = "Une adresse mail gratuite à vie";
+
+/* loco:67987d5be4acb82fc404d842 */
+"myKSuiteDashboardFunctionalityCustomReminders" = "Personnalisation des horaires indisponibles pour les rappels et envois programmés";
+
+/* loco:67987b1aeb6331b99c0e21a2 */
+"myKSuiteDashboardFunctionalityLimit" = "Envoi journaliers limités";
+
+/* loco:679879a94707871eef016f62 */
+"myKSuiteDashboardFunctionalityMailAndDrive" = "Stockage pour Mail et kDrive";
+
+/* loco:6798773f8b7f37b34c037b62 */
+"myKSuiteDashboardLimitedFunctionalityLabel" = "Fonctionnalités limitées";
+
+/* loco:67987dbd8cfda44abb022a82 */
+"myKSuiteDashboardPaymentMethod" = "Mode de paiement";
+
+/* loco:67988071a77178d0df04c2a2 */
+"myKSuiteDashboardSubscriptionButton" = "Gérer mon abonnement";
+
+/* loco:67988027c473dfc0db0a3472 */
+"myKSuiteDashboardSubscriptionLabel" = "Pour résilier ou modifier la périodicité de votre abonnement, rendez-vous dans vos réglages Apple Store.";
+
+/* loco:67987d9bec08565146015402 */
+"myKSuiteDashboardTrialPeriod" = "Période d’essai";
+
+/* loco:679886c5531841f73a055a22 */
+"myKSuiteDashboardUntil" = "Jusqu’au %@";
 
 /* loco:679237aa626480c0ac0e9462 */
 "myKSuiteUpgradeDescription" = "Plus d’espace, de possibilités et de flexibilité pour faire ce que vous aimez.";
 
 /* loco:679237c7ece9f81d070d4662 */
 "myKSuiteUpgradeDetails" = "Pour bénéficier de my kSuite+, modifiez votre offre depuis votre interface web.";
+
+/* loco:6797782f5ab272f013013552 */
+"myKSuiteUpgradeLabel" = "Et bien plus encore !";
 
 /* loco:67923789817186d0f903c802 */
 "myKSuiteUpgradeTitle" = "Donner plus d’espace à vos idées";

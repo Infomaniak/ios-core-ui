@@ -4,17 +4,50 @@
  * Locale: en, English
  * Tagged: ios, !common
  * Exported by: Ambroise Decouttere
- * Exported at: Fri, 24 Jan 2025 15:14:18 +0100
+ * Exported at: Tue, 28 Jan 2025 08:28:00 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Close";
+
+/* loco:679876cf3e99103cb30382f2 */
+"myKSuiteDashboardFreeMailLabel" = "A free mail address for life";
+
+/* loco:67987d5be4acb82fc404d842 */
+"myKSuiteDashboardFunctionalityCustomReminders" = "Customize unavailable times for reminders and scheduled mailings";
+
+/* loco:67987b1aeb6331b99c0e21a2 */
+"myKSuiteDashboardFunctionalityLimit" = "Limited daily shipments";
+
+/* loco:679879a94707871eef016f62 */
+"myKSuiteDashboardFunctionalityMailAndDrive" = "Storage for Mail and kDrive";
+
+/* loco:6798773f8b7f37b34c037b62 */
+"myKSuiteDashboardLimitedFunctionalityLabel" = "Limited functionality";
+
+/* loco:67987dbd8cfda44abb022a82 */
+"myKSuiteDashboardPaymentMethod" = "Method of payment";
+
+/* loco:67988071a77178d0df04c2a2 */
+"myKSuiteDashboardSubscriptionButton" = "Manage my subscription";
+
+/* loco:67988027c473dfc0db0a3472 */
+"myKSuiteDashboardSubscriptionLabel" = "To cancel or change the frequency of your subscription, go to your Apple Store settings.";
+
+/* loco:67987d9bec08565146015402 */
+"myKSuiteDashboardTrialPeriod" = "Trial period";
+
+/* loco:679886c5531841f73a055a22 */
+"myKSuiteDashboardUntil" = "Until %@";
 
 /* loco:679237aa626480c0ac0e9462 */
 "myKSuiteUpgradeDescription" = "More space, more possibilities and more flexibility to do what you love.";
 
 /* loco:679237c7ece9f81d070d4662 */
 "myKSuiteUpgradeDetails" = "To benefit from my kSuite+, modify your offer from your web interface.";
+
+/* loco:6797782f5ab272f013013552 */
+"myKSuiteUpgradeLabel" = "And even more!";
 
 /* loco:67923789817186d0f903c802 */
 "myKSuiteUpgradeTitle" = "Give your ideas more space";

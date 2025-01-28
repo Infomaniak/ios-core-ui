@@ -12,15 +12,21 @@ struct SubscriptionPlusDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
-                Text("!Période d'essai")
+                Text("myKSuiteDashboardTrialPeriod", bundle: .module)
                     .foregroundStyle(Color("orca", bundle: .module))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("!Jusqu'au xx/xx/xxxx")
-                    .foregroundStyle(Color("elephant", bundle: .module))
+
+                Text(
+                    String(
+                        format: NSLocalizedString("myKSuiteDashboardUntil", bundle: .module, comment: ""),
+                        arguments: ["xx/xx/xxxx"]
+                    )
+                )
+                .foregroundStyle(Color("elephant", bundle: .module))
             }
 
             HStack {
-                Text("!Mode de paiement")
+                Text("myKSuiteDashboardPaymentMethod", bundle: .module)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color("orca", bundle: .module))
                 Text("!Apple Pay")
@@ -32,15 +38,13 @@ struct SubscriptionPlusDetailsView: View {
                     .foregroundStyle(Color("elephant", bundle: .module))
 
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(
-                        "!Pour résilier ou modifier la périodicité de votre abonnement, rendez-vous dans vos réglages Apple Store."
-                    )
-                    .foregroundStyle(Color("orca", bundle: .module))
+                    Text("myKSuiteDashboardSubscriptionLabel", bundle: .module)
+                        .foregroundStyle(Color("orca", bundle: .module))
 
                     Button {
                         // Gerer mon abonnement
                     } label: {
-                        Text("!Gérer mon abonnement")
+                        Text("myKSuiteDashboardSubscriptionButton", bundle: .module)
                     }
                 }
             }
