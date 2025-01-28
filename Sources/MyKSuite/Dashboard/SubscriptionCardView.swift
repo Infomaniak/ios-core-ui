@@ -13,16 +13,7 @@ struct SubscriptionCardView: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            HStack {
-                Image(systemName: "person")
-                Text("ellen.ripley@ik.me")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                type.icon
-                    .padding(.horizontal, value: .small)
-                    .padding(.vertical, value: .extraSmall)
-                    .background(Color("rabbit", bundle: .module))
-                    .clipShape(Capsule())
-            }
+            HeaderView(type: type)
 
             Divider()
 
@@ -47,6 +38,3 @@ struct SubscriptionCardView: View {
     SubscriptionCardView(type: .myKSuite)
         .padding()
 }
-
-
-
