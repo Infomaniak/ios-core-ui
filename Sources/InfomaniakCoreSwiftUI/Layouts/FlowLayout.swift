@@ -178,11 +178,11 @@ public struct FlowLayout: Layout {
             Array(repeating: "abc-def-ghi", count: count)
     ).shuffled()
 
-    VStack(spacing: 32) {
+    VStack(spacing: IKPadding.huge) {
         FlowLayout(alignment: Alignment(horizontal: .leading, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .padding(IKPadding.extraSmall)
+                    .padding(IKPadding.micro)
                     .foregroundStyle(.white)
                     .background(Color.blue, in: .capsule)
             }
@@ -193,7 +193,7 @@ public struct FlowLayout: Layout {
             ForEach(items, id: \.self) { item in
                 Text(item)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
-                    .padding(IKPadding.extraSmall)
+                    .padding(IKPadding.micro)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
             }
@@ -204,7 +204,7 @@ public struct FlowLayout: Layout {
             ForEach(items, id: \.self) { item in
                 Text(item)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
-                    .padding(IKPadding.extraSmall)
+                    .padding(IKPadding.micro)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
             }
@@ -215,7 +215,7 @@ public struct FlowLayout: Layout {
             ForEach(items, id: \.self) { item in
                 Text(item)
                     .font([Font.headline, Font.body, Font.caption2].randomElement()!)
-                    .padding(IKPadding.extraSmall)
+                    .padding(IKPadding.micro)
                     .foregroundStyle(.white)
                     .background(Color.green, in: .capsule)
             }
@@ -225,7 +225,7 @@ public struct FlowLayout: Layout {
         FlowLayout(alignment: Alignment(horizontal: .trailing, vertical: .center), verticalSpacing: 8, horizontalSpacing: 8) {
             ForEach(items, id: \.self) { item in
                 Text(item)
-                    .padding(IKPadding.extraSmall)
+                    .padding(IKPadding.micro)
                     .foregroundStyle(.white)
                     .background(Color.red, in: .capsule)
             }

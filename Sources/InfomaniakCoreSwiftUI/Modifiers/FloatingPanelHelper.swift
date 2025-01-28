@@ -81,7 +81,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     let bottomPadding: CGFloat
 
     private let topPadding = IKPadding.large
-    private let titleSpacing = IKPadding.small
+    private let titleSpacing = IKPadding.mini
 
     private var backportDragIndicator: Backport<Any>.Visibility {
         switch dragIndicator {
@@ -116,7 +116,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        VStack(spacing: IKPadding.small) {
+        VStack(spacing: IKPadding.mini) {
             if shouldShowHeader {
                 ZStack {
                     if let title {
@@ -169,7 +169,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     let bottomPadding: CGFloat
 
     private let topPadding = IKPadding.large
-    private let titleSpacing = IKPadding.small
+    private let titleSpacing = IKPadding.mini
 
     private var headerSize: CGFloat {
         guard title != nil else {

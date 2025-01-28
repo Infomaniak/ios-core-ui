@@ -21,7 +21,7 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct IKLabelStyle: LabelStyle {
-    var spacing = IKPadding.small
+    var spacing = IKPadding.mini
 
     public func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: spacing) {
