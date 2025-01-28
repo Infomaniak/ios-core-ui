@@ -23,6 +23,8 @@ struct SubscriptionFreeDetailsView: View {
                     Text("myKSuiteDashboardFunctionalityMailAndDrive", bundle: .module)
                     HStack {
                         Text("myKSuiteDashboardFunctionalityLimit", bundle: .module)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
                         Text("!500")
                     }
                     Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
