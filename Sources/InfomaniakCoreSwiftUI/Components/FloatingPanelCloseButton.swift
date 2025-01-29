@@ -16,7 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import InfomaniakCoreCommonUI
+import DesignSystem
 import SwiftUI
 
 @available(iOS 15.0, *)

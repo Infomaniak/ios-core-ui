@@ -16,8 +16,8 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DesignSystem
 import InfomaniakCore
-import InfomaniakCoreCommonUI
 import InfomaniakDI
 import SwiftUI
 import SwiftUIBackports
