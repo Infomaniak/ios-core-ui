@@ -25,6 +25,10 @@ public struct MyKSuiteView: View {
 
     let configuration: [MyKSuiteLabel]
 
+    public init(configuration: [MyKSuiteLabel]) {
+        self.configuration = configuration
+    }
+
     public var body: some View {
         VStack(spacing: 32) {
             Image("gradient", bundle: .module)
