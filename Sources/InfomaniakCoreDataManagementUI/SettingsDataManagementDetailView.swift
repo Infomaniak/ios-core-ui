@@ -61,7 +61,7 @@ struct SettingsDataManagementDetailView: View {
                 .padding(IKPadding.medium)
             }
         }
-        .background(Color.white)
+        .background(Color("backgroundColor", bundle: .module))
         .navigationBarTitle(Text(title, bundle: .module), displayMode: .inline)
     }
 }

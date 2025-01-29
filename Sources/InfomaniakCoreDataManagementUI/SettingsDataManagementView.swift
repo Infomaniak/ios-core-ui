@@ -62,7 +62,7 @@ public struct SettingsDataManagementView: View {
                 .padding(IKPadding.medium)
 
                 ForEach(DataType.allCases, id: \.self) { item in
-                    SettingsSubMenuCell(title: item.title, icon: item.image) {
+                    DataSettingsSubMenuCell(title: item.title, image: item.image) {
                         switch item {
                         case .matomo:
                             SettingsDataManagementDetailView.matomo(appStorageKey: userDefaultKeyMatomo)

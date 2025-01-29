@@ -20,27 +20,27 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct SettingsSubMenuCell<Content: View>: View {
+struct DataSettingsSubMenuCell<Content: View>: View {
     let title: String
-    var icon: Image?
+    var image: Image?
     @ViewBuilder var destination: () -> Content
 
     var body: some View {
         NavigationLink(destination: destination) {
-            SettingsSubMenuLabel(title: title, icon: icon)
+            DataSettingsSubMenuLabel(title: title, image: image)
         }
     }
 }
 
 @available(iOS 15.0, *)
-struct SettingsSubMenuLabel: View {
+struct DataSettingsSubMenuLabel: View {
     let title: String
     var subtitle: String?
-    var icon: Image?
+    var image: Image?
 
     var body: some View {
         HStack(spacing: IKPadding.medium) {
-            icon
+            image
                 .padding(.leading, IKPadding.medium)
 
             VStack(alignment: .leading) {
@@ -50,8 +50,7 @@ struct SettingsSubMenuLabel: View {
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            Image("chevron-up", bundle: .module)
-                .rotationEffect(Angle.radians(.pi / 2))
+            Image("chevron-right", bundle: .module)
                 .padding(.trailing, IKPadding.medium)
                 .foregroundColor(Color("textSecondaryColor", bundle: .module))
         }
