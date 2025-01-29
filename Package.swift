@@ -73,8 +73,8 @@ let package = Package(
         .target(
             name: "InfomaniakCoreDataManagementUI",
             dependencies: [
-                "InfomaniakCoreSwiftUI",
-                .product(name: "InfomaniakCore", package: "ios-core")
+                .product(name: "InfomaniakCore", package: "ios-core"),
+                .product(name: "InfomaniakCoreSwiftUI", package: "ios-core")
             ]
         ),
         .target(

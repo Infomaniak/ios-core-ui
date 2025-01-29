@@ -18,9 +18,11 @@
 
 import SwiftUI
 
-public enum DataType: String, CaseIterable {
+public enum DataType: String, CaseIterable, Identifiable {
     case matomo
     case sentry
+
+    public var id: String { self.rawValue }
 
     public var title: String {
         switch self {
@@ -31,7 +33,16 @@ public enum DataType: String, CaseIterable {
         }
     }
 
-    public var image: Image? {
+    public var description: String {
+        switch self {
+        case .matomo:
+            return "settingsMatomoDescription"
+        case .sentry:
+            return "settingsSentryDescription"
+        }
+    }
+
+    public var image: Image {
         switch self {
         case .matomo:
             return Image("matomo", bundle: .module)
@@ -40,4 +51,16 @@ public enum DataType: String, CaseIterable {
         }
     }
 
+    public var matomoName: String {
+        return rawValue
+    }
+
+    public var imageText: Image {
+        switch self {
+        case .matomo:
+            return Image("matomo-text", bundle: .module)
+        case .sentry:
+            return Image("sentry-text", bundle: .module)
+        }
+    }
 }

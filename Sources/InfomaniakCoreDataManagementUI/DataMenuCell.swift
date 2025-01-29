@@ -20,13 +20,13 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct DataSettingsSubMenuCell<Content: View>: View {
+struct DataSettingsSubMenuCell: View {
     let title: String
     var image: Image?
-    @ViewBuilder var destination: () -> Content
+    var action: () -> Void
 
     var body: some View {
-        NavigationLink(destination: destination) {
+        Button(action: action) {
             DataSettingsSubMenuLabel(title: title, image: image)
         }
     }

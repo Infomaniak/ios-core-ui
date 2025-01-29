@@ -23,6 +23,9 @@ import SwiftUI
 @available(iOS 15.0, *)
 public struct SettingsDataManagementView: View {
     @Environment(\.openURL) private var openURL
+
+    @State private var selectedDataType: DataType?
+
     public let urlRepository: URL
     public let backgroundColor: Color
     public let dataPrivacyimage: Image
@@ -30,7 +33,14 @@ public struct SettingsDataManagementView: View {
     public let userDefaultKeyMatomo: String
     public let userDefaultKeySentry: String
 
-    public init(urlRepository: URL, backgroundColor: Color, dataPrivacyimage: Image, userDefaultStore: UserDefaults, userDefaultKeyMatomo: String, userDefaultKeySentry: String) {
+    public init(
+        urlRepository: URL,
+        backgroundColor: Color,
+        dataPrivacyimage: Image,
+        userDefaultStore: UserDefaults,
+        userDefaultKeyMatomo: String,
+        userDefaultKeySentry: String
+    ) {
         self.urlRepository = urlRepository
         self.backgroundColor = backgroundColor
         self.dataPrivacyimage = dataPrivacyimage
@@ -62,13 +72,16 @@ public struct SettingsDataManagementView: View {
                 .padding(IKPadding.medium)
 
                 ForEach(DataType.allCases, id: \.self) { item in
-                    DataSettingsSubMenuCell(title: item.title, image: item.image) {
-                        switch item {
-                        case .matomo:
-                            SettingsDataManagementDetailView.matomo(appStorageKey: userDefaultKeyMatomo)
-                        case .sentry:
-                            SettingsDataManagementDetailView.sentry(appStorageKey: userDefaultKeySentry)
-                        }
+                    Button(action: {
+                        selectedDataType = item
+                    }) {
+                        DataSettingsSubMenuLabel(title: item.title, image: item.image)
+                    }
+                    .sheet(item: $selectedDataType) { selectedItem in
+                        SettingsDataManagementDetailView.create(
+                            for: selectedItem,
+                            appStorageKey: selectedItem == .matomo ? userDefaultKeyMatomo : userDefaultKeySentry
+                        )
                     }
 
                     if item != DataType.allCases.last {
@@ -76,20 +89,15 @@ public struct SettingsDataManagementView: View {
                     }
                 }
             }
-        }
-        .defaultAppStorage(userDefaultStore)
-        .background(backgroundColor)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("settingsDataManagementTitle", bundle: .module)
-                    .font(.headline)
-            }
+            .defaultAppStorage(userDefaultStore)
+            .background(backgroundColor)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(Text("settingsDataManagementTitle", bundle: .module))
         }
     }
 }
 
-//@available(iOS 15.0, *)
-//#Preview {
+// @available(iOS 15.0, *)
+// #Preview {
 //    SettingsDataManagementView(urlRepository: URL, backgroundColor: Color, dataPrivacyimage: Image, userDefaultStore: UserDefaults, userDefaultKeyMatomo: String, userDefaultKeySentry: String)
-//}
+// }

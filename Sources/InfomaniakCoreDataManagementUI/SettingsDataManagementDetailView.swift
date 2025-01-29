@@ -24,72 +24,61 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct SettingsDataManagementDetailView: View {
-    let image: Image
-    let title: LocalizedStringKey
-    let description: LocalizedStringKey
+    @AppStorage private var dataValue: Bool
 
-    let matomoName: String
+    @Environment(\.dismiss) private var dismiss
 
-//    @AppStorage("toto") private var dataValue: Bool = true
-    @State var dataValue: Bool = true
+    let dataType: DataType
 
-    init(image: Image, title: LocalizedStringKey, description: LocalizedStringKey, matomoName: String, appStorageKey: String) {
-        self.image = image
-        self.title = title
-        self.description = description
-        self.matomoName = matomoName
-//        _dataValue = AppStorage(wrappedValue: false, appStorageKey)
+    init(dataType: DataType, appStorageKey: String) {
+        self.dataType = dataType
+        _dataValue = AppStorage(wrappedValue: false, appStorageKey)
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                image
-                    .padding(.vertical, value: .medium)
-                    .frame(maxWidth: .infinity)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    dataType.imageText
+                        .padding(.vertical, value: .medium)
+                        .frame(maxWidth: .infinity)
 
-                Text(description, bundle: .module)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                    .padding(IKPadding.medium)
-
-                Toggle(isOn: $dataValue) {
-                    Text("settingsAuthorizeTracking", bundle: .module)
+                    Text(LocalizedStringKey(dataType.description), bundle: .module)
                         .font(.body)
+                        .multilineTextAlignment(.leading)
+                        .padding(IKPadding.medium)
+
+                    Toggle(isOn: $dataValue) {
+                        Text("settingsAuthorizeTracking", bundle: .module)
+                            .font(.body)
+                    }
+                    .tint(.accentColor)
+                    .padding(IKPadding.medium)
                 }
-                .tint(.accentColor)
-                .padding(IKPadding.medium)
+            }
+            .background(Color("backgroundColor", bundle: .module))
+            .navigationBarTitle(Text(LocalizedStringKey(dataType.title), bundle: .module), displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
             }
         }
-        .background(Color("backgroundColor", bundle: .module))
-        .navigationBarTitle(Text(title, bundle: .module), displayMode: .inline)
     }
 }
 
 @available(iOS 15.0, *)
 extension SettingsDataManagementDetailView {
-    static func matomo(appStorageKey: String) -> SettingsDataManagementDetailView {
-        return SettingsDataManagementDetailView(
-            image: Image("matomo-text", bundle: .module),
-            title: "settingsMatomoTitle",
-            description: "settingsMatomoDescription",
-            matomoName: "matomo",
-            appStorageKey: appStorageKey
-        )
-    }
-
-    static func sentry(appStorageKey: String) -> SettingsDataManagementDetailView {
-        return SettingsDataManagementDetailView(
-            image: Image("sentry-text", bundle: .module),
-            title: "settingsSentryTitle",
-            description: "settingsSentryDescription",
-            matomoName: "sentry",
-            appStorageKey: appStorageKey
-        )
+    static func create(for dataType: DataType, appStorageKey: String) -> SettingsDataManagementDetailView {
+        return SettingsDataManagementDetailView(dataType: dataType, appStorageKey: appStorageKey)
     }
 }
 
-//@available(iOS 15.0, *)
-//#Preview {
+// @available(iOS 15.0, *)
+// #Preview {
 //    SettingsDataManagementDetailView.matomo
-//}
+// }
