@@ -22,7 +22,7 @@ public enum DataType: String, CaseIterable, Identifiable {
     case matomo
     case sentry
 
-    public var id: String { self.rawValue }
+    public var id: String { rawValue }
 
     public var title: String {
         switch self {

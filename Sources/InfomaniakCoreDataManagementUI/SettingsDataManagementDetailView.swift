@@ -78,7 +78,7 @@ extension SettingsDataManagementDetailView {
     }
 }
 
-// @available(iOS 15.0, *)
-// #Preview {
-//    SettingsDataManagementDetailView.matomo
-// }
+ @available(iOS 15.0, *)
+ #Preview {
+     SettingsDataManagementDetailView(dataType: DataType.matomo, appStorageKey: "")
+ }

@@ -97,7 +97,17 @@ public struct SettingsDataManagementView: View {
     }
 }
 
-// @available(iOS 15.0, *)
-// #Preview {
-//    SettingsDataManagementView(urlRepository: URL, backgroundColor: Color, dataPrivacyimage: Image, userDefaultStore: UserDefaults, userDefaultKeyMatomo: String, userDefaultKeySentry: String)
-// }
+@available(iOS 15.0, *)
+#Preview {
+    let urlString = "https://infomaniak.com"
+    let url = URL(string: urlString) ?? URL(string: "https://www.infomaniak.com")!
+
+    SettingsDataManagementView(
+        urlRepository: url,
+        backgroundColor: Color.white,
+        dataPrivacyimage: Image(""),
+        userDefaultStore: UserDefaults.standard,
+        userDefaultKeyMatomo: "",
+        userDefaultKeySentry: ""
+    )
+}
