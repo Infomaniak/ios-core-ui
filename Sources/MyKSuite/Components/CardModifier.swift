@@ -11,7 +11,7 @@ struct CardModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .clipShape(.rect(cornerRadius: 16))
-            .shadow(color: Color("shadow", bundle: .module).opacity(0.3), radius: 10)
+            .shadow(color: ColorHelper.shadow.opacity(0.3), radius: 10)
     }
 }
 

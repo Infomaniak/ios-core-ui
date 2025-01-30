@@ -15,7 +15,7 @@ struct SubscriptionFreeDetailsView: View {
                 Text("myKSuiteDashboardFreeMailLabel", bundle: .module)
             } icon: {
                 Image(systemName: "envelope")
-                    .foregroundStyle(Color("elephant", bundle: .module))
+                    .foregroundStyle(ColorHelper.elephant)
             }
 
             DisclosureGroup {
@@ -30,19 +30,19 @@ struct SubscriptionFreeDetailsView: View {
                     Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
                 }
                 .padding(.top, 18)
-                .foregroundStyle(Color("elephant", bundle: .module))
-                .font(.system(size: 14))
+                .foregroundStyle(ColorHelper.elephant)
+                .font(FontHelper.bodySmall)
             } label: {
                 Label {
                     Text("myKSuiteDashboardLimitedFunctionalityLabel", bundle: .module)
                 } icon: {
                     Image(systemName: "lock")
-                        .foregroundStyle(Color("elephant", bundle: .module))
+                        .foregroundStyle(ColorHelper.elephant)
                 }
             }
         }
-        .font(.system(size: 16))
-        .foregroundStyle(Color("orca", bundle: .module))
+        .font(FontHelper.body)
+        .foregroundStyle(ColorHelper.orca)
     }
 }
 

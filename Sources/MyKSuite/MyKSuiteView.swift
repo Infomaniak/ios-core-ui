@@ -38,8 +38,8 @@ public struct MyKSuiteView: View {
             VStack(alignment: .leading, spacing: 32) {
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
                     Text("myKSuiteUpgradeTitle", bundle: .module)
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundStyle(Color("orca", bundle: .module))
+                        .font(FontHelper.title)
+                        .foregroundStyle(ColorHelper.orca)
                         .frame(maxWidth: .infinity, alignment: .center)
 
                     Text("myKSuiteUpgradeDescription", bundle: .module)
@@ -67,8 +67,8 @@ public struct MyKSuiteView: View {
                 .buttonStyle(.ikBorderedProminent)
             }
             .padding(.horizontal, value: .large)
-            .font(.system(size: 16, weight: .regular))
-            .foregroundStyle(Color("elephant", bundle: .module))
+            .font(FontHelper.body)
+            .foregroundStyle(ColorHelper.elephant)
         }
     }
 }

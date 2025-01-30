@@ -13,7 +13,7 @@ struct SubscriptionPlusDetailsView: View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
                 Text("myKSuiteDashboardTrialPeriod", bundle: .module)
-                    .foregroundStyle(Color("orca", bundle: .module))
+                    .foregroundStyle(ColorHelper.orca)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 Text(
@@ -22,24 +22,24 @@ struct SubscriptionPlusDetailsView: View {
                         arguments: ["xx/xx/xxxx"]
                     )
                 )
-                .foregroundStyle(Color("elephant", bundle: .module))
+                .foregroundStyle(ColorHelper.elephant)
             }
 
             HStack {
                 Text("myKSuiteDashboardPaymentMethod", bundle: .module)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color("orca", bundle: .module))
+                    .foregroundStyle(ColorHelper.orca)
                 Text("!Apple Pay")
-                    .foregroundStyle(Color("elephant", bundle: .module))
+                    .foregroundStyle(ColorHelper.elephant)
             }
 
             HStack(alignment: .top, spacing: 12) {
                 Image("information", bundle: .module)
-                    .foregroundStyle(Color("elephant", bundle: .module))
+                    .foregroundStyle(ColorHelper.elephant)
 
                 VStack(alignment: .leading, spacing: 16) {
                     Text("myKSuiteDashboardSubscriptionLabel", bundle: .module)
-                        .foregroundStyle(Color("orca", bundle: .module))
+                        .foregroundStyle(ColorHelper.orca)
 
                     Button {
                         // Gerer mon abonnement
@@ -50,7 +50,7 @@ struct SubscriptionPlusDetailsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(value: .medium)
-            .background(Color("polar.bear", bundle: .module), in: .rect(cornerRadius: 8))
+            .background(ColorHelper.polarBear, in: .rect(cornerRadius: 8))
         }
     }
 }
