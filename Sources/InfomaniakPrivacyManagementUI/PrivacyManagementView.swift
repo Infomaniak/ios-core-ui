@@ -68,7 +68,6 @@ public struct PrivacyManagementView: View {
                         .foregroundColor(backgroundColor)
                 }
                 .buttonStyle(.ikBorderless(isInlined: true))
-                .padding(IKPadding.medium)
 
                 ForEach(Tracker.allCases, id: \.self) { item in
                     Button {
