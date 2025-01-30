@@ -25,24 +25,24 @@ public struct MyKSuiteDashboardView: View {
             if let myKSuite {
                 VStack(spacing: 24) {
                     SubscriptionCardView(myKSuite: myKSuite)
-                        .padding(value: .medium)
-                        .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Button(role: .destructive) {
-                                    dismiss()
-                                } label: {
-                                    Image(systemName: "xmark")
-                                }
-                            }
-                        }
-                        .frame(maxHeight: .infinity, alignment: .top)
 
                     if myKSuite.isFree {
                         FreeTrialView()
                     }
                 }
+                .padding(value: .medium)
+                .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(role: .destructive) {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                    }
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
             }
         }
         .task {
