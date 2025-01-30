@@ -38,13 +38,13 @@ struct SubscriptionPlusDetailsView: View {
                     .foregroundStyle(ColorHelper.elephant)
 
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("myKSuiteDashboardSubscriptionLabel", bundle: .module)
+                    Text("iOSMyKSuiteDashboardSubscriptionLabel", bundle: .module)
                         .foregroundStyle(ColorHelper.orca)
 
                     Button {
                         // Gerer mon abonnement
                     } label: {
-                        Text("myKSuiteDashboardSubscriptionButton", bundle: .module)
+                        Text("iOSMyKSuiteDashboardSubscriptionButton", bundle: .module)
                     }
                 }
             }

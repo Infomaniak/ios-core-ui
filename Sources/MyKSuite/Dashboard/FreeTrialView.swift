@@ -19,21 +19,21 @@ struct FreeTrialView: View {
 
                 Spacer()
 
-                Text("!30 jours gratuits")
+                Text("myKSuiteDashboardFreeTrialTitle", bundle: .module)
                     .font(FontHelper.labelMedium)
                     .foregroundStyle(ColorHelper.orca)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 8)
                     .background(.white, in: .capsule)
             }
-            Text("!Obtenez plus de fonctionnalités et stockage avec my kSuite+")
+            Text("myKSuiteDashboardFreeTrialDescription", bundle: .module)
                 .font(FontHelper.bodySmall)
                 .foregroundStyle(ColorHelper.orca)
 
             Button {
                 // Start trial
             } label: {
-                Text("!Commencer l'essai gratuit")
+                Text("myKSuiteDashboardFreeTrialButton", bundle: .module)
             }
             .controlSize(.large)
             .ikButtonFullWidth(true)

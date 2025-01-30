@@ -24,7 +24,7 @@ struct SubscriptionProductsView: View {
                     Text(Product.mail.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                    Text("!Illimité")
+                    Text("myKSuiteDashboardDataUnlimited", bundle: .module)
                 }
             }
 
