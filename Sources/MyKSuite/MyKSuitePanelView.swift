@@ -40,6 +40,6 @@ public extension View {
 
 @available(iOS 15, *)
 #Preview {
-    Text("OUI")
+    Text("Hello, world!")
         .myKSuitePanel(isPresented: .constant(true), configuration: [])
 }
