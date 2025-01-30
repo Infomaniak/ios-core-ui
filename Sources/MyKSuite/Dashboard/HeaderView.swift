@@ -13,15 +13,19 @@ struct HeaderView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "person")
+            ImageHelper.person
                 .resizable()
-                .padding(4)
+                .scaledToFit()
+                .frame(width: 14)
+                .foregroundStyle(ColorHelper.elephant)
                 .background {
                     Circle()
                         .strokeBorder(ColorHelper.gradient, lineWidth: 1)
+                        .frame(width: 24, height: 24)
                 }
-                .clipShape(.circle)
                 .frame(width: 24, height: 24)
+                .background(ColorHelper.polarBear)
+                .clipShape(.circle)
 
             Text(myKSuite.freeMail.email)
                 .frame(maxWidth: .infinity, alignment: .leading)
