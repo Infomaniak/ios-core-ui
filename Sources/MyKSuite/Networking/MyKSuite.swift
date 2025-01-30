@@ -5,7 +5,7 @@
 //  Created by Ambroise Decouttere on 30/01/2025.
 //
 
-import Foundation
+import SwiftUI
 
 struct MyKSuite: Decodable {
     let id: Int
