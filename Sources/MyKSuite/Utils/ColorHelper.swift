@@ -13,6 +13,7 @@ enum ColorHelper {
     static let polarBear = Color("polar.bear", bundle: .module)
     static let rabbit = Color("rabbit", bundle: .module)
     static let shadow = Color("shadow", bundle: .module)
+    static let sky = Color("sky", bundle: .module)
 
     static let productMail = Color("product.mail", bundle: .module)
     static let productDrive = Color("product.drive", bundle: .module)

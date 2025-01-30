@@ -15,12 +15,12 @@ struct HeaderView: View {
         HStack {
             Image(systemName: "person")
                 .resizable()
-                .clipShape(.circle)
                 .padding(4)
                 .background {
-                    ColorHelper.gradient
-                        .clipShape(.circle)
+                    Circle()
+                        .strokeBorder(ColorHelper.gradient, lineWidth: 1)
                 }
+                .clipShape(.circle)
                 .frame(width: 24, height: 24)
 
             Text(myKSuite.freeMail.email)

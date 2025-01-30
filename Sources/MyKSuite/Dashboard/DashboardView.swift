@@ -23,20 +23,26 @@ public struct DashboardView: View {
     public var body: some View {
         NavigationView {
             if let myKSuite {
-                SubscriptionCardView(myKSuite: myKSuite)
-                    .padding(value: .medium)
-                    .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button(role: .destructive) {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark")
+                VStack(spacing: 24) {
+                    SubscriptionCardView(myKSuite: myKSuite)
+                        .padding(value: .medium)
+                        .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button(role: .destructive) {
+                                    dismiss()
+                                } label: {
+                                    Image(systemName: "xmark")
+                                }
                             }
                         }
+                        .frame(maxHeight: .infinity, alignment: .top)
+
+                    if myKSuite.isFree {
+                        FreeTrialView()
                     }
-                    .frame(maxHeight: .infinity, alignment: .top)
+                }
             }
         }
         .task {
@@ -49,7 +55,7 @@ public struct DashboardView: View {
     }
 }
 
-@available(iOS 15, *)
-#Preview {
-    DashboardView(apiFetcher: ApiFetcher())
-}
+// @available(iOS 15, *)
+// #Preview {
+//    DashboardView(apiFetcher: ApiFetcher())
+// }
