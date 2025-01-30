@@ -14,6 +14,9 @@ enum ColorHelper {
     static let rabbit = Color("rabbit", bundle: .module)
     static let shadow = Color("shadow", bundle: .module)
 
+    static let productMail = Color("product.mail", bundle: .module)
+    static let productDrive = Color("product.drive", bundle: .module)
+
     // MARK: - Gradient
 
     static let gradientColor1 = Color("gradient.color.1", bundle: .module)
