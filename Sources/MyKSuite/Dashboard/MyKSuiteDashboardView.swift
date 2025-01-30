@@ -10,7 +10,7 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15, *)
-public struct DashboardView: View {
+public struct MyKSuiteDashboardView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var myKSuite: MyKSuite?
@@ -57,5 +57,5 @@ public struct DashboardView: View {
 
 // @available(iOS 15, *)
 // #Preview {
-//    DashboardView(apiFetcher: ApiFetcher())
+//    MyKSuiteDashboardView(apiFetcher: ApiFetcher())
 // }
