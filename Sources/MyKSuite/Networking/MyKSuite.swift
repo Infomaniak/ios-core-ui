@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyKSuite: Decodable {
+public struct MyKSuite: Codable {
     let id: Int
     let status: String
     let packId: Int
@@ -25,7 +25,7 @@ struct MyKSuite: Decodable {
     }
 }
 
-struct Pack: Decodable {
+struct Pack: Codable {
     let id: Int
     let name: String
     let driveStorage: Int
@@ -34,11 +34,11 @@ struct Pack: Decodable {
     let isMaxStorageOffer: Bool
 }
 
-// struct Drive: Decodable {
+// struct Drive: Codable {
 //
 // }
 
-struct FreeMail: Decodable {
+struct FreeMail: Codable {
     let id: Int
     let dailyLimitSent: Int
     let storageSizeLimit: Int

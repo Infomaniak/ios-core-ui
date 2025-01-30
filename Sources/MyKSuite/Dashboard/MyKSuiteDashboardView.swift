@@ -7,10 +7,12 @@
 
 import InfomaniakCore
 import InfomaniakCoreSwiftUI
+import InfomaniakDI
 import SwiftUI
 
 @available(iOS 15, *)
 public struct MyKSuiteDashboardView: View {
+    @InjectService var myKSuiteStore: MyKSuiteStore
     @Environment(\.dismiss) private var dismiss
 
     @State private var myKSuite: MyKSuite?
@@ -24,11 +26,11 @@ public struct MyKSuiteDashboardView: View {
         NavigationView {
             if let myKSuite {
                 VStack(spacing: 24) {
-                    SubscriptionCardView(myKSuite: myKSuite)
+                    SubscriptionCardView(myKSuite: PreviewHelper.sampleMyKSuite /* myKSuite */ )
 
-                    if myKSuite.isFree {
-                        FreeTrialView()
-                    }
+//                    if myKSuite.isFree {
+//                        FreeTrialView()
+//                    }
                 }
                 .padding(value: .medium)
                 .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
@@ -43,11 +45,17 @@ public struct MyKSuiteDashboardView: View {
                     }
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
+                .background {
+                    ImageHelper.background
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, alignment: .top)
+                }
             }
         }
         .task {
             do {
-                myKSuite = try await apiFetcher.myKSuite(id: 81)
+                myKSuite = try await myKSuiteStore.updateMyKSuite(with: apiFetcher)
             } catch {
                 print("error fetching my ksuite: \(error)")
             }
