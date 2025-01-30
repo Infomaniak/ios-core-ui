@@ -5,11 +5,12 @@
 //  Created by Ambroise Decouttere on 30/01/2025.
 //
 
-import CocoaLumberjackSwift
 import Foundation
 import InfomaniakCore
 import InfomaniakDI
+import OSLog
 
+@available(iOS 14.0, *)
 public actor MyKSuiteStore {
     public typealias UserId = Int
 
@@ -55,7 +56,7 @@ public actor MyKSuiteStore {
             try FileManager.default.createDirectory(atPath: preferencesURL.path, withIntermediateDirectories: true)
             try kSuitesData.write(to: storeFileURL)
         } catch {
-            DDLogError("[UserProfileStore] Error saving accounts :\(error)")
+            Logger.general.error("[MyKSuiteStore] Error saving accounts :\(error)")
         }
     }
 
@@ -74,7 +75,7 @@ public actor MyKSuiteStore {
 
             kSuites = savedKSuites
         } catch {
-            DDLogError("[MyKSuiteStore] Error loading accounts :\(error)")
+            Logger.general.error("[MyKSuiteStore] Error loading accounts :\(error)")
         }
     }
 }

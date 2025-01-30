@@ -8,6 +8,7 @@
 import InfomaniakCore
 import InfomaniakCoreSwiftUI
 import InfomaniakDI
+import OSLog
 import SwiftUI
 
 @available(iOS 15, *)
@@ -57,7 +58,7 @@ public struct MyKSuiteDashboardView: View {
             do {
                 myKSuite = try await myKSuiteStore.updateMyKSuite(with: apiFetcher)
             } catch {
-                print("error fetching my ksuite: \(error)")
+                Logger.general.error("Error fetching my ksuite: \(error)")
             }
         }
     }
