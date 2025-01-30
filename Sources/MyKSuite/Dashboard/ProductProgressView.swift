@@ -9,28 +9,38 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct ProductProgressView: View {
-    let title: String
-    let color: Color
-    let usedValue: Float
-    let totalValue: Float
+    let product: Product
+    let usedValue: Int?
+    let totalValue: Int
+
+    private var floatUsedValue: Float {
+        guard let usedValue else {
+            return 0
+        }
+        return Float(usedValue / 1000)
+    }
+
+    private var floatTotalValue: Float {
+        Float(totalValue)
+    }
 
     var body: some View {
         VStack {
             HStack {
-                Text(title)
+                Text(product.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                Text("\(usedValue, specifier: "%.1f") Go / \(totalValue, specifier: "%.0f") Go")
+                Text("\(floatUsedValue, specifier: "%.1f") Go / \(floatTotalValue, specifier: "%.0f") Go")
             }
 
-            ProgressView(value: usedValue, total: totalValue)
+            ProgressView(value: floatUsedValue, total: floatTotalValue)
                 .progressViewStyle(CustomProgressBar())
-                .foregroundStyle(color)
+                .foregroundStyle(product.color)
         }
     }
 }
 
 @available(iOS 15, *)
 #Preview {
-    ProductProgressView(title: "Mail", color: .blue, usedValue: 2.3, totalValue: 20)
+    ProductProgressView(product: .mail, usedValue: 2300, totalValue: 20)
 }

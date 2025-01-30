@@ -18,4 +18,5 @@ enum FontHelper {
     // MARK: - Medium
 
     static let bodyMedium: Font = .system(size: 16, weight: .medium, design: .default)
+    static let bodySmallMedium: Font = .system(size: 14, weight: .medium, design: .default)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct HeaderView: View {
-    let type: SubscriptionType
+    let myKSuite: MyKSuite
 
     var body: some View {
         HStack {
@@ -23,10 +23,10 @@ struct HeaderView: View {
                 }
                 .frame(width: 24, height: 24)
 
-            Text("ellen.ripley@ik.me")
+            Text(myKSuite.freeMail.email)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            type.icon
+            myKSuite.icon
                 .padding(.horizontal, value: .small)
                 .padding(.vertical, value: .extraSmall)
                 .background(ColorHelper.rabbit)
@@ -37,5 +37,5 @@ struct HeaderView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    HeaderView(type: .myKSuite)
+    HeaderView(myKSuite: PreviewHelper.sampleMyKSuite)
 }

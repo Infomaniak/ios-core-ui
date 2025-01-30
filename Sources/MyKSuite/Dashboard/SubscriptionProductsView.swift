@@ -9,17 +9,31 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct SubscriptionProductsView: View {
-    let type: SubscriptionType
-    
+    let myKSuite: MyKSuite
+
     var body: some View {
         VStack(spacing: 16) {
-            ProductProgressView(title: "Mail", color: .blue, usedValue: 1, totalValue: 20)
-            ProductProgressView(title: "kDrive", color: .blue, usedValue: 2.3, totalValue: 15)
+            if myKSuite.isFree {
+                ProductProgressView(
+                    product: .mail,
+                    usedValue: myKSuite.freeMail.usedSize,
+                    totalValue: myKSuite.freeMail.storageSizeLimit
+                )
+            } else {
+                HStack {
+                    Text(Product.mail.title)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Text("!Illimité")
+                }
+            }
+
+            ProductProgressView(product: .drive, usedValue: 23, totalValue: 15)
         }
     }
 }
 
 @available(iOS 15, *)
 #Preview {
-    SubscriptionProductsView(type: .myKSuite)
+    SubscriptionProductsView(myKSuite: PreviewHelper.sampleMyKSuite)
 }

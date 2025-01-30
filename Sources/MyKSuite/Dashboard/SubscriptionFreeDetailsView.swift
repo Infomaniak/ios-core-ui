@@ -9,12 +9,17 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct SubscriptionFreeDetailsView: View {
+    let dailyLimit: Int
+
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             Label {
                 Text("myKSuiteDashboardFreeMailLabel", bundle: .module)
             } icon: {
                 Image(systemName: "envelope")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16)
                     .foregroundStyle(ColorHelper.elephant)
             }
 
@@ -25,7 +30,9 @@ struct SubscriptionFreeDetailsView: View {
                         Text("myKSuiteDashboardFunctionalityLimit", bundle: .module)
                             .frame(maxWidth: .infinity, alignment: .leading)
 
-                        Text("!500")
+                        Text("\(dailyLimit)")
+                            .foregroundStyle(ColorHelper.orca)
+                            .font(FontHelper.bodySmallMedium)
                     }
                     Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
                 }
@@ -37,6 +44,9 @@ struct SubscriptionFreeDetailsView: View {
                     Text("myKSuiteDashboardLimitedFunctionalityLabel", bundle: .module)
                 } icon: {
                     ImageHelper.lock
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 16)
                         .foregroundStyle(ColorHelper.elephant)
                 }
             }
@@ -48,5 +58,5 @@ struct SubscriptionFreeDetailsView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    SubscriptionFreeDetailsView()
+    SubscriptionFreeDetailsView(dailyLimit: 500)
 }

@@ -9,23 +9,23 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct SubscriptionCardView: View {
-    let type: SubscriptionType
+    let myKSuite: MyKSuite
 
     var body: some View {
         VStack(spacing: 24) {
-            HeaderView(type: type)
+            HeaderView(myKSuite: myKSuite)
 
             Divider()
 
-            VStack(spacing: 16) {
-                ProductProgressView(title: "Mail", color: .blue, usedValue: 1, totalValue: 20)
-                ProductProgressView(title: "kDrive", color: .blue, usedValue: 2.3, totalValue: 15)
+            SubscriptionProductsView(myKSuite: myKSuite)
+
+            Divider()
+
+            if myKSuite.isFree {
+                SubscriptionFreeDetailsView(dailyLimit: myKSuite.freeMail.dailyLimitSent)
+            } else {
+                SubscriptionPlusDetailsView()
             }
-
-            Divider()
-
-            SubscriptionFreeDetailsView()
-            SubscriptionPlusDetailsView()
         }
         .padding(value: .medium)
         .background(.white)
@@ -35,6 +35,6 @@ struct SubscriptionCardView: View {
 
 @available(iOS 15, *)
 #Preview {
-    SubscriptionCardView(type: .myKSuite)
+    SubscriptionCardView(myKSuite: PreviewHelper.sampleMyKSuite)
         .padding()
 }

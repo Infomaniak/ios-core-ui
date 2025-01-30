@@ -13,6 +13,7 @@ import SwiftUI
 public struct DashboardView: View {
     @Environment(\.dismiss) private var dismiss
 
+    @State private var myKSuite: MyKSuite?
     let apiFetcher: ApiFetcher
 
     public init(apiFetcher: ApiFetcher) {
@@ -21,25 +22,26 @@ public struct DashboardView: View {
 
     public var body: some View {
         NavigationView {
-            SubscriptionCardView(type: .myKSuite)
-                .padding(value: .medium)
-                .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(role: .destructive) {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
+            if let myKSuite {
+                SubscriptionCardView(myKSuite: myKSuite)
+                    .padding(value: .medium)
+                    .navigationTitle(Text("myKSuiteDashboardTitle", bundle: .module))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(role: .destructive) {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                            }
                         }
                     }
-                }
-                .frame(maxHeight: .infinity, alignment: .top)
+                    .frame(maxHeight: .infinity, alignment: .top)
+            }
         }
         .task {
             do {
-                let myKSuite = try await apiFetcher.myKSuite(id: 81)
-                print("myKSuite: \(myKSuite)")
+                myKSuite = try await apiFetcher.myKSuite(id: 81)
             } catch {
                 print("error fetching my ksuite: \(error)")
             }
