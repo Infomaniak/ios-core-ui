@@ -1,5 +1,5 @@
 /*
- Infomaniak Mail - iOS App
+ Infomaniak Core UI - iOS
  Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public enum DataType: String, CaseIterable, Identifiable {
+public enum Tracker: String, CaseIterable, Identifiable {
     case matomo
     case sentry
 
@@ -27,40 +27,36 @@ public enum DataType: String, CaseIterable, Identifiable {
     public var title: String {
         switch self {
         case .matomo:
-            return "settingsMatomoTitle"
+            return "trackingMatomoTitle"
         case .sentry:
-            return "settingsSentryTitle"
+            return "trackingSentryTitle"
         }
     }
 
     public var description: String {
         switch self {
         case .matomo:
-            return "settingsMatomoDescription"
+            return "trackingMatomoDescription"
         case .sentry:
-            return "settingsSentryDescription"
+            return "trackingSentryDescription"
         }
     }
 
-    public var image: Image {
+    public var logoShort: Image {
         switch self {
         case .matomo:
-            return Image("matomo", bundle: .module)
+            return Image("matomo-short", bundle: .module)
         case .sentry:
-            return Image("sentry", bundle: .module)
+            return Image("sentry-short", bundle: .module)
         }
     }
 
-    public var matomoName: String {
-        return rawValue
-    }
-
-    public var imageText: Image {
+    public var logoLong: Image {
         switch self {
         case .matomo:
-            return Image("matomo-text", bundle: .module)
+            return Image("matomo-long", bundle: .module)
         case .sentry:
-            return Image("sentry-text", bundle: .module)
+            return Image("sentry-long", bundle: .module)
         }
     }
 }

@@ -23,44 +23,47 @@ import InfomaniakDI
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct SettingsDataManagementDetailView: View {
-    @AppStorage private var dataValue: Bool
-
+struct TrackerDetailsView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let dataType: DataType
+    @AppStorage private var dataValue: Bool
 
-    init(dataType: DataType, appStorageKey: String) {
-        self.dataType = dataType
+    let backgroundColor: Color
+    let tracker: Tracker
+
+    init(tracker: Tracker, appStorageKey: String, backgroundColor: Color) {
+        self.tracker = tracker
         _dataValue = AppStorage(wrappedValue: false, appStorageKey)
+        self.backgroundColor = backgroundColor
     }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    dataType.imageText
+                    tracker.logoLong
                         .padding(.vertical, value: .medium)
                         .frame(maxWidth: .infinity)
 
-                    Text(LocalizedStringKey(dataType.description), bundle: .module)
+                    Text(LocalizedStringKey(tracker.description), bundle: .module)
                         .font(.body)
                         .multilineTextAlignment(.leading)
                         .padding(IKPadding.medium)
 
                     Toggle(isOn: $dataValue) {
-                        Text("settingsAuthorizeTracking", bundle: .module)
+                        Text("authorizeTracking", bundle: .module)
                             .font(.body)
                     }
                     .tint(.accentColor)
-                    .padding(IKPadding.medium)
+                    .padding(.horizontal, IKPadding.medium)
                 }
             }
-            .background(Color("backgroundColor", bundle: .module))
-            .navigationBarTitle(Text(LocalizedStringKey(dataType.title), bundle: .module), displayMode: .inline)
+            .background(backgroundColor)
+            .navigationBarTitle(Text(LocalizedStringKey(tracker.title), bundle: .module), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { dismiss() }) {
+                    Button { dismiss()
+                    } label: {
                         Image(systemName: "xmark")
                             .resizable()
                             .scaledToFit()
@@ -72,13 +75,13 @@ struct SettingsDataManagementDetailView: View {
 }
 
 @available(iOS 15.0, *)
-extension SettingsDataManagementDetailView {
-    static func create(for dataType: DataType, appStorageKey: String) -> SettingsDataManagementDetailView {
-        return SettingsDataManagementDetailView(dataType: dataType, appStorageKey: appStorageKey)
+extension TrackerDetailsView {
+    static func create(for tracker: Tracker, appStorageKey: String, backgroundColor: Color) -> TrackerDetailsView {
+        return TrackerDetailsView(tracker: tracker, appStorageKey: appStorageKey, backgroundColor: backgroundColor)
     }
 }
 
- @available(iOS 15.0, *)
- #Preview {
-     SettingsDataManagementDetailView(dataType: DataType.matomo, appStorageKey: "")
- }
+@available(iOS 15.0, *)
+#Preview {
+    TrackerDetailsView(tracker: Tracker.matomo, appStorageKey: "", backgroundColor: Color.accentColor)
+}

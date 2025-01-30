@@ -1,5 +1,5 @@
 /*
- Infomaniak Mail - iOS App
+ Infomaniak Core UI - iOS
  Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
@@ -20,39 +20,23 @@ import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct DataSettingsSubMenuCell: View {
+struct PrivacyManagementCell: View {
     let title: String
-    var image: Image?
-    var action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            DataSettingsSubMenuLabel(title: title, image: image)
-        }
-    }
-}
-
-@available(iOS 15.0, *)
-struct DataSettingsSubMenuLabel: View {
-    let title: String
-    var subtitle: String?
-    var image: Image?
+    var logoShort: Image?
 
     var body: some View {
         HStack(spacing: IKPadding.medium) {
-            image
+            logoShort
                 .padding(.leading, IKPadding.medium)
 
-            VStack(alignment: .leading) {
-                Text(LocalizedStringKey(title), bundle: .module)
-                    .foregroundColor(Color("textPrimaryColor", bundle: .module))
-            }
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(LocalizedStringKey(title), bundle: .module)
+                .foregroundColor(Color("textPrimaryColor", bundle: .module))
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             Image("chevron-right", bundle: .module)
                 .padding(.trailing, IKPadding.medium)
                 .foregroundColor(Color("textSecondaryColor", bundle: .module))
         }
+        .padding(.horizontal, value: .medium)
     }
 }
