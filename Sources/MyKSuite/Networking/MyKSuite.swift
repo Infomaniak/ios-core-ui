@@ -16,6 +16,13 @@ struct MyKSuite: Decodable {
 //    let drive: Drive
     let freeMail: FreeMail
     let hasAutoRenew: Bool
+
+    var icon: Image {
+        if isFree {
+            return ImageHelper.myKSuiteLogo
+        }
+        return ImageHelper.myKSuitePlusLogo
+    }
 }
 
 struct Pack: Decodable {

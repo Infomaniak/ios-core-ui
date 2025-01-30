@@ -34,7 +34,7 @@ struct SubscriptionPlusDetailsView: View {
             }
 
             HStack(alignment: .top, spacing: 12) {
-                Image("information", bundle: .module)
+                ImageHelper.information
                     .foregroundStyle(ColorHelper.elephant)
 
                 VStack(alignment: .leading, spacing: 16) {

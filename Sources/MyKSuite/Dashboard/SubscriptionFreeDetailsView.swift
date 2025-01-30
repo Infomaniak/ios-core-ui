@@ -36,7 +36,7 @@ struct SubscriptionFreeDetailsView: View {
                 Label {
                     Text("myKSuiteDashboardLimitedFunctionalityLabel", bundle: .module)
                 } icon: {
-                    Image(systemName: "lock")
+                    ImageHelper.lock
                         .foregroundStyle(ColorHelper.elephant)
                 }
             }
