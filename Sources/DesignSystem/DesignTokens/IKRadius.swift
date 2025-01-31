@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftUI
+import Foundation
 
 /// An enumeration to list the cornier radii used for Infomaniak apps.
 @frozen public enum IKRadius {

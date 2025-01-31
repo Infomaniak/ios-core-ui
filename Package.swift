@@ -25,6 +25,10 @@ let package = Package(
         .library(
             name: "InfomaniakCoreUIResources",
             targets: ["InfomaniakCoreUIResources"]
+        ),
+        .library(
+            name: "DesignSystem",
+            targets: ["DesignSystem"]
         )
     ],
     dependencies: [
@@ -53,12 +57,16 @@ let package = Package(
             name: "InfomaniakCoreSwiftUI",
             dependencies: [
                 "SwiftUIBackports",
+                "DesignSystem",
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
             ]
         ),
         .target(
             name: "InfomaniakCoreUIResources"
+        ),
+        .target(
+            name: "DesignSystem"
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",

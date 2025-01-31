@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftUI
+import Foundation
 
 /// An enumeration to list the paddings used for Infomaniak apps.
 @frozen public enum IKPadding {
@@ -47,20 +47,4 @@ import SwiftUI
     public static let large: CGFloat = 24
     /// 48pt padding
     public static let extraLarge: CGFloat = 48
-}
-
-public extension View {
-    /// Adds the padding amount specified by ``IKPadding`` to specific edges
-    /// of this view.
-    ///
-    /// - Parameters:
-    ///  - edges: The set of edges to pad for this view. The default
-    ///      is `Edge.Set = .all`.
-    ///  - value: The amount of padding described by the ``IKPadding``
-    ///      struct.
-    ///
-    /// - Returns: A view that's padded by the specified amount on the specified edges.
-    @inlinable func padding(_ edges: Edge.Set = .all, value: IKPadding.Option) -> some View {
-        padding(edges, value.rawValue)
-    }
 }

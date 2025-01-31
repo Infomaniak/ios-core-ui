@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DesignSystem
 import SwiftUI
 
 struct FlowLine: Sendable {
@@ -28,7 +29,7 @@ struct FlowLine: Sendable {
     init(offsets: [CGRect], sizes: [CGSize], lineHeight: CGFloat) {
         self.offsets = offsets
         self.sizes = sizes
-        self.height = lineHeight
+        height = lineHeight
 
         count = max(offsets.count, sizes.count)
     }
@@ -58,7 +59,7 @@ public struct FlowLayout: Layout {
         var subviewIndex = 0
         for lineNumber in flowLines.indices {
             let flowLine = flowLines[lineNumber]
-            for indexInLine in 0..<flowLine.count {
+            for indexInLine in 0 ..< flowLine.count {
                 let subview = subviews[subviewIndex]
 
                 let offset = flowLine.offsets[indexInLine]
@@ -173,8 +174,8 @@ public struct FlowLayout: Layout {
     let count = 4
     let items = (
         Array(repeating: "abc", count: count) +
-        Array(repeating: "abc-def", count: count) +
-        Array(repeating: "abc-def-ghi", count: count)
+            Array(repeating: "abc-def", count: count) +
+            Array(repeating: "abc-def-ghi", count: count)
     ).shuffled()
 
     VStack(spacing: 32) {
