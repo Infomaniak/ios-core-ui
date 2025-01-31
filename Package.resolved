@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "eaf53f35780befa26d2ac30c8262d7529352bfb9",
-        "version" : "13.0.0"
+        "revision" : "c3a442b5bd2fb67680aa252638773c4d7d1551ad",
+        "version" : "14.0.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-dependency-injection",
       "state" : {
-        "revision" : "8dc9e67e6d3d9f4f5bd02d693a7ce1f93b125bcd",
-        "version" : "2.0.1"
+        "revision" : "7d127ead20bbb4a6a39ca60e6dc32e580197b59e",
+        "version" : "2.0.2"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-login",
       "state" : {
-        "revision" : "b12bf4fbbfe0edf10d2516503e97a9f212d1cd5b",
-        "version" : "7.0.1"
+        "revision" : "d3c8fa9dd7ea7e44a1a741b58d1036d4a7989588",
+        "version" : "7.2.0"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "c1404acfa3a71e42aa789c6d5564da59d4377569",
-        "version" : "8.42.1"
+        "revision" : "0c34e4da899a1dd9183db04082d1ceb6e9c2b301",
+        "version" : "8.44.0"
       }
     },
     {
