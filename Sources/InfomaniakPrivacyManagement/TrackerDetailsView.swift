@@ -76,5 +76,5 @@ struct TrackerDetailsView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    TrackerDetailsView(tracker: Tracker.matomo, appStorageKey: "", backgroundColor: Color.accentColor)
+    TrackerDetailsView(tracker: Tracker.matomo, appStorageKey: "", backgroundColor: Color.white)
 }

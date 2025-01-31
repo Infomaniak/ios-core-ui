@@ -65,8 +65,6 @@ public struct PrivacyManagementView: View {
                 } label: {
                     Text("applicationSourceCode", bundle: .module)
                         .font(.headline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.ikBorderless(isInlined: true))
                 .padding(IKPadding.medium)
