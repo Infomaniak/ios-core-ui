@@ -23,8 +23,8 @@ let package = Package(
             targets: ["InfomaniakCoreSwiftUI"]
         ),
         .library(
-            name: "InfomaniakPrivacyManagementUI",
-            targets: ["InfomaniakPrivacyManagementUI"]
+            name: "InfomaniakPrivacyManagement",
+            targets: ["InfomaniakPrivacyManagement"]
         ),
 		.library(
 			name: "InfomaniakCoreUIResources",
@@ -71,9 +71,8 @@ let package = Package(
             ]
         ),
         .target(
-            name: "InfomaniakPrivacyManagementUI",
+            name: "InfomaniakPrivacyManagement",
             dependencies: [
-                .product(name: "InfomaniakCore", package: "ios-core"),
                 "InfomaniakCoreSwiftUI"
             ]
         ),

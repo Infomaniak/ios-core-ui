@@ -24,7 +24,7 @@ public enum Tracker: String, CaseIterable, Identifiable {
 
     public var id: String { rawValue }
 
-    public var title: String {
+    public var title: LocalizedStringKey {
         switch self {
         case .matomo:
             return "trackingMatomoTitle"

@@ -21,22 +21,25 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct PrivacyManagementCell: View {
-    let title: String
-    var logoShort: Image?
+    let title: LocalizedStringKey
+    var image: Image
 
     var body: some View {
         HStack(spacing: IKPadding.medium) {
-            logoShort
-                .padding(.leading, IKPadding.medium)
+            image
 
-            Text(LocalizedStringKey(title), bundle: .module)
+            Text(title, bundle: .module)
                 .foregroundColor(Color("textPrimaryColor", bundle: .module))
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Image("chevron-right", bundle: .module)
-                .padding(.trailing, IKPadding.medium)
                 .foregroundColor(Color("textSecondaryColor", bundle: .module))
         }
-        .padding(.horizontal, value: .medium)
+        .padding(IKPadding.medium)
     }
+}
+
+@available(iOS 15.0, *)
+#Preview {
+    PrivacyManagementCell(title: "Matomo", image: Image("matomo-short", bundle: .module))
 }

@@ -51,33 +51,35 @@ public struct PrivacyManagementView: View {
 
     public var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: IKPadding.medium) {
+            VStack(alignment: .leading, spacing: 0) {
                 illustration
-                    .padding(.bottom, value: .small)
+                    .padding(IKPadding.medium)
                     .frame(maxWidth: .infinity)
 
                 Text("trackingManagementDescription", bundle: .module)
                     .multilineTextAlignment(.leading)
-                    .padding(.horizontal, value: .medium)
+                    .padding(.horizontal, IKPadding.medium)
 
                 Button {
                     openURL(urlRepository)
                 } label: {
                     Text("applicationSourceCode", bundle: .module)
                         .font(.headline)
-                        .foregroundColor(backgroundColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.ikBorderless(isInlined: true))
+                .padding(IKPadding.medium)
 
                 ForEach(Tracker.allCases, id: \.self) { item in
                     Button {
                         selectedDataType = item
                     } label: {
-                        PrivacyManagementCell(title: item.title, logoShort: item.logoShort)
+                        PrivacyManagementCell(title: item.title, image: item.logoShort)
                     }
                     .sheet(item: $selectedDataType) { selectedItem in
-                        TrackerDetailsView.create(
-                            for: selectedItem,
+                        TrackerDetailsView(
+                            tracker: selectedItem,
                             appStorageKey: selectedItem == .matomo ? userDefaultKeyMatomo : userDefaultKeySentry,
                             backgroundColor: backgroundColor
                         )
@@ -85,7 +87,7 @@ public struct PrivacyManagementView: View {
 
                     if item != Tracker.allCases.last {
                         Divider()
-                            .padding(.horizontal ,IKPadding.medium)
+                            .padding(.horizontal, IKPadding.medium)
                     }
                 }
             }

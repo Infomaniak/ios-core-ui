@@ -33,7 +33,7 @@ struct TrackerDetailsView: View {
 
     init(tracker: Tracker, appStorageKey: String, backgroundColor: Color) {
         self.tracker = tracker
-        _dataValue = AppStorage(wrappedValue: false, appStorageKey)
+        _dataValue = AppStorage(wrappedValue: true, appStorageKey)
         self.backgroundColor = backgroundColor
     }
 
@@ -59,7 +59,7 @@ struct TrackerDetailsView: View {
                 }
             }
             .background(backgroundColor)
-            .navigationBarTitle(Text(LocalizedStringKey(tracker.title), bundle: .module), displayMode: .inline)
+            .navigationBarTitle(Text(tracker.title, bundle: .module), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button { dismiss()
@@ -71,13 +71,6 @@ struct TrackerDetailsView: View {
                 }
             }
         }
-    }
-}
-
-@available(iOS 15.0, *)
-extension TrackerDetailsView {
-    static func create(for tracker: Tracker, appStorageKey: String, backgroundColor: Color) -> TrackerDetailsView {
-        return TrackerDetailsView(tracker: tracker, appStorageKey: appStorageKey, backgroundColor: backgroundColor)
     }
 }
 
