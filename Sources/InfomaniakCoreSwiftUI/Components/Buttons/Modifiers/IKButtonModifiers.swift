@@ -81,7 +81,7 @@ struct IKButtonLayout: ViewModifier {
 
     private var verticalPadding: CGFloat {
         guard !isInlined else { return 0 }
-        return controlSize == .large ? IKPadding.medium : IKPadding.small
+        return controlSize == .large ? IKPadding.medium : IKPadding.mini
     }
 
     func body(content: Content) -> some View {

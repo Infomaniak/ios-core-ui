@@ -22,29 +22,33 @@ import Foundation
 @frozen public enum IKPadding {
     @frozen public enum Option: CGFloat {
         /// 4pt padding
-        case extraSmall = 4
+        case micro = 4
         /// 8pt padding
-        case small = 8
+        case mini = 8
         /// 12pt padding
-        case intermediate = 12
+        case small = 12
         /// 16pt padding
         case medium = 16
         /// 24pt padding
         case large = 24
         /// 48pt padding
-        case extraLarge = 48
+        case huge = 32
+        /// 48pt padding
+        case giant = 48
     }
 
     /// 4pt padding
-    public static let extraSmall: CGFloat = 4
+    public static let micro: CGFloat = 4
     /// 8pt padding
-    public static let small: CGFloat = 8
+    public static let mini: CGFloat = 8
     /// 12pt padding
-    public static let intermediate: CGFloat = 12
+    public static let small: CGFloat = 12
     /// 16pt padding
     public static let medium: CGFloat = 16
     /// 24pt padding
     public static let large: CGFloat = 24
+    /// 32pt padding
+    public static let huge: CGFloat = 32
     /// 48pt padding
-    public static let extraLarge: CGFloat = 48
+    public static let giant: CGFloat = 48
 }
