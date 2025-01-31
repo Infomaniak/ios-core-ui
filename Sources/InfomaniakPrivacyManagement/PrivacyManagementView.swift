@@ -22,6 +22,8 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct PrivacyManagementView: View {
+    public static let title = Bundle.module.localizedString(forKey: "trackingManagementTitle", value: nil, table: nil)
+
     @Environment(\.openURL) private var openURL
 
     @State private var selectedDataType: Tracker?
@@ -32,6 +34,7 @@ public struct PrivacyManagementView: View {
     private let userDefaultStore: UserDefaults
     private let userDefaultKeyMatomo: String
     private let userDefaultKeySentry: String
+    private let showTitle: Bool
 
     public init(
         urlRepository: URL,
@@ -39,7 +42,8 @@ public struct PrivacyManagementView: View {
         illustration: Image,
         userDefaultStore: UserDefaults,
         userDefaultKeyMatomo: String,
-        userDefaultKeySentry: String
+        userDefaultKeySentry: String,
+        showTitle: Bool = true
     ) {
         self.urlRepository = urlRepository
         self.backgroundColor = backgroundColor
@@ -47,6 +51,7 @@ public struct PrivacyManagementView: View {
         self.userDefaultStore = userDefaultStore
         self.userDefaultKeyMatomo = userDefaultKeyMatomo
         self.userDefaultKeySentry = userDefaultKeySentry
+        self.showTitle = showTitle
     }
 
     public var body: some View {
@@ -92,7 +97,7 @@ public struct PrivacyManagementView: View {
             .defaultAppStorage(userDefaultStore)
             .background(backgroundColor)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(Text("trackingManagementTitle", bundle: .module))
+            .navigationTitle(showTitle ? Self.title : "")
         }
     }
 }
