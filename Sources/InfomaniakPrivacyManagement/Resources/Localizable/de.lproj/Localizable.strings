@@ -1,0 +1,32 @@
+/*
+ * Loco ios export: Xcode Strings (legacy)
+ * Project: CoreUI
+ * Locale: de, German
+ * Tagged: ios, !common, !my kSuite
+ * Exported by: Matthieu Déglon
+ * Exported at: Thu, 30 Jan 2025 11:15:26 +0100
+ */
+
+/* loco:679b18c9e56503c64e0f47b2 */
+"applicationSourceCode" = "Siehe Quellcode";
+
+/* loco:679b16a81b0e3541200e1672 */
+"authorizeTracking" = "Verfolgung genehmigen";
+
+/* loco:679b17a8f70dbaf41b0c3c92 */
+"trackingManagementDescription" = "Sie können die Nutzungs- und Betriebsdaten, die Infomaniak abruft, individuell anpassen, um Fehler zu beheben und die Anwendung zu verbessern. Beide Tools werden ausschliesslich von uns gehostet und verwaltet.\n\nInfomaniak respektiert Ihre Privatsphäre: Der Quellcode dieser Anwendung kann überprüft werden, die gesammelten Informationen sind anonym und Ihre persönlichen Daten werden streng vertraulich behandelt und niemals an Dritte weitergegeben.";
+
+/* loco:679b1726759efd28eb0aae82 */
+"trackingManagementTitle" = "Verwaltung der Daten";
+
+/* loco:679b1934489a90910a02ef02 */
+"trackingMatomoDescription" = "Matomo ist ein Analysetool, das ausschliesslich von Infomaniak gehostet und verwaltet wird, um zu verstehen, wie die Anwendung genutzt wird.\n\nDurch die Untersuchung dieser Daten kann unser Team die Schnittstelle der Anwendung kontinuierlich verbessern.";
+
+/* loco:679b19a71cbd373edb0fcc92 */
+"trackingMatomoTitle" = "Matomo";
+
+/* loco:679b19effce81c25230ef922 */
+"trackingSentryDescription" = "Sentry ist ein Tool, das ausschliesslich von Infomaniak gehostet und verwaltet wird, um die Stabilität der Anwendung in Echtzeit zu überwachen und unseren Entwicklern automatisch alle technischen Fehler zu melden.\n\nAnhand dieser Daten kann unser Team die Anwendung schnell korrigieren und optimieren, was zu einem besseren Nutzererlebnis für Sie führt.";
+
+/* loco:679b1a63d5844c9d0d041fb2 */
+"trackingSentryTitle" = "Sentry";

@@ -1,0 +1,32 @@
+/*
+ * Loco ios export: Xcode Strings (legacy)
+ * Project: CoreUI
+ * Locale: en, English
+ * Tagged: ios, !common, !my kSuite
+ * Exported by: Matthieu Déglon
+ * Exported at: Thu, 30 Jan 2025 11:15:26 +0100
+ */
+
+/* loco:679b18c9e56503c64e0f47b2 */
+"applicationSourceCode" = "See source code";
+
+/* loco:679b16a81b0e3541200e1672 */
+"authorizeTracking" = "Authorize tracking";
+
+/* loco:679b17a8f70dbaf41b0c3c92 */
+"trackingManagementDescription" = "You can customize the usage and operational data that Infomaniak retrieves to correct bugs and enhance the application. Both tools are hosted and managed exclusively by us.\n\nInfomaniak respects your privacy: the source code of this application can be verified, the information collected is anonymous and your personal information remains strictly confidential and is never shared with third parties.";
+
+/* loco:679b1726759efd28eb0aae82 */
+"trackingManagementTitle" = "Data management";
+
+/* loco:679b1934489a90910a02ef02 */
+"trackingMatomoDescription" = "Matomo is an analysis tool hosted and managed exclusively by Infomaniak to understand how the application is used.\n\nBy studying this data, our team is able to continually improve the application’s interface.";
+
+/* loco:679b19a71cbd373edb0fcc92 */
+"trackingMatomoTitle" = "Matomo";
+
+/* loco:679b19effce81c25230ef922 */
+"trackingSentryDescription" = "Sentry is a tool hosted and managed exclusively by Infomaniak to monitor the stability of the application in real time and automatically report any technical errors to our developers.\n\nThis data enables our team to quickly correct and optimise the application, resulting in a better user experience for you.";
+
+/* loco:679b1a63d5844c9d0d041fb2 */
+"trackingSentryTitle" = "Sentry";
