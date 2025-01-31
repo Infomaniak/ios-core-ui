@@ -29,7 +29,7 @@ let package = Package(
 		.library(
 			name: "InfomaniakCoreUIResources",
         	targets: ["InfomaniakCoreUIResources"]
-		)
+		),
 		.library(
             name: "InfomaniakCoreUIResources",
             targets: ["InfomaniakCoreUIResources"]
