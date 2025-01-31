@@ -30,10 +30,6 @@ let package = Package(
 			name: "InfomaniakCoreUIResources",
         	targets: ["InfomaniakCoreUIResources"]
 		),
-		.library(
-            name: "InfomaniakCoreUIResources",
-            targets: ["InfomaniakCoreUIResources"]
-        ),
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
@@ -73,6 +69,7 @@ let package = Package(
         .target(
             name: "InfomaniakPrivacyManagement",
             dependencies: [
+                "DesignSystem",
                 "InfomaniakCoreSwiftUI"
             ]
         ),
