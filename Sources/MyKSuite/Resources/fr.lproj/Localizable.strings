@@ -2,9 +2,9 @@
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
  * Locale: fr, French
- * Tagged: ios, !common
+ * Tagged: ios, !common, !privacy
  * Exported by: Ambroise Decouttere
- * Exported at: Mon, 27 Jan 2025 13:13:52 +0100
+ * Exported at: Mon, 03 Feb 2025 12:53:14 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
@@ -16,8 +16,20 @@
 /* loco:679237c7ece9f81d070d4662 */
 "myKSuiteUpgradeDetails" = "Pour bénéficier de my kSuite+, modifiez votre offre depuis votre interface web.";
 
+/* loco:67a09ba06899047858006672 */
+"myKSuiteUpgradeDriveLabel" = "1 To pour vos photos, documents et fichiers";
+
 /* loco:6797782f5ab272f013013552 */
 "myKSuiteUpgradeLabel" = "Et bien plus encore !";
 
+/* loco:67a09be0720a8a9a3b0ece64 */
+"myKSuiteUpgradePdfEditionLabel" = "Edition PDF";
+
+/* loco:67a09ac2665e51f3f20f6674 */
+"myKSuiteUpgradeRedirectLabel" = "Redirections, personnalisation de vos rappels…";
+
 /* loco:67923789817186d0f903c802 */
 "myKSuiteUpgradeTitle" = "Donner plus d’espace à vos idées";
+
+/* loco:67a09a9cc9835c47c000ca62 */
+"myKSuiteUpgradeUnlimitedMailLabel" = "Stockage et envois d’e-mails illimités";
