@@ -10,6 +10,51 @@
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Cerrar";
 
+/* loco:67988071a77178d0df04c2a2 */
+"iOSMyKSuiteDashboardSubscriptionButton" = "Gestionar mi suscripción";
+
+/* loco:67988027c473dfc0db0a3472 */
+"iOSMyKSuiteDashboardSubscriptionLabel" = "Para cancelar o cambiar la frecuencia de tu suscripción, ve a los ajustes de tu Apple Store.";
+
+/* loco:679b829c204ad8c39009eb82 */
+"myKSuiteDashboardDataUnlimited" = "Sin límites";
+
+/* loco:679876cf3e99103cb30382f2 */
+"myKSuiteDashboardFreeMailLabel" = "Una dirección de correo electrónico gratuita de por vida";
+
+/* loco:679b589f89ba84ff710b5874 */
+"myKSuiteDashboardFreeTrialButton" = "Prueba gratuita";
+
+/* loco:679b59981c4d7d32f6069642 */
+"myKSuiteDashboardFreeTrialDescription" = "Obtenga más funcionalidad y almacenamiento con mi kSuite+";
+
+/* loco:679b584f89ba84ff710b5872 */
+"myKSuiteDashboardFreeTrialTitle" = "30 días gratis";
+
+/* loco:67987d5be4acb82fc404d842 */
+"myKSuiteDashboardFunctionalityCustomReminders" = "Personalice las horas no disponibles para los recordatorios y los envíos programados";
+
+/* loco:67987b1aeb6331b99c0e21a2 */
+"myKSuiteDashboardFunctionalityLimit" = "Envíos diarios limitados";
+
+/* loco:679879a94707871eef016f62 */
+"myKSuiteDashboardFunctionalityMailAndDrive" = "Almacenamiento para Mail y kDrive";
+
+/* loco:6798773f8b7f37b34c037b62 */
+"myKSuiteDashboardLimitedFunctionalityLabel" = "Funcionalidad limitada";
+
+/* loco:67987dbd8cfda44abb022a82 */
+"myKSuiteDashboardPaymentMethod" = "Forma de pago";
+
+/* loco:679b3ce9888ce359ae045214 */
+"myKSuiteDashboardTitle" = "Mi suscripción";
+
+/* loco:67987d9bec08565146015402 */
+"myKSuiteDashboardTrialPeriod" = "Período de prueba";
+
+/* loco:679886c5531841f73a055a22 */
+"myKSuiteDashboardUntil" = "Hasta %@";
+
 /* loco:679237aa626480c0ac0e9462 */
 "myKSuiteUpgradeDescription" = "Más espacio, más posibilidades y más flexibilidad para hacer lo que te gusta.";
 
