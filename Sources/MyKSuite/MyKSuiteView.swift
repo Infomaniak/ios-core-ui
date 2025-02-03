@@ -23,20 +23,17 @@ import SwiftUI
 public struct MyKSuiteView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let configuration: [MyKSuiteLabel]
+    let configuration: MyKSuiteConfiguration
+
+    public init(configuration: MyKSuiteConfiguration) {
+        self.configuration = configuration
+    }
 
     public var body: some View {
         VStack(spacing: 32) {
             ImageHelper.gradient
                 .resizable()
-                .frame(maxWidth: .infinity)
-                .frame(height: 90)
-                .overlay {
-                    ImageHelper.myKSuitePlusLogo
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 32)
-                }
+                .scaledToFit()
 
             VStack(alignment: .leading, spacing: 32) {
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
@@ -49,7 +46,7 @@ public struct MyKSuiteView: View {
                 }
 
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
-                    ForEach(configuration) { label in
+                    ForEach(configuration.labels) { label in
                         Label {
                             Text(label.text)
                         } icon: {
@@ -78,10 +75,10 @@ public struct MyKSuiteView: View {
 
 @available(iOS 15.0, *)
 #Preview("kDrive") {
-    MyKSuiteView(configuration: [])
+    MyKSuiteView(configuration: .kDrive)
 }
 
 @available(iOS 15.0, *)
 #Preview("Mail") {
-    MyKSuiteView(configuration: [])
+    MyKSuiteView(configuration: .mail)
 }

@@ -4,56 +4,11 @@
  * Locale: en, English
  * Tagged: ios, !common, !privacy
  * Exported by: Ambroise Decouttere
- * Exported at: Thu, 30 Jan 2025 14:46:35 +0100
+ * Exported at: Mon, 03 Feb 2025 12:53:14 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Close";
-
-/* loco:67988071a77178d0df04c2a2 */
-"iOSMyKSuiteDashboardSubscriptionButton" = "Manage my subscription";
-
-/* loco:67988027c473dfc0db0a3472 */
-"iOSMyKSuiteDashboardSubscriptionLabel" = "To cancel or change the frequency of your subscription, go to your Apple Store settings.";
-
-/* loco:679b829c204ad8c39009eb82 */
-"myKSuiteDashboardDataUnlimited" = "Unlimited";
-
-/* loco:679876cf3e99103cb30382f2 */
-"myKSuiteDashboardFreeMailLabel" = "A free mail address for life";
-
-/* loco:679b589f89ba84ff710b5874 */
-"myKSuiteDashboardFreeTrialButton" = "Start your free trial";
-
-/* loco:679b59981c4d7d32f6069642 */
-"myKSuiteDashboardFreeTrialDescription" = "Get more functionality and storage with my kSuite+";
-
-/* loco:679b584f89ba84ff710b5872 */
-"myKSuiteDashboardFreeTrialTitle" = "30 days free";
-
-/* loco:67987d5be4acb82fc404d842 */
-"myKSuiteDashboardFunctionalityCustomReminders" = "Customize unavailable times for reminders and scheduled mailings";
-
-/* loco:67987b1aeb6331b99c0e21a2 */
-"myKSuiteDashboardFunctionalityLimit" = "Limited daily shipments";
-
-/* loco:679879a94707871eef016f62 */
-"myKSuiteDashboardFunctionalityMailAndDrive" = "Storage for Mail and kDrive";
-
-/* loco:6798773f8b7f37b34c037b62 */
-"myKSuiteDashboardLimitedFunctionalityLabel" = "Limited functionality";
-
-/* loco:67987dbd8cfda44abb022a82 */
-"myKSuiteDashboardPaymentMethod" = "Method of payment";
-
-/* loco:679b3ce9888ce359ae045214 */
-"myKSuiteDashboardTitle" = "My subscription";
-
-/* loco:67987d9bec08565146015402 */
-"myKSuiteDashboardTrialPeriod" = "Trial period";
-
-/* loco:679886c5531841f73a055a22 */
-"myKSuiteDashboardUntil" = "Until %@";
 
 /* loco:679237aa626480c0ac0e9462 */
 "myKSuiteUpgradeDescription" = "More space, more possibilities and more flexibility to do what you love.";
@@ -61,8 +16,20 @@
 /* loco:679237c7ece9f81d070d4662 */
 "myKSuiteUpgradeDetails" = "To benefit from my kSuite+, modify your offer from your web interface.";
 
+/* loco:67a09ba06899047858006672 */
+"myKSuiteUpgradeDriveLabel" = "1 TB for your photos, documents and files";
+
 /* loco:6797782f5ab272f013013552 */
 "myKSuiteUpgradeLabel" = "And even more!";
 
+/* loco:67a09be0720a8a9a3b0ece64 */
+"myKSuiteUpgradePdfEditionLabel" = "PDF edition";
+
+/* loco:67a09ac2665e51f3f20f6674 */
+"myKSuiteUpgradeRedirectLabel" = "Redirections, customised reminders…";
+
 /* loco:67923789817186d0f903c802 */
 "myKSuiteUpgradeTitle" = "Give your ideas more space";
+
+/* loco:67a09a9cc9835c47c000ca62 */
+"myKSuiteUpgradeUnlimitedMailLabel" = "Unlimited e-mail storage and sending";
