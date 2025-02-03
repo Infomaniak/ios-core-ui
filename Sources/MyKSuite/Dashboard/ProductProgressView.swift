@@ -26,7 +26,7 @@ struct ProductProgressView: View {
                 Text("\(usedValue.formatted(.defaultByteCount)) / \(totalValue.formatted(.defaultByteCount))")
             }
 
-            ProgressView(value: Float(usedValue), total: Float(totalValue))
+            ProgressView(value: Double(usedValue), total: Double(totalValue))
                 .progressViewStyle(CustomProgressBar())
                 .foregroundStyle(product.color)
         }
