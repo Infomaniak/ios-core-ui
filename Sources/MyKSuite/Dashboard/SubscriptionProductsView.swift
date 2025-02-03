@@ -28,7 +28,7 @@ struct SubscriptionProductsView: View {
                 }
             }
 
-            ProductProgressView(product: .drive, usedValue: 23, totalValue: 15)
+            ProductProgressView(product: .drive, usedValue: myKSuite.drive.usedSize, totalValue: myKSuite.drive.size)
         }
     }
 }

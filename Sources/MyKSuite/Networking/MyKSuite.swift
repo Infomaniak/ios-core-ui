@@ -13,7 +13,7 @@ public struct MyKSuite: Codable {
     let packId: Int
     let pack: Pack
     let isFree: Bool
-//    let drive: Drive
+    let drive: Drive
     let freeMail: FreeMail
     let hasAutoRenew: Bool
 
@@ -34,14 +34,17 @@ struct Pack: Codable {
     let isMaxStorageOffer: Bool
 }
 
-// struct Drive: Codable {
-//
-// }
+struct Drive: Codable {
+    let id: Int
+    let name: String
+    let size: Int64
+    let usedSize: Int64
+}
 
 struct FreeMail: Codable {
     let id: Int
     let dailyLimitSent: Int
-    let storageSizeLimit: Int
+    let storageSizeLimit: Int64
     let email: String
-    let usedSize: Int
+    let usedSize: Int64
 }

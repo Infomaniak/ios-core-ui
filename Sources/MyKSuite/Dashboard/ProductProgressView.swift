@@ -10,8 +10,8 @@ import SwiftUI
 @available(iOS 15, *)
 struct ProductProgressView: View {
     let product: Product
-    let usedValue: Int
-    let totalValue: Int
+    let usedValue: Int64
+    let totalValue: Int64
 
     private var test: String {
         Int64(totalValue).formatted(.defaultByteCount)
