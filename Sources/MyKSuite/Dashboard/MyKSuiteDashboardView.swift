@@ -50,7 +50,7 @@ public struct MyKSuiteDashboardView: View {
                     ImageHelper.background
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: .infinity, alignment: .top)
+                        .frame(maxHeight: .infinity, alignment: .top)
                 }
             }
         }
