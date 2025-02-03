@@ -29,7 +29,9 @@ public struct MyKSuiteDashboardView: View {
                 VStack(spacing: 24) {
                     SubscriptionCardView(myKSuite: myKSuite)
 
-//                    if myKSuite.isFree {
+                    if !myKSuite.isFree {
+                        SubscriptionBenefitsView()
+                    } // else {
 //                        FreeTrialView()
 //                    }
                 }
