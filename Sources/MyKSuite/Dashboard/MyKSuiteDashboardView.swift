@@ -51,6 +51,7 @@ public struct MyKSuiteDashboardView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: .infinity, alignment: .top)
+                        .ignoresSafeArea()
                 }
             }
         }
