@@ -22,8 +22,12 @@ struct ProductProgressView: View {
             HStack {
                 Text(product.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(ColorHelper.orca)
+                    .font(FontHelper.body)
 
                 Text("\(usedValue.formatted(.defaultByteCount)) / \(totalValue.formatted(.defaultByteCount))")
+                    .foregroundStyle(ColorHelper.elephant)
+                    .font(FontHelper.bodySmall)
             }
 
             ProgressView(value: Double(usedValue), total: Double(totalValue))
