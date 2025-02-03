@@ -23,9 +23,9 @@ import SwiftUI
 public struct MyKSuiteView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let configuration: [MyKSuiteLabel]
+    let configuration: MyKSuiteConfiguration
 
-    public init(configuration: [MyKSuiteLabel]) {
+    public init(configuration: MyKSuiteConfiguration) {
         self.configuration = configuration
     }
 
@@ -46,18 +46,12 @@ public struct MyKSuiteView: View {
                 }
 
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
-                    ForEach(configuration) { label in
+                    ForEach(configuration.labels) { label in
                         Label {
                             Text(label.text)
                         } icon: {
                             label.icon
                         }
-                    }
-
-                    Label {
-                        Text("myKSuiteUpgradeLabel", bundle: .module)
-                    } icon: {
-                        Image("gift", bundle: .module)
                     }
                 }
 
@@ -81,10 +75,10 @@ public struct MyKSuiteView: View {
 
 @available(iOS 15.0, *)
 #Preview("kDrive") {
-    MyKSuiteView(configuration: [])
+    MyKSuiteView(configuration: .kDrive)
 }
 
 @available(iOS 15.0, *)
 #Preview("Mail") {
-    MyKSuiteView(configuration: [])
+    MyKSuiteView(configuration: .mail)
 }
