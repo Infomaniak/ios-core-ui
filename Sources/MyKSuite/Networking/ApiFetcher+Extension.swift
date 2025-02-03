@@ -10,8 +10,8 @@ import Foundation
 import InfomaniakCore
 
 extension Endpoint {
-    static func myKSuite(id: Int) -> Endpoint {
-        return Endpoint(host: "api.staging-myksuite.dev.infomaniak.ch", path: "/1/my_ksuite/\(id)", queryItems: [
+    static func myKSuite() -> Endpoint {
+        return Endpoint(host: "api.staging-myksuite.dev.infomaniak.ch", path: "/1/my_ksuite/current", queryItems: [
             URLQueryItem(name: "with", value: "*")
         ])
     }
@@ -25,7 +25,7 @@ extension ApiFetcher {
     }
 
     func myKSuite(id: Int) async throws -> MyKSuite {
-        let endpoint = Endpoint.myKSuite(id: id)
+        let endpoint = Endpoint.myKSuite()
 
         let header = HTTPHeader(name: "Authorization", value: "Bearer \(currentToken?.accessToken ?? "")")
         return try await perform(request: AF.request(

@@ -27,7 +27,7 @@ public struct MyKSuiteDashboardView: View {
         NavigationView {
             if let myKSuite {
                 VStack(spacing: 24) {
-                    SubscriptionCardView(myKSuite: PreviewHelper.sampleMyKSuite /* myKSuite */ )
+                    SubscriptionCardView(myKSuite: myKSuite)
 
 //                    if myKSuite.isFree {
 //                        FreeTrialView()

@@ -12,7 +12,7 @@ enum PreviewHelper {
         id: 1,
         name: "my_ksuite",
         driveStorage: 15,
-        mailStorage: 20,
+        mailStorage: 21474836480,
         mailDailyLimitSend: 500,
         isMaxStorageOffer: false
     )
@@ -20,7 +20,7 @@ enum PreviewHelper {
     static let sampleFreeMail = FreeMail(
         id: 343_334,
         dailyLimitSent: 500,
-        storageSizeLimit: 20,
+        storageSizeLimit: 21474836480,
         email: "ksuitemombile@ik.me",
         usedSize: 27
     )

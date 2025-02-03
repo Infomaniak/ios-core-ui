@@ -43,5 +43,5 @@ struct FreeMail: Codable {
     let dailyLimitSent: Int
     let storageSizeLimit: Int
     let email: String
-    let usedSize: Int?
+    let usedSize: Int
 }
