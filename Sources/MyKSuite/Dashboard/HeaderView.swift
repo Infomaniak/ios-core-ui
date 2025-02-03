@@ -29,7 +29,7 @@ struct HeaderView: View {
 
             Text(myKSuite.freeMail.email)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(ColorHelper.orca)
+                .foregroundStyle(ColorHelper.primary)
                 .font(FontHelper.body)
 
             myKSuite.icon

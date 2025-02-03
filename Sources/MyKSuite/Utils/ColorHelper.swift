@@ -7,16 +7,22 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 enum ColorHelper {
     static let orca = Color("orca", bundle: .module)
     static let elephant = Color("elephant", bundle: .module)
     static let polarBear = Color("polar.bear", bundle: .module)
     static let rabbit = Color("rabbit", bundle: .module)
-    static let shadow = Color("shadow", bundle: .module)
+    static let shark = Color("shark", bundle: .module)
     static let sky = Color("sky", bundle: .module)
+    static let bat = Color("bat", bundle: .module)
 
     static let productMail = Color("product.mail", bundle: .module)
     static let productDrive = Color("product.drive", bundle: .module)
+
+    static let cardBackground = Color(light: .white, dark: bat)
+    static let primary = Color(light: orca, dark: rabbit)
+    static let secondary = Color(light: elephant, dark: shark)
 
     // MARK: - Gradient
 
@@ -31,4 +37,26 @@ enum ColorHelper {
         startPoint: .leading,
         endPoint: .trailing
     )
+}
+
+@available(iOS 15.0, *)
+extension Color {
+    init(light: Color, dark: Color) {
+        self.init(light: UIColor(light), dark: UIColor(dark))
+    }
+
+    private init(light: UIColor, dark: UIColor) {
+        self.init(uiColor: UIColor(dynamicProvider: { traits in
+            switch traits.userInterfaceStyle {
+            case .light, .unspecified:
+                return light
+
+            case .dark:
+                return dark
+
+            @unknown default:
+                return light
+            }
+        }))
+    }
 }

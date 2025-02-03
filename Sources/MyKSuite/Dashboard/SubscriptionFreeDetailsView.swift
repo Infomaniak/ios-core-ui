@@ -31,7 +31,7 @@ struct SubscriptionFreeDetailsView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         Text("\(dailyLimit)")
-                            .foregroundStyle(ColorHelper.orca)
+                            .foregroundStyle(ColorHelper.primary)
                             .font(FontHelper.bodySmallMedium)
                     }
                     Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
@@ -52,7 +52,7 @@ struct SubscriptionFreeDetailsView: View {
             }
         }
         .font(FontHelper.body)
-        .foregroundStyle(ColorHelper.orca)
+        .foregroundStyle(ColorHelper.primary)
     }
 }
 

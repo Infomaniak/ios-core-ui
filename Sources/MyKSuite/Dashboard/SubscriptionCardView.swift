@@ -28,7 +28,7 @@ struct SubscriptionCardView: View {
             }
         }
         .padding(value: .medium)
-        .background(.white)
+        .background(ColorHelper.cardBackground)
         .cardStyle()
     }
 }
@@ -37,4 +37,12 @@ struct SubscriptionCardView: View {
 #Preview {
     SubscriptionCardView(myKSuite: PreviewHelper.sampleMyKSuite)
         .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background {
+            ImageHelper.background
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: .infinity, alignment: .top)
+                .ignoresSafeArea()
+        }
 }

@@ -23,7 +23,7 @@ struct SubscriptionProductsView: View {
                 HStack {
                     Text(Product.mail.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(ColorHelper.orca)
+                        .foregroundStyle(ColorHelper.primary)
                         .font(FontHelper.body)
 
                     Text("myKSuiteDashboardDataUnlimited", bundle: .module)

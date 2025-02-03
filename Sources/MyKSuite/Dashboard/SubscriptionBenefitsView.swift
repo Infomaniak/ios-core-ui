@@ -40,7 +40,7 @@ struct SubscriptionBenefitsView: View {
                     .frame(width: 16, height: 16)
             }
         }
-        .foregroundStyle(ColorHelper.orca)
+        .foregroundStyle(ColorHelper.primary)
         .font(FontHelper.body)
         .padding(value: .medium)
         .background(.white)

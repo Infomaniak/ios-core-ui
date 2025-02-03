@@ -13,7 +13,7 @@ struct SubscriptionPlusDetailsView: View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
                 Text("myKSuiteDashboardTrialPeriod", bundle: .module)
-                    .foregroundStyle(ColorHelper.orca)
+                    .foregroundStyle(ColorHelper.primary)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 Text(
@@ -28,7 +28,7 @@ struct SubscriptionPlusDetailsView: View {
             HStack {
                 Text("myKSuiteDashboardPaymentMethod", bundle: .module)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(ColorHelper.orca)
+                    .foregroundStyle(ColorHelper.primary)
                 Text("!Apple Pay")
                     .foregroundStyle(ColorHelper.elephant)
             }
@@ -39,7 +39,7 @@ struct SubscriptionPlusDetailsView: View {
 
                 VStack(alignment: .leading, spacing: 16) {
                     Text("iOSMyKSuiteDashboardSubscriptionLabel", bundle: .module)
-                        .foregroundStyle(ColorHelper.orca)
+                        .foregroundStyle(ColorHelper.primary)
 
                     Button {
                         // Gerer mon abonnement

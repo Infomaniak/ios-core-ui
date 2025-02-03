@@ -9,9 +9,14 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct ProductProgressView: View {
+    @Environment(\.colorScheme) private var colorScheme
     let product: Product
     let usedValue: Int64
     let totalValue: Int64
+
+    private var sizeColor: Color {
+        colorScheme == .dark ? ColorHelper.rabbit : ColorHelper.elephant
+    }
 
     private var test: String {
         Int64(totalValue).formatted(.defaultByteCount)
@@ -22,11 +27,11 @@ struct ProductProgressView: View {
             HStack {
                 Text(product.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(ColorHelper.orca)
+                    .foregroundStyle(ColorHelper.primary)
                     .font(FontHelper.body)
 
                 Text("\(usedValue.formatted(.defaultByteCount)) / \(totalValue.formatted(.defaultByteCount))")
-                    .foregroundStyle(ColorHelper.elephant)
+                    .foregroundStyle(sizeColor)
                     .font(FontHelper.bodySmall)
             }
 

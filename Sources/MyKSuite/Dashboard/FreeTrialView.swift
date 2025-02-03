@@ -21,14 +21,14 @@ struct FreeTrialView: View {
 
                 Text("myKSuiteDashboardFreeTrialTitle", bundle: .module)
                     .font(FontHelper.labelMedium)
-                    .foregroundStyle(ColorHelper.orca)
+                    .foregroundStyle(ColorHelper.primary)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 8)
                     .background(.white, in: .capsule)
             }
             Text("myKSuiteDashboardFreeTrialDescription", bundle: .module)
                 .font(FontHelper.bodySmall)
-                .foregroundStyle(ColorHelper.orca)
+                .foregroundStyle(ColorHelper.primary)
 
             Button {
                 // Start trial

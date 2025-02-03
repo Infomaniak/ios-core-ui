@@ -39,7 +39,7 @@ public struct MyKSuiteView: View {
                 VStack(alignment: .leading, spacing: IKPadding.medium) {
                     Text("myKSuiteUpgradeTitle", bundle: .module)
                         .font(FontHelper.title)
-                        .foregroundStyle(ColorHelper.orca)
+                        .foregroundStyle(ColorHelper.primary)
                         .frame(maxWidth: .infinity, alignment: .center)
 
                     Text("myKSuiteUpgradeDescription", bundle: .module)
