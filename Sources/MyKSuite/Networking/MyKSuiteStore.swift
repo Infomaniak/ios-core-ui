@@ -31,7 +31,7 @@ public actor MyKSuiteStore {
     @discardableResult
     public func updateMyKSuite(with apiFetcher: ApiFetcher) async throws -> MyKSuite {
         await loadIfNeeded()
-        let myKSuite = try await apiFetcher.myKSuite(id: 81)
+        let myKSuite = try await apiFetcher.myKSuite()
         kSuites?[myKSuite.id] = myKSuite
 
         await save()
