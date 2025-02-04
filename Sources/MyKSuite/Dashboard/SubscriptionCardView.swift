@@ -28,6 +28,7 @@ struct SubscriptionCardView: View {
             }
         }
         .padding(value: .medium)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(ColorHelper.backgroundPrimary)
         .cardStyle()
     }

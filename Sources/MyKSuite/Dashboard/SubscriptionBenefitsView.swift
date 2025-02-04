@@ -43,6 +43,7 @@ struct SubscriptionBenefitsView: View {
         .foregroundStyle(ColorHelper.primary)
         .font(FontHelper.body)
         .padding(value: .medium)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(ColorHelper.backgroundPrimary)
         .cardStyle()
     }
