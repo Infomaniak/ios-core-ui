@@ -26,10 +26,10 @@ let package = Package(
             name: "InfomaniakPrivacyManagement",
             targets: ["InfomaniakPrivacyManagement"]
         ),
-		.library(
-			name: "InfomaniakCoreUIResources",
-        	targets: ["InfomaniakCoreUIResources"]
-		),
+        .library(
+            name: "InfomaniakCoreUIResources",
+            targets: ["InfomaniakCoreUIResources"]
+        ),
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
