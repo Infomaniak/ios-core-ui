@@ -10,7 +10,6 @@ disabled_rules:
  - inclusive_language
  - for_where
  - optional_data_string_conversion
- - non_optional_string_data_conversion
 opt_in_rules:
  - closure_end_indentation
  - closure_spacing
@@ -40,3 +39,29 @@ excluded:
  - Derived/
  - Tuist/.build/
  - Tests/*
+custom_rules:
+  private_state:
+    included:
+      - ".*\\.swift"
+    regex: "(?<!@Previewable\\s)@State\\s+var"
+    message: "State should be private"
+  private_state_object:
+    included:
+      - ".*\\.swift"
+    regex: "(?<!@Previewable\\s)@StateObject\\s+var"
+    message: "StateObject should be private"
+  private_modal_state:
+    included:
+      - ".*\\.swift"
+    regex: "(?<!@Previewable\\s)@ModalState\\s+var"
+    message: "ModalState should be private"
+  private_environment:
+    included:
+      - ".*\\.swift"
+    regex: "@Environment\\([^)]*\\)\\s+var"
+    message: "Environment should be private"
+  private_environment_object:
+    included:
+      - ".*\\.swift"
+    regex: "@EnvironmentObject\\s+var"
+    message: "EnvironmentObject should be private"
