@@ -4,7 +4,7 @@
  * Locale: en, English
  * Tagged: ios, !common, !privacy
  * Exported by: Ambroise Decouttere
- * Exported at: Mon, 03 Feb 2025 14:54:17 +0100
+ * Exported at: Tue, 04 Feb 2025 11:20:34 +0100
  */
 
 /* loco:679237f6daa3807fa008b175 */
@@ -54,6 +54,12 @@
 
 /* loco:679886c5531841f73a055a22 */
 "myKSuiteDashboardUntil" = "Until %@";
+
+/* loco:67a1e9d4782ef3341305bf04 */
+"myKSuiteManageSubscriptionButton" = "Manage my offer";
+
+/* loco:67a1e976f29a9fc7070991f2 */
+"myKSuiteManageSubscriptionDescription" = "To manage or cancel your subscription, log on to the kSuite web interface";
 
 /* loco:67a0c9effbc50b7a78076222 */
 "myKSuiteUpgradeBenefitsTitle" = "YOUR BENEFITS";

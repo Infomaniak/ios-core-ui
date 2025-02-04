@@ -35,26 +35,25 @@ struct SubscriptionPlusDetailsView: View {
 //                    .foregroundStyle(ColorHelper.secondary)
 //            }
 
-            // Waiting for InAppPurchase
 
-//            HStack(alignment: .top, spacing: 12) {
-//                ImageHelper.information
-//                    .foregroundStyle(ColorHelper.secondary)
-//
-//                VStack(alignment: .leading, spacing: 16) {
-//                    Text("iOSMyKSuiteDashboardSubscriptionLabel", bundle: .module)
-//                        .foregroundStyle(ColorHelper.primary)
-//
-//                    Button {
-//                        // Gerer mon abonnement
-//                    } label: {
-//                        Text("iOSMyKSuiteDashboardSubscriptionButton", bundle: .module)
-//                    }
-//                }
-//            }
-//            .frame(maxWidth: .infinity, alignment: .leading)
-//            .padding(value: .medium)
-//            .background(ColorHelper.backgroundSecondary, in: .rect(cornerRadius: 8))
+            HStack(alignment: .top, spacing: 12) {
+                ImageHelper.information
+                    .foregroundStyle(ColorHelper.secondary)
+
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("myKSuiteManageSubscriptionDescription", bundle: .module)
+                        .foregroundStyle(ColorHelper.primary)
+
+                    Button {
+                        // Gerer mon abonnement
+                    } label: {
+                        Text("myKSuiteManageSubscriptionButton", bundle: .module)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(value: .medium)
+            .background(ColorHelper.backgroundSecondary, in: .rect(cornerRadius: 8))
         }
     }
 }
