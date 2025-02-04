@@ -3,6 +3,16 @@
     {
       "filename" : "myKSuitePlus.logo.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "myKSuitePlus.logo.dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
