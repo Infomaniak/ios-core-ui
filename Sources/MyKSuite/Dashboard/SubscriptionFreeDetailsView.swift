@@ -20,7 +20,7 @@ struct SubscriptionFreeDetailsView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 16)
-                    .foregroundStyle(ColorHelper.elephant)
+                    .foregroundStyle(ColorHelper.secondary)
             }
 
             DisclosureGroup {
@@ -37,7 +37,7 @@ struct SubscriptionFreeDetailsView: View {
                     Text("myKSuiteDashboardFunctionalityCustomReminders", bundle: .module)
                 }
                 .padding(.top, 18)
-                .foregroundStyle(ColorHelper.elephant)
+                .foregroundStyle(ColorHelper.secondary)
                 .font(FontHelper.bodySmall)
             } label: {
                 Label {
@@ -47,7 +47,7 @@ struct SubscriptionFreeDetailsView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 16)
-                        .foregroundStyle(ColorHelper.elephant)
+                        .foregroundStyle(ColorHelper.secondary)
                 }
             }
         }

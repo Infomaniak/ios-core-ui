@@ -28,7 +28,7 @@ struct SubscriptionCardView: View {
             }
         }
         .padding(value: .medium)
-        .background(ColorHelper.cardBackground)
+        .background(ColorHelper.backgroundPrimary)
         .cardStyle()
     }
 }

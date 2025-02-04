@@ -13,7 +13,7 @@ struct SubscriptionBenefitsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: IKPadding.large) {
             Text("myKSuiteUpgradeBenefitsTitle", bundle: .module)
-                .foregroundStyle(ColorHelper.elephant)
+                .foregroundStyle(ColorHelper.secondary)
                 .font(FontHelper.bodySmall)
 
             Label {
@@ -43,7 +43,7 @@ struct SubscriptionBenefitsView: View {
         .foregroundStyle(ColorHelper.primary)
         .font(FontHelper.body)
         .padding(value: .medium)
-        .background(.white)
+        .background(ColorHelper.backgroundPrimary)
         .cardStyle()
     }
 }

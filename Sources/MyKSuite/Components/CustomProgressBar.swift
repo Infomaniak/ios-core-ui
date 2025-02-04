@@ -13,7 +13,7 @@ struct CustomProgressBar: ProgressViewStyle {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 10)
                 .frame(height: 14)
-                .foregroundStyle(ColorHelper.rabbit)
+                .foregroundStyle(ColorHelper.reversedPrimary)
                 .overlay {
                     GeometryReader { geometry in
                         RoundedRectangle(cornerRadius: 10)

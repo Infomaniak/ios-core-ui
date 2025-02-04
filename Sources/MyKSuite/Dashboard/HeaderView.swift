@@ -17,7 +17,7 @@ struct HeaderView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 14)
-                .foregroundStyle(ColorHelper.elephant)
+                .foregroundStyle(ColorHelper.secondary)
                 .background {
                     Circle()
                         .strokeBorder(ColorHelper.gradient, lineWidth: 1)
@@ -35,7 +35,7 @@ struct HeaderView: View {
             myKSuite.icon
                 .padding(.horizontal, value: .small)
                 .padding(.vertical, value: .extraSmall)
-                .background(ColorHelper.rabbit)
+                .background(ColorHelper.reversedPrimary)
                 .clipShape(Capsule())
         }
     }

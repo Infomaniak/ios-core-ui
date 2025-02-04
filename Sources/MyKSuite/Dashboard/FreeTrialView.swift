@@ -9,6 +9,9 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct FreeTrialView: View {
+    private let skyBackground = Color(light: ColorHelper.sky, dark: ColorHelper.bat)
+    private let chipColor = Color(light: .white, dark: ColorHelper.orca)
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
@@ -24,7 +27,7 @@ struct FreeTrialView: View {
                     .foregroundStyle(ColorHelper.primary)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 8)
-                    .background(.white, in: .capsule)
+                    .background(chipColor, in: .capsule)
             }
             Text("myKSuiteDashboardFreeTrialDescription", bundle: .module)
                 .font(FontHelper.bodySmall)
@@ -44,8 +47,8 @@ struct FreeTrialView: View {
             RoundedRectangle(cornerRadius: 16)
                 .strokeBorder(ColorHelper.gradient, lineWidth: 1)
         }
-        .background(ColorHelper.sky, in: .rect(cornerRadius: 16))
-        .cardStyle()
+        .background(skyBackground, in: .rect(cornerRadius: 16))
+        .cardStyle(withStroke: false)
     }
 }
 

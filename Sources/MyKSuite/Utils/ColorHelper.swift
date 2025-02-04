@@ -20,9 +20,13 @@ enum ColorHelper {
     static let productMail = Color("product.mail", bundle: .module)
     static let productDrive = Color("product.drive", bundle: .module)
 
-    static let cardBackground = Color(light: .white, dark: bat)
+    static let backgroundPrimary = Color(light: .white, dark: bat)
+    static let backgroundSecondary = Color(light: polarBear, dark: orca)
+    
     static let primary = Color(light: orca, dark: rabbit)
     static let secondary = Color(light: elephant, dark: shark)
+
+    static let reversedPrimary = Color(light: rabbit, dark: orca)
 
     // MARK: - Gradient
 

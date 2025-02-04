@@ -27,7 +27,7 @@ struct SubscriptionProductsView: View {
                         .font(FontHelper.body)
 
                     Text("myKSuiteDashboardDataUnlimited", bundle: .module)
-                        .foregroundStyle(ColorHelper.elephant)
+                        .foregroundStyle(ColorHelper.secondary)
                         .font(FontHelper.bodySmall)
                 }
             }

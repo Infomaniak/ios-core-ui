@@ -14,14 +14,6 @@ struct ProductProgressView: View {
     let usedValue: Int64
     let totalValue: Int64
 
-    private var sizeColor: Color {
-        colorScheme == .dark ? ColorHelper.rabbit : ColorHelper.elephant
-    }
-
-    private var test: String {
-        Int64(totalValue).formatted(.defaultByteCount)
-    }
-
     var body: some View {
         VStack {
             HStack {
@@ -31,7 +23,7 @@ struct ProductProgressView: View {
                     .font(FontHelper.body)
 
                 Text("\(usedValue.formatted(.defaultByteCount)) / \(totalValue.formatted(.defaultByteCount))")
-                    .foregroundStyle(sizeColor)
+                    .foregroundStyle(ColorHelper.secondary)
                     .font(FontHelper.bodySmall)
             }
 

@@ -68,7 +68,7 @@ public struct MyKSuiteView: View {
             }
             .padding(.horizontal, value: .large)
             .font(FontHelper.body)
-            .foregroundStyle(ColorHelper.elephant)
+            .foregroundStyle(ColorHelper.secondary)
         }
     }
 }

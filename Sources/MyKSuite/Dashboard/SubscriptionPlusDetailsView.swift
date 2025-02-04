@@ -22,7 +22,7 @@ struct SubscriptionPlusDetailsView: View {
                         arguments: ["xx/xx/xxxx"]
                     )
                 )
-                .foregroundStyle(ColorHelper.elephant)
+                .foregroundStyle(ColorHelper.secondary)
             }
 
             HStack {
@@ -30,12 +30,12 @@ struct SubscriptionPlusDetailsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(ColorHelper.primary)
                 Text("!Apple Pay")
-                    .foregroundStyle(ColorHelper.elephant)
+                    .foregroundStyle(ColorHelper.secondary)
             }
 
             HStack(alignment: .top, spacing: 12) {
                 ImageHelper.information
-                    .foregroundStyle(ColorHelper.elephant)
+                    .foregroundStyle(ColorHelper.secondary)
 
                 VStack(alignment: .leading, spacing: 16) {
                     Text("iOSMyKSuiteDashboardSubscriptionLabel", bundle: .module)
@@ -50,7 +50,7 @@ struct SubscriptionPlusDetailsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(value: .medium)
-            .background(ColorHelper.polarBear, in: .rect(cornerRadius: 8))
+            .background(ColorHelper.backgroundSecondary, in: .rect(cornerRadius: 8))
         }
     }
 }

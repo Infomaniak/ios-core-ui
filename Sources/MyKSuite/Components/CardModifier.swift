@@ -11,8 +11,13 @@ import SwiftUI
 struct CardModifier: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
 
+    let withStroke: Bool
+
     private var strokeOpacity: Double {
-        colorScheme == .light ? 0 : 1
+        if withStroke {
+            return colorScheme == .light ? 0 : 1
+        }
+        return 0
     }
 
     private var shadowOpacity: Double {
@@ -32,7 +37,7 @@ struct CardModifier: ViewModifier {
 
 @available(iOS 15.0, *)
 extension View {
-    func cardStyle() -> some View {
-        modifier(CardModifier())
+    func cardStyle(withStroke: Bool = true) -> some View {
+        modifier(CardModifier(withStroke: withStroke))
     }
 }
