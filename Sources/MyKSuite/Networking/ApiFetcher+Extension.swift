@@ -24,7 +24,7 @@ extension ApiFetcher {
         return decoder
     }
 
-    func myKSuite(id: Int) async throws -> MyKSuite {
+    func myKSuite() async throws -> MyKSuite {
         let endpoint = Endpoint.myKSuite()
 
         let header = HTTPHeader(name: "Authorization", value: "Bearer \(currentToken?.accessToken ?? "")")
