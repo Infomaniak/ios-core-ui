@@ -39,6 +39,7 @@ excluded:
  - Derived/
  - Tuist/.build/
  - Tests/*
+ - Sources/InfomaniakCoreUIResources/Generated/*
 custom_rules:
   private_state:
     included:

@@ -81,5 +81,5 @@
 --yodaswap always
 --disable andOperator,opaqueGenericParameters,preferKeyPath,redundantReturn,strongOutlets,trailingCommas,unusedArguments,wrapMultilineStatementBraces,conditionalAssignment
 --enable blankLineAfterImports,blankLinesBetweenImports
---exclude DerivedData,Derived,Tuist,Project.swift,Build,.build
+--exclude DerivedData,Derived,Tuist,Project.swift,Build,.build,Sources/InfomaniakCoreUIResources/Generated/
 
