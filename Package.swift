@@ -29,8 +29,8 @@ let package = Package(
         .library(
             name: "MyKSuite",
             targets: ["MyKSuite"]
-		),
-		.library(
+        ),
+        .library(
             name: "InfomaniakCoreUIResources",
             targets: ["InfomaniakCoreUIResources"]
         ),
@@ -79,9 +79,9 @@ let package = Package(
         ),
         .target(
             name: "MyKSuite",
-            dependencies: ["InfomaniakCoreSwiftUI"]
+            dependencies: ["InfomaniakCoreSwiftUI", "DesignSystem"]
         ),
-		.target(
+        .target(
             name: "InfomaniakCoreUIResources"
         ),
         .target(
