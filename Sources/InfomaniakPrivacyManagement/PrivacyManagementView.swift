@@ -94,11 +94,11 @@ public struct PrivacyManagementView: View {
                     }
                 }
             }
-            .defaultAppStorage(userDefaultStore)
-            .background(backgroundColor)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(showTitle ? Self.title : "")
         }
+        .defaultAppStorage(userDefaultStore)
+        .background(backgroundColor)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(showTitle ? Self.title : "")
     }
 }
 
