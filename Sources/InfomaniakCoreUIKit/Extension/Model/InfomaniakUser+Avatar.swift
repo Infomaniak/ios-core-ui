@@ -35,4 +35,12 @@ public extension InfomaniakUser {
             completion(UIImage.getInitialsPlaceholder(with: displayName, size: size, backgroundColor: backgroundColor))
         }
     }
+
+    func getAvatar(size: CGSize = CGSize(width: 40, height: 40)) async -> UIImage {
+        return try await withCheckedContinuation { continuation in
+            self.getAvatar(size: size) { image in
+                continuation.resume(returning: image)
+            }
+        }
+    }
 }
