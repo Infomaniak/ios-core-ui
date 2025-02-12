@@ -23,21 +23,28 @@ import UIKit
 public extension InfomaniakUser {
     /// Can fetch an avatar from any abstract `InfomaniakUser`
     func getAvatar(size: CGSize = CGSize(width: 40, height: 40), completion: @escaping (UIImage) -> Void) {
-        if let avatarString = avatar,
-           let url = URL(string: avatarString) {
-            KingfisherManager.shared.retrieveImage(with: url) { result in
-                if let avatarImage = try? result.get().image {
-                    completion(avatarImage)
-                }
+        guard let avatarString = avatar,
+              let url = URL(string: avatarString) else {
+            completion(defaultAvatar(size: size))
+            return
+        }
+
+        KingfisherManager.shared.retrieveImage(with: url) { result in
+            if let avatarImage = try? result.get().image {
+                completion(avatarImage)
+            } else {
+                completion(self.defaultAvatar(size: size))
             }
-        } else {
-            let backgroundColor = UIColor.backgroundColor(from: id)
-            completion(UIImage.getInitialsPlaceholder(with: displayName, size: size, backgroundColor: backgroundColor))
         }
     }
 
+    private func defaultAvatar(size: CGSize) -> UIImage {
+        let backgroundColor = UIColor.backgroundColor(from: id)
+        return UIImage.getInitialsPlaceholder(with: displayName, size: size, backgroundColor: backgroundColor)
+    }
+
     func getAvatar(size: CGSize = CGSize(width: 40, height: 40)) async -> UIImage {
-        return try await withCheckedContinuation { continuation in
+        return await withCheckedContinuation { continuation in
             self.getAvatar(size: size) { image in
                 continuation.resume(returning: image)
             }
