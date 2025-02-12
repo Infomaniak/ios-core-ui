@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import InfomaniakCore
 import InfomaniakCoreCommonUI
 import InfomaniakCoreUIKit
 import XCTest
@@ -32,10 +33,11 @@ final class InfomaniakCoreUITests: XCTestCase {
     #if canImport(UIKit)
     func testCanInit_ApplicationBackgroundTaskTrackable() async {
         // GIVEN
-        let bgTracker = await ApplicationBackgroundTaskTracker(identifier: #function)
+        let expiringActivity = ExpiringActivity(id: #function)
+        expiringActivity.start()
 
         // THEN
-        await bgTracker.end()
+        expiringActivity.endAll()
     }
     #endif
 }
