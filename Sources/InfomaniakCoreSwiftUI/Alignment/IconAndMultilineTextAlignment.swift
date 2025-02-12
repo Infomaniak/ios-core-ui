@@ -29,3 +29,17 @@ public extension VerticalAlignment {
 
     static let iconAndMultilineTextAlignment = VerticalAlignment(IconAndMultilineTextAlignment.self)
 }
+
+public extension View {
+    func verticalAlignmentGuideForIcon() -> some View {
+        alignmentGuide(.iconAndMultilineTextAlignment) { d in
+            d[VerticalAlignment.center]
+        }
+    }
+
+    func verticalAlignmentGuideForMultilineText() -> some View {
+        alignmentGuide(.iconAndMultilineTextAlignment) { d in
+            (d.height - (d[.lastTextBaseline] - d[.firstTextBaseline])) / 2
+        }
+    }
+}
