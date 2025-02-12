@@ -30,7 +30,7 @@ public extension VerticalAlignment {
     static let iconAndMultilineTextAlignment = VerticalAlignment(IconAndMultilineTextAlignment.self)
 }
 
-extension View {
+public extension View {
     func verticalAlignmentGuideForIcon() -> some View {
         alignmentGuide(.iconAndMultilineTextAlignment) { d in
             d[VerticalAlignment.center]
