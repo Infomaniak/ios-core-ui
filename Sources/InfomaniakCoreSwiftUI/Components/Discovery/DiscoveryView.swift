@@ -27,7 +27,6 @@ public struct DiscoveryItem: Equatable {
     public let title: String
     public let description: String
     public let primaryButtonLabel: String
-    public let matomoCategory: MatomoUtils.EventCategory
     public let shoulDisplayLaterButton: Bool
 
     public static func == (lhs: DiscoveryItem, rhs: DiscoveryItem) -> Bool {
@@ -39,14 +38,12 @@ public struct DiscoveryItem: Equatable {
         title: String,
         description: String,
         primaryButtonLabel: String,
-        matomoCategory: MatomoUtils.EventCategory,
         shouldDisplayLaterButton: Bool = false
     ) {
         self.image = image
         self.title = title
         self.description = description
         self.primaryButtonLabel = primaryButtonLabel
-        self.matomoCategory = matomoCategory
         shoulDisplayLaterButton = shouldDisplayLaterButton
     }
 }
@@ -94,14 +91,10 @@ public struct DiscoveryView: View {
         }
         .onDisappear {
             completionHandler(willDiscoverNewFeature)
-            if !willDiscoverNewFeature {
-                matomo.track(eventWithCategory: item.matomoCategory, name: "discoverLater")
-            }
         }
     }
 
     private func didTouchNowButton() {
-        matomo.track(eventWithCategory: item.matomoCategory, name: "discoverNow")
         willDiscoverNewFeature = true
         dismiss()
     }
