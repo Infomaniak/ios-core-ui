@@ -49,8 +49,6 @@ public struct DiscoveryItem: Equatable {
 }
 
 public struct DiscoveryView: View {
-    @LazyInjectService private var matomo: MatomoUtils
-
     @Environment(\.isCompactWindow) private var isCompactWindow
     @Environment(\.dismiss) private var dismiss
 
