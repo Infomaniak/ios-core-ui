@@ -172,7 +172,7 @@ struct DiscoveryAlertView: View {
                 )
             } else {
                 ModalButtonsView(
-                    primaryButtonTitle: item.primaryButtonLabel, secondaryButtonTitle: "",
+                    primaryButtonTitle: item.primaryButtonLabel,
                     primaryButtonAction: nowButton
                 )
             }
@@ -180,10 +180,17 @@ struct DiscoveryAlertView: View {
     }
 }
 
-// #Preview {
-//    Group {
-//        DiscoveryBottomSheetView(item: .aiDiscovery, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
-//        DiscoveryAlertView(item: .syncDiscovery, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
-//        DiscoveryAlertView(item: .updateDiscovery, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
-//    }
-// }
+#Preview {
+    let item = DiscoveryItem(
+        image: Image(""),
+        title: "Update available",
+        description: "Update your app to get the latest features",
+        primaryButtonLabel: "Update",
+        shouldDisplayLaterButton: true
+    )
+    Group {
+        DiscoveryBottomSheetView(item: item, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
+        DiscoveryAlertView(item: item, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
+        DiscoveryAlertView(item: item, nowButton: { /* Preview */ }, laterButton: { /* Preview */ })
+    }
+}
