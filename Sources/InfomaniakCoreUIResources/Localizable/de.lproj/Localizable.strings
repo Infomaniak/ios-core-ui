@@ -13,6 +13,9 @@
 /* loco:6729ea9f4cb9f889f604d934 */
 "buttonCancel" = "Abbrechen";
 
+/* loco:67ac7d178defcfcd7806e182 */
+"buttonLater" = "Später";
+
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Weiter";
 
