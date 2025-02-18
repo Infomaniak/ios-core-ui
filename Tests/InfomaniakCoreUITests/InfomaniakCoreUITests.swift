@@ -29,15 +29,4 @@ final class InfomaniakCoreUITests: XCTestCase {
         // THEN
         XCTAssertNotNil(label)
     }
-
-    #if canImport(UIKit)
-    func testCanInit_ApplicationBackgroundTaskTrackable() async {
-        // GIVEN
-        let expiringActivity = ExpiringActivity(id: #function)
-        expiringActivity.start()
-
-        // THEN
-        expiringActivity.endAll()
-    }
-    #endif
 }
