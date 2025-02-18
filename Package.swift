@@ -62,6 +62,8 @@ let package = Package(
             dependencies: [
                 "SwiftUIBackports",
                 "DesignSystem",
+                "InfomaniakCoreUIResources",
+                "InfomaniakCoreCommonUI",
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
             ]
