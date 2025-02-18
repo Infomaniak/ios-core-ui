@@ -20,7 +20,6 @@ import OSLog
 
 public extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier ?? "com.infomaniak.coreui"
-    
+
     static let interface = Logger(subsystem: subsystem, category: "view")
-    
 }

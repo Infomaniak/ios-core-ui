@@ -17,8 +17,8 @@
  */
 
 import DesignSystem
-import OSLog
 import InfomaniakCoreCommonUI
+import OSLog
 import SwiftUI
 
 public struct ModalButtonsView: View {
