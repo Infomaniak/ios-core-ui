@@ -18,6 +18,7 @@
 
 import DesignSystem
 import OSLog
+import InfomaniakCoreCommonUI
 import SwiftUI
 
 public struct ModalButtonsView: View {
@@ -26,14 +27,14 @@ public struct ModalButtonsView: View {
     @State private var isButtonLoading = false
 
     private let primaryButtonTitle: String
-    private let secondaryButtonTitle: String?
+    private var secondaryButtonTitle: String? = String(localized: "buttonCancel", bundle: .module)
     private var primaryButtonEnabled = true
     private let primaryButtonAction: () async throws -> Void
     private var secondaryButtonAction: (() -> Void)?
 
     public init(
         primaryButtonTitle: String,
-        secondaryButtonTitle: String?,
+        secondaryButtonTitle: String? = nil,
         primaryButtonEnabled: Bool = true,
         primaryButtonAction: @escaping () async throws -> Void,
         secondaryButtonAction: (() -> Void)? = nil
@@ -43,20 +44,6 @@ public struct ModalButtonsView: View {
         self.secondaryButtonTitle = secondaryButtonTitle
         self.primaryButtonAction = primaryButtonAction
         self.secondaryButtonAction = secondaryButtonAction
-    }
-
-    public init(
-        primaryButtonTitle: String,
-        primaryButtonEnabled: Bool = true,
-        primaryButtonAction: @escaping () async throws -> Void
-    ) {
-        self.init(
-            primaryButtonTitle: primaryButtonTitle,
-            secondaryButtonTitle: nil,
-            primaryButtonEnabled: primaryButtonEnabled,
-            primaryButtonAction: primaryButtonAction,
-            secondaryButtonAction: nil
-        )
     }
 
     public var body: some View {
@@ -79,7 +66,7 @@ public struct ModalButtonsView: View {
                         try await primaryButtonAction()
                         dismiss()
                     } catch {
-                        print(error)
+                        Logger.interface.warning("\(error)")
                     }
                     isButtonLoading = false
                 }
