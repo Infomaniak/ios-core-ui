@@ -18,6 +18,7 @@
 
 import DesignSystem
 import InfomaniakCoreCommonUI
+import InfomaniakCoreUIResources
 import OSLog
 import SwiftUI
 
@@ -27,7 +28,7 @@ public struct ModalButtonsView: View {
     @State private var isButtonLoading = false
 
     private let primaryButtonTitle: String
-    private var secondaryButtonTitle: String? = String(localized: "buttonCancel", bundle: .module)
+    private var secondaryButtonTitle: String? = CoreUILocalizable.buttonCancel
     private var primaryButtonEnabled = true
     private let primaryButtonAction: () async throws -> Void
     private var secondaryButtonAction: (() -> Void)?
