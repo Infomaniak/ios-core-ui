@@ -59,6 +59,7 @@ public struct AdvancedTextField: UIViewRepresentable {
 
     public class Coordinator: NSObject, UITextFieldDelegate {
         let parent: AdvancedTextField
+        let submitKeys: [Character] = [" ", ","]
 
         init(_ parent: AdvancedTextField) {
             self.parent = parent
@@ -75,7 +76,17 @@ public struct AdvancedTextField: UIViewRepresentable {
         }
 
         @objc func textDidChanged(_ textField: UITextField) {
-            parent.text = textField.text ?? ""
+            if ((textField.text?.count ?? 0) - parent.text.count) > 1 {
+                parent.text = textField.text ?? ""
+                parent.onSubmit?()
+            } else {
+                parent.text = textField.text ?? ""
+            }
+
+            if submitKeys.contains(parent.text.last ?? "a") {
+                parent.text.remove(at: parent.text.index(before: parent.text.endIndex))
+                parent.onSubmit?()
+            }
         }
     }
 }
