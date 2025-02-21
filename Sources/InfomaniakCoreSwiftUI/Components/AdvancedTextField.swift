@@ -19,26 +19,31 @@
 import SwiftUI
 
 public struct AdvancedTextField: UIViewRepresentable {
+    @State private var didPaste = false
+
     @Binding var text: String
 
     private let placeholder: String?
     private let onSubmit: (() -> Void)?
     private let onBackspace: ((Bool) -> Void)?
+    private let submitKeys: [Character]
 
     public init(
         text: Binding<String>,
         placeholder: String? = nil,
         onSubmit: (() -> Void)? = nil,
-        onBackspace: ((Bool) -> Void)? = nil
+        onBackspace: ((Bool) -> Void)? = nil,
+        submitKeys: [Character] = []
     ) {
         _text = text
         self.placeholder = placeholder
         self.onSubmit = onSubmit
         self.onBackspace = onBackspace
+        self.submitKeys = submitKeys
     }
 
     public func makeUIView(context: Context) -> UIRecipientsTextField {
-        let textField = UIRecipientsTextField(placeholder: placeholder, onBackspace: onBackspace)
+        let textField = UIRecipientsTextField(placeholder: placeholder, onBackspace: onBackspace, onSubmit: userDidPaste)
         textField.delegate = context.coordinator
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textDidChanged(_:)), for: .editingChanged)
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -57,9 +62,12 @@ public struct AdvancedTextField: UIViewRepresentable {
         return Coordinator(self)
     }
 
+    private func userDidPaste() {
+        didPaste = true
+    }
+
     public class Coordinator: NSObject, UITextFieldDelegate {
         let parent: AdvancedTextField
-        let submitKeys: [Character] = [" ", ","]
 
         init(_ parent: AdvancedTextField) {
             self.parent = parent
@@ -75,17 +83,22 @@ public struct AdvancedTextField: UIViewRepresentable {
             return true
         }
 
-        @objc func textDidChanged(_ textField: UITextField) {
-            if ((textField.text?.count ?? 0) - parent.text.count) > 1 {
+        public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                              replacementString string: String) -> Bool {
+            if let char = string.first, parent.submitKeys.contains(char) {
                 parent.text = textField.text ?? ""
                 parent.onSubmit?()
-            } else {
-                parent.text = textField.text ?? ""
+                return false
             }
+            return true
+        }
 
-            if submitKeys.contains(parent.text.last ?? "a") {
-                parent.text.remove(at: parent.text.index(before: parent.text.endIndex))
+        @objc func textDidChanged(_ textField: UITextField) {
+            parent.text = textField.text ?? ""
+
+            if parent.didPaste {
                 parent.onSubmit?()
+                parent.didPaste = false
             }
         }
     }
@@ -93,9 +106,11 @@ public struct AdvancedTextField: UIViewRepresentable {
 
 public final class UIRecipientsTextField: UITextField {
     let onBackspace: ((Bool) -> Void)?
+    var onSubmit: (() -> Void)?
 
-    init(placeholder: String? = nil, onBackspace: ((Bool) -> Void)? = nil) {
+    init(placeholder: String? = nil, onBackspace: ((Bool) -> Void)? = nil, onSubmit: (() -> Void)? = nil) {
         self.onBackspace = onBackspace
+        self.onSubmit = onSubmit
         super.init(frame: .zero)
         self.placeholder = placeholder
 
@@ -118,6 +133,11 @@ public final class UIRecipientsTextField: UITextField {
     override public func deleteBackward() {
         onBackspace?(text?.isEmpty != false)
         super.deleteBackward()
+    }
+
+    override public func paste(_ sender: Any?) {
+        super.paste(sender)
+        onSubmit?()
     }
 }
 
