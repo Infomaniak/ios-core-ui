@@ -95,6 +95,8 @@ public struct PrivacyManagementView: View {
                 }
             }
         }
+        // Padding is for smaller iPhones like the SE.
+        .padding(.bottom, IKPadding.huge)
         .defaultAppStorage(userDefaultStore)
         .background(backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
