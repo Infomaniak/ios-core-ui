@@ -28,14 +28,14 @@ public struct ModalButtonsView: View {
     @State private var isButtonLoading = false
 
     private let primaryButtonTitle: String
-    private var secondaryButtonTitle: String? = CoreUILocalizable.buttonCancel
+    private var secondaryButtonTitle: String?
     private var primaryButtonEnabled = true
     private let primaryButtonAction: () async throws -> Void
     private var secondaryButtonAction: (() -> Void)?
 
     public init(
         primaryButtonTitle: String,
-        secondaryButtonTitle: String? = nil,
+        secondaryButtonTitle: String? = CoreUILocalizable.buttonCancel,
         primaryButtonEnabled: Bool = true,
         primaryButtonAction: @escaping () async throws -> Void,
         secondaryButtonAction: (() -> Void)? = nil
@@ -67,7 +67,7 @@ public struct ModalButtonsView: View {
                         try await primaryButtonAction()
                         dismiss()
                     } catch {
-                        Logger.interface.warning("\(error)")
+                        Logger.view.warning("\(error)")
                     }
                     isButtonLoading = false
                 }

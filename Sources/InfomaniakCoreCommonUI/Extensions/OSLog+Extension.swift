@@ -19,7 +19,7 @@
 import OSLog
 
 public extension Logger {
-    private static var subsystem = "com.infomaniak.coreui"
+    private static var subsystem = "InfomaniakCoreUI"
 
-    static let interface = Logger(subsystem: subsystem, category: "interface")
+    static let view = Logger(subsystem: subsystem, category: "view")
 }
