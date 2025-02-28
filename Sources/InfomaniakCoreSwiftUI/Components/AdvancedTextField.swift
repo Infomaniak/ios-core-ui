@@ -24,20 +24,20 @@ public struct AdvancedTextField: UIViewRepresentable {
     @Binding var text: String
 
     private let placeholder: String?
+    private let submitKeys: Set<String>
     private let onSubmit: (() -> Void)?
     private let onBackspace: ((Bool) -> Void)?
-    private let submitKeys: Set<String>
 
     public init(
         text: Binding<String>,
-        submitKeys: Set<String> = [],
         placeholder: String? = nil,
+        submitKeys: Set<String> = [],
         onSubmit: (() -> Void)? = nil,
         onBackspace: ((Bool) -> Void)? = nil
     ) {
         _text = text
-        self.submitKeys = submitKeys
         self.placeholder = placeholder
+        self.submitKeys = submitKeys
         self.onSubmit = onSubmit
         self.onBackspace = onBackspace
     }
@@ -146,8 +146,8 @@ public final class UIRecipientsTextField: UITextField {
 #Preview {
     @Previewable @State var text = ""
 
-    AdvancedTextField(text: $text, placeholder: "Type Here") {
-        print("Did Submit")
+    AdvancedTextField(text: $text, placeholder: "Type Here", submitKeys: [","]) {
+        print("Did Submit \"\(text)\"")
     } onBackspace: { isFieldEmpty in
         print("Did Type Backspace (\(isFieldEmpty))")
     }
