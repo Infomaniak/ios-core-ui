@@ -42,7 +42,7 @@ struct TrackerDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     tracker.logoLong
-                        .padding(.vertical, IKPadding.medium)
+                        .padding(.vertical, value: .medium)
                         .frame(maxWidth: .infinity)
 
                     Text(LocalizedStringKey(tracker.description), bundle: .module)
@@ -62,7 +62,9 @@ struct TrackerDetailsView: View {
             .navigationBarTitle(Text(tracker.title, bundle: .module), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button { dismiss() } label: {
+                    Button {
+                        dismiss()
+                    } label: {
                         Image(systemName: "xmark")
                             .resizable()
                             .scaledToFit()
