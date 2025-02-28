@@ -108,8 +108,7 @@ public struct PrivacyManagementView: View {
                 }
             }
         }
-        // Padding is for smaller iPhones like the SE.
-        .padding(.bottom, IKPadding.huge)
+        .padding(.bottom, IKPadding.large)
         .background(backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(showTitle ? Self.title : "")
@@ -125,7 +124,7 @@ public struct PrivacyManagementView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    return PrivacyManagementView(
+    PrivacyManagementView(
         urlRepository: URL(string: "https://www.infomaniak.com")!,
         backgroundColor: Color.white,
         illustration: Image(""),
@@ -133,6 +132,6 @@ public struct PrivacyManagementView: View {
         userDefaultKeyMatomo: "",
         userDefaultKeySentry: "",
         showTitle: true,
-        matomo: MatomoUtils(siteId: "", baseURL: URL(string: "")!) as MatomoOptOutable
+        matomo: MatomoUtils(siteId: "", baseURL: URL(string: "")!)
     )
 }
