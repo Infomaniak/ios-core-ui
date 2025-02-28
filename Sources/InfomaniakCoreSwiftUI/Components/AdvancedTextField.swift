@@ -25,7 +25,7 @@ public struct AdvancedTextField: UIViewRepresentable {
         case key(String)
     }
 
-    @State private var didPaste = false
+    @State private var submitReason: SubmitReason?
 
     @Binding var text: String
 
@@ -69,7 +69,7 @@ public struct AdvancedTextField: UIViewRepresentable {
     }
 
     private func userDidPaste() {
-        didPaste = true
+        submitReason = .paste
     }
 
     public class Coordinator: NSObject, UITextFieldDelegate {
@@ -91,21 +91,19 @@ public struct AdvancedTextField: UIViewRepresentable {
 
         public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                               replacementString string: String) -> Bool {
-            guard parent.submitKeys.contains(string) else {
-                return true
+            if parent.submitKeys.contains(string) {
+                parent.submitReason = .key(string)
             }
 
-            parent.text = textField.text ?? ""
-            parent.onSubmit?(.key(string))
-            return false
+            return true
         }
 
         @objc func textDidChanged(_ textField: UITextField) {
             parent.text = textField.text ?? ""
 
-            if parent.didPaste {
-                parent.onSubmit?(.paste)
-                parent.didPaste = false
+            if let submitReason = parent.submitReason {
+                parent.onSubmit?(submitReason)
+                parent.submitReason = nil
             }
         }
     }
