@@ -19,20 +19,26 @@
 import SwiftUI
 
 public struct AdvancedTextField: UIViewRepresentable {
+    public enum SubmitReason {
+        case enter
+        case paste
+        case key(String)
+    }
+
     @State private var didPaste = false
 
     @Binding var text: String
 
     private let placeholder: String?
     private let submitKeys: Set<String>
-    private let onSubmit: (() -> Void)?
+    private let onSubmit: ((SubmitReason) -> Void)?
     private let onBackspace: ((Bool) -> Void)?
 
     public init(
         text: Binding<String>,
         placeholder: String? = nil,
         submitKeys: Set<String> = [],
-        onSubmit: (() -> Void)? = nil,
+        onSubmit: ((SubmitReason) -> Void)? = nil,
         onBackspace: ((Bool) -> Void)? = nil
     ) {
         _text = text
@@ -79,7 +85,7 @@ public struct AdvancedTextField: UIViewRepresentable {
                 return true
             }
 
-            parent.onSubmit?()
+            parent.onSubmit?(.enter)
             return true
         }
 
@@ -90,7 +96,7 @@ public struct AdvancedTextField: UIViewRepresentable {
             }
 
             parent.text = textField.text ?? ""
-            parent.onSubmit?()
+            parent.onSubmit?(.key(string))
             return false
         }
 
@@ -98,7 +104,7 @@ public struct AdvancedTextField: UIViewRepresentable {
             parent.text = textField.text ?? ""
 
             if parent.didPaste {
-                parent.onSubmit?()
+                parent.onSubmit?(.paste)
                 parent.didPaste = false
             }
         }
@@ -146,7 +152,7 @@ public final class UIRecipientsTextField: UITextField {
 #Preview {
     @Previewable @State var text = ""
 
-    AdvancedTextField(text: $text, placeholder: "Type Here", submitKeys: [","]) {
+    AdvancedTextField(text: $text, placeholder: "Type Here", submitKeys: [","]) { _ in
         print("Did Submit \"\(text)\"")
     } onBackspace: { isFieldEmpty in
         print("Did Type Backspace (\(isFieldEmpty))")
