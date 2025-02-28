@@ -17,12 +17,21 @@
  */
 
 import DesignSystem
+import InfomaniakCoreCommonUI
 import InfomaniakCoreSwiftUI
 import SwiftUI
+
+public protocol MatomoOptOutable {
+    func optOut(_ optOut: Bool)
+}
+
+extension MatomoUtils: MatomoOptOutable {}
 
 @available(iOS 15.0, *)
 public struct PrivacyManagementView: View {
     public static let title = Bundle.module.localizedString(forKey: "trackingManagementTitle", value: nil, table: nil)
+
+    @AppStorage private var matomoAuthorized: Bool
 
     @Environment(\.openURL) private var openURL
 
@@ -35,6 +44,7 @@ public struct PrivacyManagementView: View {
     private let userDefaultKeyMatomo: String
     private let userDefaultKeySentry: String
     private let showTitle: Bool
+    private let matomo: MatomoOptOutable
 
     public init(
         urlRepository: URL,
@@ -43,7 +53,8 @@ public struct PrivacyManagementView: View {
         userDefaultStore: UserDefaults,
         userDefaultKeyMatomo: String,
         userDefaultKeySentry: String,
-        showTitle: Bool = true
+        showTitle: Bool = true,
+        matomo: MatomoOptOutable
     ) {
         self.urlRepository = urlRepository
         self.backgroundColor = backgroundColor
@@ -52,6 +63,8 @@ public struct PrivacyManagementView: View {
         self.userDefaultKeyMatomo = userDefaultKeyMatomo
         self.userDefaultKeySentry = userDefaultKeySentry
         self.showTitle = showTitle
+        self.matomo = matomo
+        _matomoAuthorized = AppStorage(wrappedValue: true, userDefaultKeyMatomo)
     }
 
     public var body: some View {
@@ -97,21 +110,29 @@ public struct PrivacyManagementView: View {
         }
         // Padding is for smaller iPhones like the SE.
         .padding(.bottom, IKPadding.huge)
-        .defaultAppStorage(userDefaultStore)
         .background(backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(showTitle ? Self.title : "")
+        .onChange(of: matomoAuthorized) { newValue in
+            #if DEBUG || TEST
+            matomo.optOut(true)
+            #else
+            matomo.optOut(!newValue)
+            #endif
+        }
     }
 }
 
 @available(iOS 15.0, *)
 #Preview {
-    PrivacyManagementView(
+    return PrivacyManagementView(
         urlRepository: URL(string: "https://www.infomaniak.com")!,
         backgroundColor: Color.white,
         illustration: Image(""),
         userDefaultStore: UserDefaults.standard,
         userDefaultKeyMatomo: "",
-        userDefaultKeySentry: ""
+        userDefaultKeySentry: "",
+        showTitle: true,
+        matomo: MatomoUtils(siteId: "", baseURL: URL(string: "")!) as MatomoOptOutable
     )
 }

@@ -28,8 +28,8 @@ struct TrackerDetailsView: View {
 
     @AppStorage private var dataValue: Bool
 
-    let backgroundColor: Color
-    let tracker: Tracker
+    private let backgroundColor: Color
+    private let tracker: Tracker
 
     init(tracker: Tracker, appStorageKey: String, backgroundColor: Color) {
         self.tracker = tracker
@@ -42,7 +42,7 @@ struct TrackerDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     tracker.logoLong
-                        .padding(.vertical, value: .medium)
+                        .padding(.vertical, IKPadding.medium)
                         .frame(maxWidth: .infinity)
 
                     Text(LocalizedStringKey(tracker.description), bundle: .module)
@@ -55,15 +55,14 @@ struct TrackerDetailsView: View {
                             .font(.body)
                     }
                     .tint(.accentColor)
-                    .padding(.horizontal, IKPadding.medium)
+                    .padding([.horizontal, .top], IKPadding.medium)
                 }
             }
             .background(backgroundColor)
             .navigationBarTitle(Text(tracker.title, bundle: .module), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button { dismiss()
-                    } label: {
+                    Button { dismiss() } label: {
                         Image(systemName: "xmark")
                             .resizable()
                             .scaledToFit()
@@ -76,5 +75,9 @@ struct TrackerDetailsView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    TrackerDetailsView(tracker: Tracker.matomo, appStorageKey: "", backgroundColor: Color.white)
+    TrackerDetailsView(
+        tracker: Tracker.matomo,
+        appStorageKey: "",
+        backgroundColor: Color.white
+    )
 }
