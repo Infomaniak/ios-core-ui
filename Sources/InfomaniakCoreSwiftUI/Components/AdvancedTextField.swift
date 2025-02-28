@@ -19,26 +19,31 @@
 import SwiftUI
 
 public struct AdvancedTextField: UIViewRepresentable {
+    @State private var didPaste = false
+
     @Binding var text: String
 
     private let placeholder: String?
+    private let submitKeys: Set<String>
     private let onSubmit: (() -> Void)?
     private let onBackspace: ((Bool) -> Void)?
 
     public init(
         text: Binding<String>,
         placeholder: String? = nil,
+        submitKeys: Set<String> = [],
         onSubmit: (() -> Void)? = nil,
         onBackspace: ((Bool) -> Void)? = nil
     ) {
         _text = text
         self.placeholder = placeholder
+        self.submitKeys = submitKeys
         self.onSubmit = onSubmit
         self.onBackspace = onBackspace
     }
 
     public func makeUIView(context: Context) -> UIRecipientsTextField {
-        let textField = UIRecipientsTextField(placeholder: placeholder, onBackspace: onBackspace)
+        let textField = UIRecipientsTextField(placeholder: placeholder, onBackspace: onBackspace, onPaste: userDidPaste)
         textField.delegate = context.coordinator
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textDidChanged(_:)), for: .editingChanged)
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -55,6 +60,10 @@ public struct AdvancedTextField: UIViewRepresentable {
 
     public func makeCoordinator() -> Coordinator {
         return Coordinator(self)
+    }
+
+    private func userDidPaste() {
+        didPaste = true
     }
 
     public class Coordinator: NSObject, UITextFieldDelegate {
@@ -74,17 +83,35 @@ public struct AdvancedTextField: UIViewRepresentable {
             return true
         }
 
+        public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                              replacementString string: String) -> Bool {
+            guard parent.submitKeys.contains(string) else {
+                return true
+            }
+
+            parent.text = textField.text ?? ""
+            parent.onSubmit?()
+            return false
+        }
+
         @objc func textDidChanged(_ textField: UITextField) {
             parent.text = textField.text ?? ""
+
+            if parent.didPaste {
+                parent.onSubmit?()
+                parent.didPaste = false
+            }
         }
     }
 }
 
 public final class UIRecipientsTextField: UITextField {
     let onBackspace: ((Bool) -> Void)?
+    var onPaste: (() -> Void)?
 
-    init(placeholder: String? = nil, onBackspace: ((Bool) -> Void)? = nil) {
+    init(placeholder: String? = nil, onBackspace: ((Bool) -> Void)? = nil, onPaste: (() -> Void)? = nil) {
         self.onBackspace = onBackspace
+        self.onPaste = onPaste
         super.init(frame: .zero)
         self.placeholder = placeholder
 
@@ -108,14 +135,19 @@ public final class UIRecipientsTextField: UITextField {
         onBackspace?(text?.isEmpty != false)
         super.deleteBackward()
     }
+
+    override public func paste(_ sender: Any?) {
+        super.paste(sender)
+        onPaste?()
+    }
 }
 
 @available(iOS 17.0, *)
 #Preview {
     @Previewable @State var text = ""
 
-    AdvancedTextField(text: $text, placeholder: "Type Here") {
-        print("Did Submit")
+    AdvancedTextField(text: $text, placeholder: "Type Here", submitKeys: [","]) {
+        print("Did Submit \"\(text)\"")
     } onBackspace: { isFieldEmpty in
         print("Did Type Backspace (\(isFieldEmpty))")
     }
