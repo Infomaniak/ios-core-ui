@@ -55,7 +55,7 @@ struct TrackerDetailsView: View {
                             .font(.body)
                     }
                     .tint(.accentColor)
-                    .padding([.horizontal, .top], IKPadding.medium)
+                    .padding(value: .medium)
                 }
             }
             .background(backgroundColor)
@@ -79,7 +79,7 @@ struct TrackerDetailsView: View {
 #Preview {
     TrackerDetailsView(
         tracker: Tracker.matomo,
-        appStorageKey: "",
-        backgroundColor: Color.white
+        appStorageKey: "matomoKey",
+        backgroundColor: .white
     )
 }
