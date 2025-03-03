@@ -21,12 +21,6 @@ import InfomaniakCoreCommonUI
 import InfomaniakCoreSwiftUI
 import SwiftUI
 
-public protocol MatomoOptOutable {
-    func optOut(_ optOut: Bool)
-}
-
-extension MatomoUtils: MatomoOptOutable {}
-
 @available(iOS 15.0, *)
 public struct PrivacyManagementView: View {
     public static let title = Bundle.module.localizedString(forKey: "trackingManagementTitle", value: nil, table: nil)
@@ -76,7 +70,7 @@ public struct PrivacyManagementView: View {
 
                 Text("trackingManagementDescription", bundle: .module)
                     .multilineTextAlignment(.leading)
-                    .padding(.horizontal, IKPadding.medium)
+                    .padding(.horizontal, value: .medium)
 
                 Button {
                     openURL(urlRepository)
@@ -103,12 +97,12 @@ public struct PrivacyManagementView: View {
 
                     if item != Tracker.allCases.last {
                         Divider()
-                            .padding(.horizontal, IKPadding.medium)
+                            .padding(.horizontal, value: .medium)
                     }
                 }
             }
         }
-        .padding(.bottom, IKPadding.large)
+        .padding(.bottom, value: .large)
         .background(backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(showTitle ? Self.title : "")
@@ -124,14 +118,18 @@ public struct PrivacyManagementView: View {
 
 @available(iOS 15.0, *)
 #Preview {
-    PrivacyManagementView(
-        urlRepository: URL(string: "https://www.infomaniak.com")!,
-        backgroundColor: Color.white,
-        illustration: Image(""),
-        userDefaultStore: UserDefaults.standard,
-        userDefaultKeyMatomo: "",
-        userDefaultKeySentry: "",
-        showTitle: true,
-        matomo: MatomoUtils(siteId: "", baseURL: URL(string: "")!)
-    )
+    if let validURL = URL(string: "https://www.infomaniak.com/matomo.php") {
+        PrivacyManagementView(
+            urlRepository: validURL,
+            backgroundColor: Color.white,
+            illustration: Image("matomo-short", bundle: .module),
+            userDefaultStore: UserDefaults.standard,
+            userDefaultKeyMatomo: "matomoKey",
+            userDefaultKeySentry: "sentryKey",
+            showTitle: true,
+            matomo: MatomoUtils(siteId: "yourSiteId", baseURL: validURL)
+        )
+    } else {
+        Text("Invalid URL")
+    }
 }
