@@ -19,11 +19,21 @@
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Next";
 
+/* loco:67beed573c592678eb085582 */
+"buttonNo" = "No";
+
 /* loco:6729ead76f93fd246802f932 */
 "buttonRetry" = "Retry";
+
+/* loco:67beed7f8291a886220faf53 */
+"buttonYes" = "Yes";
 
 /* loco:676538295907d1ab51014ae2 */
 "errorDownload" = "Download error";
 
 /* loco:67653882015fa8304b01cbb9 */
 "errorDownloadInsufficientSpace" = "Cannot download : Insufficient space";
+
+/* loco:67beee584d2044470e0df152 */
+"reviewAlertTitle" = "Do you like %@?";
+
