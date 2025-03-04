@@ -18,12 +18,20 @@ public enum CoreUILocalizable {
   public static let buttonLater = CoreUILocalizable.tr("Localizable", "buttonLater", fallback: "Later")
   /// loco:675059634bdf0aedde06df72
   public static let buttonNext = CoreUILocalizable.tr("Localizable", "buttonNext", fallback: "Next")
+  /// loco:67beed573c592678eb085582
+  public static let buttonNo = CoreUILocalizable.tr("Localizable", "buttonNo", fallback: "No")
   /// loco:6729ead76f93fd246802f932
   public static let buttonRetry = CoreUILocalizable.tr("Localizable", "buttonRetry", fallback: "Retry")
+  /// loco:67beed7f8291a886220faf53
+  public static let buttonYes = CoreUILocalizable.tr("Localizable", "buttonYes", fallback: "Yes")
   /// loco:676538295907d1ab51014ae2
   public static let errorDownload = CoreUILocalizable.tr("Localizable", "errorDownload", fallback: "Download error")
   /// loco:67653882015fa8304b01cbb9
   public static let errorDownloadInsufficientSpace = CoreUILocalizable.tr("Localizable", "errorDownloadInsufficientSpace", fallback: "Cannot download : Insufficient space")
+  /// loco:67beee584d2044470e0df152
+  public static func reviewAlertTitle(_ p1: Any) -> String {
+    return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

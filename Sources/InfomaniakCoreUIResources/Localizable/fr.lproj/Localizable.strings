@@ -19,11 +19,21 @@
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Suivant";
 
+/* loco:67beed573c592678eb085582 */
+"buttonNo" = "Non";
+
 /* loco:6729ead76f93fd246802f932 */
 "buttonRetry" = "Réessayer";
+
+/* loco:67beed7f8291a886220faf53 */
+"buttonYes" = "Oui";
 
 /* loco:676538295907d1ab51014ae2 */
 "errorDownload" = "Erreur lors du téléchargement";
 
 /* loco:67653882015fa8304b01cbb9 */
 "errorDownloadInsufficientSpace" = "Téléchargement impossible : Espace insuffisant";
+
+/* loco:67beee584d2044470e0df152 */
+"reviewAlertTitle" = "Vous aimez les %@ ?";
+
