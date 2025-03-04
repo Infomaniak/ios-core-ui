@@ -73,7 +73,6 @@ public extension MatomoUtils {
         }
 
         public static let account = EventCategory(displayName: "account")
-        public static let appUpdate = EventCategory(displayName: "appUpdate")
     }
 
     enum UserAction: String {
