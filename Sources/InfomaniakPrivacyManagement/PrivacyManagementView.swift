@@ -17,12 +17,15 @@
  */
 
 import DesignSystem
+import InfomaniakCoreCommonUI
 import InfomaniakCoreSwiftUI
 import SwiftUI
 
 @available(iOS 15.0, *)
 public struct PrivacyManagementView: View {
     public static let title = Bundle.module.localizedString(forKey: "trackingManagementTitle", value: nil, table: nil)
+
+    @AppStorage private var matomoAuthorized: Bool
 
     @Environment(\.openURL) private var openURL
 
@@ -35,6 +38,7 @@ public struct PrivacyManagementView: View {
     private let userDefaultKeyMatomo: String
     private let userDefaultKeySentry: String
     private let showTitle: Bool
+    private let matomo: MatomoOptOutable
 
     public init(
         urlRepository: URL,
@@ -43,7 +47,8 @@ public struct PrivacyManagementView: View {
         userDefaultStore: UserDefaults,
         userDefaultKeyMatomo: String,
         userDefaultKeySentry: String,
-        showTitle: Bool = true
+        showTitle: Bool = true,
+        matomo: MatomoOptOutable
     ) {
         self.urlRepository = urlRepository
         self.backgroundColor = backgroundColor
@@ -52,6 +57,8 @@ public struct PrivacyManagementView: View {
         self.userDefaultKeyMatomo = userDefaultKeyMatomo
         self.userDefaultKeySentry = userDefaultKeySentry
         self.showTitle = showTitle
+        self.matomo = matomo
+        _matomoAuthorized = AppStorage(wrappedValue: true, userDefaultKeyMatomo)
     }
 
     public var body: some View {
@@ -63,7 +70,7 @@ public struct PrivacyManagementView: View {
 
                 Text("trackingManagementDescription", bundle: .module)
                     .multilineTextAlignment(.leading)
-                    .padding(.horizontal, IKPadding.medium)
+                    .padding(.horizontal, value: .medium)
 
                 Button {
                     openURL(urlRepository)
@@ -90,26 +97,39 @@ public struct PrivacyManagementView: View {
 
                     if item != Tracker.allCases.last {
                         Divider()
-                            .padding(.horizontal, IKPadding.medium)
+                            .padding(.horizontal, value: .medium)
                     }
                 }
             }
         }
-        .defaultAppStorage(userDefaultStore)
+        .padding(.bottom, value: .large)
         .background(backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(showTitle ? Self.title : "")
+        .onChange(of: matomoAuthorized) { newValue in
+            #if DEBUG || TEST
+            matomo.optOut(true)
+            #else
+            matomo.optOut(!newValue)
+            #endif
+        }
     }
 }
 
 @available(iOS 15.0, *)
 #Preview {
-    PrivacyManagementView(
-        urlRepository: URL(string: "https://www.infomaniak.com")!,
-        backgroundColor: Color.white,
-        illustration: Image(""),
-        userDefaultStore: UserDefaults.standard,
-        userDefaultKeyMatomo: "",
-        userDefaultKeySentry: ""
-    )
+    if let validURL = URL(string: "https://www.infomaniak.com/matomo.php") {
+        PrivacyManagementView(
+            urlRepository: validURL,
+            backgroundColor: Color.white,
+            illustration: Image("matomo-short", bundle: .module),
+            userDefaultStore: UserDefaults.standard,
+            userDefaultKeyMatomo: "matomoKey",
+            userDefaultKeySentry: "sentryKey",
+            showTitle: true,
+            matomo: MatomoUtils(siteId: "yourSiteId", baseURL: validURL)
+        )
+    } else {
+        Text("Invalid URL")
+    }
 }
