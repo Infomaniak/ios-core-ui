@@ -11,7 +11,7 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum CoreUILocalizable {
   /// loco:67dbc1f28c22b8594f030f32
-  public static let joinTheBetaButton = CoreUILocalizable.tr("Localizable", " joinTheBetaButton", fallback: "Join the Beta")
+  public static let joinTheBetaButton = CoreUILocalizable.tr("Localizable", " joinTheBetaButton", fallback: "Join the beta program")
   /// loco:675fea0d40923b5c440f0f52
   public static let anErrorHasOccurred = CoreUILocalizable.tr("Localizable", "anErrorHasOccurred", fallback: "An error has occurred")
   /// loco:6729ea9f4cb9f889f604d934
