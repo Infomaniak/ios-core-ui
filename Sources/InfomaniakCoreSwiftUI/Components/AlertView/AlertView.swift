@@ -19,7 +19,6 @@
 import SwiftUI
 import SwiftUIIntrospect
 
-@available(iOS 15.0, *)
 public struct AlertView<Content>: View where Content: View {
     @State private var isShowing = false
 
@@ -37,7 +36,7 @@ public struct AlertView<Content>: View where Content: View {
         self.content = content()
     }
 
-    public var body: some View {
+    var viewContent: some View {
         ZStack {
             Color.black.opacity(0.6)
                 .ignoresSafeArea()
@@ -50,7 +49,6 @@ public struct AlertView<Content>: View where Content: View {
                 .padding(value: .large)
         }
         .opacity(isShowing ? 1 : 0)
-        .background(ClearFullScreenView())
         .onAppear {
             guard !isShowing else { return }
             Task {
@@ -64,9 +62,16 @@ public struct AlertView<Content>: View where Content: View {
             viewController.modalTransitionStyle = .crossDissolve
         }
     }
+
+    public var body: some View {
+        if #available(iOS 16.4, *) {
+            viewContent.presentationBackground(Color.clear)
+        } else {
+            viewContent.background(ClearFullScreenView())
+        }
+    }
 }
 
-@available(iOS 15.0, *)
 struct CustomAlertModifier<AlertContent>: ViewModifier where AlertContent: View {
     @Binding var isPresented: Bool
     @ViewBuilder let alertView: AlertContent
@@ -81,7 +86,6 @@ struct CustomAlertModifier<AlertContent>: ViewModifier where AlertContent: View 
     }
 }
 
-@available(iOS 15.0, *)
 struct CustomAlertItemModifier<Item, AlertContent>: ViewModifier where Item: Identifiable, AlertContent: View {
     @Binding var item: Item?
     let alertView: (Item) -> AlertContent
@@ -121,7 +125,6 @@ private struct ClearFullScreenView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
-@available(iOS 15.0, *)
 public extension View {
     func customAlert<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) -> some View {
         modifier(CustomAlertModifier(isPresented: isPresented, alertView: content))
@@ -133,7 +136,6 @@ public extension View {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     AlertView {
         Text("Some alert text")
