@@ -20,9 +20,9 @@ import DesignSystem
 import SwiftUI
 
 public extension View {
-    func discoveryPresenter<ModalContent: View>(isPresented: Binding<Bool>,
+    func discoveryPresenter<ModalContent: View>(isPresented: Binding<Bool>, bottomPadding: CGFloat = IKPadding.medium,
                                                 @ViewBuilder modalContent: @escaping () -> ModalContent) -> some View {
-        modifier(DiscoveryPresenter(isPresented: isPresented, modalContent: modalContent))
+        modifier(DiscoveryPresenter(isPresented: isPresented, bottomPadding: bottomPadding, modalContent: modalContent))
     }
 }
 
@@ -30,16 +30,16 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     @Binding var isPresented: Bool
-
+    let bottomPadding: CGFloat
     @ViewBuilder let modalContent: ModalContent
 
     func body(content: Content) -> some View {
         content
             .sheet(isPresented: Binding(get: { isCompactWindow && isPresented }, set: { isPresented = $0 })) {
                 if #available(iOS 16.0, *) {
-                    modalContent.modifier(SelfSizingPanelViewModifier(bottomPadding: IKPadding.medium))
+                    modalContent.modifier(SelfSizingPanelViewModifier(bottomPadding: bottomPadding))
                 } else {
-                    modalContent.modifier(SelfSizingPanelBackportViewModifier(bottomPadding: IKPadding.medium))
+                    modalContent.modifier(SelfSizingPanelBackportViewModifier(bottomPadding: bottomPadding))
                 }
             }
             .customAlert(isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 })) {
