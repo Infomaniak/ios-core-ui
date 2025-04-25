@@ -20,8 +20,11 @@ import DesignSystem
 import SwiftUI
 
 public extension View {
-    func discoveryPresenter<ModalContent: View>(isPresented: Binding<Bool>, bottomPadding: CGFloat = IKPadding.medium,
-                                                @ViewBuilder modalContent: @escaping () -> ModalContent) -> some View {
+    func discoveryPresenter<ModalContent: View>(
+        isPresented: Binding<Bool>,
+        bottomPadding: CGFloat = IKPadding.medium,
+        @ViewBuilder modalContent: @escaping () -> ModalContent
+    ) -> some View {
         modifier(DiscoveryPresenter(isPresented: isPresented, bottomPadding: bottomPadding, modalContent: modalContent))
     }
 }
@@ -30,6 +33,7 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     @Binding var isPresented: Bool
+
     let bottomPadding: CGFloat
     @ViewBuilder let modalContent: ModalContent
 
