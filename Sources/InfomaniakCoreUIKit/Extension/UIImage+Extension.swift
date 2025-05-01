@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import InfomaniakCore
 
 public enum ImageUtil {
     typealias ImageOrientation = UIImage.Orientation
@@ -200,7 +201,7 @@ public extension UIImage {
         foregroundColor: UIColor = .white,
         backgroundColor: UIColor
     ) -> UIImage {
-        let initials = name.initials
+        let initials = NameFormatter(fullName: name).initials
         let defaultFontRatio: CGFloat = 14.0 / 40.0
         let frame = CGRect(origin: .zero, size: size)
         let attributes: [NSAttributedString.Key: Any] = [
