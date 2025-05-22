@@ -28,12 +28,17 @@ public struct AvatarImage: View {
     }
 
     public var body: some View {
-        image
-            .resizable()
-            .scaledToFit()
-            .frame(width: size, height: size)
-            .clipShape(Circle())
-            .background(.tint, in: .circle)
+        ZStack {
+            Circle()
+                .fill(.white)
+
+            image
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+        }
+        .frame(width: size, height: size)
+        .drawingGroup()
     }
 }
 
