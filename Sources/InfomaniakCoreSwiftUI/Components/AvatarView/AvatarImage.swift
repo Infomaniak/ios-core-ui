@@ -1,6 +1,6 @@
 /*
  Infomaniak Core UI - iOS
- Copyright (C) 2023 Infomaniak Network SA
+ Copyright (C) 2025 Infomaniak Network SA
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,15 +16,32 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UIKit
+import SwiftUI
 
-public extension UIColor {
-    static let organisationColors: [UIColor] = Array(0 ... 9)
-        .map { UIColor(named: "organisationColor\($0)", in: Bundle.module, compatibleWith: nil) }
-        .compactMap { $0 }
+public struct AvatarImage: View {
+    let image: Image
+    let size: CGFloat
 
-    class func backgroundColor(from userId: Int, with colors: [UIColor] = UIColor.organisationColors) -> UIColor {
-        let colorIndex = abs(userId % colors.count)
-        return colors[colorIndex]
+    public init(image: Image, size: CGFloat) {
+        self.image = image
+        self.size = size
     }
+
+    public var body: some View {
+        ZStack {
+            Circle()
+                .fill(.white)
+
+            image
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+        }
+        .frame(width: size, height: size)
+        .drawingGroup()
+    }
+}
+
+#Preview {
+    AvatarImage(image: Image(systemName: "person"), size: 40)
 }
