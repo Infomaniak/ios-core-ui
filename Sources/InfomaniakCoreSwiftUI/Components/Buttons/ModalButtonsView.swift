@@ -32,19 +32,22 @@ public struct ModalButtonsView: View {
     private var primaryButtonEnabled = true
     private let primaryButtonAction: () async throws -> Void
     private var secondaryButtonAction: (() -> Void)?
+    private var primaryButtonRole: ButtonRole?
 
     public init(
         primaryButtonTitle: String,
         secondaryButtonTitle: String? = CoreUILocalizable.buttonCancel,
         primaryButtonEnabled: Bool = true,
         primaryButtonAction: @escaping () async throws -> Void,
-        secondaryButtonAction: (() -> Void)? = nil
+        secondaryButtonAction: (() -> Void)? = nil,
+        primaryButtonRole: ButtonRole? = nil
     ) {
         self.primaryButtonTitle = primaryButtonTitle
         self.primaryButtonEnabled = primaryButtonEnabled
         self.secondaryButtonTitle = secondaryButtonTitle
         self.primaryButtonAction = primaryButtonAction
         self.secondaryButtonAction = secondaryButtonAction
+        self.primaryButtonRole = primaryButtonRole
     }
 
     public var body: some View {
@@ -60,7 +63,7 @@ public struct ModalButtonsView: View {
                 .keyboardShortcut(.cancelAction)
             }
 
-            Button(primaryButtonTitle) {
+            Button(primaryButtonTitle, role: primaryButtonRole) {
                 Task {
                     isButtonLoading = true
                     do {
