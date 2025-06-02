@@ -23,9 +23,15 @@ public extension View {
     func discoveryPresenter<ModalContent: View>(
         isPresented: Binding<Bool>,
         bottomPadding: CGFloat = IKPadding.medium,
+        backgroundColor: Color,
         @ViewBuilder modalContent: @escaping () -> ModalContent
     ) -> some View {
-        modifier(DiscoveryPresenter(isPresented: isPresented, bottomPadding: bottomPadding, modalContent: modalContent))
+        modifier(DiscoveryPresenter(
+            isPresented: isPresented,
+            bottomPadding: bottomPadding,
+            backgroundColor: backgroundColor,
+            modalContent: modalContent
+        ))
     }
 }
 
@@ -35,6 +41,7 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     @Binding var isPresented: Bool
 
     let bottomPadding: CGFloat
+    let backgroundColor: Color
     @ViewBuilder let modalContent: ModalContent
 
     func body(content: Content) -> some View {
@@ -46,7 +53,10 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
                     modalContent.modifier(SelfSizingPanelBackportViewModifier(bottomPadding: bottomPadding))
                 }
             }
-            .customAlert(isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 })) {
+            .customAlert(
+                isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 }),
+                backgroundColor: backgroundColor
+            ) {
                 modalContent
             }
     }
