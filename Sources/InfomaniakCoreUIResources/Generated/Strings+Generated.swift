@@ -10,8 +10,6 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum CoreUILocalizable {
-  /// loco:67dbc1f28c22b8594f030f32
-  public static let joinTheBetaButton = CoreUILocalizable.tr("Localizable", " joinTheBetaButton", fallback: "Join the beta program")
   /// loco:675fea0d40923b5c440f0f52
   public static let anErrorHasOccurred = CoreUILocalizable.tr("Localizable", "anErrorHasOccurred", fallback: "An error has occurred")
   /// loco:6729ea9f4cb9f889f604d934
@@ -24,12 +22,16 @@ public enum CoreUILocalizable {
   public static let buttonNo = CoreUILocalizable.tr("Localizable", "buttonNo", fallback: "No")
   /// loco:6729ead76f93fd246802f932
   public static let buttonRetry = CoreUILocalizable.tr("Localizable", "buttonRetry", fallback: "Retry")
+  /// loco:682dc3dd2d87d3cbda04b3a2
+  public static let buttonSave = CoreUILocalizable.tr("Localizable", "buttonSave", fallback: "Save")
   /// loco:67beed7f8291a886220faf53
   public static let buttonYes = CoreUILocalizable.tr("Localizable", "buttonYes", fallback: "Yes")
   /// loco:676538295907d1ab51014ae2
   public static let errorDownload = CoreUILocalizable.tr("Localizable", "errorDownload", fallback: "Download error")
   /// loco:67653882015fa8304b01cbb9
-  public static let errorDownloadInsufficientSpace = CoreUILocalizable.tr("Localizable", "errorDownloadInsufficientSpace", fallback: "Cannot download : Insufficient space")
+  public static let errorDownloadInsufficientSpace = CoreUILocalizable.tr("Localizable", "errorDownloadInsufficientSpace", fallback: "Cannot download: Insufficient space")
+  /// loco:67dbc1f28c22b8594f030f32
+  public static let joinTheBetaButton = CoreUILocalizable.tr("Localizable", "joinTheBetaButton", fallback: "Join the beta program")
   /// loco:67beee584d2044470e0df152
   public static func reviewAlertTitle(_ p1: Any) -> String {
     return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")
