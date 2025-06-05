@@ -21,13 +21,16 @@ import SwiftUI
 
 // MARK: - Loading Effect
 
-@available(iOS 15.0, *)
-struct IKButtonLoadingModifier: ViewModifier {
+public struct IKButtonLoadingModifier: ViewModifier {
     @Environment(\.ikButtonLoading) private var isLoading
 
     let isFilled: Bool
 
-    func body(content: Content) -> some View {
+    public init(isFilled: Bool) {
+        self.isFilled = isFilled
+    }
+
+    public func body(content: Content) -> some View {
         ZStack {
             content
                 .opacity(isLoading ? 0 : 1)
@@ -43,12 +46,13 @@ struct IKButtonLoadingModifier: ViewModifier {
 
 // MARK: - Control Size
 
-@available(iOS 15.0, *)
-struct IKButtonControlSizeModifier: ViewModifier {
+public struct IKButtonControlSizeModifier: ViewModifier {
     @Environment(\.controlSize) private var controlSize
     @Environment(\.ikButtonTheme) private var theme
 
-    func body(content: Content) -> some View {
+    public init() {}
+
+    public func body(content: Content) -> some View {
         content
             .font(theme.scaledFont(controlSize))
     }
@@ -56,11 +60,12 @@ struct IKButtonControlSizeModifier: ViewModifier {
 
 // MARK: - Expandable Button
 
-@available(iOS 15.0, *)
-struct IKButtonExpandableModifier: ViewModifier {
+public struct IKButtonExpandableModifier: ViewModifier {
     @Environment(\.ikButtonFullWidth) private var isFullWidth
 
-    func body(content: Content) -> some View {
+    public init() {}
+
+    public func body(content: Content) -> some View {
         content
             .frame(maxWidth: isFullWidth ? IKButtonConstants.maxWidth : nil)
     }
@@ -68,11 +73,10 @@ struct IKButtonExpandableModifier: ViewModifier {
 
 // MARK: - Layout
 
-@available(iOS 15.0, *)
-struct IKButtonLayout: ViewModifier {
+public struct IKButtonLayout: ViewModifier {
     @Environment(\.controlSize) private var controlSize
 
-    var isInlined: Bool
+    let isInlined: Bool
 
     private var minHeight: CGFloat? {
         guard !isInlined else { return nil }
@@ -84,7 +88,11 @@ struct IKButtonLayout: ViewModifier {
         return controlSize == .large ? IKPadding.medium : IKPadding.mini
     }
 
-    func body(content: Content) -> some View {
+    public init(isInlined: Bool) {
+        self.isInlined = isInlined
+    }
+
+    public func body(content: Content) -> some View {
         content
             .padding(.horizontal, isInlined ? 0 : IKPadding.large)
             .padding(.vertical, verticalPadding)
@@ -98,21 +106,28 @@ enum IKButtonTapAnimation {
     case scale, opacity
 }
 
-@available(iOS 15.0, *)
-struct IKButtonScaleAnimationModifier: ViewModifier {
+public struct IKButtonScaleAnimationModifier: ViewModifier {
     let isPressed: Bool
 
-    func body(content: Content) -> some View {
+    public init(isPressed: Bool) {
+        self.isPressed = isPressed
+    }
+
+    public func body(content: Content) -> some View {
         content
             .brightness(isPressed ? 0.1 : 0)
             .scaleEffect(isPressed ? 0.95 : 1.0)
     }
 }
 
-struct IKButtonOpacityAnimationModifier: ViewModifier {
+public struct IKButtonOpacityAnimationModifier: ViewModifier {
     let isPressed: Bool
 
-    func body(content: Content) -> some View {
+    public init(isPressed: Bool) {
+        self.isPressed = isPressed
+    }
+
+    public func body(content: Content) -> some View {
         content
             .opacity(isPressed ? 0.4 : 1.0)
     }
@@ -120,8 +135,7 @@ struct IKButtonOpacityAnimationModifier: ViewModifier {
 
 // MARK: - Filled Button
 
-@available(iOS 15.0, *)
-struct IKButtonFilledModifier: ViewModifier {
+public struct IKButtonFilledModifier: ViewModifier {
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
@@ -150,7 +164,12 @@ struct IKButtonFilledModifier: ViewModifier {
         }
     }
 
-    func body(content: Content) -> some View {
+    public init(buttonRole: ButtonRole?, isProminent: Bool) {
+        self.buttonRole = buttonRole
+        self.isProminent = isProminent
+    }
+
+    public func body(content: Content) -> some View {
         content
             .foregroundStyle(AnyShapeStyle(foregroundStyle))
             .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: IKRadius.large))
