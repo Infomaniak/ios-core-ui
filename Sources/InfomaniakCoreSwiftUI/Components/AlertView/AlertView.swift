@@ -27,7 +27,7 @@ public struct AlertView<Content>: View where Content: View {
     private let maxWidth: CGFloat
 
     public init(
-        backgroundColor: Color = Color(uiColor: .systemBackground),
+        backgroundColor: Color,
         maxWidth: CGFloat = 496,
         @ViewBuilder content: () -> Content
     ) {
@@ -74,12 +74,15 @@ public struct AlertView<Content>: View where Content: View {
 
 struct CustomAlertModifier<AlertContent>: ViewModifier where AlertContent: View {
     @Binding var isPresented: Bool
+
+    let backgroundColor: Color
+
     @ViewBuilder let alertView: AlertContent
 
     func body(content: Content) -> some View {
         content
             .fullScreenCover(isPresented: $isPresented) {
-                AlertView {
+                AlertView(backgroundColor: backgroundColor) {
                     alertView
                 }
             }
@@ -88,12 +91,14 @@ struct CustomAlertModifier<AlertContent>: ViewModifier where AlertContent: View 
 
 struct CustomAlertItemModifier<Item, AlertContent>: ViewModifier where Item: Identifiable, AlertContent: View {
     @Binding var item: Item?
+
+    let backgroundColor: Color
     let alertView: (Item) -> AlertContent
 
     func body(content: Content) -> some View {
         content
             .fullScreenCover(item: $item) { item in
-                AlertView {
+                AlertView(backgroundColor: backgroundColor) {
                     alertView(item)
                 }
             }
@@ -126,18 +131,26 @@ private struct ClearFullScreenView: UIViewRepresentable {
 }
 
 public extension View {
-    func customAlert<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) -> some View {
-        modifier(CustomAlertModifier(isPresented: isPresented, alertView: content))
+    func customAlert<Content: View>(
+        isPresented: Binding<Bool>,
+        backgroundColor: Color,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        modifier(CustomAlertModifier(isPresented: isPresented, backgroundColor: backgroundColor, alertView: content))
     }
 
-    func customAlert<Item, Content>(item: Binding<Item?>, @ViewBuilder content: @escaping (Item) -> Content) -> some View
+    func customAlert<Item, Content>(
+        item: Binding<Item?>,
+        backgroundColor: Color,
+        @ViewBuilder content: @escaping (Item) -> Content
+    ) -> some View
         where Item: Identifiable, Content: View {
-        modifier(CustomAlertItemModifier(item: item, alertView: content))
+        modifier(CustomAlertItemModifier(item: item, backgroundColor: backgroundColor, alertView: content))
     }
 }
 
 #Preview {
-    AlertView {
+    AlertView(backgroundColor: Color(uiColor: .systemBackground)) {
         Text("Some alert text")
     }
 }
@@ -149,7 +162,7 @@ public extension View {
     Button("Open Alert") {
         isPresented = true
     }
-    .customAlert(isPresented: $isPresented) {
+    .customAlert(isPresented: $isPresented, backgroundColor: Color(uiColor: .systemBackground)) {
         VStack {
             Text("Some alert text")
             Button("Close") {

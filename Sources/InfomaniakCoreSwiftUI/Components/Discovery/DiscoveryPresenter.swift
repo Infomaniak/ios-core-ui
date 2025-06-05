@@ -23,9 +23,17 @@ public extension View {
     func discoveryPresenter<ModalContent: View>(
         isPresented: Binding<Bool>,
         bottomPadding: CGFloat = IKPadding.medium,
+        alertBackgroundColor: Color,
+        sheetBackgroundColor: Color,
         @ViewBuilder modalContent: @escaping () -> ModalContent
     ) -> some View {
-        modifier(DiscoveryPresenter(isPresented: isPresented, bottomPadding: bottomPadding, modalContent: modalContent))
+        modifier(DiscoveryPresenter(
+            isPresented: isPresented,
+            bottomPadding: bottomPadding,
+            alertBackgroundColor: alertBackgroundColor,
+            sheetBackgroundColor: sheetBackgroundColor,
+            modalContent: modalContent
+        ))
     }
 }
 
@@ -35,6 +43,8 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     @Binding var isPresented: Bool
 
     let bottomPadding: CGFloat
+    let alertBackgroundColor: Color
+    let sheetBackgroundColor: Color
     @ViewBuilder let modalContent: ModalContent
 
     func body(content: Content) -> some View {
@@ -42,11 +52,16 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
             .sheet(isPresented: Binding(get: { isCompactWindow && isPresented }, set: { isPresented = $0 })) {
                 if #available(iOS 16.0, *) {
                     modalContent.modifier(SelfSizingPanelViewModifier(bottomPadding: bottomPadding))
+                        .background(sheetBackgroundColor)
                 } else {
                     modalContent.modifier(SelfSizingPanelBackportViewModifier(bottomPadding: bottomPadding))
+                        .background(sheetBackgroundColor)
                 }
             }
-            .customAlert(isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 })) {
+            .customAlert(
+                isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 }),
+                backgroundColor: alertBackgroundColor
+            ) {
                 modalContent
             }
     }
