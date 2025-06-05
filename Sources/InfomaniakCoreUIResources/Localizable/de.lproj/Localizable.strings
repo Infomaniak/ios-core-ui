@@ -2,13 +2,10 @@
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
  * Locale: de, German
- * Tagged: ios
- * Exported by: Valentin Perignon
- * Exported at: Thu, 23 Jan 2025 16:56:44 +0100
+ * Tagged: ios, !interapplogin, !privacy, !my kSuite
+ * Exported by: Ambroise Decouttere
+ * Exported at: Wed, 04 Jun 2025 16:19:44 +0200
  */
-
-/* loco:67dbc1f28c22b8594f030f32 */
-" joinTheBetaButton" = "Dem Beta-Programm beitreten";
 
 /* loco:675fea0d40923b5c440f0f52 */
 "anErrorHasOccurred" = "Ein Fehler ist aufgetreten";
@@ -28,6 +25,9 @@
 /* loco:6729ead76f93fd246802f932 */
 "buttonRetry" = "Wiederholen";
 
+/* loco:682dc3dd2d87d3cbda04b3a2 */
+"buttonSave" = "Speichern";
+
 /* loco:67beed7f8291a886220faf53 */
 "buttonYes" = "Ja";
 
@@ -37,6 +37,8 @@
 /* loco:67653882015fa8304b01cbb9 */
 "errorDownloadInsufficientSpace" = "Download nicht möglich: Unzureichender Speicherplatz";
 
+/* loco:67dbc1f28c22b8594f030f32 */
+"joinTheBetaButton" = "Dem Beta-Programm beitreten";
+
 /* loco:67beee584d2044470e0df152 */
 "reviewAlertTitle" = "Mögen Sie %@?";
-
