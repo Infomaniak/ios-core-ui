@@ -213,7 +213,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
                 content
                     .padding(.bottom, bottomPadding)
             }
-            .introspect(.scrollView, on: .iOS(.v16, .v17, .v18)) { scrollView in
+            .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26)) { scrollView in
                 guard isCompactWindow else { return }
                 let totalPanelContentHeight = scrollView.contentSize.height + headerSize
                 guard selection != .height(totalPanelContentHeight) else { return }
