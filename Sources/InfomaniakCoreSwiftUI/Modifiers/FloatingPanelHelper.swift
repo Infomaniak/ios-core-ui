@@ -28,20 +28,24 @@ public extension View {
     func floatingPanel<Content: View>(
         isPresented: Binding<Bool>,
         title: String? = nil,
+        backgroundColor: Color,
         bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         sheet(isPresented: isPresented) {
             if #available(iOS 16.0, *) {
                 content().modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
+                    .background(backgroundColor)
             } else {
                 content().modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
+                    .background(backgroundColor)
             }
         }
     }
 
     func floatingPanel<Item: Identifiable, Content: View>(
         item: Binding<Item?>,
+        backgroundColor: Color,
         title: String? = nil,
         bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping (Item) -> Content
@@ -49,8 +53,10 @@ public extension View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
                 content(item).modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
+                    .background(backgroundColor)
             } else {
                 content(item).modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
+                    .background(backgroundColor)
             }
         }
     }
