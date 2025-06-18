@@ -21,7 +21,7 @@ import SwiftUI
 
 public struct CameraPickerView: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
-    @Binding var selectedImage: UIImage?
+    @Binding private var selectedImage: UIImage?
 
     public init(selectedImage: Binding<UIImage?>) {
         _selectedImage = selectedImage
@@ -41,7 +41,7 @@ public struct CameraPickerView: UIViewControllerRepresentable {
     }
 
     public class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        var parent: CameraPickerView
+        private var parent: CameraPickerView
 
         public init(parent: CameraPickerView) {
             self.parent = parent
