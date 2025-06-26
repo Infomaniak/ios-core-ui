@@ -24,6 +24,12 @@ public enum CoreUILocalizable {
   public static let buttonRetry = CoreUILocalizable.tr("Localizable", "buttonRetry", fallback: "Retry")
   /// loco:682dc3dd2d87d3cbda04b3a2
   public static let buttonSave = CoreUILocalizable.tr("Localizable", "buttonSave", fallback: "Save")
+  /// loco:685d08b2fc3b99693f00c872
+  public static let buttonUploadFromCamera = CoreUILocalizable.tr("Localizable", "buttonUploadFromCamera", fallback: "Camera")
+  /// loco:685d0914ecd5fc13620f1fc2
+  public static let buttonUploadFromFiles = CoreUILocalizable.tr("Localizable", "buttonUploadFromFiles", fallback: "Browse files")
+  /// loco:685d08dc653f4deb94019b62
+  public static let buttonUploadFromGallery = CoreUILocalizable.tr("Localizable", "buttonUploadFromGallery", fallback: "Photo and video gallery")
   /// loco:67beed7f8291a886220faf53
   public static let buttonYes = CoreUILocalizable.tr("Localizable", "buttonYes", fallback: "Yes")
   /// loco:676538295907d1ab51014ae2
