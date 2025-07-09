@@ -20,21 +20,21 @@ import Foundation
 import MatomoTracker
 import OSLog
 
-public extension os.Logger {
-    static let matomo = Logger(subsystem: "InfomaniakCoreUI", category: "matomoUtils")
+extension os.Logger {
+    static let matomo = Logger(subsystem: "InfomaniakCoreCommonUI", category: "matomoUtils")
 }
 
 public final class MatomoUtils {
     private let tracker: MatomoTracker
-    private let shouldLog: Bool
+    private let enableLog: Bool
 
-    public init(siteId: String, baseURL: URL, shouldLog: Bool = false) {
+    public init(siteId: String, baseURL: URL, enableLog: Bool = false) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
 
         #if DEBUG || TEST
-        self.shouldLog = shouldLog
+        self.enableLog = enableLog
         #else
-        self.shouldLog = false
+        self.enableLog = false
         #endif
     }
 
@@ -47,14 +47,14 @@ public final class MatomoUtils {
     }
 
     public func track(view: [String]) {
-        if shouldLog {
-            Logger.matomo.debug("Matomo - View  : \(view)")
+        if enableLog {
+            Logger.matomo.info("Matomo - View : \(view)")
         }
         tracker.track(view: view)
     }
 
     public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
-        if shouldLog {
+        if enableLog {
             logTrack(category: category, action: action, name: name, value: value)
         }
         tracker.track(eventWithCategory: category.displayName, action: action.rawValue, name: name, value: value)
@@ -73,24 +73,16 @@ public final class MatomoUtils {
         )
     }
 
-    private func logTrack(category: EventCategory, action: UserAction, name: String, value: Any?) {
-        var valueDescription: String?
+    private func logTrack(category: EventCategory, action: UserAction, name: String, value: Float?) {
+        var logMessage = "Matomo Event - Category: \(category.displayName), Name: \(name)"
 
-        if let boolValue = value as? Bool {
-            valueDescription = boolValue ? "1" : "0"
-        } else if let intValue = value as? Int {
-            valueDescription = "\(intValue)"
-        } else if let floatValue = value as? Float {
-            valueDescription = "\(floatValue)"
+        if let value {
+            logMessage += ", Value: \(value)"
         }
 
-        if let valueDesc = valueDescription {
-            Logger.matomo.debug(
-                "Matomo Event - Category: \(category.displayName), Name: \(name), Value: \(valueDesc), (Action: \(action.rawValue))"
-            )
-        } else {
-            Logger.matomo.debug("Matomo Event - Category: \(category.displayName), Name: \(name), (Action: \(action.rawValue))")
-        }
+        logMessage += ", Action: \(action.rawValue)"
+
+        Logger.matomo.debug("\(logMessage)")
     }
 }
 

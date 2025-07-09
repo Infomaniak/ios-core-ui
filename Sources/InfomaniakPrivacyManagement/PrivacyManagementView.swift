@@ -127,7 +127,7 @@ public struct PrivacyManagementView: View {
             userDefaultKeyMatomo: "matomoKey",
             userDefaultKeySentry: "sentryKey",
             showTitle: true,
-            matomo: MatomoUtils(siteId: "yourSiteId", baseURL: validURL, shouldLog: true)
+            matomo: MatomoUtils(siteId: "yourSiteId", baseURL: validURL)
         )
     } else {
         Text("Invalid URL")
