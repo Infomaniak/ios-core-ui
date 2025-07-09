@@ -18,12 +18,24 @@
 
 import Foundation
 import MatomoTracker
+import OSLog
+
+public extension os.Logger {
+    static let matomo = Logger(subsystem: "InfomaniakCoreUI", category: "matomoUtils")
+}
 
 public final class MatomoUtils {
     private let tracker: MatomoTracker
+    private let shouldLog: Bool
 
-    public init(siteId: String, baseURL: URL) {
+    public init(siteId: String, baseURL: URL, shouldLog: Bool = false) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
+
+        #if DEBUG || TEST
+        self.shouldLog = shouldLog
+        #else
+        self.shouldLog = false
+        #endif
     }
 
     public func connectUser(userId: String) {
@@ -35,10 +47,16 @@ public final class MatomoUtils {
     }
 
     public func track(view: [String]) {
+        if shouldLog {
+            Logger.matomo.debug("Matomo - View  : \(view)")
+        }
         tracker.track(view: view)
     }
 
     public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
+        if shouldLog {
+            logTrack(category: category, action: action, name: name, value: value)
+        }
         tracker.track(eventWithCategory: category.displayName, action: action.rawValue, name: name, value: value)
     }
 
@@ -53,6 +71,26 @@ public final class MatomoUtils {
             name: "bulk\(number <= 1 ? "Single" : "")\(name)",
             value: Float(number)
         )
+    }
+
+    private func logTrack(category: EventCategory, action: UserAction, name: String, value: Any?) {
+        var valueDescription: String?
+
+        if let boolValue = value as? Bool {
+            valueDescription = boolValue ? "1" : "0"
+        } else if let intValue = value as? Int {
+            valueDescription = "\(intValue)"
+        } else if let floatValue = value as? Float {
+            valueDescription = "\(floatValue)"
+        }
+
+        if let valueDesc = valueDescription {
+            Logger.matomo.debug(
+                "Matomo Event - Category: \(category.displayName), Name: \(name), Value: \(valueDesc), (Action: \(action.rawValue))"
+            )
+        } else {
+            Logger.matomo.debug("Matomo Event - Category: \(category.displayName), Name: \(name), (Action: \(action.rawValue))")
+        }
     }
 }
 
