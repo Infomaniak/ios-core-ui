@@ -18,12 +18,20 @@
 
 import Foundation
 import MatomoTracker
+import OSLog
 
 public final class MatomoUtils {
     private let tracker: MatomoTracker
+    private let enableLogger: Bool
 
-    public init(siteId: String, baseURL: URL) {
+    public init(siteId: String, baseURL: URL, enableLogger: Bool = false) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
+
+        #if DEBUG || TEST
+        self.enableLogger = enableLogger
+        #else
+        self.enableLogger = false
+        #endif
     }
 
     public func connectUser(userId: String) {
@@ -35,10 +43,16 @@ public final class MatomoUtils {
     }
 
     public func track(view: [String]) {
+        if enableLogger {
+            Logger.matomo.trackedView(view)
+        }
         tracker.track(view: view)
     }
 
     public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
+        if enableLogger {
+            Logger.matomo.trackedEvent(category: category.displayName, action: action, name: name, value: value)
+        }
         tracker.track(eventWithCategory: category.displayName, action: action.rawValue, name: name, value: value)
     }
 
@@ -79,5 +93,27 @@ public extension MatomoUtils {
 
     enum UserAction: String {
         case click, input, drag, longPress, data
+    }
+}
+
+extension os.Logger {
+    static let matomo = Logger(subsystem: "InfomaniakCoreCommonUI", category: "matomoUtils")
+
+    func trackedEvent(category: String, action: MatomoUtils.UserAction, name: String, value: Float?) {
+        var logMessage = "category: \(category), name: \(name)"
+        if let value {
+            logMessage += ", value: \(value)"
+        }
+        logMessage += " (action: \(action.rawValue))"
+
+        matomo(type: "Event", content: logMessage)
+    }
+
+    func trackedView(_ view: [String]) {
+        matomo(type: "View", content: "\(view)")
+    }
+
+    private func matomo(type: String, content: String) {
+        debug("[Matomo - \(type)] \(content)")
     }
 }
