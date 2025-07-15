@@ -49,11 +49,15 @@ public final class MatomoUtils {
         tracker.track(view: view)
     }
 
-    public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
+    public func track(eventWithCategory category: String, action: UserAction = .click, name: String, value: Float? = nil) {
         if enableLogger {
-            Logger.matomo.trackedEvent(category: category.displayName, action: action, name: name, value: value)
+            Logger.matomo.trackedEvent(category: category, action: action, name: name, value: value)
         }
-        tracker.track(eventWithCategory: category.displayName, action: action.rawValue, name: name, value: value)
+        tracker.track(eventWithCategory: category, action: action.rawValue, name: name, value: value)
+    }
+
+    public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
+        track(eventWithCategory: category.displayName, action: action, name: name, value: value)
     }
 
     public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Bool) {
