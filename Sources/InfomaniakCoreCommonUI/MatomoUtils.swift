@@ -20,21 +20,17 @@ import Foundation
 import MatomoTracker
 import OSLog
 
-extension os.Logger {
-    static let matomo = Logger(subsystem: "InfomaniakCoreCommonUI", category: "matomoUtils")
-}
-
 public final class MatomoUtils {
     private let tracker: MatomoTracker
-    private let enableLog: Bool
+    private let enableLogger: Bool
 
-    public init(siteId: String, baseURL: URL, enableLog: Bool = false) {
+    public init(siteId: String, baseURL: URL, enableLogger: Bool = false) {
         tracker = MatomoTracker(siteId: siteId, baseURL: baseURL)
 
         #if DEBUG || TEST
-        self.enableLog = enableLog
+        self.enableLogger = enableLogger
         #else
-        self.enableLog = false
+        self.enableLogger = false
         #endif
     }
 
@@ -47,15 +43,15 @@ public final class MatomoUtils {
     }
 
     public func track(view: [String]) {
-        if enableLog {
-            Logger.matomo.info("Matomo - View : \(view)")
+        if enableLogger {
+            Logger.matomo.trackedView(view)
         }
         tracker.track(view: view)
     }
 
     public func track(eventWithCategory category: EventCategory, action: UserAction = .click, name: String, value: Float? = nil) {
-        if enableLog {
-            logTrack(category: category, action: action, name: name, value: value)
+        if enableLogger {
+            Logger.matomo.trackedEvent(category: category.displayName, action: action, name: name, value: value)
         }
         tracker.track(eventWithCategory: category.displayName, action: action.rawValue, name: name, value: value)
     }
@@ -71,18 +67,6 @@ public final class MatomoUtils {
             name: "bulk\(number <= 1 ? "Single" : "")\(name)",
             value: Float(number)
         )
-    }
-
-    private func logTrack(category: EventCategory, action: UserAction, name: String, value: Float?) {
-        var logMessage = "Matomo Event - Category: \(category.displayName), Name: \(name)"
-
-        if let value {
-            logMessage += ", Value: \(value)"
-        }
-
-        logMessage += ", Action: \(action.rawValue)"
-
-        Logger.matomo.debug("\(logMessage)")
     }
 }
 
@@ -109,5 +93,27 @@ public extension MatomoUtils {
 
     enum UserAction: String {
         case click, input, drag, longPress, data
+    }
+}
+
+extension os.Logger {
+    static let matomo = Logger(subsystem: "InfomaniakCoreCommonUI", category: "matomoUtils")
+
+    func trackedEvent(category: String, action: MatomoUtils.UserAction, name: String, value: Float?) {
+        var logMessage = "category: \(category), name: \(name)"
+        if let value {
+            logMessage += ", value: \(value)"
+        }
+        logMessage += " (action: \(action.rawValue))"
+
+        matomo(type: "Event", content: logMessage)
+    }
+
+    func trackedView(_ view: [String]) {
+        matomo(type: "View", content: "\(view)")
+    }
+
+    private func matomo(type: String, content: String) {
+        debug("[Matomo - \(type)] \(content)")
     }
 }
