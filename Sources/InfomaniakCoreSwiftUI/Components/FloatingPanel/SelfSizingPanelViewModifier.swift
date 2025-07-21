@@ -22,8 +22,26 @@ import InfomaniakDI
 import SwiftUI
 import SwiftUIBackports
 
+protocol SelfSizablePanel: ViewModifier {
+    var dragIndicator: Visibility { get }
+    var title: String? { get }
+    var bottomPadding: CGFloat { get }
+
+    var headerSize: CGFloat { get }
+}
+
+extension SelfSizablePanel {
+    var headerSize: CGFloat {
+        guard title != nil else {
+            return IKFloatingPanelConstants.topPadding
+        }
+        return IKFloatingPanelConstants.topPadding + IKFloatingPanelConstants.titleSpacing +
+            UIFont.preferredFont(forTextStyle: .headline).pointSize
+    }
+}
+
 @available(iOS, introduced: 15, deprecated: 16, message: "Use native way")
-public struct SelfSizingPanelBackportViewModifier: ViewModifier {
+public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePanel {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<Backport.PresentationDetent> = [.medium]
@@ -31,14 +49,6 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
     let dragIndicator: Visibility
     let title: String?
     let bottomPadding: CGFloat
-
-    private var headerSize: CGFloat {
-        guard title != nil else {
-            return IKFloatingPanelConstants.topPadding
-        }
-        return IKFloatingPanelConstants.topPadding + IKFloatingPanelConstants.titleSpacing +
-            UIFont.preferredFont(forTextStyle: .headline).pointSize
-    }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
         self.dragIndicator = dragIndicator
@@ -76,7 +86,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier {
 }
 
 @available(iOS 16.0, *)
-public struct SelfSizingPanelViewModifier: ViewModifier {
+public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     @State private var currentDetents: Set<PresentationDetent> = [.height(0)]
@@ -85,14 +95,6 @@ public struct SelfSizingPanelViewModifier: ViewModifier {
     let dragIndicator: Visibility
     let title: String?
     let bottomPadding: CGFloat
-
-    private var headerSize: CGFloat {
-        guard title != nil else {
-            return IKFloatingPanelConstants.topPadding
-        }
-        return IKFloatingPanelConstants.topPadding + IKFloatingPanelConstants.titleSpacing +
-            UIFont.preferredFont(forTextStyle: .headline).pointSize
-    }
 
     public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
         self.dragIndicator = dragIndicator
