@@ -17,8 +17,10 @@
  */
 
 import Foundation
+import InfomaniakDI
 import MatomoTracker
 import OSLog
+import SwiftUICore
 
 public final class MatomoUtils {
     private let tracker: MatomoTracker
@@ -119,5 +121,28 @@ extension os.Logger {
 
     private func matomo(type: String, content: String) {
         debug("[Matomo - \(type)] \(content)")
+    }
+}
+
+public struct MatomoView: ViewModifier {
+    @LazyInjectService private var matomo: MatomoUtils
+
+    private let view: [String]
+
+    public init(view: [String]) {
+        self.view = view
+    }
+
+    public func body(content: Content) -> some View {
+        content
+            .onAppear {
+                matomo.track(view: view)
+            }
+    }
+}
+
+public extension View {
+    func matomoView(view: [String]) -> some View {
+        modifier(MatomoView(view: view))
     }
 }
