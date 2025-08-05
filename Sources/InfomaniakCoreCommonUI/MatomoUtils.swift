@@ -20,7 +20,7 @@ import Foundation
 import InfomaniakDI
 import MatomoTracker
 import OSLog
-import SwiftUICore
+import SwiftUI
 
 public final class MatomoUtils {
     private let tracker: MatomoTracker
