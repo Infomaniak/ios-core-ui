@@ -25,6 +25,7 @@ import SwiftUIBackports
 protocol SelfSizablePanel: ViewModifier {
     var dragIndicator: Visibility { get }
     var title: String? { get }
+    var topPadding: CGFloat { get }
     var bottomPadding: CGFloat { get }
 
     var headerSize: CGFloat { get }
@@ -33,9 +34,9 @@ protocol SelfSizablePanel: ViewModifier {
 extension SelfSizablePanel {
     var headerSize: CGFloat {
         guard title != nil else {
-            return IKFloatingPanelConstants.topPadding
+            return topPadding
         }
-        return IKFloatingPanelConstants.topPadding + IKFloatingPanelConstants.titleSpacing +
+        return topPadding + IKFloatingPanelConstants.titleSpacing +
             UIFont.preferredFont(forTextStyle: .headline).pointSize
     }
 }
@@ -48,17 +49,25 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePane
 
     let dragIndicator: Visibility
     let title: String?
+    let topPadding: CGFloat
     let bottomPadding: CGFloat
 
-    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
+    public init(
+        dragIndicator: Visibility = Visibility.visible,
+        title: String? = nil,
+        topPadding: CGFloat,
+        bottomPadding: CGFloat
+    ) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.topPadding = topPadding
         self.bottomPadding = bottomPadding
     }
 
     public func body(content: Content) -> some View {
         IKFloatingPanelBackportView(
             title: title,
+            topPadding: topPadding,
             bottomPadding: bottomPadding,
             detents: currentDetents,
             dragIndicator: dragIndicator
@@ -94,24 +103,31 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
     let dragIndicator: Visibility
     let title: String?
+    let topPadding: CGFloat
     let bottomPadding: CGFloat
 
-    public init(dragIndicator: Visibility = Visibility.visible, title: String? = nil, bottomPadding: CGFloat) {
+    public init(
+        dragIndicator: Visibility = Visibility.visible,
+        title: String? = nil,
+        topPadding: CGFloat,
+        bottomPadding: CGFloat
+    ) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.topPadding = topPadding
         self.bottomPadding = bottomPadding
     }
 
     public func body(content: Content) -> some View {
         IKFloatingPanelView(
             currentDetent: $selection,
+            topPadding: topPadding,
             bottomPadding: bottomPadding,
             detents: currentDetents,
             dragIndicator: dragIndicator
         ) {
             ScrollView {
                 content
-                    .padding(.bottom, bottomPadding)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26)) { scrollView in
                 computeViewHeight(from: scrollView)
