@@ -29,16 +29,25 @@ public extension View {
         isPresented: Binding<Bool>,
         title: String? = nil,
         backgroundColor: Color,
+        topPadding: CGFloat = IKPadding.large,
         bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         sheet(isPresented: isPresented) {
             if #available(iOS 16.0, *) {
-                content().modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
-                    .background(backgroundColor)
+                content().modifier(SelfSizingPanelViewModifier(
+                    title: title,
+                    topPadding: topPadding,
+                    bottomPadding: bottomPadding
+                ))
+                .background(backgroundColor)
             } else {
-                content().modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
-                    .background(backgroundColor)
+                content().modifier(SelfSizingPanelBackportViewModifier(
+                    title: title,
+                    topPadding: topPadding,
+                    bottomPadding: bottomPadding
+                ))
+                .background(backgroundColor)
             }
         }
     }
@@ -47,16 +56,25 @@ public extension View {
         item: Binding<Item?>,
         backgroundColor: Color,
         title: String? = nil,
+        topPadding: CGFloat = IKPadding.large,
         bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping (Item) -> Content
     ) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
-                content(item).modifier(SelfSizingPanelViewModifier(title: title, bottomPadding: bottomPadding))
-                    .background(backgroundColor)
+                content(item).modifier(SelfSizingPanelViewModifier(
+                    title: title,
+                    topPadding: topPadding,
+                    bottomPadding: bottomPadding
+                ))
+                .background(backgroundColor)
             } else {
-                content(item).modifier(SelfSizingPanelBackportViewModifier(title: title, bottomPadding: bottomPadding))
-                    .background(backgroundColor)
+                content(item).modifier(SelfSizingPanelBackportViewModifier(
+                    title: title,
+                    topPadding: topPadding,
+                    bottomPadding: bottomPadding
+                ))
+                .background(backgroundColor)
             }
         }
     }

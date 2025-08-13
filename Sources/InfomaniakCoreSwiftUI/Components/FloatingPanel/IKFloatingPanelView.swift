@@ -21,7 +21,6 @@ import SwiftUI
 import SwiftUIBackports
 
 public enum IKFloatingPanelConstants {
-    public static let topPadding = IKPadding.large
     public static let titleSpacing = IKPadding.mini
 }
 
@@ -31,6 +30,7 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     let title: String?
+    let topPadding: CGFloat
     let bottomPadding: CGFloat
     let detents: Set<Backport<Any>.PresentationDetent>
     let dragIndicator: Visibility
@@ -57,12 +57,14 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
 
     public init(
         title: String? = nil,
+        topPadding: CGFloat,
         bottomPadding: CGFloat,
         detents: Set<Backport<Any>.PresentationDetent>,
         dragIndicator: Visibility,
         @ViewBuilder content: () -> Content,
     ) {
         self.title = title
+        self.topPadding = topPadding
         self.bottomPadding = bottomPadding
         self.detents = detents
         self.dragIndicator = dragIndicator
@@ -88,7 +90,8 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
 
             content
         }
-        .padding(.top, IKFloatingPanelConstants.topPadding)
+        .padding(.top, topPadding)
+        .padding(.bottom, bottomPadding)
         .backport.presentationDragIndicator(isCompactWindow ? backportDragIndicator : .hidden)
         .backport.presentationDetents(isCompactWindow ? detents : [.large])
         .ikPresentationCornerRadius(20)
@@ -103,6 +106,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     @Binding var currentDetent: PresentationDetent
 
     let title: String?
+    let topPadding: CGFloat
     let bottomPadding: CGFloat
     let detents: Set<PresentationDetent>
     let dragIndicator: Visibility
@@ -119,6 +123,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     public init(
         currentDetent: Binding<PresentationDetent>,
         title: String? = nil,
+        topPadding: CGFloat,
         bottomPadding: CGFloat,
         detents: Set<PresentationDetent>,
         dragIndicator: Visibility,
@@ -126,6 +131,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     ) {
         _currentDetent = currentDetent
         self.title = title
+        self.topPadding = topPadding
         self.bottomPadding = bottomPadding
         self.detents = detents
         self.dragIndicator = dragIndicator
@@ -151,7 +157,8 @@ public struct IKFloatingPanelView<Content: View>: View {
 
             content
         }
-        .padding(.top, IKFloatingPanelConstants.topPadding)
+        .padding(.top, topPadding)
+        .padding(.bottom, bottomPadding)
         .presentationDetents(isCompactWindow ? detents : [.large], selection: $currentDetent)
         .presentationDragIndicator(isCompactWindow ? dragIndicator : .hidden)
         .ikPresentationCornerRadius(20)

@@ -22,6 +22,7 @@ import SwiftUI
 public extension View {
     func discoveryPresenter<ModalContent: View>(
         isPresented: Binding<Bool>,
+        topPadding: CGFloat = IKPadding.large,
         bottomPadding: CGFloat = IKPadding.medium,
         alertBackgroundColor: Color,
         sheetBackgroundColor: Color,
@@ -29,6 +30,7 @@ public extension View {
     ) -> some View {
         modifier(DiscoveryPresenter(
             isPresented: isPresented,
+            topPadding: topPadding,
             bottomPadding: bottomPadding,
             alertBackgroundColor: alertBackgroundColor,
             sheetBackgroundColor: sheetBackgroundColor,
@@ -42,6 +44,7 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
 
     @Binding var isPresented: Bool
 
+    let topPadding: CGFloat
     let bottomPadding: CGFloat
     let alertBackgroundColor: Color
     let sheetBackgroundColor: Color
@@ -51,11 +54,14 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
         content
             .sheet(isPresented: Binding(get: { isCompactWindow && isPresented }, set: { isPresented = $0 })) {
                 if #available(iOS 16.0, *) {
-                    modalContent.modifier(SelfSizingPanelViewModifier(bottomPadding: bottomPadding))
+                    modalContent.modifier(SelfSizingPanelViewModifier(topPadding: topPadding, bottomPadding: bottomPadding))
                         .background(sheetBackgroundColor)
                 } else {
-                    modalContent.modifier(SelfSizingPanelBackportViewModifier(bottomPadding: bottomPadding))
-                        .background(sheetBackgroundColor)
+                    modalContent.modifier(SelfSizingPanelBackportViewModifier(
+                        topPadding: topPadding,
+                        bottomPadding: bottomPadding
+                    ))
+                    .background(sheetBackgroundColor)
                 }
             }
             .customAlert(
