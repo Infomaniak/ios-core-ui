@@ -20,10 +20,16 @@ import DesignSystem
 import InfomaniakCoreCommonUI
 import InfomaniakCoreUIResources
 import InfomaniakDI
+import Lottie
 import SwiftUI
 
+public enum DiscoveryContent: Equatable {
+    case image(Image)
+    case lottie(name: String, bundle: Bundle)
+}
+
 public struct DiscoveryItem: Equatable {
-    public let image: Image
+    public let content: DiscoveryContent
     public let title: String
     public let description: String
     public let primaryButtonLabel: String
@@ -34,13 +40,13 @@ public struct DiscoveryItem: Equatable {
     }
 
     public init(
-        image: Image,
+        content: DiscoveryContent,
         title: String,
         description: String,
         primaryButtonLabel: String,
         shouldDisplayLaterButton: Bool = false
     ) {
-        self.image = image
+        self.content = content
         self.title = title
         self.description = description
         self.primaryButtonLabel = primaryButtonLabel
@@ -110,7 +116,16 @@ struct DiscoveryBottomSheetView: View {
 
     var body: some View {
         VStack(spacing: IKPadding.huge) {
-            item.image
+            switch item.content {
+            case .image(let image):
+                image
+            case .lottie(let animationName, let bundle):
+                LottieView {
+                    try await LottieAnimationSource.dotLottieFile(.named(animationName, bundle: bundle))
+                }
+                .playing(loopMode: .autoReverse)
+                .frame(maxHeight: 128)
+            }
 
             Text(item.title)
                 .font(Font(TextStyle.header2.font))
@@ -151,7 +166,16 @@ struct DiscoveryAlertView: View {
 
     var body: some View {
         VStack(spacing: IKPadding.large) {
-            item.image
+            switch item.content {
+            case .image(let image):
+                image
+            case .lottie(let animationName, let bundle):
+                LottieView {
+                    try await LottieAnimationSource.dotLottieFile(.named(animationName, bundle: bundle))
+                }
+                .playing(loopMode: .autoReverse)
+                .frame(maxHeight: 128)
+            }
 
             Text(item.title)
                 .font(.body)
@@ -182,7 +206,7 @@ struct DiscoveryAlertView: View {
 
 #Preview {
     let item = DiscoveryItem(
-        image: Image(""),
+        content: .image(Image("")),
         title: "Update available",
         description: "Update your app to get the latest features",
         primaryButtonLabel: "Update",
