@@ -25,7 +25,7 @@ import SwiftUI
 
 public enum DiscoveryContent: Equatable {
     case image(Image)
-    case lottie(name: String, bundle: Bundle)
+    case lottie(lightName: String, darkName: String? = nil, bundle: Bundle)
 }
 
 public struct DiscoveryItem: Equatable {
@@ -119,12 +119,9 @@ struct DiscoveryBottomSheetView: View {
             switch item.content {
             case .image(let image):
                 image
-            case .lottie(let animationName, let bundle):
-                LottieView {
-                    try await LottieAnimationSource.dotLottieFile(.named(animationName, bundle: bundle))
-                }
-                .playing(loopMode: .autoReverse)
-                .frame(maxHeight: 128)
+            case .lottie(let lightAnimationName, let darkAnimationName, let bundle):
+                ThemedLottieView(lightAnimationName: lightAnimationName, darkAnimationName: darkAnimationName, bundle: bundle)
+                    .frame(height: 128)
             }
 
             Text(item.title)
@@ -169,12 +166,9 @@ struct DiscoveryAlertView: View {
             switch item.content {
             case .image(let image):
                 image
-            case .lottie(let animationName, let bundle):
-                LottieView {
-                    try await LottieAnimationSource.dotLottieFile(.named(animationName, bundle: bundle))
-                }
-                .playing(loopMode: .autoReverse)
-                .frame(maxHeight: 128)
+            case .lottie(let lightAnimationName, let darkAnimationName, let bundle):
+                ThemedLottieView(lightAnimationName: lightAnimationName, darkAnimationName: darkAnimationName, bundle: bundle)
+                    .frame(height: 128)
             }
 
             Text(item.title)
