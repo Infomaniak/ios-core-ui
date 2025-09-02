@@ -53,6 +53,10 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
     }
 
     private var shouldShowHeader: Bool {
+        if title == nil && closeButtonHidden {
+            return false
+        }
+
         return title != nil || isCompactMode
     }
 
@@ -121,6 +125,10 @@ public struct IKFloatingPanelView<Content: View>: View {
     }
 
     private var shouldShowHeader: Bool {
+        if title == nil && closeButtonHidden {
+            return false
+        }
+
         return title != nil || isCompactMode
     }
 
