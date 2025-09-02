@@ -30,6 +30,7 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
     let title: String?
+    let closeButtonHidden: Bool
     let topPadding: CGFloat
     let bottomPadding: CGFloat
     let detents: Set<Backport<Any>.PresentationDetent>
@@ -57,6 +58,7 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
 
     public init(
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         topPadding: CGFloat,
         bottomPadding: CGFloat,
         detents: Set<Backport<Any>.PresentationDetent>,
@@ -64,6 +66,7 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
         @ViewBuilder content: () -> Content,
     ) {
         self.title = title
+        self.closeButtonHidden = closeButtonHidden
         self.topPadding = topPadding
         self.bottomPadding = bottomPadding
         self.detents = detents
@@ -80,7 +83,7 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if isCompactMode {
+                    if isCompactMode && !closeButtonHidden {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, value: .medium)
@@ -106,6 +109,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     @Binding var currentDetent: PresentationDetent
 
     let title: String?
+    let closeButtonHidden: Bool
     let topPadding: CGFloat
     let bottomPadding: CGFloat
     let detents: Set<PresentationDetent>
@@ -123,6 +127,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     public init(
         currentDetent: Binding<PresentationDetent>,
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         topPadding: CGFloat,
         bottomPadding: CGFloat,
         detents: Set<PresentationDetent>,
@@ -131,6 +136,7 @@ public struct IKFloatingPanelView<Content: View>: View {
     ) {
         _currentDetent = currentDetent
         self.title = title
+        self.closeButtonHidden = closeButtonHidden
         self.topPadding = topPadding
         self.bottomPadding = bottomPadding
         self.detents = detents
@@ -147,7 +153,7 @@ public struct IKFloatingPanelView<Content: View>: View {
                             .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
                     }
 
-                    if isCompactMode {
+                    if isCompactMode && !closeButtonHidden {
                         FloatingPanelCloseButton(size: .medium, dismissAction: dismiss)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, value: .medium)

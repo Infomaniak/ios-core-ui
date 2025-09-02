@@ -28,6 +28,7 @@ public extension View {
     func floatingPanel<Content: View>(
         isPresented: Binding<Bool>,
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         backgroundColor: Color,
         topPadding: CGFloat = IKPadding.large,
         bottomPadding: CGFloat = IKPadding.medium,
@@ -37,6 +38,7 @@ public extension View {
             if #available(iOS 16.0, *) {
                 content().modifier(SelfSizingPanelViewModifier(
                     title: title,
+                    closeButtonHidden: closeButtonHidden,
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
@@ -44,6 +46,7 @@ public extension View {
             } else {
                 content().modifier(SelfSizingPanelBackportViewModifier(
                     title: title,
+                    closeButtonHidden: closeButtonHidden,
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
@@ -56,6 +59,7 @@ public extension View {
         item: Binding<Item?>,
         backgroundColor: Color,
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         topPadding: CGFloat = IKPadding.large,
         bottomPadding: CGFloat = IKPadding.medium,
         @ViewBuilder content: @escaping (Item) -> Content
@@ -64,6 +68,7 @@ public extension View {
             if #available(iOS 16.0, *) {
                 content(item).modifier(SelfSizingPanelViewModifier(
                     title: title,
+                    closeButtonHidden: closeButtonHidden,
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
@@ -71,6 +76,7 @@ public extension View {
             } else {
                 content(item).modifier(SelfSizingPanelBackportViewModifier(
                     title: title,
+                    closeButtonHidden: closeButtonHidden,
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))

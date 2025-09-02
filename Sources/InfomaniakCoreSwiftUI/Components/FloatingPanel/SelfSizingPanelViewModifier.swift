@@ -49,17 +49,20 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePane
 
     let dragIndicator: Visibility
     let title: String?
+    let closeButtonHidden: Bool
     let topPadding: CGFloat
     let bottomPadding: CGFloat
 
     public init(
         dragIndicator: Visibility = Visibility.visible,
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         topPadding: CGFloat,
         bottomPadding: CGFloat
     ) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.closeButtonHidden = closeButtonHidden
         self.topPadding = topPadding
         self.bottomPadding = bottomPadding
     }
@@ -103,17 +106,20 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
     let dragIndicator: Visibility
     let title: String?
+    let closeButtonHidden: Bool
     let topPadding: CGFloat
     let bottomPadding: CGFloat
 
     public init(
         dragIndicator: Visibility = Visibility.visible,
         title: String? = nil,
+        closeButtonHidden: Bool = false,
         topPadding: CGFloat,
         bottomPadding: CGFloat
     ) {
         self.dragIndicator = dragIndicator
         self.title = title
+        self.closeButtonHidden = closeButtonHidden
         self.topPadding = topPadding
         self.bottomPadding = bottomPadding
     }
@@ -121,6 +127,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     public func body(content: Content) -> some View {
         IKFloatingPanelView(
             currentDetent: $selection,
+            closeButtonHidden: closeButtonHidden,
             topPadding: topPadding,
             bottomPadding: bottomPadding,
             detents: currentDetents,
