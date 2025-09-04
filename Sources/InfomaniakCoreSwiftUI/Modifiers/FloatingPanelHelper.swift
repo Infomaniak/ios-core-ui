@@ -66,22 +66,32 @@ public extension View {
     ) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
-                content(item).modifier(SelfSizingPanelViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
+                content(item)
+                    .modifier(SelfSizingPanelViewModifier(
+                        title: title,
+                        closeButtonHidden: closeButtonHidden,
+                        topPadding: topPadding,
+                        bottomPadding: bottomPadding
+                    ))
+                    .sheetBackgroundIfNecessary(backgroundColor)
             } else {
-                content(item).modifier(SelfSizingPanelBackportViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
+                content(item)
+                    .modifier(SelfSizingPanelBackportViewModifier(
+                        title: title,
+                        closeButtonHidden: closeButtonHidden,
+                        topPadding: topPadding,
+                        bottomPadding: bottomPadding
+                    ))
+                    .sheetBackgroundIfNecessary(backgroundColor)
             }
+        }
+    }
+
+    @ViewBuilder private func sheetBackgroundIfNecessary(_ color: Color) -> some View {
+        if #available(iOS 26.0, *) {
+            self
+        } else {
+            background(color)
         }
     }
 }
