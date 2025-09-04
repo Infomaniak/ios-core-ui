@@ -87,7 +87,7 @@ public extension View {
         }
     }
 
-    @ViewBuilder private func sheetBackgroundIfNecessary(_ color: Color) -> some View {
+    @ViewBuilder func sheetBackgroundIfNecessary(_ color: Color) -> some View {
         if #available(iOS 26.0, *) {
             self
         } else {
