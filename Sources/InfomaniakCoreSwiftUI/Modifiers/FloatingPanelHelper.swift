@@ -42,7 +42,7 @@ public extension View {
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
-                .background(backgroundColor)
+                .sheetBackgroundIfNecessary(backgroundColor)
             } else {
                 content().modifier(SelfSizingPanelBackportViewModifier(
                     title: title,
@@ -50,7 +50,7 @@ public extension View {
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
-                .background(backgroundColor)
+                .sheetBackgroundIfNecessary(backgroundColor)
             }
         }
     }
