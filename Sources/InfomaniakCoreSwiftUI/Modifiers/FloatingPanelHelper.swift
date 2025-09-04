@@ -84,15 +84,4 @@ public extension View {
             }
         }
     }
-
-    @MainActor
-    func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
-        if #available(iOS 16.4, *) {
-            return presentationCornerRadius(cornerRadius)
-        } else {
-            return introspect(.viewController, on: .iOS(.v15)) { viewController in
-                viewController.sheetPresentationController?.preferredCornerRadius = cornerRadius
-            }
-        }
-    }
 }

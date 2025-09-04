@@ -101,7 +101,6 @@ public struct IKFloatingPanelBackportView<Content: View>: View {
         .padding(.bottom, bottomPadding)
         .backport.presentationDragIndicator(isCompactWindow ? backportDragIndicator : .hidden)
         .backport.presentationDetents(isCompactWindow ? detents : [.large])
-        .ikPresentationCornerRadius(20)
     }
 }
 
@@ -175,6 +174,5 @@ public struct IKFloatingPanelView<Content: View>: View {
         .padding(.bottom, bottomPadding)
         .presentationDetents(isCompactWindow ? detents : [.large], selection: $currentDetent)
         .presentationDragIndicator(isCompactWindow ? dragIndicator : .hidden)
-        .ikPresentationCornerRadius(20)
     }
 }
