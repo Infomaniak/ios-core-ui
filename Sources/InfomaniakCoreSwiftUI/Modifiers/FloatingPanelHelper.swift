@@ -87,11 +87,11 @@ public extension View {
         }
     }
 
-    @ViewBuilder func sheetBackgroundIfNecessary(_ color: Color) -> some View {
+    @ViewBuilder func sheetBackgroundIfNecessary<Background>(_ background: Background) -> some View where Background: View {
         if #available(iOS 26.0, *) {
             self
         } else {
-            background(color)
+            self.background(background)
         }
     }
 }
