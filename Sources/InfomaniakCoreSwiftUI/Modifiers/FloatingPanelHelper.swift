@@ -66,32 +66,23 @@ public extension View {
     ) -> some View {
         sheet(item: item) { item in
             if #available(iOS 16.0, *) {
-                content(item).modifier(SelfSizingPanelViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
+                content(item)
+                    .modifier(SelfSizingPanelViewModifier(
+                        title: title,
+                        closeButtonHidden: closeButtonHidden,
+                        topPadding: topPadding,
+                        bottomPadding: bottomPadding
+                    ))
+                    .background(backgroundColor)
             } else {
-                content(item).modifier(SelfSizingPanelBackportViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
-            }
-        }
-    }
-
-    @MainActor
-    func ikPresentationCornerRadius(_ cornerRadius: CGFloat?) -> some View {
-        if #available(iOS 16.4, *) {
-            return presentationCornerRadius(cornerRadius)
-        } else {
-            return introspect(.viewController, on: .iOS(.v15)) { viewController in
-                viewController.sheetPresentationController?.preferredCornerRadius = cornerRadius
+                content(item)
+                    .modifier(SelfSizingPanelBackportViewModifier(
+                        title: title,
+                        closeButtonHidden: closeButtonHidden,
+                        topPadding: topPadding,
+                        bottomPadding: bottomPadding
+                    ))
+                    .background(backgroundColor)
             }
         }
     }
