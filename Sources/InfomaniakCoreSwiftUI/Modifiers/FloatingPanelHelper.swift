@@ -42,7 +42,7 @@ public extension View {
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
-                .sheetBackgroundIfNecessary(backgroundColor)
+                .background(backgroundColor)
             } else {
                 content().modifier(SelfSizingPanelBackportViewModifier(
                     title: title,
@@ -50,7 +50,7 @@ public extension View {
                     topPadding: topPadding,
                     bottomPadding: bottomPadding
                 ))
-                .sheetBackgroundIfNecessary(backgroundColor)
+                .background(backgroundColor)
             }
         }
     }
@@ -73,7 +73,7 @@ public extension View {
                         topPadding: topPadding,
                         bottomPadding: bottomPadding
                     ))
-                    .sheetBackgroundIfNecessary(backgroundColor)
+                    .background(backgroundColor)
             } else {
                 content(item)
                     .modifier(SelfSizingPanelBackportViewModifier(
@@ -82,16 +82,8 @@ public extension View {
                         topPadding: topPadding,
                         bottomPadding: bottomPadding
                     ))
-                    .sheetBackgroundIfNecessary(backgroundColor)
+                    .background(backgroundColor)
             }
-        }
-    }
-
-    @ViewBuilder func sheetBackgroundIfNecessary<Background>(_ background: Background) -> some View where Background: View {
-        if #available(iOS 26.0, *) {
-            self
-        } else {
-            self.background(background)
         }
     }
 }
