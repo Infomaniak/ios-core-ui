@@ -127,6 +127,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     public func body(content: Content) -> some View {
         IKFloatingPanelView(
             currentDetent: $selection,
+            title: title,
             closeButtonHidden: closeButtonHidden,
             topPadding: topPadding,
             bottomPadding: bottomPadding,
