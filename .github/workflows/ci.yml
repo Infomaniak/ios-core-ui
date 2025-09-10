@@ -19,4 +19,4 @@ jobs:
       - name: Build
         run: xcodebuild -scheme InfomaniakCoreUI-Package build -sdk iphonesimulator -destination "generic/platform=iOS"
       - name: Test
-        run: xcodebuild -scheme InfomaniakCoreUI-Package test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=latest"
+        run: xcodebuild -scheme InfomaniakCoreUI-Package test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 17,OS=latest"
