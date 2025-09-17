@@ -71,7 +71,7 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePane
         IKFloatingPanelBackportView(
             title: title,
             topPadding: topPadding,
-            bottomPadding: bottomPadding,
+            bottomPadding: 0,
             detents: currentDetents,
             dragIndicator: dragIndicator
         ) {
@@ -130,12 +130,13 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
             title: title,
             closeButtonHidden: closeButtonHidden,
             topPadding: topPadding,
-            bottomPadding: bottomPadding,
+            bottomPadding: 0,
             detents: currentDetents,
             dragIndicator: dragIndicator
         ) {
             ScrollView {
                 content
+                    .padding(.bottom, bottomPadding)
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26)) { scrollView in
                 computeViewHeight(from: scrollView)
