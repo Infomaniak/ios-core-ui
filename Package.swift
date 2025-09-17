@@ -41,7 +41,7 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.10.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
         .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
-        .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "1.4.0-beta.1")),
+        .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "26.0.0")),
         .package(url: "https://github.com/airbnb/lottie-spm", .upToNextMajor(from: "4.5.2"))
     ],
     targets: [
@@ -67,7 +67,7 @@ let package = Package(
                 "InfomaniakCoreCommonUI",
                 .product(name: "Lottie", package: "lottie-spm"),
                 .product(name: "InfomaniakCore", package: "ios-core"),
-                .product(name: "SwiftUIIntrospect-Static", package: "SwiftUI-Introspect")
+                .product(name: "SwiftUIIntrospect-Dynamic", package: "SwiftUI-Introspect")
             ]
         ),
         .target(
