@@ -36,7 +36,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "16.0.0")),
+        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "17.0.0")),
         .package(url: "https://github.com/Infomaniak/SnackBar.swift", .upToNextMajor(from: "1.2.0")),
         .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "7.10.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
