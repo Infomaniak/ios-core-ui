@@ -33,8 +33,13 @@ public struct CompactWindowDetectorModifier: ViewModifier {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
+    @State private var isCompactWindow = true
+
     public func body(content: Content) -> some View {
         content
-            .environment(\.isCompactWindow, horizontalSizeClass == .compact || verticalSizeClass == .compact)
+            .environment(\.isCompactWindow, isCompactWindow)
+            .task(id: horizontalSizeClass == .compact || verticalSizeClass == .compact) {
+                isCompactWindow = horizontalSizeClass == .compact || verticalSizeClass == .compact
+            }
     }
 }
