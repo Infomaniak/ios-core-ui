@@ -2,3 +2,5 @@
 swiftformat = '0.54.5'
 swiftlint = '0.57.0'
 swiftgen = "latest"
+pipx = "latest"
+"pipx:infomaniak/importloco" = "1.1.0"

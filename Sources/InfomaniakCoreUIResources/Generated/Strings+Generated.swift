@@ -14,6 +14,8 @@ public enum CoreUILocalizable {
   public static let anErrorHasOccurred = CoreUILocalizable.tr("Localizable", "anErrorHasOccurred", fallback: "An error has occurred")
   /// loco:6729ea9f4cb9f889f604d934
   public static let buttonCancel = CoreUILocalizable.tr("Localizable", "buttonCancel", fallback: "Cancel")
+  /// loco:679237f6daa3807fa008b175
+  public static let buttonClose = CoreUILocalizable.tr("Localizable", "buttonClose", fallback: "Close")
   /// loco:67ac7d178defcfcd7806e182
   public static let buttonLater = CoreUILocalizable.tr("Localizable", "buttonLater", fallback: "Later")
   /// loco:675059634bdf0aedde06df72
