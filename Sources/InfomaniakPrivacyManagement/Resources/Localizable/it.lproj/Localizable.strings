@@ -2,9 +2,9 @@
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
  * Locale: it, Italian
- * Tagged: ios, !common, !my kSuite
- * Exported by: Matthieu Déglon
- * Exported at: Thu, 30 Jan 2025 11:15:26 +0100
+ * Tagged: ios
+ * Exported by: Baptiste Griva
+ * Exported at: Tue, 30 Sep 2025 09:48:07 +0200
  */
 
 /* loco:679b18c9e56503c64e0f47b2 */
@@ -14,7 +14,7 @@
 "authorizeTracking" = "Autorizzare il tracciamento";
 
 /* loco:679b17a8f70dbaf41b0c3c92 */
-"trackingManagementDescription" = "È possibile personalizzare i dati di utilizzo e operativi che Infomaniak recupera per correggere i bug e migliorare l’applicazione. Entrambi gli strumenti sono ospitati e gestiti esclusivamente da noi.\n\nInfomaniak rispetta la vostra privacy: il codice sorgente di questa applicazione può essere verificato, le informazioni raccolte sono anonime e i vostri dati personali rimangono strettamente confidenziali e non vengono mai condivisi con terze parti.";
+"trackingManagementDescription" = "In Infomaniak, i vostri dati non sono mai merce di scambio. Utilizziamo solo strumenti interni, ospitati e controllati da noi stessi, per garantire la qualità e lo sviluppo delle nostre applicazioni.\n\nQuesti dati tecnici sono riservati, archiviati sui nostri server in Svizzera, accessibili solo ai nostri team di sviluppo e non vengono mai condivisi con terzi. Il codice sorgente delle nostre applicazioni può essere verificato, garantendo una trasparenza totale.";
 
 /* loco:679b1726759efd28eb0aae82 */
 "trackingManagementTitle" = "Gestione dei dati";
