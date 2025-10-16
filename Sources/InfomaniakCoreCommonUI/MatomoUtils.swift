@@ -67,10 +67,13 @@ public final class MatomoUtils {
     }
 
     public func trackBulkEvent(eventWithCategory category: EventCategory, name: String, numberOfItems number: Int) {
+        let first = name.first
+        let rest = name.dropFirst()
+        let uppercasedName = (first?.uppercased() ?? "") + rest
         track(
             eventWithCategory: category,
             action: .click,
-            name: "bulk\(number <= 1 ? "Single" : "")\(name)",
+            name: "bulk\(number <= 1 ? "Single" : "")\(uppercasedName)",
             value: Float(number)
         )
     }
