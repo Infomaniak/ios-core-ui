@@ -67,9 +67,7 @@ public final class MatomoUtils {
     }
 
     public func trackBulkEvent(eventWithCategory category: EventCategory, name: String, numberOfItems number: Int) {
-        let first = name.first
-        let rest = name.dropFirst()
-        let uppercasedName = (first?.uppercased() ?? "") + rest
+        let uppercasedName = name.prefix(1).uppercased() + name.dropFirst()
         track(
             eventWithCategory: category,
             action: .click,
