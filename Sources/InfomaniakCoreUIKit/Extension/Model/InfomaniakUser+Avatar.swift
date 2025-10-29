@@ -17,24 +17,15 @@
  */
 
 import InfomaniakCore
-import Kingfisher
+import Nuke
 import UIKit
 
 public extension InfomaniakUser {
     /// Can fetch an avatar from any abstract `InfomaniakUser`
-    func getAvatar(size: CGSize = CGSize(width: 40, height: 40), completion: @escaping (UIImage) -> Void) {
-        guard let avatarString = avatar,
-              let url = URL(string: avatarString) else {
-            completion(defaultAvatar(size: size))
-            return
-        }
-
-        KingfisherManager.shared.retrieveImage(with: url) { result in
-            if let avatarImage = try? result.get().image {
-                completion(avatarImage)
-            } else {
-                completion(self.defaultAvatar(size: size))
-            }
+    func getAvatar(size: CGSize = CGSize(width: 40, height: 40), completion: @MainActor @escaping (UIImage) -> Void) {
+        Task {
+            let avatarImage = await getAvatar(size: size)
+            await completion(avatarImage)
         }
     }
 
@@ -44,10 +35,15 @@ public extension InfomaniakUser {
     }
 
     func getAvatar(size: CGSize = CGSize(width: 40, height: 40)) async -> UIImage {
-        return await withCheckedContinuation { continuation in
-            self.getAvatar(size: size) { image in
-                continuation.resume(returning: image)
-            }
+        guard let avatarString = avatar,
+              let url = URL(string: avatarString) else {
+            return defaultAvatar(size: size)
         }
+
+        guard let avatarImage = try? await ImagePipeline.shared.image(for: url) else {
+            return defaultAvatar(size: size)
+        }
+
+        return avatarImage
     }
 }
