@@ -33,13 +33,11 @@ public protocol IKSnackBarPresentable {
     ///   - message: the message to be displayed
     ///   - duration: The duration the message should be displayed
     ///   - action: The optional action that should be displayed
-    ///   - anchor: Use this to pin the `SnackBar`
     ///   - contextView: pass a context view in which the `SnackBar` should be displayed. Useful in complex situation.
     func show(
         message: String,
         duration: SnackBar.Duration,
         action: IKSnackBar.Action?,
-        anchor: CGFloat,
         contextView: UIView?
     )
 }
