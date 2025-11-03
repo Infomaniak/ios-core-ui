@@ -23,27 +23,35 @@ import UIKit
 public extension InfomaniakUser {
     /// Can fetch an avatar from any abstract `InfomaniakUser`
     func getAvatar(size: CGSize = CGSize(width: 40, height: 40), completion: @MainActor @escaping (UIImage) -> Void) {
+        let id = self.id
+        let displayName = self.displayName
+        let avatar = self.avatar
+
         Task {
-            let avatarImage = await getAvatar(size: size)
+            let avatarImage = await getAvatar(id: id, displayName: displayName, avatar: avatar, size: size)
             await completion(avatarImage)
         }
     }
 
-    private func defaultAvatar(size: CGSize) -> UIImage {
+    private func defaultAvatar(id: Int, displayName: String, size: CGSize) -> UIImage {
         let backgroundColor = UIColor.backgroundColor(from: id)
         return UIImage.getInitialsPlaceholder(with: displayName, size: size, backgroundColor: backgroundColor)
     }
 
-    func getAvatar(size: CGSize = CGSize(width: 40, height: 40)) async -> UIImage {
+    private func getAvatar(id: Int, displayName: String, avatar: String?, size: CGSize) async -> UIImage {
         guard let avatarString = avatar,
               let url = URL(string: avatarString) else {
-            return defaultAvatar(size: size)
+            return defaultAvatar(id: id, displayName: displayName, size: size)
         }
 
         guard let avatarImage = try? await ImagePipeline.shared.image(for: url) else {
-            return defaultAvatar(size: size)
+            return defaultAvatar(id: id, displayName: displayName, size: size)
         }
 
         return avatarImage
+    }
+
+    func getAvatar(size: CGSize = CGSize(width: 40, height: 40)) async -> UIImage {
+        return await getAvatar(id: id, displayName: displayName, avatar: avatar, size: size)
     }
 }
