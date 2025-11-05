@@ -22,6 +22,8 @@ import UIKit
 
 @available(iOSApplicationExtension, unavailable)
 public final class OrientationManager: OrientationManageable {
+    public init() {}
+
     /// Default to .all
     public var orientationLock = UIInterfaceOrientationMask.all
 
