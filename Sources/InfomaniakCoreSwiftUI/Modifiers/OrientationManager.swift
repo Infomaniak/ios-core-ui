@@ -24,7 +24,6 @@ import UIKit
 public final class OrientationManager: OrientationManageable {
     public init() {}
 
-    /// Default to .all
     public var orientationLock = UIInterfaceOrientationMask.all
 
     public func setOrientationLock(_ orientation: UIInterfaceOrientationMask) {
