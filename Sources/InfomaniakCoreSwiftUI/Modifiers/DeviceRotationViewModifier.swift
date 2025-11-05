@@ -16,16 +16,9 @@
  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import InfomaniakCoreCommonUI
 import InfomaniakDI
 import SwiftUI
-
-public protocol OrientationManageable {
-    var orientationLock: UIInterfaceOrientationMask { get }
-
-    func setOrientationLock(_ orientation: UIInterfaceOrientationMask)
-
-    var interfaceOrientation: UIInterfaceOrientation? { get }
-}
 
 public struct DeviceRotationViewModifier: ViewModifier {
     let action: (UIInterfaceOrientation?) -> Void

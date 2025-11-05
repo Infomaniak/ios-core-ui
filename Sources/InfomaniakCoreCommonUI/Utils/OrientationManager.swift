@@ -17,8 +17,15 @@
  */
 
 import Foundation
-import InfomaniakCoreUIKit
 import UIKit
+
+public protocol OrientationManageable {
+    var orientationLock: UIInterfaceOrientationMask { get }
+
+    func setOrientationLock(_ orientation: UIInterfaceOrientationMask)
+
+    var interfaceOrientation: UIInterfaceOrientation? { get }
+}
 
 @available(iOSApplicationExtension, unavailable)
 public final class OrientationManager: OrientationManageable {
