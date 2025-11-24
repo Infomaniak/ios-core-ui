@@ -99,10 +99,12 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePane
 
 @available(iOS 16.0, *)
 public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
+    static let defaultHeight: CGFloat = 1
+
     @Environment(\.isCompactWindow) private var isCompactWindow
 
-    @State private var currentDetents: Set<PresentationDetent> = [.height(0)]
-    @State private var selection: PresentationDetent = .height(0)
+    @State private var currentDetents: Set<PresentationDetent> = [.height(Self.defaultHeight)]
+    @State private var selection: PresentationDetent = .height(Self.defaultHeight)
 
     let dragIndicator: Visibility
     let title: String?
@@ -151,7 +153,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
         scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
         DispatchQueue.main.async {
-            currentDetents = [.height(0), .height(totalPanelContentHeight)]
+            currentDetents = [.height(Self.defaultHeight), .height(totalPanelContentHeight)]
             selection = .height(totalPanelContentHeight)
 
             // Hack to let time for the animation to finish, after animation is complete we can modify the state again
