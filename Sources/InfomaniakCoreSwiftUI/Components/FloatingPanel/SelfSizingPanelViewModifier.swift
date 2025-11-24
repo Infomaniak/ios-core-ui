@@ -101,7 +101,8 @@ public struct SelfSizingPanelBackportViewModifier: ViewModifier, SelfSizablePane
 public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
-    @State private var currentContentHeight: CGFloat = 1
+    @State private var currentDetents: Set<PresentationDetent> = [.height(0)]
+    @State private var selection: PresentationDetent = .height(0)
 
     let dragIndicator: Visibility
     let title: String?
@@ -125,26 +126,38 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
     public func body(content: Content) -> some View {
         IKFloatingPanelView(
-            currentDetent: .constant(.height(currentContentHeight)),
+            currentDetent: $selection,
             title: title,
             closeButtonHidden: closeButtonHidden,
             topPadding: topPadding,
             bottomPadding: 0,
-            detents: [.height(currentContentHeight)],
+            detents: currentDetents,
             dragIndicator: dragIndicator
         ) {
             ScrollView {
                 content
                     .padding(.bottom, bottomPadding)
-                    .onGeometryChange(for: CGFloat.self) { proxy in
-                        proxy.size.height + headerSize
-                    } action: { newValue in
-                        currentContentHeight = newValue
-                    }
             }
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26)) { scrollView in
-                let totalPanelContentHeight = scrollView.contentSize.height + headerSize
-                scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
+                computeViewHeight(from: scrollView)
+            }
+        }
+    }
+
+    private func computeViewHeight(from scrollView: UIScrollView) {
+        guard isCompactWindow else { return }
+        let totalPanelContentHeight = scrollView.contentSize.height + headerSize
+        guard selection != .height(totalPanelContentHeight) else { return }
+
+        scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
+        DispatchQueue.main.async {
+            currentDetents = [.height(0), .height(totalPanelContentHeight)]
+            selection = .height(totalPanelContentHeight)
+
+            // Hack to let time for the animation to finish, after animation is complete we can modify the state again
+            // if we don't do this the animation is cut before finishing
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                currentDetents = [selection]
             }
         }
     }
