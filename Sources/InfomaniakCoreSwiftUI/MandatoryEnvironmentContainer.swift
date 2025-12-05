@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct MandatoryEnvironmentContainer<T> {
+public struct MandatoryEnvironmentContainer<T>: Equatable where T: Equatable {
     public var value: T {
         #if DEBUG
         guard let _value else {
