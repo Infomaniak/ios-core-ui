@@ -107,6 +107,8 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     @State private var selection: PresentationDetent = .height(Self.defaultHeight)
 
     let dragIndicator: Visibility
+    let maximumStepCount: Int
+    let minimumStepSize: Int
     let title: String?
     let closeButtonHidden: Bool
     let topPadding: CGFloat
@@ -114,12 +116,16 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
     public init(
         dragIndicator: Visibility = Visibility.visible,
+        maximumStepCount: Int = 1,
+        minimumStepSize: Int = 256,
         title: String? = nil,
         closeButtonHidden: Bool = false,
         topPadding: CGFloat,
         bottomPadding: CGFloat
     ) {
         self.dragIndicator = dragIndicator
+        self.maximumStepCount = maximumStepCount
+        self.minimumStepSize = minimumStepSize
         self.title = title
         self.closeButtonHidden = closeButtonHidden
         self.topPadding = topPadding
@@ -148,19 +154,43 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
 
     private func computeViewHeight(from scrollView: UIScrollView) {
         guard isCompactWindow else { return }
+
         let totalPanelContentHeight = scrollView.contentSize.height + headerSize
         guard selection != .height(totalPanelContentHeight) else { return }
 
         scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
+
+        let detentHeights = computeStepsFor(contentHeight: totalPanelContentHeight)
+
+        let newCurrentDetents = detentHeights.map { PresentationDetent.height(CGFloat($0)) }
+        guard Set(newCurrentDetents) != currentDetents else { return }
+
+        let newSelection: PresentationDetent = newCurrentDetents.first ?? .height(totalPanelContentHeight)
+
         DispatchQueue.main.async {
-            currentDetents = [.height(Self.defaultHeight), .height(totalPanelContentHeight)]
-            selection = .height(totalPanelContentHeight)
+            currentDetents = Set([.height(Self.defaultHeight)]).union(newCurrentDetents)
+            if selection == .height(Self.defaultHeight) || !currentDetents.contains(selection) {
+                selection = newSelection
+            }
 
             // Hack to let time for the animation to finish, after animation is complete we can modify the state again
             // if we don't do this the animation is cut before finishing
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                currentDetents = [selection]
+                currentDetents = Set(newCurrentDetents)
             }
         }
+    }
+
+    private func computeStepsFor(contentHeight: CGFloat) -> [Int] {
+        var stepHeights: [Int] = [Int(contentHeight)]
+
+        for step in (1 ..< maximumStepCount).reversed() {
+            let nextStepHeight = Int(CGFloat(step) / CGFloat(maximumStepCount) * contentHeight)
+            if nextStepHeight < (stepHeights.last ?? 0) - minimumStepSize {
+                stepHeights.insert(nextStepHeight, at: 0)
+            }
+        }
+
+        return stepHeights
     }
 }
