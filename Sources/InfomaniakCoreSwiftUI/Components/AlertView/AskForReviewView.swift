@@ -66,7 +66,7 @@ public struct AskForReviewView: View {
         appName: "InfomaniakCoreUI ",
         reviewManager: ReviewManager(
             userDefaults: UserDefaults.standard,
-            openingBeforeFirstReview: 1
+            actionBeforeFirstReview: 1
         ),
         onLike: {},
         onDislike: {}
