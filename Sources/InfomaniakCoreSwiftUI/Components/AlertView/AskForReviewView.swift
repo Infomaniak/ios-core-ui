@@ -25,20 +25,17 @@ import SwiftUI
 
 public struct AskForReviewView: View {
     private let appName: String
-    private let feedbackURL: String
     private let onLike: () async throws -> Void
-    private let onDislike: (URL) -> Void
+    private let onDislike: () -> Void
     private let reviewManager: ReviewManageable
 
     public init(
         appName: String,
-        feedbackURL: String,
         reviewManager: ReviewManageable,
         onLike: @escaping () async throws -> Void,
-        onDislike: @escaping (URL) -> Void
+        onDislike: @escaping () -> Void
     ) {
         self.appName = appName
-        self.feedbackURL = feedbackURL
         self.reviewManager = reviewManager
         self.onLike = onLike
         self.onDislike = onDislike
@@ -57,9 +54,7 @@ public struct AskForReviewView: View {
                     reviewManager.requestReview()
                 },
                 secondaryButtonAction: {
-                    if let userReportURL = URL(string: feedbackURL) {
-                        onDislike(userReportURL)
-                    }
+                    onDislike()
                 }
             )
         }
@@ -69,14 +64,11 @@ public struct AskForReviewView: View {
 #Preview {
     AskForReviewView(
         appName: "InfomaniakCoreUI ",
-        feedbackURL: "https://infomaniak.com",
         reviewManager: ReviewManager(
             userDefaults: UserDefaults.standard,
-            openingBeforeFirstReview: 1,
-            openingBeforeNextReviews: 2
+            actionBeforeFirstReview: 1
         ),
         onLike: {},
-        onDislike: { _ in
-        }
+        onDislike: {}
     )
 }

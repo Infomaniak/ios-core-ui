@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
-        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
-        "version" : "5.10.2"
+        "revision" : "7be73f6c2b5cd90e40798b06ebd5da8f9f79cf88",
+        "version" : "5.11.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-core",
       "state" : {
-        "revision" : "ab299bc6aec7dcc0461792a6c61bcd1126f4dde5",
-        "version" : "18.0.0"
+        "revision" : "4360f62b9396075195989a3e31ab5a7daf988977",
+        "version" : "18.5.0"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-dependency-injection",
       "state" : {
-        "revision" : "86f3b77f71547b7778d2819d4d1c2d77847f2069",
-        "version" : "2.0.4"
+        "revision" : "f6aa8ebc6fe1311deb5eb5ec09ccc695ba84a265",
+        "version" : "2.0.5"
       }
     },
     {
@@ -32,17 +32,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Infomaniak/ios-login",
       "state" : {
-        "revision" : "d3c8fa9dd7ea7e44a1a741b58d1036d4a7989588",
-        "version" : "7.2.0"
+        "revision" : "3862e03c6c3305ec59d3171dc1152b179d59c334",
+        "version" : "7.5.0"
       }
     },
     {
       "identity" : "lottie-spm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/airbnb/lottie-spm.git",
+      "location" : "https://github.com/airbnb/lottie-spm",
       "state" : {
-        "revision" : "04f2fd18cc9404a0a0917265a449002674f24ec9",
-        "version" : "4.5.2"
+        "revision" : "69faaefa7721fba9e434a52c16adf4329c9084db",
+        "version" : "4.6.0"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/matomo-org/matomo-sdk-ios",
       "state" : {
-        "revision" : "82a1f3b18215381e2133d98b7cc09b5a855ff99d",
-        "version" : "7.7.0"
+        "revision" : "f140afcb7cedebdcbf8b8230fdd822b4b61e3685",
+        "version" : "7.8.0"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "d94d44781167fbb8d7a46fb181e784a6446ca5c1",
-        "version" : "10.54.4"
+        "revision" : "1c105d34f25af7851c5a3ff146be006de247a6b4",
+        "version" : "10.54.6"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "d87b07a27cd9a082d367261d7199a96a54e59f1d",
-        "version" : "8.50.2"
+        "revision" : "16cd512711375fa73f25ae5e373f596bdf4251ae",
+        "version" : "8.58.0"
       }
     },
     {
