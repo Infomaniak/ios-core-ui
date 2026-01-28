@@ -18,11 +18,11 @@ on:
       # can be removed.
       - synchronize
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: z0al/dependent-issues@v1
-        env:
-          # (Required) The token to use to make API calls to GitHub.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  check_dependencies:
+    uses: infomaniak/.github/.github/workflows/dependent-issues.yml@v1
+    secrets: inherit

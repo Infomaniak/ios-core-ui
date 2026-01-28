@@ -1,6 +1,6 @@
 [tools]
-swiftformat = '0.54.5'
-swiftlint = '0.57.0'
-swiftgen = "latest"
-pipx = "latest"
-"pipx:infomaniak/importloco" = "1.1.0"
+swiftformat = { version = '0.54.5', os = ["macos", "linux"] }
+swiftlint = { version = '0.57.0', os = ["macos", "linux"] }
+swiftgen = { version = "latest", os = ["macos"] }
+pipx = { version = "latest", os = ["macos", "linux"] }
+"pipx:infomaniak/importloco" = { version = "1.1.0", os = ["macos", "linux"] }
