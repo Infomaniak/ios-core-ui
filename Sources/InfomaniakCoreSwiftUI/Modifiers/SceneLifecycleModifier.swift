@@ -39,9 +39,7 @@ struct SceneLifecycleModifier: ViewModifier {
                  On iOS/iPadOS, the `UIScene.willEnterForegroundNotification` notification is not posted when
                  the app is opened for the first time.
                  */
-                if !platformDetector.isMac {
-                    willEnterForeground?()
-                }
+                willEnterForeground?()
             }
             .onReceive(NotificationCenter.default.publisher(for: UIScene.willEnterForegroundNotification)) { _ in
                 /*
