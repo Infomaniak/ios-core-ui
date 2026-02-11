@@ -27,8 +27,6 @@ public extension View {
 }
 
 struct SceneLifecycleModifier: ViewModifier {
-    @LazyInjectService private var platformDetector: PlatformDetectable
-
     var willEnterForeground: (() -> Void)?
     var didEnterBackground: (() -> Void)?
 
