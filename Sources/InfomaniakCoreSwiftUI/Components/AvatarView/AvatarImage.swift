@@ -19,29 +19,51 @@
 import SwiftUI
 
 public struct AvatarImage: View {
+    let backgroundColor: Color
     let image: Image
     let size: CGFloat
 
-    public init(image: Image, size: CGFloat) {
+    public init(backgroundColor: Color = .white, image: Image, size: CGFloat) {
+        self.backgroundColor = backgroundColor
         self.image = image
         self.size = size
     }
 
     public var body: some View {
         ZStack {
-            Circle()
-                .fill(.white)
+            backgroundColor
 
             image
                 .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
+                .scaledToFill()
         }
         .frame(width: size, height: size)
+        .clipShape(.circle)
         .drawingGroup()
     }
 }
 
+@available(iOS 16.0, *)
 #Preview {
-    AvatarImage(image: Image(systemName: "person"), size: 40)
+    @MainActor func getImage(withSize size: CGSize) -> Image {
+        let square = Rectangle()
+            .fill(.blue)
+            .frame(width: size.width, height: size.height)
+
+        let uiImage = ImageRenderer(content: square).uiImage!
+        return Image(uiImage: uiImage)
+    }
+
+    let showBorder = true
+
+    return VStack {
+        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 40)), size: 40)
+            .border(showBorder ? .red : .clear)
+
+        AvatarImage(image: getImage(withSize: CGSize(width: 60, height: 40)), size: 40)
+            .border(showBorder ? .red : .clear)
+
+        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 60)), size: 40)
+            .border(showBorder ? .red : .clear)
+    }
 }
