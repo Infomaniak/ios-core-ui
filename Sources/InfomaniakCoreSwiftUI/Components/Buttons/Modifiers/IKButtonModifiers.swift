@@ -172,6 +172,6 @@ public struct IKButtonFilledModifier: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .foregroundStyle(AnyShapeStyle(foregroundStyle))
-            .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: IKRadius.large))
+            .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: theme.cornerRadius))
     }
 }
