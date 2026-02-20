@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DesignSystem
 import SwiftUI
 
 @available(iOS 15.0, *)
@@ -32,6 +33,8 @@ import SwiftUI
     public let smallFont: Font
     public let mediumFont: Font
 
+    public let cornerRadius: CGFloat
+
     public init(
         primary: any ShapeStyle,
         secondary: any ShapeStyle,
@@ -40,7 +43,8 @@ import SwiftUI
         disabledSecondary: any ShapeStyle,
         error: any ShapeStyle,
         smallFont: Font,
-        mediumFont: Font
+        mediumFont: Font,
+        cornerRadius: CGFloat = IKRadius.large
     ) {
         self.primary = primary
         self.secondary = secondary
@@ -50,6 +54,7 @@ import SwiftUI
         self.error = error
         self.smallFont = smallFont
         self.mediumFont = mediumFont
+        self.cornerRadius = cornerRadius
     }
 }
 
