@@ -107,7 +107,23 @@ enum IKButtonTapAnimation {
 }
 
 public struct IKButtonScaleAnimationModifier: ViewModifier {
+    @Environment(\.ikButtonUseLiquidGlass) private var useLiquidGlass
+
     let isPressed: Bool
+
+    private var brightness: Double {
+        guard !useLiquidGlass else {
+            return 0.0
+        }
+        return isPressed ? 0.1 : 0.0
+    }
+
+    private var scaleEffect: Double {
+        guard !useLiquidGlass else {
+            return 1.0
+        }
+        return isPressed ? 0.95 : 1.0
+    }
 
     public init(isPressed: Bool) {
         self.isPressed = isPressed
@@ -115,13 +131,22 @@ public struct IKButtonScaleAnimationModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .brightness(isPressed ? 0.1 : 0)
-            .scaleEffect(isPressed ? 0.95 : 1.0)
+            .brightness(brightness)
+            .scaleEffect(scaleEffect)
     }
 }
 
 public struct IKButtonOpacityAnimationModifier: ViewModifier {
+    @Environment(\.ikButtonUseLiquidGlass) private var useLiquidGlass
+
     let isPressed: Bool
+
+    private var opacity: Double {
+        guard !useLiquidGlass else {
+            return 1.0
+        }
+        return isPressed ? 0.4 : 1.0
+    }
 
     public init(isPressed: Bool) {
         self.isPressed = isPressed
@@ -129,7 +154,7 @@ public struct IKButtonOpacityAnimationModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .opacity(isPressed ? 0.4 : 1.0)
+            .opacity(opacity)
     }
 }
 
@@ -137,8 +162,10 @@ public struct IKButtonOpacityAnimationModifier: ViewModifier {
 
 public struct IKButtonFilledModifier: ViewModifier {
     @Environment(\.isEnabled) private var isEnabled
+
     @Environment(\.ikButtonTheme) private var theme
     @Environment(\.ikButtonLoading) private var isLoading
+    @Environment(\.ikButtonUseLiquidGlass) private var useLiquidGlass
 
     let buttonRole: ButtonRole?
     let isProminent: Bool
@@ -164,14 +191,28 @@ public struct IKButtonFilledModifier: ViewModifier {
         }
     }
 
+    private var backgroundColor: Color? {
+        if backgroundStyle is TintShapeStyle {
+            return .accentColor
+        }
+        return backgroundStyle as? Color
+    }
+
     public init(buttonRole: ButtonRole?, isProminent: Bool) {
         self.buttonRole = buttonRole
         self.isProminent = isProminent
     }
 
     public func body(content: Content) -> some View {
-        content
-            .foregroundStyle(AnyShapeStyle(foregroundStyle))
-            .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: theme.cornerRadius))
+        if useLiquidGlass, #available(iOS 26.0, macOS 26.0, *), let backgroundColor {
+            content
+                .foregroundStyle(AnyShapeStyle(foregroundStyle))
+                .glassEffect(.regular.interactive().tint(backgroundColor), in: .rect(cornerRadius: theme.cornerRadius))
+                .contentShape(.rect(cornerRadius: theme.cornerRadius))
+        } else {
+            content
+                .foregroundStyle(AnyShapeStyle(foregroundStyle))
+                .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: theme.cornerRadius))
+        }
     }
 }
