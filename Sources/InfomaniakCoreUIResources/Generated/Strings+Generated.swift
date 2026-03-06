@@ -34,12 +34,18 @@ public enum CoreUILocalizable {
   public static let buttonUploadFromGallery = CoreUILocalizable.tr("Localizable", "buttonUploadFromGallery", fallback: "Photo and video gallery")
   /// loco:67beed7f8291a886220faf53
   public static let buttonYes = CoreUILocalizable.tr("Localizable", "buttonYes", fallback: "Yes")
+  /// loco:69034202d376234eaa0ec552
+  public static let errorAppIntegrity = CoreUILocalizable.tr("Localizable", "errorAppIntegrity", fallback: "Your device is not recognized as safe")
   /// loco:676538295907d1ab51014ae2
   public static let errorDownload = CoreUILocalizable.tr("Localizable", "errorDownload", fallback: "Download error")
   /// loco:67653882015fa8304b01cbb9
   public static let errorDownloadInsufficientSpace = CoreUILocalizable.tr("Localizable", "errorDownloadInsufficientSpace", fallback: "Cannot download: Insufficient space")
   /// loco:67dbc1f28c22b8594f030f32
   public static let joinTheBetaButton = CoreUILocalizable.tr("Localizable", "joinTheBetaButton", fallback: "Join the beta program")
+  /// Plural format key: "%#@value@"
+  public static func myAccount(_ p1: Int) -> String {
+    return CoreUILocalizable.tr("Localizable", "myAccount", p1, fallback: "Plural format key: \"%#@value@\"")
+  }
   /// loco:67beee584d2044470e0df152
   public static func reviewAlertTitle(_ p1: Any) -> String {
     return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")

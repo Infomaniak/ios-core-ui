@@ -1,59 +1,59 @@
 /*
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
- * Locale: de, German
+ * Locale: nb, Norwegian Bokmål
  * Tagged: ios, !accountsBottomSheet, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !privacy
  * Exported by: Philippe Weidmann
  * Exported at: Fri, 06 Mar 2026 14:22:42 +0100
  */
 
 /* loco:675fea0d40923b5c440f0f52 */
-"anErrorHasOccurred" = "Ein Fehler ist aufgetreten";
+"anErrorHasOccurred" = "En feil har oppstått";
 
 /* loco:6729ea9f4cb9f889f604d934 */
-"buttonCancel" = "Abbrechen";
+"buttonCancel" = "Avbryt";
 
 /* loco:679237f6daa3807fa008b175 */
-"buttonClose" = "Schliessen";
+"buttonClose" = "Lukk";
 
 /* loco:67ac7d178defcfcd7806e182 */
-"buttonLater" = "Später";
+"buttonLater" = "Senere";
 
 /* loco:675059634bdf0aedde06df72 */
-"buttonNext" = "Weiter";
+"buttonNext" = "Neste";
 
 /* loco:67beed573c592678eb085582 */
-"buttonNo" = "Nein";
+"buttonNo" = "Nei";
 
 /* loco:6729ead76f93fd246802f932 */
-"buttonRetry" = "Wiederholen";
+"buttonRetry" = "Prøv igjen";
 
 /* loco:682dc3dd2d87d3cbda04b3a2 */
-"buttonSave" = "Speichern";
+"buttonSave" = "Lagre";
 
 /* loco:685d08b2fc3b99693f00c872 */
 "buttonUploadFromCamera" = "Kamera";
 
 /* loco:685d0914ecd5fc13620f1fc2 */
-"buttonUploadFromFiles" = "Dateien durchsuchen";
+"buttonUploadFromFiles" = "Bla gjennom filer";
 
 /* loco:685d08dc653f4deb94019b62 */
-"buttonUploadFromGallery" = "Foto- und Videogalerie";
+"buttonUploadFromGallery" = "Bilde- og videogalleri";
 
 /* loco:67beed7f8291a886220faf53 */
 "buttonYes" = "Ja";
 
 /* loco:69034202d376234eaa0ec552 */
-"errorAppIntegrity" = "Ihr Gerät wird nicht als sicher erkannt";
+"errorAppIntegrity" = "Enheten din er ikke gjenkjent som trygg";
 
 /* loco:676538295907d1ab51014ae2 */
-"errorDownload" = "Fehler beim Download";
+"errorDownload" = "Nedlastingsfeil";
 
 /* loco:67653882015fa8304b01cbb9 */
-"errorDownloadInsufficientSpace" = "Download nicht möglich: Unzureichender Speicherplatz";
+"errorDownloadInsufficientSpace" = "Kan ikke laste ned: Utilstrekkelig plass";
 
 /* loco:67dbc1f28c22b8594f030f32 */
-"joinTheBetaButton" = "Dem Beta-Programm beitreten";
+"joinTheBetaButton" = "Bli med i betaprogrammet";
 
 /* loco:67beee584d2044470e0df152 */
-"reviewAlertTitle" = "Mögen Sie %@?";
+"reviewAlertTitle" = "Liker du %@?";

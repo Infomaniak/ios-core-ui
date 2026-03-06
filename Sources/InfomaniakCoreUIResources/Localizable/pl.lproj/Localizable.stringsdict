@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+ Loco ios export: Xcode Stringsdict (legacy)
+ Project: CoreUI
+ Locale: pl, Polish
+ Tagged: ios-stringsdict, !accountsBottomSheet, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios, !kSuite, !my kSuite, !privacy
+ Exported by: Philippe Weidmann
+ Exported at: Fri, 06 Mar 2026 14:22:42 +0100
+-->
+<plist version="1.0">
+  <dict>
+    <key>myAccount</key>
+    <dict>
+      <key>NSStringLocalizedFormatKey</key>
+      <string>%#@value@</string>
+      <key>value</key>
+      <dict>
+        <key>NSStringFormatSpecTypeKey</key>
+        <string>NSStringPluralRuleType</string>
+        <key>NSStringFormatValueTypeKey</key>
+        <string>d</string>
+        <key>one</key>
+        <string>Moje konto</string>
+        <key>few</key>
+        <string>Moje konta</string>
+        <key>many</key>
+        <string>Moje konta</string>
+        <key>other</key>
+        <string>Moje konta</string>
+      </dict>
+    </dict>
+  </dict>
+</plist>

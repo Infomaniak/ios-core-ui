@@ -2,9 +2,9 @@
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
  * Locale: fr, French
- * Tagged: ios, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !kSuiteUtils, !my kSuite, !privacy
+ * Tagged: ios, !accountsBottomSheet, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !privacy
  * Exported by: Philippe Weidmann
- * Exported at: Thu, 25 Sep 2025 12:51:07 +0200
+ * Exported at: Fri, 06 Mar 2026 14:22:42 +0100
  */
 
 /* loco:675fea0d40923b5c440f0f52 */
@@ -42,6 +42,9 @@
 
 /* loco:67beed7f8291a886220faf53 */
 "buttonYes" = "Oui";
+
+/* loco:69034202d376234eaa0ec552 */
+"errorAppIntegrity" = "Votre appareil n’est pas reconnu comme sûr";
 
 /* loco:676538295907d1ab51014ae2 */
 "errorDownload" = "Erreur lors du téléchargement";
