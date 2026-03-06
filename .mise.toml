@@ -3,4 +3,4 @@ swiftformat = { version = '0.54.5', os = ["macos", "linux"] }
 swiftlint = { version = '0.57.0', os = ["macos", "linux"] }
 swiftgen = { version = "latest", os = ["macos"] }
 pipx = { version = "latest", os = ["macos", "linux"] }
-"pipx:infomaniak/importloco" = { version = "1.1.0", os = ["macos", "linux"] }
+"pipx:infomaniak/importloco" = { version = "2.1.0", os = ["macos", "linux"] }
