@@ -71,4 +71,6 @@ build/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/swiftpackagemanager,macos,xcode%                                                                                                                              
+# End of https://www.toptal.com/developers/gitignore/api/swiftpackagemanager,macos,xcode%   
+
+.import_loco_api                                                                                                                           
