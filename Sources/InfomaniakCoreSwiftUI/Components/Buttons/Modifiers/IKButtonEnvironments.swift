@@ -96,6 +96,21 @@ public extension EnvironmentValues {
     private struct IKButtonLoadingKey: EnvironmentKey {
         static let defaultValue = false
     }
+
+    // MARK: IKButtonUseLiquidGlassKey
+
+    var ikButtonUseLiquidGlass: Bool {
+        get {
+            self[IKButtonUseLiquidGlassKey.self]
+        }
+        set {
+            self[IKButtonUseLiquidGlassKey.self] = newValue
+        }
+    }
+
+    private struct IKButtonUseLiquidGlassKey: EnvironmentKey {
+        static let defaultValue = false
+    }
 }
 
 // MARK: - View extension
@@ -112,5 +127,9 @@ public extension View {
 
     func ikButtonLoading(_ loading: Bool) -> some View {
         environment(\.ikButtonLoading, loading)
+    }
+
+    func ikButtonUseLiquidGlass(_ useLiquidGlass: Bool) -> some View {
+        environment(\.ikButtonUseLiquidGlass, useLiquidGlass)
     }
 }
