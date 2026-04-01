@@ -35,7 +35,6 @@ struct PrivacyManagementCell: View {
             Image("chevron-right", bundle: .module)
                 .foregroundColor(Color("textSecondaryColor", bundle: .module))
         }
-        .padding(IKPadding.medium)
     }
 }
 
