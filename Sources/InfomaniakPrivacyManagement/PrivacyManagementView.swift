@@ -33,6 +33,7 @@ public struct PrivacyManagementView: View {
 
     private let urlRepository: URL
     private let backgroundColor: Color
+    private let groupedStyle: Bool
     private let illustration: Image
     private let userDefaultStore: UserDefaults
     private let userDefaultKeyMatomo: String
@@ -43,6 +44,7 @@ public struct PrivacyManagementView: View {
     public init(
         urlRepository: URL,
         backgroundColor: Color,
+        groupedStyle: Bool = false,
         illustration: Image,
         userDefaultStore: UserDefaults,
         userDefaultKeyMatomo: String,
@@ -52,6 +54,7 @@ public struct PrivacyManagementView: View {
     ) {
         self.urlRepository = urlRepository
         self.backgroundColor = backgroundColor
+        self.groupedStyle = groupedStyle
         self.illustration = illustration
         self.userDefaultStore = userDefaultStore
         self.userDefaultKeyMatomo = userDefaultKeyMatomo
@@ -61,26 +64,31 @@ public struct PrivacyManagementView: View {
         _matomoAuthorized = AppStorage(wrappedValue: true, userDefaultKeyMatomo)
     }
 
-    public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                illustration
-                    .padding(IKPadding.medium)
-                    .frame(maxWidth: .infinity)
+    private var list: some View {
+        List {
+            Section {
+                VStack(alignment: .leading, spacing: 0) {
+                    illustration
+                        .padding(IKPadding.medium)
+                        .frame(maxWidth: .infinity)
 
-                Text("trackingManagementDescription", bundle: .module)
-                    .multilineTextAlignment(.leading)
-                    .padding(.horizontal, value: .medium)
+                    Text("trackingManagementDescription", bundle: .module)
+                        .multilineTextAlignment(.leading)
 
-                Button {
-                    openURL(urlRepository)
-                } label: {
-                    Text("applicationSourceCode", bundle: .module)
-                        .font(.headline)
+                    Button {
+                        openURL(urlRepository)
+                    } label: {
+                        Text("applicationSourceCode", bundle: .module)
+                            .font(.headline)
+                    }
+                    .buttonStyle(.ikBorderless(isInlined: true))
+                    .padding([.vertical], value: .medium)
                 }
-                .buttonStyle(.ikBorderless(isInlined: true))
-                .padding(IKPadding.medium)
+            }
+            .listRowBackground(Color.clear)
+            .listSectionSeparator(.hidden)
 
+            Section {
                 ForEach(Tracker.allCases, id: \.self) { item in
                     Button {
                         selectedDataType = item
@@ -94,16 +102,33 @@ public struct PrivacyManagementView: View {
                             backgroundColor: backgroundColor
                         )
                     }
-
-                    if item != Tracker.allCases.last {
-                        Divider()
-                            .padding(.horizontal, value: .medium)
-                    }
                 }
             }
         }
-        .padding(.bottom, value: .large)
-        .background(backgroundColor)
+    }
+
+    public var body: some View {
+        Group {
+            if #available(iOS 16.0, *) {
+                if groupedStyle {
+                    list
+                        .scrollContentBackground(.hidden)
+                        .background(backgroundColor)
+                        .listStyle(.insetGrouped)
+                } else {
+                    list
+                        .listStyle(.plain)
+                }
+            } else {
+                if groupedStyle {
+                    list
+                        .listStyle(.insetGrouped)
+                } else {
+                    list
+                        .listStyle(.plain)
+                }
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(showTitle ? Self.title : "")
         .onChange(of: matomoAuthorized) { newValue in
@@ -122,6 +147,7 @@ public struct PrivacyManagementView: View {
         PrivacyManagementView(
             urlRepository: validURL,
             backgroundColor: Color.white,
+            groupedStyle: true,
             illustration: Image("matomo-short", bundle: .module),
             userDefaultStore: UserDefaults.standard,
             userDefaultKeyMatomo: "matomoKey",
