@@ -71,6 +71,7 @@ public struct PrivacyManagementView: View {
                     illustration
                         .padding(IKPadding.medium)
                         .frame(maxWidth: .infinity)
+                        .accessibilityHidden(true)
 
                     Text("trackingManagementDescription", bundle: .module)
                         .multilineTextAlignment(.leading)

@@ -44,6 +44,7 @@ struct TrackerDetailsView: View {
                     tracker.logoLong
                         .padding(.vertical, value: .medium)
                         .frame(maxWidth: .infinity)
+                        .accessibilityHidden(true)
 
                     Text(LocalizedStringKey(tracker.description), bundle: .module)
                         .font(.body)
