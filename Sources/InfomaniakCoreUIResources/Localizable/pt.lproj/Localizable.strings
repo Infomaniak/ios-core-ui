@@ -2,9 +2,9 @@
  * Loco ios export: Xcode Strings (legacy)
  * Project: CoreUI
  * Locale: pt, Portuguese
- * Tagged: ios, !accountsBottomSheet, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !privacy
- * Exported by: Philippe Weidmann
- * Exported at: Fri, 06 Mar 2026 14:22:42 +0100
+ * Tagged: ios, !accountsBottomSheet, !appIntegrity, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !network, !privacy
+ * Exported by: Valentin Perignon
+ * Exported at: Tue, 05 May 2026 14:56:12 +0200
  */
 
 /* loco:675fea0d40923b5c440f0f52 */
@@ -57,3 +57,6 @@
 
 /* loco:67beee584d2044470e0df152 */
 "reviewAlertTitle" = "Gosta do %@?";
+
+/* loco:69f9e77685b741545e021953 */
+"youHaveBeenDisconnectedLabel" = "Foi desligado";
