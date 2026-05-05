@@ -50,6 +50,8 @@ public enum CoreUILocalizable {
   public static func reviewAlertTitle(_ p1: Any) -> String {
     return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")
   }
+  /// loco:69f9e77685b741545e021953
+  public static let youHaveBeenDisconnectedLabel = CoreUILocalizable.tr("Localizable", "youHaveBeenDisconnectedLabel", fallback: "You have been disconnected")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
