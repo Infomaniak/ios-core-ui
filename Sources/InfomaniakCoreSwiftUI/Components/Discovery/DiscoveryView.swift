@@ -119,6 +119,7 @@ struct DiscoveryBottomSheetView: View {
             switch item.content {
             case .image(let image):
                 image
+                    .accessibilityHidden(true)
             case .lottie(let lightAnimationName, let darkAnimationName, let bundle):
                 ThemedLottieView(lightAnimationName: lightAnimationName, darkAnimationName: darkAnimationName, bundle: bundle)
                     .frame(height: 128)
@@ -166,6 +167,7 @@ struct DiscoveryAlertView: View {
             switch item.content {
             case .image(let image):
                 image
+                    .accessibilityHidden(true)
             case .lottie(let lightAnimationName, let darkAnimationName, let bundle):
                 ThemedLottieView(lightAnimationName: lightAnimationName, darkAnimationName: darkAnimationName, bundle: bundle)
                     .frame(height: 128)
