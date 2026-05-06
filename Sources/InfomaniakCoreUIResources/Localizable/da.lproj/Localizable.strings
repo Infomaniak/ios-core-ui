@@ -4,7 +4,7 @@
  * Locale: da, Danish
  * Tagged: ios, !accountsBottomSheet, !appIntegrity, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !network, !privacy
  * Exported by: Valentin Perignon
- * Exported at: Tue, 05 May 2026 14:56:12 +0200
+ * Exported at: Wed, 06 May 2026 09:00:23 +0200
  */
 
 /* loco:675fea0d40923b5c440f0f52 */
@@ -51,6 +51,9 @@
 
 /* loco:67653882015fa8304b01cbb9 */
 "errorDownloadInsufficientSpace" = "Kan ikke downloade: Utilstrækkelig plads";
+
+/* loco:69fae608210926179e0803e3 */
+"errorLoginTitle" = "Loginfejl";
 
 /* loco:67dbc1f28c22b8594f030f32 */
 "joinTheBetaButton" = "Deltag i betaprogrammet";
