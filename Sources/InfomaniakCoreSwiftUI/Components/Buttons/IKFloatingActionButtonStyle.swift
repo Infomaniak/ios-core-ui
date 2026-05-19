@@ -27,6 +27,7 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
 
     var isExtended = false
     var customSize: CGFloat?
+    var isInactive = false
 
     private var size: CGFloat {
         if let customSize {
@@ -45,7 +46,7 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
             .font(theme.mediumFont)
             .padding(.horizontal, IKPadding.medium)
             .frame(minWidth: isExtended ? nil : size, minHeight: size)
-            .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true))
+            .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true, isInactive: isInactive))
             .modifier(IKButtonScaleAnimationModifier(isPressed: configuration.isPressed))
             .allowsHitTesting(!isLoading)
     }
@@ -53,8 +54,12 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
 
 @available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
-    static func ikFloatingActionButton(isExtended: Bool = false, customSize: CGFloat? = nil) -> IKFloatingActionButtonStyle {
-        return IKFloatingActionButtonStyle(isExtended: isExtended, customSize: customSize)
+    static func ikFloatingActionButton(
+        isExtended: Bool = false,
+        customSize: CGFloat? = nil,
+        isInactive: Bool = false
+    ) -> IKFloatingActionButtonStyle {
+        return IKFloatingActionButtonStyle(isExtended: isExtended, customSize: customSize, isInactive: isInactive)
     }
 
     static var ikFloatingActionButton: IKFloatingActionButtonStyle {

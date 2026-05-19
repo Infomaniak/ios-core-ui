@@ -142,20 +142,22 @@ public struct IKButtonFilledModifier: ViewModifier {
 
     let buttonRole: ButtonRole?
     let isProminent: Bool
+    let isInactive: Bool
 
     private var isDisabled: Bool {
         return !isEnabled || isLoading
     }
 
     private var foregroundStyle: any ShapeStyle {
-        guard !isDisabled else {
+        if isDisabled || isInactive {
             return theme.disabledSecondary
+        } else {
+            return isProminent ? theme.secondary : theme.primary
         }
-        return isProminent ? theme.secondary : theme.primary
     }
 
     private var backgroundStyle: any ShapeStyle {
-        if isDisabled {
+        if isDisabled || isInactive {
             return theme.disabledPrimary
         } else if buttonRole == .destructive {
             return theme.error
@@ -164,9 +166,10 @@ public struct IKButtonFilledModifier: ViewModifier {
         }
     }
 
-    public init(buttonRole: ButtonRole?, isProminent: Bool) {
+    public init(buttonRole: ButtonRole?, isProminent: Bool, isInactive: Bool = false) {
         self.buttonRole = buttonRole
         self.isProminent = isProminent
+        self.isInactive = isInactive
     }
 
     public func body(content: Content) -> some View {
