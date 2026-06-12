@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 public enum IKButtonHeight {
     public static let extraLarge: CGFloat = 64
     public static let large: CGFloat = 56

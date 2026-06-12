@@ -19,7 +19,6 @@
 import DesignSystem
 import SwiftUI
 
-@available(iOS 15.0, *)
 @frozen public struct IKButtonTheme {
     public let primary: any ShapeStyle
     public let secondary: any ShapeStyle
@@ -60,7 +59,6 @@ import SwiftUI
 
 // MARK: - Helpers
 
-@available(iOS 15.0, *)
 extension IKButtonTheme {
     func scaledFont(_ controlSize: ControlSize) -> Font {
         if controlSize == .small {
@@ -73,7 +71,6 @@ extension IKButtonTheme {
 
 // MARK: - Default Theme
 
-@available(iOS 15.0, *)
 extension IKButtonTheme {
     static let defaultTheme = IKButtonTheme(
         primary: TintShapeStyle.tint,

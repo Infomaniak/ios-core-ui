@@ -19,7 +19,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-@available(iOS 14.0, *)
 public struct FileTypeProvider: Sendable {
     private static let checkableFileTypes: [FileType] = [
         .archive, .audio, .video, .image, .pdf, .ics, .font, .grid, .point, .doc, .code

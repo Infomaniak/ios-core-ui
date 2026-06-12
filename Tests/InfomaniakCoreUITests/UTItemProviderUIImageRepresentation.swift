@@ -24,7 +24,6 @@ import InfomaniakCoreCommonUI
 import UIKit
 import XCTest
 
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class UTItemProviderUIImageRepresentation: XCTestCase {
     private let fileManager = FileManager.default
 
@@ -73,14 +72,14 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         }
     }
 
-    func testGetPNGFromEmptyImage() async {
+    func testGetPNGFromEmptyImage() {
         // GIVEN
         let image = UIImage()
         let item = NSItemProvider(item: image, typeIdentifier: UTI.image.rawValue as String)
 
         do {
             // WHEN
-            let _ = try ItemProviderUIImageRepresentation(from: item)
+            _ = try ItemProviderUIImageRepresentation(from: item)
 
             // THEN
             // expected to throw unableToGetPNGData
@@ -99,14 +98,14 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         }
     }
 
-    func testGetPNGWrongInputType() async {
+    func testGetPNGWrongInputType() {
         // GIVEN
         let notAnImage = UIColor.red // Something that conforms to NSCoding
         let item = NSItemProvider(item: notAnImage, typeIdentifier: UTI.image.rawValue as String)
 
         do {
             // WHEN
-            let _ = try ItemProviderUIImageRepresentation(from: item)
+            _ = try ItemProviderUIImageRepresentation(from: item)
 
             // THEN
             // expected to throw unableToGetPNGData
@@ -134,7 +133,7 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
             let provider = try ItemProviderUIImageRepresentation(from: item)
 
             // WHEN
-            let _ = try await provider.result.get()
+            _ = try await provider.result.get()
 
             // THEN
             // expected to throw UTINotSupported

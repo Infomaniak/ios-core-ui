@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct IKBorderedButtonStyle: ButtonStyle {
     @Environment(\.ikButtonLoading) private var isLoading
 
@@ -35,14 +34,12 @@ public struct IKBorderedButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKBorderedButtonStyle {
     static var ikBordered: IKBorderedButtonStyle {
         return IKBorderedButtonStyle()
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     NavigationView {
         List {

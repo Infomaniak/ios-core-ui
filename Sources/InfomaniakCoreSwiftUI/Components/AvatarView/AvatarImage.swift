@@ -43,7 +43,6 @@ public struct AvatarImage: View {
     }
 }
 
-@available(iOS 16.0, *)
 #Preview {
     @MainActor func getImage(withSize size: CGSize) -> Image {
         let square = Rectangle()

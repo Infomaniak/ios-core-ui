@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct IKSquareButtonStyle: ButtonStyle {
     @Environment(\.ikButtonLoading) private var isLoading: Bool
 
@@ -33,14 +32,12 @@ public struct IKSquareButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKSquareButtonStyle {
     static var ikSquare: IKSquareButtonStyle {
         return IKSquareButtonStyle()
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     NavigationView {
         List {

@@ -21,7 +21,6 @@ import InfomaniakCoreCommonUI
 import InfomaniakCoreSwiftUI
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct PrivacyManagementView: View {
     public static let title = Bundle.module.localizedString(forKey: "trackingManagementTitle", value: nil, table: nil)
 
@@ -110,24 +109,14 @@ public struct PrivacyManagementView: View {
 
     public var body: some View {
         Group {
-            if #available(iOS 16.0, *) {
-                if groupedStyle {
-                    list
-                        .scrollContentBackground(.hidden)
-                        .background(backgroundColor)
-                        .listStyle(.insetGrouped)
-                } else {
-                    list
-                        .listStyle(.plain)
-                }
+            if groupedStyle {
+                list
+                    .scrollContentBackground(.hidden)
+                    .background(backgroundColor)
+                    .listStyle(.insetGrouped)
             } else {
-                if groupedStyle {
-                    list
-                        .listStyle(.insetGrouped)
-                } else {
-                    list
-                        .listStyle(.plain)
-                }
+                list
+                    .listStyle(.plain)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -142,7 +131,6 @@ public struct PrivacyManagementView: View {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     if let validURL = URL(string: "https://www.infomaniak.com/matomo.php") {
         PrivacyManagementView(
