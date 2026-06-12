@@ -7,7 +7,7 @@ let package = Package(
     name: "InfomaniakCoreUI",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v16)
     ],
     products: [
         .library(
@@ -36,7 +36,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "18.5.0")),
+        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "18.12.0")),
         .package(url: "https://github.com/Infomaniak/SnackBar.swift", .upToNextMajor(from: "1.2.0")),
         .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.8.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),

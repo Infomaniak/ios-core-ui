@@ -53,16 +53,8 @@ struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .sheet(isPresented: Binding(get: { isCompactWindow && isPresented }, set: { isPresented = $0 })) {
-                if #available(iOS 16.0, *) {
-                    modalContent.modifier(SelfSizingPanelViewModifier(topPadding: topPadding, bottomPadding: bottomPadding))
-                        .background(sheetBackgroundColor)
-                } else {
-                    modalContent.modifier(SelfSizingPanelBackportViewModifier(
-                        topPadding: topPadding,
-                        bottomPadding: bottomPadding
-                    ))
+                modalContent.modifier(SelfSizingPanelViewModifier(topPadding: topPadding, bottomPadding: bottomPadding))
                     .background(sheetBackgroundColor)
-                }
             }
             .customAlert(
                 isPresented: Binding(get: { !isCompactWindow && isPresented }, set: { isPresented = $0 }),

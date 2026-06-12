@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct IKBorderlessButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
 
@@ -51,7 +50,6 @@ public struct IKBorderlessButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKBorderlessButtonStyle {
     static func ikBorderless(isInlined: Bool) -> IKBorderlessButtonStyle {
         return IKBorderlessButtonStyle(isInlined: isInlined)
@@ -62,7 +60,6 @@ public extension ButtonStyle where Self == IKBorderlessButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     NavigationView {
         List {

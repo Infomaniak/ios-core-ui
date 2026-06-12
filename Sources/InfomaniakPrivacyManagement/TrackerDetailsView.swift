@@ -22,7 +22,6 @@ import InfomaniakCoreSwiftUI
 import InfomaniakDI
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct TrackerDetailsView: View {
     @Environment(\.dismiss) private var dismiss
 
@@ -76,7 +75,6 @@ struct TrackerDetailsView: View {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     TrackerDetailsView(
         tracker: Tracker.matomo,
