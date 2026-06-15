@@ -140,7 +140,7 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
                 content
                     .padding(.bottom, bottomPadding)
             }
-            .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26)) { scrollView in
+            .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26, .v27)) { scrollView in
                 computeViewHeight(from: scrollView)
             }
         }
