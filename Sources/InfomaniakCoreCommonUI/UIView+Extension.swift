@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import UIKit
 
 public extension UIView {
@@ -28,3 +29,4 @@ public extension UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
 }
+#endif

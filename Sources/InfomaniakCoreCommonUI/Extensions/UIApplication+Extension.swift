@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import UIKit
 
 public extension UIApplication {
@@ -29,3 +30,4 @@ public extension UIApplication {
             .first(where: \.isKeyWindow)
     }
 }
+#endif

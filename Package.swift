@@ -15,10 +15,6 @@ let package = Package(
             targets: ["InfomaniakCoreCommonUI"]
         ),
         .library(
-            name: "InfomaniakCoreUIKit",
-            targets: ["InfomaniakCoreUIKit"]
-        ),
-        .library(
             name: "InfomaniakCoreSwiftUI",
             targets: ["InfomaniakCoreSwiftUI"]
         ),
@@ -42,7 +38,8 @@ let package = Package(
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
         .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "27.0.0-beta")),
-        .package(url: "https://github.com/airbnb/lottie-spm", .upToNextMajor(from: "4.5.2"))
+        .package(url: "https://github.com/airbnb/lottie-spm", .upToNextMajor(from: "4.5.2")),
+//        .package(url: "https://github.com/Infomaniak/ios-core-uikit", branch: "feat/Move-uikit-module")
     ],
     targets: [
         .target(
@@ -53,10 +50,6 @@ let package = Package(
                 .product(name: "InfomaniakCore", package: "ios-core"),
                 .product(name: "SnackBar", package: "SnackBar.swift")
             ]
-        ),
-        .target(
-            name: "InfomaniakCoreUIKit",
-            dependencies: ["InfomaniakCoreCommonUI"]
         ),
         .target(
             name: "InfomaniakCoreSwiftUI",
@@ -85,7 +78,10 @@ let package = Package(
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",
-            dependencies: ["InfomaniakCoreCommonUI", "InfomaniakCoreUIKit", "InfomaniakCoreSwiftUI"]
+            dependencies: [
+                "InfomaniakCoreCommonUI",
+                "InfomaniakCoreSwiftUI"
+            ]
         )
     ]
 )
