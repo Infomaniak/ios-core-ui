@@ -7,7 +7,8 @@ let package = Package(
     name: "InfomaniakCoreUI",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
+        .macOS(.v13)
     ],
     products: [
         .library(
@@ -39,7 +40,6 @@ let package = Package(
         .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "27.0.0-beta")),
         .package(url: "https://github.com/airbnb/lottie-spm", .upToNextMajor(from: "4.5.2")),
-//        .package(url: "https://github.com/Infomaniak/ios-core-uikit", branch: "feat/Move-uikit-module")
     ],
     targets: [
         .target(
