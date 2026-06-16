@@ -33,7 +33,9 @@ public extension Font {
         let fontFamily = UIFont.preferredFont(forTextStyle: .body).familyName
         return custom(fontFamily, size: size, relativeTo: textStyle).weight(weight)
         #elseif canImport(AppKit)
-        let fontFamily = NSFont.preferredFont(forTextStyle: .body).familyName
+        guard let fontFamily = NSFont.preferredFont(forTextStyle: .body).familyName else {
+            fatalError("Unable to retrieve preferred font family for macOS")
+        }
         return custom(fontFamily, size: size, relativeTo: textStyle).weight(weight)
         #else
         fatalError("Unsupported UI platform")

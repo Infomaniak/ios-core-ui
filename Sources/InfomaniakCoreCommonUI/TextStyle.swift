@@ -1,91 +1,77 @@
-/*
- Infomaniak Core UI - iOS
- Copyright (C) 2024 Infomaniak Network SA
+#if canImport(UIKit)
+import UIKit
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#if os(macOS)
+public typealias PlatformFont = UIFont
+public typealias PlatformColor = UIColor
+#elseif canImport(AppKit)
 import AppKit
-#elseif os(iOS)
-import UIKit
-#elseif os(tvOS) || os(watchOS)
-import UIKit
+
+public typealias PlatformFont = NSFont
+public typealias PlatformColor = NSColor
 #endif
 
 public struct TextStyle: RawRepresentable {
-    public var font: UIFont
-    public var color: UIColor
+    public var font: PlatformFont
+    public var color: PlatformColor
 
     public static let header1 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 28), weight: .bold),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 28, weight: .bold),
+        color: .platformTitleColor,
         rawValue: "header1"
     )
     public static let header2 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 18), weight: .semibold),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 18, weight: .semibold),
+        color: .platformTitleColor,
         rawValue: "header2"
     )
     public static let header3 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 16), weight: .semibold),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 16, weight: .semibold),
+        color: .platformTitleColor,
         rawValue: "header3"
     )
     public static let subtitle1 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 16), weight: .regular),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 16, weight: .regular),
+        color: .platformTitleColor,
         rawValue: "subtitle1"
     )
     public static let subtitle2 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 14), weight: .medium),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 14, weight: .medium),
+        color: .platformTitleColor,
         rawValue: "subtitle2"
     )
     public static let body1 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 14), weight: .regular),
-        color: InfomaniakCoreAsset.titleColor.color,
+        font: .platformSystemFont(ofSize: 14, weight: .regular),
+        color: .platformTitleColor,
         rawValue: "body1"
     )
     public static let body2 = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 14), weight: .regular),
-        color: InfomaniakCoreAsset.primaryTextColor.color,
+        font: .platformSystemFont(ofSize: 14, weight: .regular),
+        color: .platformPrimaryTextColor,
         rawValue: "body2"
     )
     public static let caption = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 12), weight: .regular),
-        color: InfomaniakCoreAsset.primaryTextColor.color,
+        font: .platformSystemFont(ofSize: 12, weight: .regular),
+        color: .platformPrimaryTextColor,
         rawValue: "caption"
     )
     public static let header1Light = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 28), weight: .bold),
+        font: .platformSystemFont(ofSize: 28, weight: .bold),
         color: .white,
         rawValue: "header1Light"
     )
     public static let captionLight = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 12), weight: .regular),
+        font: .platformSystemFont(ofSize: 12, weight: .regular),
         color: .white,
         rawValue: "captionLight"
     )
     public static let body1Light = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 14), weight: .regular),
+        font: .platformSystemFont(ofSize: 14, weight: .regular),
         color: .white,
         rawValue: "body1Light"
     )
     public static let action = TextStyle(
-        font: UIFont.systemFont(ofSize: UIFontMetrics.default.scaledValue(for: 14), weight: .regular),
-        color: InfomaniakCoreAsset.infomaniakColor.color,
+        font: .platformSystemFont(ofSize: 14, weight: .regular),
+        color: .platformInfomaniakColor,
         rawValue: "action"
     )
 
@@ -107,17 +93,59 @@ public struct TextStyle: RawRepresentable {
     public typealias RawValue = String
     public var rawValue: String
 
-    init(font: UIFont, color: UIColor, rawValue: RawValue) {
+    init(font: PlatformFont, color: PlatformColor, rawValue: RawValue) {
         self.font = font
         self.color = color
         self.rawValue = rawValue
     }
 
     public init?(rawValue: String) {
-        if let style = TextStyle.allValues.first(where: { $0.rawValue == rawValue }) {
-            self = style
-        } else {
+        guard let style = TextStyle.allValues.first(where: { $0.rawValue == rawValue }) else {
             return nil
         }
+        self = style
     }
 }
+
+#if canImport(UIKit)
+private extension UIFont {
+    static func platformSystemFont(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {
+        systemFont(ofSize: UIFontMetrics.default.scaledValue(for: size), weight: weight)
+    }
+}
+
+private extension UIColor {
+    static var platformTitleColor: UIColor {
+        InfomaniakCoreAsset.titleColor.color
+    }
+
+    static var platformPrimaryTextColor: UIColor {
+        InfomaniakCoreAsset.primaryTextColor.color
+    }
+
+    static var platformInfomaniakColor: UIColor {
+        InfomaniakCoreAsset.infomaniakColor.color
+    }
+}
+
+#elseif canImport(AppKit)
+private extension NSFont {
+    static func platformSystemFont(ofSize size: CGFloat, weight: NSFont.Weight) -> NSFont {
+        systemFont(ofSize: size, weight: weight)
+    }
+}
+
+private extension NSColor {
+    static var platformTitleColor: NSColor {
+        InfomaniakCoreAsset.titleColor.color
+    }
+
+    static var platformPrimaryTextColor: NSColor {
+        InfomaniakCoreAsset.primaryTextColor.color
+    }
+
+    static var platformInfomaniakColor: NSColor {
+        InfomaniakCoreAsset.infomaniakColor.color
+    }
+}
+#endif

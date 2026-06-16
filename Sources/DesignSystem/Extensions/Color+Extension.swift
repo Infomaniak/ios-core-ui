@@ -19,19 +19,24 @@
 import SwiftUI
 
 #if os(macOS)
-public typealias PlatformColor = NSColor
-#elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
-public typealias PlatformColor = UIColor
-#endif
+import AppKit
 
+public typealias PlatformColor = NSColor
 public extension PlatformColor {
     convenience init(light: PlatformColor, dark: PlatformColor) {
-        self.init { $0.userInterfaceStyle == .dark ? dark : light }
+        self.init(name: nil) { appearance in
+            appearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua ? dark : light
+        }
     }
 }
 
+#elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+import UIKit
+
+public typealias PlatformColor = UIColor
 public extension Color {
     init(light: PlatformColor, dark: PlatformColor) {
         self.init(uiColor: UIColor(light: light, dark: dark))
     }
 }
+#endif
