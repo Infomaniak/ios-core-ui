@@ -30,10 +30,24 @@ public extension PlatformColor {
     }
 }
 
+public extension Color {
+    init(light: PlatformColor, dark: PlatformColor) {
+        self.init(nsColor: PlatformColor(light: light, dark: dark))
+    }
+}
+
 #elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import UIKit
 
 public typealias PlatformColor = UIColor
+public extension PlatformColor {
+    convenience init(light: PlatformColor, dark: PlatformColor) {
+        self.init { traits in
+            traits.userInterfaceStyle == .dark ? dark : light
+        }
+    }
+}
+
 public extension Color {
     init(light: PlatformColor, dark: PlatformColor) {
         self.init(uiColor: UIColor(light: light, dark: dark))
