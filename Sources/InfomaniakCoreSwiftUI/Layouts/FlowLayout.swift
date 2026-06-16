@@ -35,7 +35,6 @@ struct FlowLine: Sendable {
     }
 }
 
-@available(iOS 16.0, *)
 public struct FlowLayout: Layout {
     private let alignment: Alignment
     private let verticalSpacing: CGFloat
@@ -169,7 +168,6 @@ public struct FlowLayout: Layout {
     }
 }
 
-@available(iOS 16.0, *)
 #Preview {
     let count = 4
     let items = (

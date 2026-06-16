@@ -19,7 +19,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-@available(iOS 14.0, *)
 public extension UTType {
     static let pages = UTType("com.apple.iwork.pages.sffpages")!
     static let wordDoc = UTType("com.microsoft.word.doc")!
@@ -30,7 +29,6 @@ public extension UTType {
     static let ics = UTType(mimeType: "application/ics")!
 }
 
-@available(iOS 14.0, *)
 public extension FileType {
     static let archive = FileType(asset: "file-archive", types: [.archive])
     static let audio = FileType(asset: "file-audio", types: [.audio])
@@ -48,7 +46,6 @@ public extension FileType {
     static let unknown = FileType(asset: "file-unknown", types: [])
 }
 
-@available(iOS 14.0, *)
 public struct FileType: Sendable {
     public let image: Image
     public let color: Color

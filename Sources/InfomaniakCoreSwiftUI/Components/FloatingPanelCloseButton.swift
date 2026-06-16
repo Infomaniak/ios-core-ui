@@ -19,7 +19,6 @@
 import DesignSystem
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct FloatingPanelCloseButton: View {
     let size: IKIconSize?
     let dismissHandler: () -> Void
@@ -50,7 +49,6 @@ public struct FloatingPanelCloseButton: View {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     FloatingPanelCloseButton { /* Preview */ }
 }

@@ -23,7 +23,6 @@ import SwiftUI
 import SwiftUIBackports
 import SwiftUIIntrospect
 
-@available(iOS 15, *)
 public extension View {
     func floatingPanel<Content: View>(
         isPresented: Binding<Bool>,
@@ -35,23 +34,13 @@ public extension View {
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         sheet(isPresented: isPresented) {
-            if #available(iOS 16.0, *) {
-                content().modifier(SelfSizingPanelViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
-            } else {
-                content().modifier(SelfSizingPanelBackportViewModifier(
-                    title: title,
-                    closeButtonHidden: closeButtonHidden,
-                    topPadding: topPadding,
-                    bottomPadding: bottomPadding
-                ))
-                .background(backgroundColor)
-            }
+            content().modifier(SelfSizingPanelViewModifier(
+                title: title,
+                closeButtonHidden: closeButtonHidden,
+                topPadding: topPadding,
+                bottomPadding: bottomPadding
+            ))
+            .background(backgroundColor)
         }
     }
 
@@ -65,25 +54,14 @@ public extension View {
         @ViewBuilder content: @escaping (Item) -> Content
     ) -> some View {
         sheet(item: item) { item in
-            if #available(iOS 16.0, *) {
-                content(item)
-                    .modifier(SelfSizingPanelViewModifier(
-                        title: title,
-                        closeButtonHidden: closeButtonHidden,
-                        topPadding: topPadding,
-                        bottomPadding: bottomPadding
-                    ))
-                    .background(backgroundColor)
-            } else {
-                content(item)
-                    .modifier(SelfSizingPanelBackportViewModifier(
-                        title: title,
-                        closeButtonHidden: closeButtonHidden,
-                        topPadding: topPadding,
-                        bottomPadding: bottomPadding
-                    ))
-                    .background(backgroundColor)
-            }
+            content(item)
+                .modifier(SelfSizingPanelViewModifier(
+                    title: title,
+                    closeButtonHidden: closeButtonHidden,
+                    topPadding: topPadding,
+                    bottomPadding: bottomPadding
+                ))
+                .background(backgroundColor)
         }
     }
 }

@@ -19,7 +19,6 @@
 import DesignSystem
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct PrivacyManagementCell: View {
     let title: LocalizedStringKey
     var image: Image
@@ -38,7 +37,6 @@ struct PrivacyManagementCell: View {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     PrivacyManagementCell(title: "Matomo", image: Image("matomo-short", bundle: .module))
 }

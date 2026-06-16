@@ -24,7 +24,6 @@ import UIKit
 
 /// Something that can provide a `Progress` and an async `Result` in order to make an image file from a `NSItemProvider` wrapping
 /// an UIImage
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultable {
     /// Something to transform events into a nice `async Result`
     private let flowToAsync = FlowToAsyncResult<Success>()

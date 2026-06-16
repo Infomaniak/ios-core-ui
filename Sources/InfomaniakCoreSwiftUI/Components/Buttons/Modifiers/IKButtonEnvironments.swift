@@ -20,7 +20,6 @@ import SwiftUI
 
 // MARK: - EnvironmentValues
 
-@available(iOS 15.0, *)
 public extension EnvironmentValues {
     // MARK: IKButtonPrimaryStyleKey
 
@@ -100,7 +99,6 @@ public extension EnvironmentValues {
 
 // MARK: - View extension
 
-@available(iOS 15.0, *)
 public extension View {
     func ikButtonTheme(_ theme: IKButtonTheme) -> some View {
         environment(\.ikButtonTheme, theme)

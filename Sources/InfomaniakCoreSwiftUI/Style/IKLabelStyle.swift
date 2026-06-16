@@ -19,7 +19,6 @@
 import DesignSystem
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct IKLabelStyle: LabelStyle {
     var spacing = IKPadding.mini
 
@@ -31,7 +30,6 @@ public struct IKLabelStyle: LabelStyle {
     }
 }
 
-@available(iOS 15.0, *)
 public extension LabelStyle where Self == IKLabelStyle {
     static var ikLabel: IKLabelStyle {
         return IKLabelStyle()

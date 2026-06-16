@@ -19,7 +19,6 @@
 import DesignSystem
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct IKFloatingActionButtonStyle: ButtonStyle {
     @Environment(\.controlSize) private var controlSize
     @Environment(\.ikButtonTheme) private var theme
@@ -52,7 +51,6 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
     static func ikFloatingActionButton(
         isExtended: Bool = false,
@@ -67,7 +65,6 @@ public extension ButtonStyle where Self == IKFloatingActionButtonStyle {
     }
 }
 
-@available(iOS 15.0, *)
 #Preview {
     NavigationView {
         List {
