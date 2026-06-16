@@ -53,6 +53,7 @@ public struct InfomaniakCoreColor {
     public var color: UIColor {
         return UIColor(named: name, in: Bundle.module, compatibleWith: nil)!
     }
+
     #elseif canImport(AppKit)
     public var color: NSColor {
         return NSColor(named: name, bundle: Bundle.module)!

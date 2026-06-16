@@ -16,8 +16,10 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import SwiftUI
 import SwiftUIIntrospect
+import UIKit
 
 public struct AlertView<Content>: View where Content: View {
     @State private var isShowing = false
@@ -171,3 +173,4 @@ public extension View {
         }
     }
 }
+#endif

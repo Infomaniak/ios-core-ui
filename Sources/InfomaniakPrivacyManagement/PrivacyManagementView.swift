@@ -113,13 +113,19 @@ public struct PrivacyManagementView: View {
                 list
                     .scrollContentBackground(.hidden)
                     .background(backgroundColor)
+                #if os(macOS)
+                    .listStyle(.inset)
+                #else
                     .listStyle(.insetGrouped)
+                #endif
             } else {
                 list
                     .listStyle(.plain)
             }
         }
+        #if !os(macOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .navigationTitle(showTitle ? Self.title : "")
         .onChange(of: matomoAuthorized) { newValue in
             #if DEBUG || TEST

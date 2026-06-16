@@ -20,6 +20,11 @@ import InfomaniakCore
 import InfomaniakDI
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 public extension View {
     func sceneLifecycle(willEnterForeground: (() -> Void)? = nil, didEnterBackground: (() -> Void)? = nil) -> some View {
         return modifier(SceneLifecycleModifier(willEnterForeground: willEnterForeground, didEnterBackground: didEnterBackground))
@@ -39,20 +44,20 @@ struct SceneLifecycleModifier: ViewModifier {
                  */
                 willEnterForeground?()
             }
+        #if canImport(UIKit)
             .onReceive(NotificationCenter.default.publisher(for: UIScene.willEnterForegroundNotification)) { _ in
-                /*
-                 On iOS/iPadOS:
-                 `scenePhase` changes each time a pop-up is presented.
-                 We have to listen to `UIScene.willEnterForegroundNotification` to increase the `appLaunchCounter`
-                 only when the app enters foreground.
-
-                 On macOS:
-                 `scenePhase` stays always active even when the app is on the background.
-                 */
                 willEnterForeground?()
             }
             .onReceive(NotificationCenter.default.publisher(for: UIScene.didEnterBackgroundNotification)) { _ in
                 didEnterBackground?()
             }
+        #elseif canImport(AppKit)
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+                willEnterForeground?()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification)) { _ in
+                didEnterBackground?()
+            }
+        #endif
     }
 }

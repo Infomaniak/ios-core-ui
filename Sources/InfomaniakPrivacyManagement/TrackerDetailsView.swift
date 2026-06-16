@@ -59,18 +59,29 @@ struct TrackerDetailsView: View {
                 }
             }
             .background(backgroundColor)
-            .navigationBarTitle(Text(tracker.title, bundle: .module), displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
+            .navigationTitle(Text(tracker.title, bundle: .module))
+            #if !os(macOS)
+                .navigationBarTitleDisplayMode(.inline)
+            #endif
+                .toolbar {
+                    #if os(macOS)
+                    ToolbarItem {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
                     }
+                    #else
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                    }
+                    #endif
                 }
-            }
         }
     }
 }

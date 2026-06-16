@@ -16,8 +16,10 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import PhotosUI
 import SwiftUI
+import UIKit
 
 public struct CameraPickerView: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
@@ -58,3 +60,4 @@ public struct CameraPickerView: UIViewControllerRepresentable {
         }
     }
 }
+#endif

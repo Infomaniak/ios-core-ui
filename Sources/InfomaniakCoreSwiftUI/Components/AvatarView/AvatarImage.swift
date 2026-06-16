@@ -17,6 +17,11 @@
  */
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 public struct AvatarImage: View {
     let backgroundColor: Color
@@ -49,8 +54,13 @@ public struct AvatarImage: View {
             .fill(.blue)
             .frame(width: size.width, height: size.height)
 
-        let uiImage = ImageRenderer(content: square).uiImage!
-        return Image(uiImage: uiImage)
+        let renderer = ImageRenderer(content: square)
+
+        #if canImport(UIKit)
+        return Image(uiImage: renderer.uiImage!)
+        #elseif canImport(AppKit)
+        return Image(nsImage: renderer.nsImage!)
+        #endif
     }
 
     let showBorder = true
