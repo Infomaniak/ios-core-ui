@@ -20,3 +20,13 @@ jobs:
         run: xcodebuild -scheme InfomaniakCoreUI-Package build -sdk iphonesimulator -destination "generic/platform=iOS"
       - name: Test
         run: xcodebuild -scheme InfomaniakCoreUI-Package test -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 17,OS=latest"
+
+  build_and_test_macOS:
+    name: Build project on macOS
+    runs-on: [ self-hosted, iOS ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Build
+        run: xcodebuild -scheme InfomaniakCoreUI-Package build -destination "generic/platform=macOS"
