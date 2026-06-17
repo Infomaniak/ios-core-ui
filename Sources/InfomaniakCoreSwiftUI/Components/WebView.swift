@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import SwiftUI
 import UIKit
 import WebKit
@@ -85,3 +86,4 @@ public struct WebView: UIViewRepresentable {
         // needed for UIViewRepresentable
     }
 }
+#endif

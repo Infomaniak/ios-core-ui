@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import SafariServices
 import SwiftUI
 
@@ -32,3 +33,4 @@ public struct SafariWebView: UIViewControllerRepresentable {
 
     public func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
+#endif

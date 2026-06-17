@@ -17,7 +17,7 @@
  */
 
 #if canImport(MobileCoreServices)
-
+#if canImport(UIKit)
 import InfomaniakCore
 import InfomaniakCoreCommonUI
 @testable import InfomaniakDI
@@ -152,5 +152,5 @@ final class UTItemProviderUIImageRepresentation: XCTestCase {
         }
     }
 }
-
+#endif
 #endif

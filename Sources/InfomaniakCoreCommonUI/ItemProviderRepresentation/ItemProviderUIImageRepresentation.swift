@@ -17,7 +17,7 @@
  */
 
 #if canImport(MobileCoreServices)
-
+#if canImport(UIKit)
 import Combine
 import InfomaniakCore
 import UIKit
@@ -96,4 +96,5 @@ public final class ItemProviderUIImageRepresentation: NSObject, ProgressResultab
     }
 }
 
+#endif
 #endif

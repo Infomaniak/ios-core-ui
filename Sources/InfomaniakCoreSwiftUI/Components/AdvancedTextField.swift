@@ -16,7 +16,9 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if canImport(UIKit)
 import SwiftUI
+import UIKit
 
 public struct AdvancedTextField: UIViewRepresentable {
     public enum SubmitReason {
@@ -159,3 +161,4 @@ public final class UIRecipientsTextField: UITextField {
         print("New Value: \(newValue)")
     }
 }
+#endif

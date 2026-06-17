@@ -21,6 +21,11 @@ import InfomaniakCore
 import InfomaniakDI
 import SwiftUI
 import SwiftUIBackports
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 protocol SelfSizablePanel: ViewModifier {
     var dragIndicator: Visibility { get }
@@ -31,13 +36,20 @@ protocol SelfSizablePanel: ViewModifier {
     var headerSize: CGFloat { get }
 }
 
+private var headlinePointSize: CGFloat {
+    #if canImport(UIKit)
+    return UIFont.preferredFont(forTextStyle: .headline).pointSize
+    #elseif canImport(AppKit)
+    return NSFont.preferredFont(forTextStyle: .headline).pointSize
+    #endif
+}
+
 extension SelfSizablePanel {
     var headerSize: CGFloat {
         guard title != nil else {
             return topPadding
         }
-        return topPadding + IKFloatingPanelConstants.titleSpacing +
-            UIFont.preferredFont(forTextStyle: .headline).pointSize
+        return topPadding + IKFloatingPanelConstants.titleSpacing + headlinePointSize
     }
 }
 
@@ -83,12 +95,15 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
                 content
                     .padding(.bottom, bottomPadding)
             }
+            #if canImport(UIKit)
             .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26, .v27)) { scrollView in
                 computeViewHeight(from: scrollView)
             }
+            #endif
         }
     }
 
+    #if canImport(UIKit)
     private func computeViewHeight(from scrollView: UIScrollView) {
         guard isCompactWindow else { return }
         let totalPanelContentHeight = scrollView.contentSize.height + headerSize
@@ -106,4 +121,5 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
             }
         }
     }
+    #endif
 }

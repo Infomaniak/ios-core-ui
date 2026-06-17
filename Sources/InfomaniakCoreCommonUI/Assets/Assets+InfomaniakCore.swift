@@ -49,7 +49,14 @@ public enum InfomaniakCoreAsset {
 public struct InfomaniakCoreColor {
     public fileprivate(set) var name: String
 
+    #if canImport(UIKit)
     public var color: UIColor {
         return UIColor(named: name, in: Bundle.module, compatibleWith: nil)!
     }
+
+    #elseif canImport(AppKit)
+    public var color: NSColor {
+        return NSColor(named: name, bundle: Bundle.module)!
+    }
+    #endif
 }

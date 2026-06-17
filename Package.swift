@@ -7,16 +7,13 @@ let package = Package(
     name: "InfomaniakCoreUI",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
+        .macOS(.v13)
     ],
     products: [
         .library(
             name: "InfomaniakCoreCommonUI",
             targets: ["InfomaniakCoreCommonUI"]
-        ),
-        .library(
-            name: "InfomaniakCoreUIKit",
-            targets: ["InfomaniakCoreUIKit"]
         ),
         .library(
             name: "InfomaniakCoreSwiftUI",
@@ -37,7 +34,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "18.12.0")),
-        .package(url: "https://github.com/Infomaniak/SnackBar.swift", .upToNextMajor(from: "1.2.0")),
         .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.8.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
         .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
@@ -50,13 +46,8 @@ let package = Package(
             dependencies: [
                 "Nuke",
                 .product(name: "MatomoTracker", package: "matomo-sdk-ios"),
-                .product(name: "InfomaniakCore", package: "ios-core"),
-                .product(name: "SnackBar", package: "SnackBar.swift")
+                .product(name: "InfomaniakCore", package: "ios-core")
             ]
-        ),
-        .target(
-            name: "InfomaniakCoreUIKit",
-            dependencies: ["InfomaniakCoreCommonUI"]
         ),
         .target(
             name: "InfomaniakCoreSwiftUI",
@@ -85,7 +76,10 @@ let package = Package(
         ),
         .testTarget(
             name: "InfomaniakCoreUITests",
-            dependencies: ["InfomaniakCoreCommonUI", "InfomaniakCoreUIKit", "InfomaniakCoreSwiftUI"]
+            dependencies: [
+                "InfomaniakCoreCommonUI",
+                "InfomaniakCoreSwiftUI"
+            ]
         )
     ]
 )

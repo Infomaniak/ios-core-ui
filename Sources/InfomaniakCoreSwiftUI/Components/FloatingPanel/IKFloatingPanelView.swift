@@ -19,6 +19,11 @@
 import DesignSystem
 import SwiftUI
 import SwiftUIBackports
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 public enum IKFloatingPanelConstants {
     public static let titleSpacing = IKPadding.mini
@@ -39,7 +44,11 @@ public struct IKFloatingPanelView<Content: View>: View {
     let content: Content
 
     private var isCompactMode: Bool {
+        #if canImport(UIKit)
         return !isCompactWindow || (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom != .pad)
+        #elseif canImport(AppKit)
+        return !isCompactWindow
+        #endif
     }
 
     private var shouldShowHeader: Bool {
@@ -70,13 +79,21 @@ public struct IKFloatingPanelView<Content: View>: View {
         self.content = content()
     }
 
+    private var headlinePointSize: Font {
+        #if canImport(UIKit)
+        return Font(UIFont.preferredFont(forTextStyle: .headline))
+        #elseif canImport(AppKit)
+        return Font(NSFont.preferredFont(forTextStyle: .headline))
+        #endif
+    }
+
     public var body: some View {
         VStack(spacing: IKPadding.mini) {
             if shouldShowHeader {
                 ZStack {
                     if let title {
                         Text(title)
-                            .font(Font(UIFont.preferredFont(forTextStyle: .headline)))
+                            .font(headlinePointSize)
                     }
 
                     if isCompactMode && !closeButtonHidden {
