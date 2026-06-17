@@ -20,7 +20,6 @@ import DesignSystem
 import InfomaniakCore
 import InfomaniakCoreCommonUI
 import InfomaniakCoreUIResources
-import InfomaniakDI
 import SwiftUI
 
 public struct AskForReviewView: View {

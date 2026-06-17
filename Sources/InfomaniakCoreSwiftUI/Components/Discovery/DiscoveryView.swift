@@ -19,7 +19,6 @@
 import DesignSystem
 import InfomaniakCoreCommonUI
 import InfomaniakCoreUIResources
-import InfomaniakDI
 import Lottie
 import SwiftUI
 

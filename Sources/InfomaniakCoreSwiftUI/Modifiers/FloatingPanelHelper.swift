@@ -18,10 +18,7 @@
 
 import DesignSystem
 import InfomaniakCore
-import InfomaniakDI
 import SwiftUI
-import SwiftUIBackports
-import SwiftUIIntrospect
 
 public extension View {
     @available(iOS 16.4, macOS 13.3, *)

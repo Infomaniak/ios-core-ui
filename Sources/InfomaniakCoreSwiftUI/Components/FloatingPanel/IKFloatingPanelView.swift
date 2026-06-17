@@ -18,7 +18,6 @@
 
 import DesignSystem
 import SwiftUI
-import SwiftUIBackports
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)

@@ -17,10 +17,7 @@
  */
 
 import DesignSystem
-import InfomaniakCore
-import InfomaniakDI
 import SwiftUI
-import SwiftUIBackports
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)

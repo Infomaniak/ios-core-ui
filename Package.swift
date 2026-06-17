@@ -36,7 +36,6 @@ let package = Package(
         .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "18.12.0")),
         .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.8.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
-        .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "1.15.1")),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "27.0.0-beta")),
         .package(url: "https://github.com/airbnb/lottie-spm", .upToNextMajor(from: "4.5.2"))
     ],
@@ -52,7 +51,6 @@ let package = Package(
         .target(
             name: "InfomaniakCoreSwiftUI",
             dependencies: [
-                "SwiftUIBackports",
                 "DesignSystem",
                 "InfomaniakCoreUIResources",
                 "InfomaniakCoreCommonUI",

@@ -19,7 +19,6 @@
 import DesignSystem
 import InfomaniakCore
 import InfomaniakCoreSwiftUI
-import InfomaniakDI
 import SwiftUI
 
 struct TrackerDetailsView: View {
