@@ -53,6 +53,7 @@ extension SelfSizablePanel {
     }
 }
 
+@available(iOS 16.4, macOS 13.3, *)
 public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
     static let defaultHeight: CGFloat = 1
 
@@ -94,32 +95,17 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
             ScrollView {
                 content
                     .padding(.bottom, bottomPadding)
+                    .onGeometryChange(for: CGFloat.self) { proxy in
+                        return proxy.size.height + headerSize + bottomPadding
+                    } action: { totalPanelContentHeight in
+                        DispatchQueue.main.async {
+                            let customHeightDetent: PresentationDetent = .height(totalPanelContentHeight)
+                            currentDetents = [customHeightDetent]
+                            selection = customHeightDetent
+                        }
+                    }
             }
-            #if canImport(UIKit)
-            .introspect(.scrollView, on: .iOS(.v16, .v17, .v18, .v26, .v27)) { scrollView in
-                computeViewHeight(from: scrollView)
-            }
-            #endif
+            .scrollBounceBehavior(.basedOnSize)
         }
     }
-
-    #if canImport(UIKit)
-    private func computeViewHeight(from scrollView: UIScrollView) {
-        guard isCompactWindow else { return }
-        let totalPanelContentHeight = scrollView.contentSize.height + headerSize
-        guard selection != .height(totalPanelContentHeight) else { return }
-
-        scrollView.isScrollEnabled = totalPanelContentHeight > (scrollView.window?.bounds.height ?? 0)
-        DispatchQueue.main.async {
-            currentDetents = [.height(Self.defaultHeight), .height(totalPanelContentHeight)]
-            selection = .height(totalPanelContentHeight)
-
-            // Hack to let time for the animation to finish, after animation is complete we can modify the state again
-            // if we don't do this the animation is cut before finishing
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                currentDetents = [selection]
-            }
-        }
-    }
-    #endif
 }

@@ -20,6 +20,7 @@ import DesignSystem
 import SwiftUI
 
 public extension View {
+    @available(iOS 16.4, macOS 13.3, *)
     func discoveryPresenter<ModalContent: View>(
         isPresented: Binding<Bool>,
         topPadding: CGFloat = IKPadding.large,
@@ -39,6 +40,7 @@ public extension View {
     }
 }
 
+@available(iOS 16.4, macOS 13.3, *)
 struct DiscoveryPresenter<ModalContent: View>: ViewModifier {
     @Environment(\.isCompactWindow) private var isCompactWindow
 
