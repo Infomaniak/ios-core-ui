@@ -18,12 +18,10 @@
 
 import DesignSystem
 import InfomaniakCore
-import InfomaniakDI
 import SwiftUI
-import SwiftUIBackports
-import SwiftUIIntrospect
 
 public extension View {
+    @available(iOS 16.4, macOS 13.3, *)
     func floatingPanel<Content: View>(
         isPresented: Binding<Bool>,
         title: String? = nil,
@@ -44,6 +42,7 @@ public extension View {
         }
     }
 
+    @available(iOS 16.4, macOS 13.3, *)
     func floatingPanel<Item: Identifiable, Content: View>(
         item: Binding<Item?>,
         backgroundColor: Color,

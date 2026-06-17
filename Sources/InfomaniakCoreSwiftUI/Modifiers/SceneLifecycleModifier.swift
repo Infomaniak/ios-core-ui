@@ -17,7 +17,6 @@
  */
 
 import InfomaniakCore
-import InfomaniakDI
 import SwiftUI
 
 #if canImport(UIKit)
