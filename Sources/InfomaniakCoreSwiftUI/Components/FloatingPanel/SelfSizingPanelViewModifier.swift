@@ -21,9 +21,9 @@ import InfomaniakCore
 import InfomaniakDI
 import SwiftUI
 import SwiftUIBackports
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 import UIKit
-#elseif os(macOS)
+#elseif canImport(AppKit)
 import AppKit
 #endif
 
