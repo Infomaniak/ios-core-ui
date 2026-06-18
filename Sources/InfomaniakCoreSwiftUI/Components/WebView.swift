@@ -16,14 +16,20 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if canImport(UIKit)
 import SwiftUI
-import UIKit
 import WebKit
 
-public struct WebView: UIViewRepresentable {
-    public typealias UIViewType = WKWebView
+#if canImport(UIKit)
+import UIKit
 
+typealias PlatformRepresentable = UIViewRepresentable
+#elseif canImport(AppKit)
+import AppKit
+
+typealias PlatformRepresentable = NSViewRepresentable
+#endif
+
+public struct WebView: PlatformRepresentable {
     let initialURL: URL
     var onPageLoaded: ((URL) -> Void)?
     var shouldNavigateToPage: ((WKWebView, WKNavigationAction, @escaping (WKNavigationActionPolicy) -> Void) -> Void)?
@@ -67,10 +73,16 @@ public struct WebView: UIViewRepresentable {
         Coordinator(self)
     }
 
-    public func makeUIView(context: Context) -> WKWebView {
+    private func createWebViewWith(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
+        return webView
+    }
+
+    #if canImport(UIKit)
+    public func makeUIView(context: Context) -> WKWebView {
+        let webView = createWebViewWith(context: context)
         webView.scrollView.bounces = false
         webView.scrollView.bouncesZoom = false
         webView.scrollView.showsVerticalScrollIndicator = false
@@ -85,5 +97,17 @@ public struct WebView: UIViewRepresentable {
     public func updateUIView(_ uiView: WKWebView, context: Context) {
         // needed for UIViewRepresentable
     }
+
+    #elseif canImport(AppKit)
+    public func makeNSView(context: Context) -> WKWebView {
+        let webView = createWebViewWith(context: context)
+
+        webView.load(URLRequest(url: initialURL))
+        return webView
+    }
+
+    public func updateNSView(_ uiView: WKWebView, context: Context) {
+        // needed for NSViewRepresentable
+    }
+    #endif
 }
-#endif
