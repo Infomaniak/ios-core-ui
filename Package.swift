@@ -33,7 +33,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "18.12.0")),
+        .package(url: "https://github.com/Infomaniak/ios-core", .upToNextMajor(from: "19.0.0")),
         .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.8.0")),
         .package(url: "https://github.com/matomo-org/matomo-sdk-ios", .upToNextMajor(from: "7.5.2")),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", .upToNextMajor(from: "27.0.0-beta")),
