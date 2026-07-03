@@ -95,10 +95,16 @@ public struct SelfSizingPanelViewModifier: ViewModifier, SelfSizablePanel {
                     .onGeometryChange(for: CGFloat.self) { proxy in
                         return proxy.size.height + headerSize + bottomPadding
                     } action: { totalPanelContentHeight in
-                        DispatchQueue.main.async {
+                        if #available(iOS 18, macOS 15, *) {
                             let customHeightDetent: PresentationDetent = .height(totalPanelContentHeight)
                             currentDetents = [customHeightDetent]
                             selection = customHeightDetent
+                        } else {
+                            DispatchQueue.main.async {
+                                let customHeightDetent: PresentationDetent = .height(totalPanelContentHeight)
+                                currentDetents = [customHeightDetent]
+                                selection = customHeightDetent
+                            }
                         }
                     }
             }
