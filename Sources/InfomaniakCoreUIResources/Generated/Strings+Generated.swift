@@ -52,6 +52,8 @@ public enum CoreUILocalizable {
   public static func reviewAlertTitle(_ p1: Any) -> String {
     return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")
   }
+  /// loco:6a8ed4a5d8cb4489960d88a2
+  public static let themeTitle = CoreUILocalizable.tr("Localizable", "themeTitle", fallback: "Theme")
   /// loco:69f9e77685b741545e021953
   public static let youHaveBeenDisconnectedLabel = CoreUILocalizable.tr("Localizable", "youHaveBeenDisconnectedLabel", fallback: "You have been disconnected")
 }

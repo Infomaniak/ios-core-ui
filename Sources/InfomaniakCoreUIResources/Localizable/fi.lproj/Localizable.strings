@@ -1,12 +1,3 @@
-/*
- * Loco ios export: Xcode Strings (legacy)
- * Project: CoreUI
- * Locale: fi, Finnish
- * Tagged: ios, !accountsBottomSheet, !appIntegrity, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !network, !privacy
- * Exported by: Valentin Perignon
- * Exported at: Wed, 06 May 2026 09:00:23 +0200
- */
-
 /* loco:675fea0d40923b5c440f0f52 */
 "anErrorHasOccurred" = "Tapahtui virhe";
 
@@ -60,6 +51,9 @@
 
 /* loco:67beee584d2044470e0df152 */
 "reviewAlertTitle" = "Pidätkö %@:stä?";
+
+/* loco:6a8ed4a5d8cb4489960d88a2 */
+"themeTitle" = "Teema";
 
 /* loco:69f9e77685b741545e021953 */
 "youHaveBeenDisconnectedLabel" = "Sinut on kirjattu ulos";
