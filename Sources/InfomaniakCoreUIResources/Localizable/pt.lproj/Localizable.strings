@@ -1,12 +1,3 @@
-/*
- * Loco ios export: Xcode Strings (legacy)
- * Project: CoreUI
- * Locale: pt, Portuguese
- * Tagged: ios, !accountsBottomSheet, !appIntegrity, !bugtracker, !emoji-reaction, !inapp2fa, !interapplogin, !ios-stringsdict, !kSuite, !my kSuite, !network, !privacy
- * Exported by: Valentin Perignon
- * Exported at: Wed, 06 May 2026 09:00:23 +0200
- */
-
 /* loco:675fea0d40923b5c440f0f52 */
 "anErrorHasOccurred" = "Ocorreu um erro";
 
@@ -16,8 +7,17 @@
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Fechar";
 
+/* loco:684003a81687be54da004145 */
+"buttonCreateAccount" = "Criar uma conta";
+
 /* loco:67ac7d178defcfcd7806e182 */
 "buttonLater" = "Mais tarde";
+
+/* loco:6840035e1687be54da004142 */
+"buttonLogin" = "Iniciar sessão";
+
+/* loco:6a8ee16fe55b9ea173010902 */
+"buttonMaybe" = "Talvez";
 
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Seguinte";
@@ -60,6 +60,9 @@
 
 /* loco:67beee584d2044470e0df152 */
 "reviewAlertTitle" = "Gosta do %@?";
+
+/* loco:6a8ed4a5d8cb4489960d88a2 */
+"themeTitle" = "Tema";
 
 /* loco:69f9e77685b741545e021953 */
 "youHaveBeenDisconnectedLabel" = "Foi desligado";
