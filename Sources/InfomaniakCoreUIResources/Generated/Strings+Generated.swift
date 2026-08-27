@@ -16,8 +16,14 @@ public enum CoreUILocalizable {
   public static let buttonCancel = CoreUILocalizable.tr("Localizable", "buttonCancel", fallback: "Cancel")
   /// loco:679237f6daa3807fa008b175
   public static let buttonClose = CoreUILocalizable.tr("Localizable", "buttonClose", fallback: "Close")
+  /// loco:684003a81687be54da004145
+  public static let buttonCreateAccount = CoreUILocalizable.tr("Localizable", "buttonCreateAccount", fallback: "Create an account")
   /// loco:67ac7d178defcfcd7806e182
   public static let buttonLater = CoreUILocalizable.tr("Localizable", "buttonLater", fallback: "Later")
+  /// loco:6840035e1687be54da004142
+  public static let buttonLogin = CoreUILocalizable.tr("Localizable", "buttonLogin", fallback: "Log in")
+  /// loco:6a8ee16fe55b9ea173010902
+  public static let buttonMaybe = CoreUILocalizable.tr("Localizable", "buttonMaybe", fallback: "Maybe")
   /// loco:675059634bdf0aedde06df72
   public static let buttonNext = CoreUILocalizable.tr("Localizable", "buttonNext", fallback: "Next")
   /// loco:67beed573c592678eb085582

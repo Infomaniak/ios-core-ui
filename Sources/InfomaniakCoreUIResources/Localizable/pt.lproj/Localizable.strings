@@ -7,8 +7,17 @@
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Fechar";
 
+/* loco:684003a81687be54da004145 */
+"buttonCreateAccount" = "Criar uma conta";
+
 /* loco:67ac7d178defcfcd7806e182 */
 "buttonLater" = "Mais tarde";
+
+/* loco:6840035e1687be54da004142 */
+"buttonLogin" = "Iniciar sessão";
+
+/* loco:6a8ee16fe55b9ea173010902 */
+"buttonMaybe" = "Talvez";
 
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Seguinte";

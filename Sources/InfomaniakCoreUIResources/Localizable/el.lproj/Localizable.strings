@@ -7,8 +7,17 @@
 /* loco:679237f6daa3807fa008b175 */
 "buttonClose" = "Κλείσιμο";
 
+/* loco:684003a81687be54da004145 */
+"buttonCreateAccount" = "Δημιουργία λογαριασμού";
+
 /* loco:67ac7d178defcfcd7806e182 */
 "buttonLater" = "Αργότερα";
+
+/* loco:6840035e1687be54da004142 */
+"buttonLogin" = "Σύνδεση";
+
+/* loco:6a8ee16fe55b9ea173010902 */
+"buttonMaybe" = "Ίσως";
 
 /* loco:675059634bdf0aedde06df72 */
 "buttonNext" = "Επόμενο";
