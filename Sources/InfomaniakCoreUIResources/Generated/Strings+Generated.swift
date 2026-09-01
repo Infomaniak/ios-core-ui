@@ -59,7 +59,7 @@ public enum CoreUILocalizable {
     return CoreUILocalizable.tr("Localizable", "reviewAlertTitle", String(describing: p1), fallback: "Do you like %@?")
   }
   /// loco:6a96b8591c917a14e0082305
-  public static let themeDarkDark = CoreUILocalizable.tr("Localizable", "themeDark-Dark", fallback: "Dark")
+  public static let themeDark = CoreUILocalizable.tr("Localizable", "themeDark", fallback: "Dark")
   /// loco:6a96b7c921fd881d300a1802
   public static let themeLight = CoreUILocalizable.tr("Localizable", "themeLight", fallback: "Light")
   /// loco:6a96b93c2681ad293604955e
