@@ -61,6 +61,15 @@
 /* loco:67beee584d2044470e0df152 */
 "reviewAlertTitle" = "Do you like %@?";
 
+/* loco:6a96b8591c917a14e0082305 */
+"themeDark-Dark" = "Dark";
+
+/* loco:6a96b7c921fd881d300a1802 */
+"themeLight" = "Light";
+
+/* loco:6a96b93c2681ad293604955e */
+"themeSystem" = "System";
+
 /* loco:6a8ed4a5d8cb4489960d88a2 */
 "themeTitle" = "Theme";
 
