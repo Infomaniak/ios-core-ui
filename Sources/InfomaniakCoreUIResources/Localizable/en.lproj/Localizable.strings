@@ -62,7 +62,7 @@
 "reviewAlertTitle" = "Do you like %@?";
 
 /* loco:6a96b8591c917a14e0082305 */
-"themeDark-Dark" = "Dark";
+"themeDark" = "Dark";
 
 /* loco:6a96b7c921fd881d300a1802 */
 "themeLight" = "Light";
