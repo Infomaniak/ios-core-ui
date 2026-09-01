@@ -62,7 +62,7 @@
 "reviewAlertTitle" = "Pidätkö %@:stä?";
 
 /* loco:6a96b8591c917a14e0082305 */
-"themeDark-Dark" = "Tumma";
+"themeDark" = "Tumma";
 
 /* loco:6a96b7c921fd881d300a1802 */
 "themeLight" = "Vaalea";
