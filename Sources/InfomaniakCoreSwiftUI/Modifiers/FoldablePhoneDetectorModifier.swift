@@ -33,6 +33,7 @@ public struct FoldablePhoneDetectorModifier: ViewModifier {
     @State private var isFoldable = false
 
     public func body(content: Content) -> some View {
+        #if os(iOS)
         if #available(iOS 27.1, *) {
             content
                 .environment(\.isFoldable, isFoldable)
@@ -43,5 +44,9 @@ public struct FoldablePhoneDetectorModifier: ViewModifier {
             content
                 .environment(\.isFoldable, false)
         }
+        #else
+        content
+            .environment(\.isFoldable, false)
+        #endif
     }
 }
