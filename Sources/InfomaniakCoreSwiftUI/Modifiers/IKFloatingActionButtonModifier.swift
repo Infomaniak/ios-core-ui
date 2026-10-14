@@ -89,10 +89,12 @@ struct IKToolbarFloatingActionButtonModifier<FAB: View>: ViewModifier {
             content
                 .toolbar {
                     if isPresented {
+                        ToolbarSpacer(.flexible, placement: .bottomBar)
+
                         ToolbarItem(placement: .bottomBar) {
                             button
                                 .buttonStyle(.borderedProminent)
-                                .tint(Color.accentColor)
+                                .tint(tint)
                                 .disabled(isInactive)
                         }
                     }
