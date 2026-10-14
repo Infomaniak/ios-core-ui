@@ -64,7 +64,7 @@ struct IKFloatingActionButtonModifier<FAB: View>: ViewModifier {
                 isInactive: style.isInactive,
                 button: button
             ))
-            .modifier(IKDeviceHingeDetectorModifier())
+            .detectDeviceHinge()
             .environment(\.ikFloatingActionButtonPlacement, placement)
     }
 }
@@ -84,7 +84,8 @@ struct IKToolbarFloatingActionButtonModifier<FAB: View>: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        if #available(anyAppleOS 27.1, *) {
+        #if os(iOS)
+        if #available(iOS 27.1, *) {
             content
                 .toolbar {
                     if isPresented {
@@ -99,34 +100,9 @@ struct IKToolbarFloatingActionButtonModifier<FAB: View>: ViewModifier {
         } else {
             content
         }
-    }
-}
-
-@MainActor
-final class IKDeviceHingeState: ObservableObject {
-    static let shared = IKDeviceHingeState()
-
-    @Published private(set) var hasHinge = false
-
-    private init() {}
-
-    func didReceiveHinge() {
-        guard !hasHinge else { return }
-        hasHinge = true
-    }
-}
-
-struct IKDeviceHingeDetectorModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(anyAppleOS 27.1, *) {
-            content
-                .onHingeChange { _, newContext in
-                    guard newContext.hinge != nil else { return }
-                    IKDeviceHingeState.shared.didReceiveHinge()
-                }
-        } else {
-            content
-        }
+        #else
+        content
+        #endif
     }
 }
 
