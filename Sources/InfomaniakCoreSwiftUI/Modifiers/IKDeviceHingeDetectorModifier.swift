@@ -42,7 +42,7 @@ public struct IKDeviceHingeDetectorModifier: ViewModifier {
     public init() {}
 
     public func body(content: Content) -> some View {
-        #if os(iOS)
+        #if !targetEnvironment(macCatalyst) && os(iOS)
         if #available(iOS 27.1, *) {
             content
                 .onHingeChange { _, newContext in
