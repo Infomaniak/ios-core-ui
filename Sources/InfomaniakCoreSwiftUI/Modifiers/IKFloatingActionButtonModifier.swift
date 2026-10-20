@@ -36,18 +36,19 @@ public extension View {
         @ViewBuilder button: () -> FAB
     ) -> some View {
         modifier(IKFloatingActionButtonModifier(isPresented: isPresented, style: style, button: button()))
+            .detectDeviceHinge()
     }
 }
 
 struct IKFloatingActionButtonModifier<FAB: View>: ViewModifier {
-    @ObservedObject private var deviceHingeState = IKDeviceHingeState.shared
+    @Environment(\.hasDeviceHinge) private var hasDeviceHinge
 
     let isPresented: Bool
     let style: IKFloatingActionButtonStyle
     let button: FAB
 
     private var placement: IKFloatingActionButtonPlacement {
-        deviceHingeState.hasHinge ? .toolbar : .floating
+        hasDeviceHinge ? .toolbar : .floating
     }
 
     func body(content: Content) -> some View {
@@ -64,7 +65,6 @@ struct IKFloatingActionButtonModifier<FAB: View>: ViewModifier {
                 isInactive: style.isInactive,
                 button: button
             ))
-            .detectDeviceHinge()
             .environment(\.ikFloatingActionButtonPlacement, placement)
     }
 }

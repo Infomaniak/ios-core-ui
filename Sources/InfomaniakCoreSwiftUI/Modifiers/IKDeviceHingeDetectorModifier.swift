@@ -18,36 +18,39 @@
 
 import SwiftUI
 
-@MainActor
-public final class IKDeviceHingeState: ObservableObject {
-    public static let shared = IKDeviceHingeState()
-
-    @Published public private(set) var hasHinge = false
-
-    private init() {}
-
-    func didReceiveHinge() {
-        guard !hasHinge else { return }
-        hasHinge = true
-    }
+public extension EnvironmentValues {
+    @Entry
+    var hasDeviceHinge = false
 }
 
 public extension View {
-    func detectDeviceHinge() -> some View {
-        modifier(IKDeviceHingeDetectorModifier())
+    func detectDeviceHinge(store: UserDefaults = .standard) -> some View {
+        modifier(IKDeviceHingeDetectorModifier(store: store))
     }
 }
 
 public struct IKDeviceHingeDetectorModifier: ViewModifier {
-    public init() {}
+    @AppStorage private var hasHinge: Bool
+    @Environment(\.hasDeviceHinge) private var inheritedHasDeviceHinge
+
+    static let storageKey = "com.infomaniak.coreui.deviceHasHinge"
+
+    public init(store: UserDefaults = .standard) {
+        _hasHinge = AppStorage(wrappedValue: false, Self.storageKey, store: store)
+    }
 
     public func body(content: Content) -> some View {
+        detectedContent(content)
+            .environment(\.hasDeviceHinge, inheritedHasDeviceHinge || hasHinge)
+    }
+
+    @ViewBuilder
+    private func detectedContent(_ content: Content) -> some View {
         #if !targetEnvironment(macCatalyst) && os(iOS)
         if #available(iOS 27.1, *) {
             content
                 .onHingeChange { _, newContext in
-                    guard newContext.hinge != nil else { return }
-                    IKDeviceHingeState.shared.didReceiveHinge()
+                    updateHingeDetection(isHingePresent: newContext.hinge != nil)
                 }
         } else {
             content
@@ -55,5 +58,10 @@ public struct IKDeviceHingeDetectorModifier: ViewModifier {
         #else
         content
         #endif
+    }
+
+    func updateHingeDetection(isHingePresent: Bool) {
+        guard isHingePresent && !hasHinge else { return }
+        hasHinge = true
     }
 }
