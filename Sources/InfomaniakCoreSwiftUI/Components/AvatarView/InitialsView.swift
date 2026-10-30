@@ -22,27 +22,28 @@ public struct InitialsView: View {
     let initials: String
     let backgroundColor: Color
     let foregroundColor: Color
-    let size: CGFloat
 
-    public init(initials: String, backgroundColor: Color, foregroundColor: Color, size: CGFloat) {
+    public init(initials: String, backgroundColor: Color, foregroundColor: Color) {
         self.initials = initials
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
-        self.size = size
     }
 
     public var body: some View {
-        ZStack {
-            Circle()
-                .fill(backgroundColor)
-            Text(initials)
-                .font(.system(size: size * 0.5, weight: .semibold))
-                .foregroundStyle(foregroundColor)
-        }
-        .frame(width: size, height: size)
+        Circle()
+            .fill(backgroundColor)
+            .overlay {
+                Text(initials)
+                    .font(.system(size: 100, weight: .semibold))
+                    .foregroundStyle(foregroundColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.01)
+                    .padding(value: .mini)
+            }
     }
 }
 
 #Preview {
-    InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white, size: 40)
+    InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white)
+        .frame(width: 40, height: 40)
 }

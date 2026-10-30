@@ -1,6 +1,14 @@
 # ios-core-ui
 UI component collection
 
+## Avatars
+
+`InitialsView` and `AvatarImage` adapt to the space proposed by their parent,
+without a `size` argument. Apply `.frame(width:height:)` at the call site when
+an avatar needs fixed dimensions. When migrating from the previous API, move
+`size: diameter` to `.frame(width: diameter, height: diameter)`.
+The size-based initializers have been removed; this is a breaking API change.
+
 ## Device hinge detection
 
 Install `.detectDeviceHinge(store: .standard)` on an ancestor of views that read
