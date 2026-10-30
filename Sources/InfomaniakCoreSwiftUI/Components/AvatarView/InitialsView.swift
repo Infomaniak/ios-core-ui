@@ -33,17 +33,27 @@ public struct InitialsView: View {
         Circle()
             .fill(backgroundColor)
             .overlay {
-                Text(initials)
-                    .font(.system(size: 100, weight: .semibold))
-                    .foregroundStyle(foregroundColor)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.01)
-                    .padding(value: .mini)
+                GeometryReader { proxy in
+                    Text(initials)
+                        .font(.system(size: proxy.size.width * 0.5, weight: .semibold))
+                        .foregroundStyle(foregroundColor)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
+            .compositingGroup()
     }
 }
 
 #Preview {
-    InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white)
-        .frame(width: 40, height: 40)
+    HStack {
+        InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white)
+            .frame(width: 16, height: 16)
+
+        InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white)
+            .frame(width: 40, height: 40)
+
+        InitialsView(initials: "TE", backgroundColor: .red, foregroundColor: .white)
+            .frame(width: 100, height: 100)
+    }
 }
