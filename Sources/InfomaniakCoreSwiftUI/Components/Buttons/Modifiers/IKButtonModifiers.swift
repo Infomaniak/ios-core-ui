@@ -172,9 +172,22 @@ public struct IKButtonFilledModifier: ViewModifier {
         self.isInactive = isInactive
     }
 
+    private var glassTint: Color {
+        return (backgroundStyle as? Color) ?? .accentColor
+    }
+
     public func body(content: Content) -> some View {
-        content
-            .foregroundStyle(AnyShapeStyle(foregroundStyle))
-            .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: theme.cornerRadius))
+        if #available(iOS 26.0, macOS 26.0, *) {
+            content
+                .foregroundStyle(AnyShapeStyle(foregroundStyle))
+                .glassEffect(
+                    .regular.tint(glassTint).interactive(!isDisabled && !isInactive),
+                    in: RoundedRectangle(cornerRadius: theme.cornerRadius)
+                )
+        } else {
+            content
+                .foregroundStyle(AnyShapeStyle(foregroundStyle))
+                .background(AnyShapeStyle(backgroundStyle), in: RoundedRectangle(cornerRadius: theme.cornerRadius))
+        }
     }
 }

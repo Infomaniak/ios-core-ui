@@ -46,8 +46,21 @@ public struct IKFloatingActionButtonStyle: ButtonStyle {
             .padding(.horizontal, IKPadding.medium)
             .frame(minWidth: isExtended ? nil : size, minHeight: size)
             .modifier(IKButtonFilledModifier(buttonRole: configuration.role, isProminent: true, isInactive: isInactive))
-            .modifier(IKButtonScaleAnimationModifier(isPressed: configuration.isPressed))
+            .modifier(IKFloatingActionButtonPressedModifier(isPressed: configuration.isPressed))
             .allowsHitTesting(!isLoading)
+    }
+}
+
+struct IKFloatingActionButtonPressedModifier: ViewModifier {
+    let isPressed: Bool
+
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, macOS 26.0, *) {
+            content
+        } else {
+            content
+                .modifier(IKButtonScaleAnimationModifier(isPressed: isPressed))
+        }
     }
 }
 
