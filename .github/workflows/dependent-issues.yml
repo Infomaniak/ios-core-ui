@@ -25,5 +25,5 @@ concurrency:
 jobs:
   check_dependencies:
     if: github.event_name == 'issues' || github.event.pull_request.head.repo.full_name == github.repository
-    uses: infomaniak/.github/.github/workflows/dependent-issues.yml@v1
+    uses: infomaniak/.github/.github/workflows/dependent-issues.yml@v2
     secrets: inherit

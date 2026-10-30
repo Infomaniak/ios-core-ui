@@ -26,25 +26,22 @@ import AppKit
 public struct AvatarImage: View {
     let backgroundColor: Color
     let image: Image
-    let size: CGFloat
 
-    public init(backgroundColor: Color = .white, image: Image, size: CGFloat) {
+    public init(backgroundColor: Color = .white, image: Image) {
         self.backgroundColor = backgroundColor
         self.image = image
-        self.size = size
     }
 
     public var body: some View {
-        ZStack {
-            backgroundColor
-
-            image
-                .resizable()
-                .scaledToFill()
-        }
-        .frame(width: size, height: size)
-        .clipShape(.circle)
-        .drawingGroup()
+        Circle()
+            .fill(backgroundColor)
+            .overlay {
+                image
+                    .resizable()
+                    .scaledToFill()
+            }
+            .clipShape(.circle)
+            .drawingGroup()
     }
 }
 
@@ -66,13 +63,16 @@ public struct AvatarImage: View {
     let showBorder = true
 
     return VStack {
-        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 40)), size: 40)
+        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 40)))
+            .frame(width: 40, height: 40)
             .border(showBorder ? .red : .clear)
 
-        AvatarImage(image: getImage(withSize: CGSize(width: 60, height: 40)), size: 40)
+        AvatarImage(image: getImage(withSize: CGSize(width: 60, height: 40)))
+            .frame(width: 40, height: 40)
             .border(showBorder ? .red : .clear)
 
-        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 60)), size: 40)
+        AvatarImage(image: getImage(withSize: CGSize(width: 40, height: 60)))
+            .frame(width: 40, height: 40)
             .border(showBorder ? .red : .clear)
     }
 }
